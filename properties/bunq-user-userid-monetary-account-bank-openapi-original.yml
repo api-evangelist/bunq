@@ -1,0 +1,382 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/monetary-account-bank'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    MonetaryAccountBankCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    MonetaryAccountBankRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the MonetaryAccountBank.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the MonetaryAccountBank's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the MonetaryAccountBank's last update.
+          readOnly: true
+          writeOnly: false
+        avatar:
+          type: object
+          description: The Avatar of the MonetaryAccountBank.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        currency:
+          type: string
+          description: >-
+            The currency of the MonetaryAccountBank as an ISO 4217 formatted
+            currency code.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: >-
+            The description of the MonetaryAccountBank. Defaults to 'bunq
+            account'.
+          readOnly: true
+          writeOnly: false
+        daily_limit:
+          type: object
+          description: >-
+            The daily spending limit Amount of the MonetaryAccountBank. Defaults
+            to 1000 EUR. Currency must match the MonetaryAccountBank's currency.
+            Limited to 10000 EUR.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        overdraft_limit:
+          type: object
+          description: The maximum Amount the MonetaryAccountBank can be 'in the red'.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        balance:
+          type: object
+          description: The current available balance Amount of the MonetaryAccountBank.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        alias:
+          type: array
+          description: The Aliases for the MonetaryAccountBank.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Pointer'
+        public_uuid:
+          type: string
+          description: The MonetaryAccountBank's public UUID.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: >-
+            The status of the MonetaryAccountBank. Can be: ACTIVE, BLOCKED,
+            CANCELLED or PENDING_REOPEN
+          readOnly: true
+          writeOnly: false
+        sub_status:
+          type: string
+          description: >-
+            The sub-status of the MonetaryAccountBank providing extra
+            information regarding the status. Will be NONE for ACTIVE or
+            PENDING_REOPEN, COMPLETELY or ONLY_ACCEPTING_INCOMING for BLOCKED
+            and REDEMPTION_INVOLUNTARY, REDEMPTION_VOLUNTARY or PERMANENT for
+            CANCELLED.
+          readOnly: true
+          writeOnly: false
+        reason:
+          type: string
+          description: >-
+            The reason for voluntarily cancelling (closing) the
+            MonetaryAccountBank, can only be OTHER.
+          readOnly: true
+          writeOnly: false
+        reason_description:
+          type: string
+          description: >-
+            The optional free-form reason for voluntarily cancelling (closing)
+            the MonetaryAccountBank. Can be any user provided message.
+          readOnly: true
+          writeOnly: false
+        user_id:
+          type: integer
+          description: The id of the User who owns the MonetaryAccountBank.
+          readOnly: true
+          writeOnly: false
+        monetary_account_profile:
+          type: object
+          description: The profile of the account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountProfile'
+        display_name:
+          type: string
+          description: The legal name of the user / company using this monetary account.
+          readOnly: true
+          writeOnly: false
+        setting:
+          type: object
+          description: The settings of the MonetaryAccountBank.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountSetting'
+        all_auto_save_id:
+          type: array
+          description: The ids of the AutoSave.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/BunqId'
+    MonetaryAccountBankUpdate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+paths:
+  /user/{userID}/monetary-account-bank:
+    post:
+      tags:
+        - - - - monetary-account-bank
+      summary: ''
+      operationId: CREATE_MonetaryAccountBank_for_User
+      description: Create new MonetaryAccountBank.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MonetaryAccountBank'
+      responses:
+        '200':
+          description: >-
+            With MonetaryAccountBank you can create a new bank account, retrieve
+            information regarding your existing MonetaryAccountBanks and update
+            specific fields of an existing MonetaryAccountBank. Examples of
+            fields that can be updated are the description, the daily limit and
+            the avatar of the account.<br/><br/>Notification filters can be set
+            on a monetary account level to receive callbacks. For more
+            information check the <a href="/api/1/page/callbacks">dedicated
+            callbacks page</a>.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonetaryAccountBankCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - - - - monetary-account-bank
+      summary: ''
+      operationId: List_all_MonetaryAccountBank_for_User
+      description: Gets a listing of all MonetaryAccountBanks of a given user.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            With MonetaryAccountBank you can create a new bank account, retrieve
+            information regarding your existing MonetaryAccountBanks and update
+            specific fields of an existing MonetaryAccountBank. Examples of
+            fields that can be updated are the description, the daily limit and
+            the avatar of the account.<br/><br/>Notification filters can be set
+            on a monetary account level to receive callbacks. For more
+            information check the <a href="/api/1/page/callbacks">dedicated
+            callbacks page</a>.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MonetaryAccountBankListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/monetary-account-bank/{itemId}:
+    get:
+      tags:
+        - - - - monetary-account-bank
+      summary: ''
+      operationId: READ_MonetaryAccountBank_for_User
+      description: Get a specific MonetaryAccountBank.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            With MonetaryAccountBank you can create a new bank account, retrieve
+            information regarding your existing MonetaryAccountBanks and update
+            specific fields of an existing MonetaryAccountBank. Examples of
+            fields that can be updated are the description, the daily limit and
+            the avatar of the account.<br/><br/>Notification filters can be set
+            on a monetary account level to receive callbacks. For more
+            information check the <a href="/api/1/page/callbacks">dedicated
+            callbacks page</a>.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonetaryAccountBankRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    put:
+      tags:
+        - - - - monetary-account-bank
+      summary: ''
+      operationId: UPDATE_MonetaryAccountBank_for_User
+      description: Update a specific existing MonetaryAccountBank.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MonetaryAccountBank'
+      responses:
+        '200':
+          description: >-
+            With MonetaryAccountBank you can create a new bank account, retrieve
+            information regarding your existing MonetaryAccountBanks and update
+            specific fields of an existing MonetaryAccountBank. Examples of
+            fields that can be updated are the description, the daily limit and
+            the avatar of the account.<br/><br/>Notification filters can be set
+            on a monetary account level to receive callbacks. For more
+            information check the <a href="/api/1/page/callbacks">dedicated
+            callbacks page</a>.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonetaryAccountBankUpdate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

@@ -1,0 +1,234 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/registry'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    RegistrySettlementCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    RegistrySettlementRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the RegistrySettlement.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the RegistrySettlement's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the RegistrySettlement's last update.
+          readOnly: true
+          writeOnly: false
+        settlement_time:
+          type: string
+          description: The timestamp of the Registry's settlement.
+          readOnly: true
+          writeOnly: false
+        total_amount_spent:
+          type: object
+          description: The total amount spent for the RegistrySettlement.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        number_of_entries:
+          type: integer
+          description: >-
+            The number of RegistryEntry's associated with this
+            RegistrySettlement.
+          readOnly: true
+          writeOnly: false
+        settled_by_alias:
+          type: object
+          description: The membership of the user that settled the Registry.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/RegistryMembership'
+        membership_settled:
+          type: object
+          description: The membership of the user that has settled the registry.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/RegistryMembership'
+        items:
+          type: array
+          description: List of RegistrySettlementItems
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/RegistrySettlementItem'
+paths:
+  /user/{userID}/registry/{registryID}/registry-settlement:
+    post:
+      tags:
+        - - - - registry-settlement
+      summary: ''
+      operationId: CREATE_RegistrySettlement_for_User_Registry
+      description: Create a new Slice group settlement.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: registryID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistrySettlement'
+      responses:
+        '200':
+          description: Used to settle a Slice group.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistrySettlementCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - - - - registry-settlement
+      summary: ''
+      operationId: List_all_RegistrySettlement_for_User_Registry
+      description: Get a listing of all Slice group settlements.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: registryID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used to settle a Slice group.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RegistrySettlementListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/registry/{registryID}/registry-settlement/{itemId}:
+    get:
+      tags:
+        - - - - registry-settlement
+      summary: ''
+      operationId: READ_RegistrySettlement_for_User_Registry
+      description: Get a specific Slice group settlement.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: registryID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used to settle a Slice group.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistrySettlementRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

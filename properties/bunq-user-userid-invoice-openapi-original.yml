@@ -1,0 +1,248 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/invoice'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    InvoiceByUserRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the invoice object.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the invoice object's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the invoice object's last update.
+          readOnly: true
+          writeOnly: false
+        invoice_date:
+          type: string
+          description: The invoice date.
+          readOnly: true
+          writeOnly: false
+        invoice_number:
+          type: string
+          description: The invoice number.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The invoice status.
+          readOnly: true
+          writeOnly: false
+        group:
+          type: array
+          description: The invoice item groups.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/InvoiceItemGroup'
+        total_vat_inclusive:
+          type: object
+          description: The total discounted item price including VAT.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        total_vat_exclusive:
+          type: object
+          description: The total discounted item price excluding VAT.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        total_vat:
+          type: object
+          description: The VAT on the total discounted item price.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        alias:
+          type: object
+          description: >-
+            The label that's displayed to the counterparty with the invoice.
+            Includes user.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        address:
+          type: object
+          description: The customer's address.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        counterparty_alias:
+          type: object
+          description: The label of the counterparty of the invoice. Includes user.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counterparty_address:
+          type: object
+          description: The company's address.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        chamber_of_commerce_number:
+          type: string
+          description: The company's chamber of commerce number.
+          readOnly: true
+          writeOnly: false
+        vat_number:
+          type: string
+          description: The company's chamber of commerce number.
+          readOnly: true
+          writeOnly: false
+paths:
+  /user/{userID}/invoice:
+    get:
+      tags:
+        - - - - invoice
+      summary: ''
+      operationId: List_all_Invoice_for_User
+      description: Used to list bunq invoices by user.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used to list bunq invoices by user.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InvoiceByUserListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/invoice/{itemId}:
+    get:
+      tags:
+        - - - - invoice
+      summary: ''
+      operationId: READ_Invoice_for_User
+      description: Used to list bunq invoices by user.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used to list bunq invoices by user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceByUserRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/invoice/{invoiceID}/pdf-content:
+    get:
+      tags:
+        - - - - pdf-content
+      summary: ''
+      operationId: List_all_PdfContent_for_User_Invoice
+      description: Get a PDF export of an invoice.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: invoiceID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Get a PDF export of an invoice.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InvoiceExportPdfContentListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

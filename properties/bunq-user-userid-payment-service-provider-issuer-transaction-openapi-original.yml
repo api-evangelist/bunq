@@ -1,0 +1,292 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/payment-service-provider-issuer-transaction'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    PaymentServiceProviderIssuerTransactionCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    PaymentServiceProviderIssuerTransactionRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of this transaction.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The time this transaction was created.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The time this transaction was last updated.
+          readOnly: true
+          writeOnly: false
+        public_uuid:
+          type: string
+          description: The public uuid used to identify this transaction.
+          readOnly: true
+          writeOnly: false
+        counterparty_alias:
+          type: object
+          description: The counter party this transaction should be sent to.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        amount:
+          type: object
+          description: The money amount of this transaction
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        description:
+          type: string
+          description: >-
+            The description of this transaction, to be shown to the user and to
+            the counter party.
+          readOnly: true
+          writeOnly: false
+        url_redirect:
+          type: string
+          description: >-
+            The url to which the user should be redirected once the transaction
+            is accepted or rejected.
+          readOnly: true
+          writeOnly: false
+        time_expiry:
+          type: string
+          description: >-
+            The (optional) expiration time of the transaction. Defaults to 10
+            minutes.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: >-
+            The status of the transaction. Can only be used for cancelling the
+            transaction.
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: object
+          description: The monetary account this transaction is made from.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+    PaymentServiceProviderIssuerTransactionUpdate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+paths:
+  /user/{userID}/payment-service-provider-issuer-transaction:
+    post:
+      tags:
+        - - - - payment-service-provider-issuer-transaction
+      summary: ''
+      operationId: CREATE_PaymentServiceProviderIssuerTransaction_for_User
+      description: The endpoint for payment service provider issuer transactions
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentServiceProviderIssuerTransaction'
+      responses:
+        '200':
+          description: The endpoint for payment service provider issuer transactions
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/PaymentServiceProviderIssuerTransactionCreate
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - - - - payment-service-provider-issuer-transaction
+      summary: ''
+      operationId: List_all_PaymentServiceProviderIssuerTransaction_for_User
+      description: The endpoint for payment service provider issuer transactions
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: The endpoint for payment service provider issuer transactions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: >-
+                    #/components/schemas/PaymentServiceProviderIssuerTransactionListing
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/payment-service-provider-issuer-transaction/{itemId}:
+    get:
+      tags:
+        - - - - payment-service-provider-issuer-transaction
+      summary: ''
+      operationId: READ_PaymentServiceProviderIssuerTransaction_for_User
+      description: The endpoint for payment service provider issuer transactions
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: The endpoint for payment service provider issuer transactions
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/PaymentServiceProviderIssuerTransactionRead
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    put:
+      tags:
+        - - - - payment-service-provider-issuer-transaction
+      summary: ''
+      operationId: UPDATE_PaymentServiceProviderIssuerTransaction_for_User
+      description: The endpoint for payment service provider issuer transactions
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentServiceProviderIssuerTransaction'
+      responses:
+        '200':
+          description: The endpoint for payment service provider issuer transactions
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/PaymentServiceProviderIssuerTransactionUpdate
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

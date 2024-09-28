@@ -1,0 +1,96 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/feature-announcement'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    FeatureAnnouncementRead:
+      type: object
+      properties:
+        avatar:
+          type: object
+          description: The Avatar of the event overview.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        title:
+          type: string
+          description: The event overview title of the feature display
+          readOnly: true
+          writeOnly: false
+        sub_title:
+          type: string
+          description: The event overview subtitle of the feature display
+          readOnly: true
+          writeOnly: false
+        type:
+          type: string
+          description: >-
+            The type of the feature announcement so apps can override with their
+            own stuff if desired
+          readOnly: true
+          writeOnly: false
+paths:
+  /user/{userID}/feature-announcement/{itemId}:
+    get:
+      tags:
+        - - - - feature-announcement
+      summary: ''
+      operationId: READ_FeatureAnnouncement_for_User
+      description: view for updating the feature display.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: view for updating the feature display.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureAnnouncementRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

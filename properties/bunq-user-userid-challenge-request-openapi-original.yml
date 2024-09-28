@@ -1,0 +1,183 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/challenge-request'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    MasterCardIdentityCheckChallengeRequestUserRead:
+      type: object
+      properties:
+        amount:
+          type: string
+          description: The transaction amount.
+          readOnly: true
+          writeOnly: false
+        expiry_time:
+          type: string
+          description: When the identity check expires.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: The description of the purchase. NULL if no description is given.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: >-
+            The status of the secure code. Can be PENDING, ACCEPTED, REJECTED,
+            EXPIRED.
+          readOnly: true
+          writeOnly: false
+        decision_description:
+          type: string
+          description: Textual explanation of the decision.
+          readOnly: true
+          writeOnly: false
+        decision_description_translated:
+          type: string
+          description: Textual explanation of the decision in user's language.
+          readOnly: true
+          writeOnly: false
+        url_merchant_app:
+          type: string
+          description: >-
+            The return url for the merchant app after the challenge is accepted
+            or rejected.
+          readOnly: true
+          writeOnly: false
+        counterparty_alias:
+          type: object
+          description: The monetary account label of the counterparty.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        event_id:
+          type: integer
+          description: The ID of the latest event for the identity check.
+          readOnly: true
+          writeOnly: false
+    MasterCardIdentityCheckChallengeRequestUserUpdate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+paths:
+  /user/{userID}/challenge-request/{itemId}:
+    get:
+      tags:
+        - - - - challenge-request
+      summary: ''
+      operationId: READ_ChallengeRequest_for_User
+      description: Endpoint for apps to fetch a challenge request.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Endpoint for apps to fetch a challenge request.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/MasterCardIdentityCheckChallengeRequestUserRead
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    put:
+      tags:
+        - - - - challenge-request
+      summary: ''
+      operationId: UPDATE_ChallengeRequest_for_User
+      description: Endpoint for apps to fetch a challenge request.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MasterCardIdentityCheckChallengeRequestUser'
+      responses:
+        '200':
+          description: Endpoint for apps to fetch a challenge request.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/MasterCardIdentityCheckChallengeRequestUserUpdate
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

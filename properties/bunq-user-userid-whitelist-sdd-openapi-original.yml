@@ -1,0 +1,812 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/whitelist-sdd'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    WhitelistSddRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The ID of the whitelist entry.
+          readOnly: true
+          writeOnly: false
+        monetary_account_incoming_id:
+          type: integer
+          description: >-
+            The account to which payments will come in before possibly being
+            'redirected' by the whitelist.
+          readOnly: true
+          writeOnly: false
+        monetary_account_paying_id:
+          type: integer
+          description: >-
+            The account from which payments will be deducted when a transaction
+            is matched with this whitelist.
+          readOnly: true
+          writeOnly: false
+        type:
+          type: string
+          description: The type of the SDD whitelist, can be CORE or B2B.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the whitelist.
+          readOnly: true
+          writeOnly: false
+        credit_scheme_identifier:
+          type: string
+          description: The credit scheme ID provided by the counterparty.
+          readOnly: true
+          writeOnly: false
+        mandate_identifier:
+          type: string
+          description: The mandate ID provided by the counterparty.
+          readOnly: true
+          writeOnly: false
+        counterparty_alias:
+          type: object
+          description: The account to which payments will be paid.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        maximum_amount_per_month:
+          type: object
+          description: >-
+            The monthly maximum amount that can be deducted from the target
+            account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        user_alias_created:
+          type: object
+          description: The user who created the whitelist entry.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+    WhitelistSddOneOffRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The ID of the whitelist entry.
+          readOnly: true
+          writeOnly: false
+        monetary_account_incoming_id:
+          type: integer
+          description: >-
+            The account to which payments will come in before possibly being
+            'redirected' by the whitelist.
+          readOnly: true
+          writeOnly: false
+        monetary_account_paying_id:
+          type: integer
+          description: >-
+            The account from which payments will be deducted when a transaction
+            is matched with this whitelist.
+          readOnly: true
+          writeOnly: false
+        type:
+          type: string
+          description: The type of the SDD whitelist, can be CORE or B2B.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the whitelist.
+          readOnly: true
+          writeOnly: false
+        credit_scheme_identifier:
+          type: string
+          description: The credit scheme ID provided by the counterparty.
+          readOnly: true
+          writeOnly: false
+        counterparty_alias:
+          type: object
+          description: The account to which payments will be paid.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        maximum_amount_per_month:
+          type: object
+          description: >-
+            The monthly maximum amount that can be deducted from the target
+            account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        maximum_amount_per_payment:
+          type: object
+          description: >-
+            The maximum amount per payment that can be deducted from the target
+            account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        user_alias_created:
+          type: object
+          description: The user who created the whitelist entry.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+    WhitelistSddOneOffUpdate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    WhitelistSddOneOffDelete:
+      type: object
+    WhitelistSddOneOffCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    WhitelistSddRecurringRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The ID of the whitelist entry.
+          readOnly: true
+          writeOnly: false
+        monetary_account_incoming_id:
+          type: integer
+          description: >-
+            The account to which payments will come in before possibly being
+            'redirected' by the whitelist.
+          readOnly: true
+          writeOnly: false
+        monetary_account_paying_id:
+          type: integer
+          description: >-
+            The account from which payments will be deducted when a transaction
+            is matched with this whitelist.
+          readOnly: true
+          writeOnly: false
+        type:
+          type: string
+          description: The type of the SDD whitelist, can be CORE or B2B.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the whitelist.
+          readOnly: true
+          writeOnly: false
+        credit_scheme_identifier:
+          type: string
+          description: The credit scheme ID provided by the counterparty.
+          readOnly: true
+          writeOnly: false
+        mandate_identifier:
+          type: string
+          description: The mandate ID provided by the counterparty.
+          readOnly: true
+          writeOnly: false
+        counterparty_alias:
+          type: object
+          description: The account to which payments will be paid.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        maximum_amount_per_month:
+          type: object
+          description: >-
+            The monthly maximum amount that can be deducted from the target
+            account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        maximum_amount_per_payment:
+          type: object
+          description: >-
+            The maximum amount per payment that can be deducted from the target
+            account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        user_alias_created:
+          type: object
+          description: The user who created the whitelist entry.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+    WhitelistSddRecurringUpdate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    WhitelistSddRecurringDelete:
+      type: object
+    WhitelistSddRecurringCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+paths:
+  /user/{userID}/whitelist-sdd/{itemId}:
+    get:
+      tags:
+        - - - - whitelist-sdd
+      summary: ''
+      operationId: READ_WhitelistSdd_for_User
+      description: Get a specific recurring SDD whitelist entry.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Depreciated route, replaced with whitelist-sdd-recurring
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelistSddRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/whitelist-sdd:
+    get:
+      tags:
+        - - - - whitelist-sdd
+      summary: ''
+      operationId: List_all_WhitelistSdd_for_User
+      description: >-
+        Get a listing of all recurring SDD whitelist entries for a target
+        monetary account.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Depreciated route, replaced with whitelist-sdd-recurring
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WhitelistSddListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/whitelist-sdd-one-off/{itemId}:
+    get:
+      tags:
+        - - - - whitelist-sdd-one-off
+      summary: ''
+      operationId: READ_WhitelistSddOneOff_for_User
+      description: Get a specific one off SDD whitelist entry.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Whitelist an one off SDD so that when another one off SDD from the
+            creditor comes in, it is automatically accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelistSddOneOffRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    put:
+      tags:
+        - - - - whitelist-sdd-one-off
+      summary: ''
+      operationId: UPDATE_WhitelistSddOneOff_for_User
+      description: >-
+        Whitelist an one off SDD so that when another one off SDD from the
+        creditor comes in, it is automatically accepted.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WhitelistSddOneOff'
+      responses:
+        '200':
+          description: >-
+            Whitelist an one off SDD so that when another one off SDD from the
+            creditor comes in, it is automatically accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelistSddOneOffUpdate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    delete:
+      tags:
+        - - - - whitelist-sdd-one-off
+      summary: ''
+      operationId: DELETE_WhitelistSddOneOff_for_User
+      description: >-
+        Whitelist an one off SDD so that when another one off SDD from the
+        creditor comes in, it is automatically accepted.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Whitelist an one off SDD so that when another one off SDD from the
+            creditor comes in, it is automatically accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelistSddOneOffDelete'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/whitelist-sdd-one-off:
+    post:
+      tags:
+        - - - - whitelist-sdd-one-off
+      summary: ''
+      operationId: CREATE_WhitelistSddOneOff_for_User
+      description: Create a new one off SDD whitelist entry.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WhitelistSddOneOff'
+      responses:
+        '200':
+          description: >-
+            Whitelist an one off SDD so that when another one off SDD from the
+            creditor comes in, it is automatically accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelistSddOneOffCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - - - - whitelist-sdd-one-off
+      summary: ''
+      operationId: List_all_WhitelistSddOneOff_for_User
+      description: >-
+        Get a listing of all one off SDD whitelist entries for a target monetary
+        account.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Whitelist an one off SDD so that when another one off SDD from the
+            creditor comes in, it is automatically accepted.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WhitelistSddOneOffListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/whitelist-sdd-recurring/{itemId}:
+    get:
+      tags:
+        - - - - whitelist-sdd-recurring
+      summary: ''
+      operationId: READ_WhitelistSddRecurring_for_User
+      description: Get a specific recurring SDD whitelist entry.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Whitelist a recurring SDD so that when another recurrence comes in,
+            it is automatically accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelistSddRecurringRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    put:
+      tags:
+        - - - - whitelist-sdd-recurring
+      summary: ''
+      operationId: UPDATE_WhitelistSddRecurring_for_User
+      description: >-
+        Whitelist a recurring SDD so that when another recurrence comes in, it
+        is automatically accepted.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WhitelistSddRecurring'
+      responses:
+        '200':
+          description: >-
+            Whitelist a recurring SDD so that when another recurrence comes in,
+            it is automatically accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelistSddRecurringUpdate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    delete:
+      tags:
+        - - - - whitelist-sdd-recurring
+      summary: ''
+      operationId: DELETE_WhitelistSddRecurring_for_User
+      description: >-
+        Whitelist a recurring SDD so that when another recurrence comes in, it
+        is automatically accepted.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Whitelist a recurring SDD so that when another recurrence comes in,
+            it is automatically accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelistSddRecurringDelete'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/whitelist-sdd-recurring:
+    post:
+      tags:
+        - - - - whitelist-sdd-recurring
+      summary: ''
+      operationId: CREATE_WhitelistSddRecurring_for_User
+      description: Create a new recurring SDD whitelist entry.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WhitelistSddRecurring'
+      responses:
+        '200':
+          description: >-
+            Whitelist a recurring SDD so that when another recurrence comes in,
+            it is automatically accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelistSddRecurringCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - - - - whitelist-sdd-recurring
+      summary: ''
+      operationId: List_all_WhitelistSddRecurring_for_User
+      description: >-
+        Get a listing of all recurring SDD whitelist entries for a target
+        monetary account.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Whitelist a recurring SDD so that when another recurrence comes in,
+            it is automatically accepted.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WhitelistSddRecurringListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

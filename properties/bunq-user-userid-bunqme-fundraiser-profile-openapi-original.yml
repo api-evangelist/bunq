@@ -1,0 +1,179 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/bunqme-fundraiser-profile'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    BunqMeFundraiserProfileUserRead:
+      type: object
+      properties:
+        monetary_account_id:
+          type: integer
+          description: >-
+            Id of the monetary account on which you want to receive bunq.me
+            payments.
+          readOnly: true
+          writeOnly: false
+        owner_user_id:
+          type: integer
+          description: Id of the user owning the profile.
+          readOnly: true
+          writeOnly: false
+        color:
+          type: string
+          description: >-
+            The color chosen for the bunq.me fundraiser profile in hexadecimal
+            format.
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: object
+          description: >-
+            The LabelMonetaryAccount with the public information of the User and
+            the MonetaryAccount that created the bunq.me fundraiser profile.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        currency:
+          type: string
+          description: >-
+            The currency of the MonetaryAccount that created the bunq.me
+            fundraiser profile.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: The description of the bunq.me fundraiser profile.
+          readOnly: true
+          writeOnly: false
+        attachment:
+          type: object
+          description: >-
+            The attachment used for the background of the bunq.me fundraiser
+            profile.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/AttachmentPublic'
+        pointer:
+          type: object
+          description: >-
+            The pointer (url) which will be used to access the bunq.me
+            fundraiser profile.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Pointer'
+        redirect_url:
+          type: string
+          description: The URL which the user is sent to when a payment is completed.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: >-
+            The status of the bunq.me fundraiser profile, can be ACTIVE or
+            DEACTIVATED.
+          readOnly: true
+          writeOnly: false
+paths:
+  /user/{userID}/bunqme-fundraiser-profile/{itemId}:
+    get:
+      tags:
+        - - - - bunqme-fundraiser-profile
+      summary: ''
+      operationId: READ_BunqmeFundraiserProfile_for_User
+      description: bunq.me public profile of the user.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: bunq.me public profile of the user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BunqMeFundraiserProfileUserRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/bunqme-fundraiser-profile:
+    get:
+      tags:
+        - - - - bunqme-fundraiser-profile
+      summary: ''
+      operationId: List_all_BunqmeFundraiserProfile_for_User
+      description: bunq.me public profile of the user.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: bunq.me public profile of the user.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BunqMeFundraiserProfileUserListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

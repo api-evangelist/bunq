@@ -1,0 +1,1622 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/card'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    CardUpdate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    CardRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the card.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the card's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the card's last update.
+          readOnly: true
+          writeOnly: false
+        public_uuid:
+          type: string
+          description: The public UUID of the card.
+          readOnly: true
+          writeOnly: false
+        type:
+          type: string
+          description: The type of the card. Can be MAESTRO, MASTERCARD.
+          readOnly: true
+          writeOnly: false
+        sub_type:
+          type: string
+          description: The sub-type of the card.
+          readOnly: true
+          writeOnly: false
+        second_line:
+          type: string
+          description: The second line of text on the card
+          readOnly: true
+          writeOnly: false
+        user_id:
+          type: integer
+          description: ID of the user who is owner of the card.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: >-
+            The status to set for the card. Can be ACTIVE, DEACTIVATED, LOST,
+            STOLEN, CANCELLED, EXPIRED or PIN_TRIES_EXCEEDED.
+          readOnly: true
+          writeOnly: false
+        sub_status:
+          type: string
+          description: The sub-status of the card. Can be NONE or REPLACED.
+          readOnly: true
+          writeOnly: false
+        order_status:
+          type: string
+          description: >-
+            The order status of the card. Can be NEW_CARD_REQUEST_RECEIVED,
+            CARD_REQUEST_PENDING, SENT_FOR_PRODUCTION, ACCEPTED_FOR_PRODUCTION,
+            DELIVERED_TO_CUSTOMER, CARD_UPDATE_REQUESTED, CARD_UPDATE_PENDING,
+            CARD_UPDATE_SENT, CARD_UPDATE_ACCEPTED, VIRTUAL_DELIVERY,
+            NEW_CARD_REQUEST_PENDING_USER_APPROVAL, SENT_FOR_DELIVERY or
+            NEW_CARD_REQUEST_CANCELLED.
+          readOnly: true
+          writeOnly: false
+        expiry_date:
+          type: string
+          description: Expiry date of the card.
+          readOnly: true
+          writeOnly: false
+        name_on_card:
+          type: string
+          description: The user's name on the card.
+          readOnly: true
+          writeOnly: false
+        preferred_name_on_card:
+          type: string
+          description: The user's preferred name on the card.
+          readOnly: true
+          writeOnly: false
+        primary_account_numbers:
+          type: array
+          description: Array of PANs and their attributes.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardPrimaryAccountNumber'
+        payment_account_reference:
+          type: string
+          description: The payment account reference number associated with the card.
+          readOnly: true
+          writeOnly: false
+        card_limit:
+          type: object
+          description: The spending limit for the card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        card_limit_atm:
+          type: object
+          description: The ATM spending limit for the card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        country_permission:
+          type: array
+          description: >-
+            The countries for which to grant (temporary) permissions to use the
+            card.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardCountryPermission'
+        label_monetary_account_ordered:
+          type: object
+          description: >-
+            The monetary account this card was ordered on and the label user
+            that owns the card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        label_monetary_account_current:
+          type: object
+          description: >-
+            The monetary account that this card is currently linked to and the
+            label user viewing it.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        monetary_account:
+          type: object
+          description: Current monetary account (only for prepaid credit cards).
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccount'
+        pin_code_assignment:
+          type: array
+          description: Array of Types, PINs, account IDs assigned to the card.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardPinAssignment'
+        monetary_account_id_fallback:
+          type: integer
+          description: >-
+            ID of the MA to be used as fallback for this card if insufficient
+            balance. Fallback account is removed if not supplied.
+          readOnly: true
+          writeOnly: false
+        country:
+          type: string
+          description: >-
+            The country that is domestic to the card. Defaults to country of
+            residence of user.
+          readOnly: true
+          writeOnly: false
+        card_shipment_tracking_url:
+          type: string
+          description: A tracking link provided by our shipment provider.
+          readOnly: true
+          writeOnly: false
+        is_eligible_for_free_replacement:
+          type: boolean
+          description: Whether this card is eligible for a free replacement.
+          readOnly: true
+          writeOnly: false
+        card_replacement:
+          type: object
+          description: The card replacement for this card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CardReplacement'
+    CardBatchCreate:
+      type: object
+      properties:
+        updated_card_ids:
+          type: array
+          description: The ids of the cards that have been updated.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/BunqId'
+    CardBatchReplaceCreate:
+      type: object
+      properties:
+        updated_card_ids:
+          type: array
+          description: The ids of the cards that have been replaced.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/BunqId'
+    CardCreditCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    CardDebitCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    ExportStatementCardRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the customer statement model.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the statement model's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the statement model's last update.
+          readOnly: true
+          writeOnly: false
+        date_start:
+          type: string
+          description: The date from when this statement shows transactions.
+          readOnly: true
+          writeOnly: false
+        date_end:
+          type: string
+          description: The date until which statement shows transactions.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the export.
+          readOnly: true
+          writeOnly: false
+        regional_format:
+          type: string
+          description: The regional format of a CSV statement.
+          readOnly: true
+          writeOnly: false
+        card_id:
+          type: integer
+          description: The card for which this statement was created.
+          readOnly: true
+          writeOnly: false
+    ExportStatementCardCsvCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    ExportStatementCardCsvRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the customer statement model.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the statement model's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the statement model's last update.
+          readOnly: true
+          writeOnly: false
+        date_start:
+          type: string
+          description: The date from when this statement shows transactions.
+          readOnly: true
+          writeOnly: false
+        date_end:
+          type: string
+          description: The date until which statement shows transactions.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the export.
+          readOnly: true
+          writeOnly: false
+        regional_format:
+          type: string
+          description: The regional format of a CSV statement.
+          readOnly: true
+          writeOnly: false
+        card_id:
+          type: integer
+          description: The card for which this statement was created.
+          readOnly: true
+          writeOnly: false
+    ExportStatementCardCsvDelete:
+      type: object
+    ExportStatementCardPdfCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    ExportStatementCardPdfRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the customer statement model.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the statement model's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the statement model's last update.
+          readOnly: true
+          writeOnly: false
+        date_start:
+          type: string
+          description: The date from when this statement shows transactions.
+          readOnly: true
+          writeOnly: false
+        date_end:
+          type: string
+          description: The date until which statement shows transactions.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the export.
+          readOnly: true
+          writeOnly: false
+        card_id:
+          type: integer
+          description: The card for which this statement was created.
+          readOnly: true
+          writeOnly: false
+    ExportStatementCardPdfDelete:
+      type: object
+    CardGeneratedCvc2Create:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    CardGeneratedCvc2Read:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the cvc code.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the cvc code's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the cvc code's last update.
+          readOnly: true
+          writeOnly: false
+        type:
+          type: string
+          description: The type of generated cvc2. Can be STATIC or GENERATED.
+          readOnly: true
+          writeOnly: false
+        cvc2:
+          type: string
+          description: The cvc2 code.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the cvc2. Can be AVAILABLE, USED, EXPIRED, BLOCKED.
+          readOnly: true
+          writeOnly: false
+        expiry_time:
+          type: string
+          description: Expiry time of the cvc2.
+          readOnly: true
+          writeOnly: false
+    CardGeneratedCvc2Update:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    CardReplaceCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+paths:
+  /user/{userID}/card/{itemId}:
+    put:
+      tags:
+        - - - - card
+      summary: ''
+      operationId: UPDATE_Card_for_User
+      description: >-
+        Update the card details. Allow to change pin code, status, limits,
+        country permissions and the monetary account connected to the card. When
+        the card has been received, it can be also activated through this
+        endpoint.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Card'
+      responses:
+        '200':
+          description: >-
+            Endpoint for retrieving details for the cards the user has access
+            to.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardUpdate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - - - - card
+      summary: ''
+      operationId: READ_Card_for_User
+      description: Return the details of a specific card.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Endpoint for retrieving details for the cards the user has access
+            to.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/card:
+    get:
+      tags:
+        - - - - card
+      summary: ''
+      operationId: List_all_Card_for_User
+      description: Return all the cards available to the user.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Endpoint for retrieving details for the cards the user has access
+            to.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CardListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/card-batch:
+    post:
+      tags:
+        - - - - card-batch
+      summary: ''
+      operationId: CREATE_CardBatch_for_User
+      description: Used to update multiple cards in a batch.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardBatch'
+      responses:
+        '200':
+          description: Used to update multiple cards in a batch.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardBatchCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/card-batch-replace:
+    post:
+      tags:
+        - - - - card-batch-replace
+      summary: ''
+      operationId: CREATE_CardBatchReplace_for_User
+      description: Used to replace multiple cards in a batch.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardBatchReplace'
+      responses:
+        '200':
+          description: Used to replace multiple cards in a batch.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardBatchReplaceCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/card-credit:
+    post:
+      tags:
+        - - - - card-credit
+      summary: ''
+      operationId: CREATE_CardCredit_for_User
+      description: Create a new credit card request.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardCredit'
+      responses:
+        '200':
+          description: >-
+            With bunq it is possible to order credit cards that can then be
+            connected with each one of the monetary accounts the user has access
+            to (including connected accounts).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardCreditCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/card-debit:
+    post:
+      tags:
+        - - - - card-debit
+      summary: ''
+      operationId: CREATE_CardDebit_for_User
+      description: Create a new debit card request.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardDebit'
+      responses:
+        '200':
+          description: >-
+            With bunq it is possible to order debit cards that can then be
+            connected with each one of the monetary accounts the user has access
+            to (including connected accounts).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardDebitCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/card-name:
+    get:
+      tags:
+        - - - - card-name
+      summary: ''
+      operationId: List_all_CardName_for_User
+      description: Return all the accepted card names for a specific user.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Endpoint for getting all the accepted card names for a user. As bunq
+            do not allow total freedom in choosing the name that is going to be
+            printed on the card, the following formats are accepted: Name
+            Surname, N. Surname, N Surname or Surname.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CardNameListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/card/{cardID}/export-statement-card/{export-statement-cardID}/content:
+    get:
+      tags:
+        - - - - content
+      summary: ''
+      operationId: List_all_Content_for_User_Card_ExportStatementCard
+      description: >-
+        Fetch the raw content of a card statement export. The returned file
+        format could be CSV or PDF depending on the statement format specified
+        during the statement creation. The doc won't display the response of a
+        request to get the content of a statement export.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: cardID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: export-statement-cardID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Fetch the raw content of a card statement export. The returned file
+            format could be CSV or PDF depending on the statement format
+            specified during the statement creation. The doc won't display the
+            response of a request to get the content of a statement export.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExportStatementCardContentListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/card/{cardID}/export-statement-card/{itemId}:
+    get:
+      tags:
+        - - - - export-statement-card
+      summary: ''
+      operationId: READ_ExportStatementCard_for_User_Card
+      description: >-
+        Used to create new and read existing card statement exports. Statement
+        exports can be created in either CSV or PDF file format.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: cardID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Used to create new and read existing card statement exports.
+            Statement exports can be created in either CSV or PDF file format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportStatementCardRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/card/{cardID}/export-statement-card:
+    get:
+      tags:
+        - - - - export-statement-card
+      summary: ''
+      operationId: List_all_ExportStatementCard_for_User_Card
+      description: >-
+        Used to create new and read existing card statement exports. Statement
+        exports can be created in either CSV or PDF file format.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: cardID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Used to create new and read existing card statement exports.
+            Statement exports can be created in either CSV or PDF file format.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExportStatementCardListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/card/{cardID}/export-statement-card-csv:
+    post:
+      tags:
+        - - - - export-statement-card-csv
+      summary: ''
+      operationId: CREATE_ExportStatementCardCsv_for_User_Card
+      description: Used to serialize ExportStatementCardCsv
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: cardID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportStatementCardCsv'
+      responses:
+        '200':
+          description: Used to serialize ExportStatementCardCsv
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportStatementCardCsvCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - - - - export-statement-card-csv
+      summary: ''
+      operationId: List_all_ExportStatementCardCsv_for_User_Card
+      description: Used to serialize ExportStatementCardCsv
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: cardID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used to serialize ExportStatementCardCsv
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExportStatementCardCsvListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/card/{cardID}/export-statement-card-csv/{itemId}:
+    get:
+      tags:
+        - - - - export-statement-card-csv
+      summary: ''
+      operationId: READ_ExportStatementCardCsv_for_User_Card
+      description: Used to serialize ExportStatementCardCsv
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: cardID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used to serialize ExportStatementCardCsv
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportStatementCardCsvRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    delete:
+      tags:
+        - - - - export-statement-card-csv
+      summary: ''
+      operationId: DELETE_ExportStatementCardCsv_for_User_Card
+      description: Used to serialize ExportStatementCardCsv
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: cardID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used to serialize ExportStatementCardCsv
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportStatementCardCsvDelete'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/card/{cardID}/export-statement-card-pdf:
+    post:
+      tags:
+        - - - - export-statement-card-pdf
+      summary: ''
+      operationId: CREATE_ExportStatementCardPdf_for_User_Card
+      description: Used to serialize ExportStatementCardPdf
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: cardID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportStatementCardPdf'
+      responses:
+        '200':
+          description: Used to serialize ExportStatementCardPdf
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportStatementCardPdfCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - - - - export-statement-card-pdf
+      summary: ''
+      operationId: List_all_ExportStatementCardPdf_for_User_Card
+      description: Used to serialize ExportStatementCardPdf
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: cardID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used to serialize ExportStatementCardPdf
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExportStatementCardPdfListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/card/{cardID}/export-statement-card-pdf/{itemId}:
+    get:
+      tags:
+        - - - - export-statement-card-pdf
+      summary: ''
+      operationId: READ_ExportStatementCardPdf_for_User_Card
+      description: Used to serialize ExportStatementCardPdf
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: cardID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used to serialize ExportStatementCardPdf
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportStatementCardPdfRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    delete:
+      tags:
+        - - - - export-statement-card-pdf
+      summary: ''
+      operationId: DELETE_ExportStatementCardPdf_for_User_Card
+      description: Used to serialize ExportStatementCardPdf
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: cardID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used to serialize ExportStatementCardPdf
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportStatementCardPdfDelete'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/card/{cardID}/generated-cvc2:
+    post:
+      tags:
+        - - - - generated-cvc2
+      summary: ''
+      operationId: CREATE_GeneratedCvc2_for_User_Card
+      description: Generate a new CVC2 code for a card.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: cardID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardGeneratedCvc2'
+      responses:
+        '200':
+          description: Endpoint for generating and retrieving a new CVC2 code.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardGeneratedCvc2Create'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - - - - generated-cvc2
+      summary: ''
+      operationId: List_all_GeneratedCvc2_for_User_Card
+      description: Get all generated CVC2 codes for a card.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: cardID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Endpoint for generating and retrieving a new CVC2 code.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CardGeneratedCvc2Listing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/card/{cardID}/generated-cvc2/{itemId}:
+    get:
+      tags:
+        - - - - generated-cvc2
+      summary: ''
+      operationId: READ_GeneratedCvc2_for_User_Card
+      description: Get the details for a specific generated CVC2 code.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: cardID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Endpoint for generating and retrieving a new CVC2 code.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardGeneratedCvc2Read'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    put:
+      tags:
+        - - - - generated-cvc2
+      summary: ''
+      operationId: UPDATE_GeneratedCvc2_for_User_Card
+      description: Endpoint for generating and retrieving a new CVC2 code.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: cardID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardGeneratedCvc2'
+      responses:
+        '200':
+          description: Endpoint for generating and retrieving a new CVC2 code.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardGeneratedCvc2Update'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/card/{cardID}/replace:
+    post:
+      tags:
+        - - - - replace
+      summary: ''
+      operationId: CREATE_Replace_for_User_Card
+      description: Request a card replacement.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: cardID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardReplace'
+      responses:
+        '200':
+          description: >-
+            It is possible to order a card replacement with the bunq
+            API.<br/><br/>You can order up to one free card replacement per
+            year. Additional replacement requests will be billed.<br/><br/>The
+            card replacement will have the same expiry date and the same pricing
+            as the old card, but it will have a new card number. You can change
+            the description and optional the PIN through the card replacement
+            endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardReplaceCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

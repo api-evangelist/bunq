@@ -1,0 +1,302 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/export-annual-overview'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    ExportAnnualOverviewCreate:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the annual overview as created on the server.
+          readOnly: true
+          writeOnly: false
+    ExportAnnualOverviewRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the annual overview as created on the server.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the annual overview 's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the annual overview 's last update.
+          readOnly: true
+          writeOnly: false
+        year:
+          type: integer
+          description: The year for which the overview is.
+          readOnly: true
+          writeOnly: false
+        alias_user:
+          type: object
+          description: The user to which this annual overview belongs.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+    ExportAnnualOverviewDelete:
+      type: object
+paths:
+  /user/{userID}/export-annual-overview/{export-annual-overviewID}/content:
+    get:
+      tags:
+        - - - - content
+      summary: ''
+      operationId: List_all_Content_for_User_ExportAnnualOverview
+      description: Used to retrieve the raw content of an annual overview.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: export-annual-overviewID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Fetch the raw content of an annual overview. The annual overview is
+            always in PDF format. Doc won't display the response of a request to
+            get the content of an annual overview.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExportAnnualOverviewContentListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/export-annual-overview:
+    post:
+      tags:
+        - - - - export-annual-overview
+      summary: ''
+      operationId: CREATE_ExportAnnualOverview_for_User
+      description: >-
+        Create a new annual overview for a specific year. An overview can be
+        generated only for a past year.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportAnnualOverview'
+      responses:
+        '200':
+          description: >-
+            Used to create new and read existing annual overviews of all the
+            user's monetary accounts. Once created, annual overviews can be
+            downloaded in PDF format via the
+            'export-annual-overview/{id}/content' endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportAnnualOverviewCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - - - - export-annual-overview
+      summary: ''
+      operationId: List_all_ExportAnnualOverview_for_User
+      description: List all the annual overviews for a user.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Used to create new and read existing annual overviews of all the
+            user's monetary accounts. Once created, annual overviews can be
+            downloaded in PDF format via the
+            'export-annual-overview/{id}/content' endpoint.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExportAnnualOverviewListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/export-annual-overview/{itemId}:
+    get:
+      tags:
+        - - - - export-annual-overview
+      summary: ''
+      operationId: READ_ExportAnnualOverview_for_User
+      description: Get an annual overview for a user by its id.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Used to create new and read existing annual overviews of all the
+            user's monetary accounts. Once created, annual overviews can be
+            downloaded in PDF format via the
+            'export-annual-overview/{id}/content' endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportAnnualOverviewRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    delete:
+      tags:
+        - - - - export-annual-overview
+      summary: ''
+      operationId: DELETE_ExportAnnualOverview_for_User
+      description: >-
+        Used to create new and read existing annual overviews of all the user's
+        monetary accounts. Once created, annual overviews can be downloaded in
+        PDF format via the 'export-annual-overview/{id}/content' endpoint.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Used to create new and read existing annual overviews of all the
+            user's monetary accounts. Once created, annual overviews can be
+            downloaded in PDF format via the
+            'export-annual-overview/{id}/content' endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportAnnualOverviewDelete'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

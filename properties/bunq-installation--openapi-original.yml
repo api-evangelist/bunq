@@ -1,0 +1,124 @@
+openapi: 3.0.0
+info:
+  title: ' installation/'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    InstallationRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: >-
+            The id of the Installation as created on the server. You can use
+            this id to request the server's public key again.
+          readOnly: true
+          writeOnly: false
+paths:
+  /installation/{itemId}:
+    get:
+      tags:
+        - - - - installation
+      summary: ''
+      operationId: READ_Installation
+      description: >-
+        You must have an active session to make this call. This call is used to
+        check whether the Id you provide is the Id of your current installation
+        or not.
+      parameters:
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Installation is used to tell the server about the public key of your
+            key pair. The server uses this key to verify your subsequent calls,
+            which need to be signed with your own private key. Additionally, you
+            can use the token you get from an Installation to authenticate the
+            registration of a new device.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstallationRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /installation/{installationID}/server-public-key:
+    get:
+      tags:
+        - - - - server-public-key
+      summary: ''
+      operationId: List_all_ServerPublicKey_for_Installation
+      description: Show the ServerPublicKey for this Installation.
+      parameters:
+        - in: path
+          name: installationID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Using /installation/_/server-public-key you can request the
+            ServerPublicKey again. This is done by referring to the id of the
+            Installation.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InstallationServerPublicKeyListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []
