@@ -1,0 +1,1046 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/transferwise-quote'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    TransferwiseQuoteCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    TransferwiseQuoteRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the quote.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the quote's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the quote's last update.
+          readOnly: true
+          writeOnly: false
+        time_expiry:
+          type: string
+          description: The expiration timestamp of the quote.
+          readOnly: true
+          writeOnly: false
+        quote_id:
+          type: string
+          description: The quote id Transferwise needs.
+          readOnly: true
+          writeOnly: false
+        amount_source:
+          type: object
+          description: The source amount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_target:
+          type: object
+          description: The target amount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_fee:
+          type: object
+          description: The fee amount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        rate:
+          type: string
+          description: The rate.
+          readOnly: true
+          writeOnly: false
+        time_delivery_estimate:
+          type: string
+          description: The estimated delivery time.
+          readOnly: true
+          writeOnly: false
+    TransferwiseQuoteTemporaryCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    TransferwiseQuoteTemporaryRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the quote.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the note's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the note's last update.
+          readOnly: true
+          writeOnly: false
+        time_expiry:
+          type: string
+          description: >-
+            The expiration timestamp of the quote. Will always be null for
+            temporary quotes.
+          readOnly: true
+          writeOnly: false
+        quote_id:
+          type: string
+          description: >-
+            The quote id Transferwise needs. Will always be null for temporary
+            quotes.
+          readOnly: true
+          writeOnly: false
+        amount_source:
+          type: object
+          description: The source amount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_target:
+          type: object
+          description: The target amount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        rate:
+          type: string
+          description: The rate.
+          readOnly: true
+          writeOnly: false
+    TransferwiseAccountQuoteCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    TransferwiseAccountQuoteRead:
+      type: object
+      properties:
+        account_id:
+          type: string
+          description: Transferwise's id of the account.
+          readOnly: true
+          writeOnly: false
+        currency:
+          type: string
+          description: The currency the account.
+          readOnly: true
+          writeOnly: false
+        country:
+          type: string
+          description: The country of the account.
+          readOnly: true
+          writeOnly: false
+        name_account_holder:
+          type: string
+          description: The name of the account holder.
+          readOnly: true
+          writeOnly: false
+        account_number:
+          type: string
+          description: The account number.
+          readOnly: true
+          writeOnly: false
+        bank_code:
+          type: string
+          description: The bank code.
+          readOnly: true
+          writeOnly: false
+    TransferwiseAccountQuoteDelete:
+      type: object
+    TransferwiseAccountRequirementCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    TransferwiseTransferCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    TransferwiseTransferRead:
+      type: object
+      properties:
+        alias:
+          type: object
+          description: >-
+            The LabelMonetaryAccount containing the public information of 'this'
+            (party) side of the Payment.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counterparty_alias:
+          type: object
+          description: >-
+            The LabelMonetaryAccount containing the public information of the
+            other (counterparty) side of the Payment.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        status:
+          type: string
+          description: The status.
+          readOnly: true
+          writeOnly: false
+        sub_status:
+          type: string
+          description: The subStatus.
+          readOnly: true
+          writeOnly: false
+        status_transferwise:
+          type: string
+          description: The status as Transferwise reports it.
+          readOnly: true
+          writeOnly: false
+        status_transferwise_issue:
+          type: string
+          description: >-
+            A status to indicatie if Transferwise has an issue with this payment
+            and requires more information.
+          readOnly: true
+          writeOnly: false
+        amount_source:
+          type: object
+          description: The source amount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_target:
+          type: object
+          description: The target amount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        rate:
+          type: string
+          description: The rate of the payment.
+          readOnly: true
+          writeOnly: false
+        reference:
+          type: string
+          description: The reference of the payment.
+          readOnly: true
+          writeOnly: false
+        pay_in_reference:
+          type: string
+          description: The Pay-In reference of the payment.
+          readOnly: true
+          writeOnly: false
+        time_delivery_estimate:
+          type: string
+          description: The estimated delivery time.
+          readOnly: true
+          writeOnly: false
+        quote:
+          type: object
+          description: The quote details used to created the payment.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/TransferwiseQuote'
+    TransferwiseTransferRequirementCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+paths:
+  /user/{userID}/transferwise-quote:
+    post:
+      tags:
+        - Quotes
+        - Transferwise
+        - Users
+      summary: Create User User Id Transferwise Quote
+      operationId: CREATE_TransferwiseQuote_for_User
+      description: >-
+        Used to get quotes from Transferwise. These can be used to initiate
+        payments.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferwiseQuote'
+      responses:
+        '200':
+          description: >-
+            Used to get quotes from Transferwise. These can be used to initiate
+            payments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferwiseQuoteCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/transferwise-quote/{itemId}:
+    get:
+      tags:
+        - Items
+        - Quotes
+        - Transferwise
+        - Users
+      summary: Retrieve User User Id Transferwise Quote Item Id
+      operationId: READ_TransferwiseQuote_for_User
+      description: >-
+        Used to get quotes from Transferwise. These can be used to initiate
+        payments.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Used to get quotes from Transferwise. These can be used to initiate
+            payments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferwiseQuoteRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/transferwise-quote-temporary:
+    post:
+      tags:
+        - Quotes
+        - Temporary
+        - Transferwise
+        - Users
+      summary: Create User User Id Transferwise Quote Temporary
+      operationId: CREATE_TransferwiseQuoteTemporary_for_User
+      description: >-
+        Used to get temporary quotes from Transferwise. These cannot be used to
+        initiate payments
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferwiseQuoteTemporary'
+      responses:
+        '200':
+          description: >-
+            Used to get temporary quotes from Transferwise. These cannot be used
+            to initiate payments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferwiseQuoteTemporaryCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/transferwise-quote-temporary/{itemId}:
+    get:
+      tags:
+        - Items
+        - Quotes
+        - Temporary
+        - Transferwise
+        - Users
+      summary: Retrieve User User Id Transferwise Quote Temporary Item Id
+      operationId: READ_TransferwiseQuoteTemporary_for_User
+      description: >-
+        Used to get temporary quotes from Transferwise. These cannot be used to
+        initiate payments
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Used to get temporary quotes from Transferwise. These cannot be used
+            to initiate payments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferwiseQuoteTemporaryRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-recipient:
+    post:
+      tags:
+        - Quotes
+        - Recipient
+        - Transferwise
+        - Users
+      summary: >-
+        Create User User Id Transferwise Quote Transferwise Quote Id
+        Transferwise Recipient
+      operationId: CREATE_TransferwiseRecipient_for_User_TransferwiseQuote
+      description: Used to manage recipient accounts with Transferwise.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: transferwise-quoteID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferwiseAccountQuote'
+      responses:
+        '200':
+          description: Used to manage recipient accounts with Transferwise.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferwiseAccountQuoteCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - Quotes
+        - Recipient
+        - Transferwise
+        - Users
+      summary: >-
+        Retrieve User User Id Transferwise Quote Transferwise Quote Id
+        Transferwise Recipient
+      operationId: List_all_TransferwiseRecipient_for_User_TransferwiseQuote
+      description: Used to manage recipient accounts with Transferwise.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: transferwise-quoteID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used to manage recipient accounts with Transferwise.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TransferwiseAccountQuoteListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-recipient/{itemId}:
+    get:
+      tags:
+        - Items
+        - Quotes
+        - Recipient
+        - Transferwise
+        - Users
+      summary: >-
+        Retrieve User User Id Transferwise Quote Transferwise Quote Id
+        Transferwise Recipient Item Id
+      operationId: READ_TransferwiseRecipient_for_User_TransferwiseQuote
+      description: Used to manage recipient accounts with Transferwise.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: transferwise-quoteID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used to manage recipient accounts with Transferwise.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferwiseAccountQuoteRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    delete:
+      tags:
+        - Items
+        - Quotes
+        - Recipient
+        - Transferwise
+        - Users
+      summary: >-
+        Delete User User Id Transferwise Quote Transferwise Quote Id
+        Transferwise Recipient Item Id
+      operationId: DELETE_TransferwiseRecipient_for_User_TransferwiseQuote
+      description: Used to manage recipient accounts with Transferwise.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: transferwise-quoteID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used to manage recipient accounts with Transferwise.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferwiseAccountQuoteDelete'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-recipient-requirement:
+    post:
+      tags:
+        - Quotes
+        - Recipient
+        - Requirements
+        - Transferwise
+        - Users
+      summary: >-
+        Create User User Id Transferwise Quote Transferwise Quote Id
+        Transferwise Recipient Requirement
+      operationId: CREATE_TransferwiseRecipientRequirement_for_User_TransferwiseQuote
+      description: >-
+        Used to determine the recipient account requirements for Transferwise
+        transfers.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: transferwise-quoteID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferwiseAccountRequirement'
+      responses:
+        '200':
+          description: >-
+            Used to determine the recipient account requirements for
+            Transferwise transfers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferwiseAccountRequirementCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - Quotes
+        - Recipient
+        - Requirements
+        - Transferwise
+        - Users
+      summary: >-
+        Retrieve User User Id Transferwise Quote Transferwise Quote Id
+        Transferwise Recipient Requirement
+      operationId: List_all_TransferwiseRecipientRequirement_for_User_TransferwiseQuote
+      description: >-
+        Used to determine the recipient account requirements for Transferwise
+        transfers.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: transferwise-quoteID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Used to determine the recipient account requirements for
+            Transferwise transfers.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TransferwiseAccountRequirementListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-transfer:
+    post:
+      tags:
+        - Quotes
+        - Transfers
+        - Transferwise
+        - Users
+      summary: >-
+        Create User User Id Transferwise Quote Transferwise Quote Id
+        Transferwise Transfer
+      operationId: CREATE_TransferwiseTransfer_for_User_TransferwiseQuote
+      description: Used to create Transferwise payments.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: transferwise-quoteID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferwiseTransfer'
+      responses:
+        '200':
+          description: Used to create Transferwise payments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferwiseTransferCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - Quotes
+        - Transfers
+        - Transferwise
+        - Users
+      summary: >-
+        Retrieve User User Id Transferwise Quote Transferwise Quote Id
+        Transferwise Transfer
+      operationId: List_all_TransferwiseTransfer_for_User_TransferwiseQuote
+      description: Used to create Transferwise payments.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: transferwise-quoteID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used to create Transferwise payments.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TransferwiseTransferListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-transfer/{itemId}:
+    get:
+      tags:
+        - Items
+        - Quotes
+        - Transfers
+        - Transferwise
+        - Users
+      summary: >-
+        Retrieve User User Id Transferwise Quote Transferwise Quote Id
+        Transferwise Transfer Item Id
+      operationId: READ_TransferwiseTransfer_for_User_TransferwiseQuote
+      description: Used to create Transferwise payments.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: transferwise-quoteID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used to create Transferwise payments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferwiseTransferRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-transfer-requirement:
+    post:
+      tags:
+        - Quotes
+        - Requirements
+        - Transfers
+        - Transferwise
+        - Users
+      summary: >-
+        Create User User Id Transferwise Quote Transferwise Quote Id
+        Transferwise Transfer Requirement
+      operationId: CREATE_TransferwiseTransferRequirement_for_User_TransferwiseQuote
+      description: Used to determine the account requirements for Transferwise transfers.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: transferwise-quoteID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferwiseTransferRequirement'
+      responses:
+        '200':
+          description: >-
+            Used to determine the account requirements for Transferwise
+            transfers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferwiseTransferRequirementCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

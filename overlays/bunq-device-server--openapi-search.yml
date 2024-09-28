@@ -1,0 +1,104 @@
+openapi: 3.0.0
+info:
+  title: ' device-server/'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    DeviceServerRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the DeviceServer as created on the server.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the DeviceServer's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the DeviceServer's last update.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: The description of the DeviceServer.
+          readOnly: true
+          writeOnly: false
+        ip:
+          type: string
+          description: The ip address which was used to create the DeviceServer.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: >-
+            The status of the DeviceServer. Can be ACTIVE, BLOCKED,
+            NEEDS_CONFIRMATION or OBSOLETE.
+          readOnly: true
+          writeOnly: false
+paths:
+  /device-server/{itemId}:
+    get:
+      tags:
+        - Device
+        - Items
+        - Servers
+      summary: Retrieve Device Server Item Id
+      operationId: READ_DeviceServer
+      description: Get one of your DeviceServers.
+      parameters:
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            After having created an Installation you can now create a
+            DeviceServer. A DeviceServer is needed to do a login call with
+            session-server.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceServerRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

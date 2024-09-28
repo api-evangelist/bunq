@@ -1,0 +1,279 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/share-invite-monetary-account-response'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    ShareInviteMonetaryAccountResponseRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the ShareInviteBankResponse.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the ShareInviteBankResponse creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the ShareInviteBankResponse last update.
+          readOnly: true
+          writeOnly: false
+        counter_alias:
+          type: object
+          description: The monetary account and user who created the share.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        user_alias_cancelled:
+          type: object
+          description: The user who cancelled the share if it has been revoked or rejected.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        monetary_account_id:
+          type: integer
+          description: >-
+            The id of the monetary account the ACCEPTED share applies to. null
+            otherwise.
+          readOnly: true
+          writeOnly: false
+        draft_share_invite_bank_id:
+          type: integer
+          description: The id of the draft share invite bank.
+          readOnly: true
+          writeOnly: false
+        share_detail:
+          type: object
+          description: The share details.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/ShareDetail'
+        access_type:
+          type: string
+          description: >-
+            Type of access that is wanted, one of VIEW_BALANCE,
+            VIEW_TRANSACTION, DRAFT_PAYMENT or FULL_TRANSIENT
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the share. Can be ACTIVE, REVOKED, REJECTED.
+          readOnly: true
+          writeOnly: false
+        relation_user:
+          type: object
+          description: All of the relation users towards this MA.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/RelationUser'
+        share_type:
+          type: string
+          description: The share type, either STANDARD or MUTUAL.
+          readOnly: true
+          writeOnly: false
+        start_date:
+          type: string
+          description: The start date of this share.
+          readOnly: true
+          writeOnly: false
+        end_date:
+          type: string
+          description: The expiration date of this share.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: >-
+            The description of this share. It is basically the monetary account
+            description.
+          readOnly: true
+          writeOnly: false
+    ShareInviteMonetaryAccountResponseUpdate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+paths:
+  /user/{userID}/share-invite-monetary-account-response/{itemId}:
+    get:
+      tags:
+        - Accounts
+        - Invite
+        - Items
+        - Monetary
+        - Share
+        - Users
+      summary: Retrieve User User Id Share Invite Monetary Account Response Item Id
+      operationId: READ_ShareInviteMonetaryAccountResponse_for_User
+      description: Return the details of a specific share a user was invited to.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Used to view or respond to shares a user was invited to. See
+            'share-invite-bank-inquiry' for more information about the inquiring
+            endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareInviteMonetaryAccountResponseRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    put:
+      tags:
+        - Accounts
+        - Invite
+        - Items
+        - Monetary
+        - Share
+        - Users
+      summary: Update User User Id Share Invite Monetary Account Response Item Id
+      operationId: UPDATE_ShareInviteMonetaryAccountResponse_for_User
+      description: Accept or reject a share a user was invited to.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShareInviteMonetaryAccountResponse'
+      responses:
+        '200':
+          description: >-
+            Used to view or respond to shares a user was invited to. See
+            'share-invite-bank-inquiry' for more information about the inquiring
+            endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareInviteMonetaryAccountResponseUpdate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/share-invite-monetary-account-response:
+    get:
+      tags:
+        - Accounts
+        - Invite
+        - Monetary
+        - Share
+        - Users
+      summary: Retrieve User User Id Share Invite Monetary Account Response
+      operationId: List_all_ShareInviteMonetaryAccountResponse_for_User
+      description: Return all the shares a user was invited to.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Used to view or respond to shares a user was invited to. See
+            'share-invite-bank-inquiry' for more information about the inquiring
+            endpoint.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: >-
+                    #/components/schemas/ShareInviteMonetaryAccountResponseListing
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

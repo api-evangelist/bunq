@@ -1,0 +1,378 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/monetary-account-savings'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    MonetaryAccountSavingsCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    MonetaryAccountSavingsRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the MonetaryAccountSavings.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the MonetaryAccountSavings's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the MonetaryAccountSavings's last update.
+          readOnly: true
+          writeOnly: false
+        avatar:
+          type: object
+          description: The Avatar of the MonetaryAccountSavings.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        currency:
+          type: string
+          description: >-
+            The currency of the MonetaryAccountSavings as an ISO 4217 formatted
+            currency code.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: >-
+            The description of the MonetaryAccountSavings. Defaults to 'bunq
+            account'.
+          readOnly: true
+          writeOnly: false
+        daily_limit:
+          type: object
+          description: >-
+            The daily spending limit Amount of the MonetaryAccountSavings.
+            Defaults to 1000 EUR. Currency must match the
+            MonetaryAccountSavings's currency. Limited to 10000 EUR.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        balance:
+          type: object
+          description: The current available balance Amount of the MonetaryAccountSavings.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        alias:
+          type: array
+          description: The Aliases for the MonetaryAccountSavings.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Pointer'
+        public_uuid:
+          type: string
+          description: The MonetaryAccountSavings's public UUID.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: >-
+            The status of the MonetaryAccountSavings. Can be: ACTIVE, BLOCKED,
+            CANCELLED or PENDING_REOPEN
+          readOnly: true
+          writeOnly: false
+        sub_status:
+          type: string
+          description: >-
+            The sub-status of the MonetaryAccountSavings providing extra
+            information regarding the status. Will be NONE for ACTIVE or
+            PENDING_REOPEN, COMPLETELY or ONLY_ACCEPTING_INCOMING for BLOCKED
+            and REDEMPTION_INVOLUNTARY, REDEMPTION_VOLUNTARY or PERMANENT for
+            CANCELLED.
+          readOnly: true
+          writeOnly: false
+        reason:
+          type: string
+          description: >-
+            The reason for voluntarily cancelling (closing) the
+            MonetaryAccountSavings, can only be OTHER.
+          readOnly: true
+          writeOnly: false
+        reason_description:
+          type: string
+          description: >-
+            The optional free-form reason for voluntarily cancelling (closing)
+            the MonetaryAccountSavings. Can be any user provided message.
+          readOnly: true
+          writeOnly: false
+        all_co_owner:
+          type: array
+          description: The users the account will be joint with.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CoOwner'
+        user_id:
+          type: integer
+          description: The id of the User who owns the MonetaryAccountSavings.
+          readOnly: true
+          writeOnly: false
+        monetary_account_profile:
+          type: object
+          description: The profile of the account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountProfile'
+        setting:
+          type: object
+          description: The settings of the MonetaryAccountSavings.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountSetting'
+        savings_goal:
+          type: object
+          description: The Savings Goal set for this MonetaryAccountSavings.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        savings_goal_progress:
+          type: integer
+          description: >-
+            The progress in percentages for the Savings Goal set for this
+            MonetaryAccountSavings.
+          readOnly: true
+          writeOnly: false
+        number_of_payment_remaining:
+          type: string
+          description: The number of payments that can be made from this savings account
+          readOnly: true
+          writeOnly: false
+        all_auto_save_id:
+          type: array
+          description: The ids of the AutoSave.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/BunqId'
+    MonetaryAccountSavingsUpdate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+paths:
+  /user/{userID}/monetary-account-savings:
+    post:
+      tags:
+        - Accounts
+        - Monetary
+        - Savings
+        - Users
+      summary: Create User User Id Monetary Account Savings
+      operationId: CREATE_MonetaryAccountSavings_for_User
+      description: Create new MonetaryAccountSavings.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MonetaryAccountSavings'
+      responses:
+        '200':
+          description: With MonetaryAccountSavings you can create a new savings account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonetaryAccountSavingsCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - Accounts
+        - Monetary
+        - Savings
+        - Users
+      summary: Retrieve User User Id Monetary Account Savings
+      operationId: List_all_MonetaryAccountSavings_for_User
+      description: Gets a listing of all MonetaryAccountSavingss of a given user.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: With MonetaryAccountSavings you can create a new savings account.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MonetaryAccountSavingsListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/monetary-account-savings/{itemId}:
+    get:
+      tags:
+        - Accounts
+        - Items
+        - Monetary
+        - Savings
+        - Users
+      summary: Retrieve User User Id Monetary Account Savings Item Id
+      operationId: READ_MonetaryAccountSavings_for_User
+      description: Get a specific MonetaryAccountSavings.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: With MonetaryAccountSavings you can create a new savings account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonetaryAccountSavingsRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    put:
+      tags:
+        - Accounts
+        - Items
+        - Monetary
+        - Savings
+        - Users
+      summary: Update User User Id Monetary Account Savings Item Id
+      operationId: UPDATE_MonetaryAccountSavings_for_User
+      description: Update a specific existing MonetaryAccountSavings.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MonetaryAccountSavings'
+      responses:
+        '200':
+          description: With MonetaryAccountSavings you can create a new savings account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonetaryAccountSavingsUpdate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

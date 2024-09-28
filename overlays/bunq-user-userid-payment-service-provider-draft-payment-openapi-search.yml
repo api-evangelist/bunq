@@ -1,0 +1,270 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/payment-service-provider-draft-payment'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    PaymentServiceProviderDraftPaymentCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    PaymentServiceProviderDraftPaymentUpdate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    PaymentServiceProviderDraftPaymentRead:
+      type: object
+      properties:
+        sender_iban:
+          type: string
+          description: The sender IBAN.
+          readOnly: true
+          writeOnly: false
+        receiver_iban:
+          type: string
+          description: The sender IBAN.
+          readOnly: true
+          writeOnly: false
+        amount:
+          type: object
+          description: The amount of the draft payment
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        status:
+          type: string
+          description: The status of the draft payment
+          readOnly: true
+          writeOnly: false
+paths:
+  /user/{userID}/payment-service-provider-draft-payment:
+    post:
+      tags:
+        - Draft
+        - Er
+        - Payments
+        - Prov
+        - Providers
+        - Services
+        - Users
+      summary: Create User User Id Payment Service Provider Draft Payment
+      operationId: CREATE_PaymentServiceProviderDraftPayment_for_User
+      description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentServiceProviderDraftPayment'
+      responses:
+        '200':
+          description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentServiceProviderDraftPaymentCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - Draft
+        - Er
+        - Payments
+        - Prov
+        - Providers
+        - Services
+        - Users
+      summary: Retrieve User User Id Payment Service Provider Draft Payment
+      operationId: List_all_PaymentServiceProviderDraftPayment_for_User
+      description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: >-
+                    #/components/schemas/PaymentServiceProviderDraftPaymentListing
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/payment-service-provider-draft-payment/{itemId}:
+    put:
+      tags:
+        - Draft
+        - Er
+        - Items
+        - Payments
+        - Prov
+        - Providers
+        - Services
+        - Users
+      summary: Update User User Id Payment Service Provider Draft Payment Item Id
+      operationId: UPDATE_PaymentServiceProviderDraftPayment_for_User
+      description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentServiceProviderDraftPayment'
+      responses:
+        '200':
+          description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentServiceProviderDraftPaymentUpdate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - Draft
+        - Er
+        - Items
+        - Payments
+        - Prov
+        - Providers
+        - Services
+        - Users
+      summary: Retrieve User User Id Payment Service Provider Draft Payment Item Id
+      operationId: READ_PaymentServiceProviderDraftPayment_for_User
+      description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentServiceProviderDraftPaymentRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []
