@@ -1,7 +1,7 @@
 
 name: Bunq
 description: >-
-  We offer mobile banking that makes life easy—wherever, whenever. Join us and
+  We offer mobile banking that makes life easy-wherever, whenever. Join us and
   discover a simple, sustainable, and user-centered way of banking that makes
   everyday finances 100% hassle-free.
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
@@ -1151,4 +1151,3 @@ overlays:
     url: overlays/apis-io-search.yml
 aid: bunq
 score: 1805
-
