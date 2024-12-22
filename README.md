@@ -5,14 +5,18 @@ We offer mobile banking that makes life easy-wherever, whenever. Join us and dis
 
 ## Scope
 
+- **Type:** Contract 
+- **Position:** Consuming 
+- **Access:** 3rd-Party 
 
 ## Tags
 
+- Banking
 
 ## Timestamps
 
 - **Created:** 2023/11/13 
-- **Modified:** 2023/11/13 
+- **Modified:** 2024-12-15 
 
 ## APIs
 
@@ -20,7 +24,9 @@ We offer mobile banking that makes life easy-wherever, whenever. Join us and dis
 Managing activity map for a user account.
 
 **Human URL:** [https://doc.bunq.com/#/activity-map-place-public](https://doc.bunq.com/#/activity-map-place-public)
+r
 **Base URL:** [https://public-api.sandbox.bunq.com/](https://public-api.sandbox.bunq.com/)
+r
 
 #### Tags
 
@@ -33,7 +39,9 @@ Managing activity map for a user account.
 Manage additional information transactional categories.
 
 **Human URL:** [https://doc.bunq.com/#/additional-transaction-information-category](https://doc.bunq.com/#/additional-transaction-information-category)
+r
 **Base URL:** [https://public-api.sandbox.bunq.com/](https://public-api.sandbox.bunq.com/)
+r
 
 #### Tags
 
@@ -51,7 +59,9 @@ Manage additional information transactional categories.
 Managing different types of monetary accounts.
 
 **Human URL:** [https://doc.bunq.com/#/monetary-account](https://doc.bunq.com/#/monetary-account)
+r
 **Base URL:** [https://public-api.sandbox.bunq.com/](https://public-api.sandbox.bunq.com/)
+r
 
 #### Tags
 
@@ -114,7 +124,9 @@ Managing different types of monetary accounts.
 An API for managing attachments associated with a Bunq account.
 
 **Human URL:** [https://doc.bunq.com/#/attachment](https://doc.bunq.com/#/attachment)
+r
 **Base URL:** [https://public-api.sandbox.bunq.com/](https://public-api.sandbox.bunq.com/)
+r
 
 #### Tags
 
@@ -131,6 +143,7 @@ An API for managing attachments associated with a Bunq account.
 Avatars are public images used to represent you or your company. Avatars are used to represent users, monetary accounts and cash registers. Avatars cannot be deleted, only replaced. Avatars can be updated after uploading the image you would like to use through AttachmentPublic. Using the attachment_public_uuid which is returned you can update your Avatar. Avatars used for cash registers and company accounts will be reviewed by bunq.
 
 **Human URL:** [https://doc.bunq.com/#/avatar](https://doc.bunq.com/#/avatar)
+r
 
 #### Tags
 
@@ -145,6 +158,7 @@ Avatars are public images used to represent you or your company. Avatars are use
 Manage all subscription billing contract for the authenticated user.
 
 **Human URL:** [https://doc.bunq.com/#/billing-contract-subscription/List_all_BillingContractSubscription_for_User](https://doc.bunq.com/#/billing-contract-subscription/List_all_BillingContractSubscription_for_User)
+r
 
 #### Tags
 
@@ -161,6 +175,7 @@ Manage all subscription billing contract for the authenticated user.
 The /me profile for the Bunq user.
 
 **Human URL:** [https://doc.bunq.com/#/bunqme-fundraiser-profile/READ_BunqmeFundraiserProfile_for_User](https://doc.bunq.com/#/bunqme-fundraiser-profile/READ_BunqmeFundraiserProfile_for_User)
+r
 
 #### Tags
 
@@ -177,6 +192,7 @@ The /me profile for the Bunq user.
 For managing OAuth clients through an API.
 
 **Human URL:** [https://doc.bunq.com/#/](https://doc.bunq.com/#/)
+r
 
 #### Tags
 
@@ -195,6 +211,7 @@ For managing OAuth clients through an API.
 Managing cards and transactions made via cards.
 
 **Human URL:** [https://doc.bunq.com/#/card](https://doc.bunq.com/#/card)
+r
 
 #### Tags
 
@@ -221,6 +238,7 @@ Managing cards and transactions made via cards.
 Managing the pinned certificates for a user.
 
 **Human URL:** [https://doc.bunq.com/#/certificate-pinned](https://doc.bunq.com/#/certificate-pinned)
+r
 
 #### Tags
 
@@ -237,6 +255,7 @@ Managing the pinned certificates for a user.
 Managing the challenge requests for a user.
 
 **Human URL:** [https://doc.bunq.com/#/challenge-request](https://doc.bunq.com/#/challenge-request)
+r
 
 #### Tags
 
@@ -252,6 +271,7 @@ Managing the challenge requests for a user.
 Managing details of an accounts company information.
 
 **Human URL:** [https://doc.bunq.com/#/company](https://doc.bunq.com/#/company)
+r
 
 #### Tags
 
@@ -267,6 +287,7 @@ Managing details of an accounts company information.
 Used to confirm availability of funds on an account.
 
 **Human URL:** [https://doc.bunq.com/#/confirmation-of-funds/CREATE_ConfirmationOfFunds_for_User](https://doc.bunq.com/#/confirmation-of-funds/CREATE_ConfirmationOfFunds_for_User)
+r
 
 #### Tags
 
@@ -282,6 +303,7 @@ Used to confirm availability of funds on an account.
 Managing the chat conversations for a user account.
 
 **Human URL:** [https://doc.bunq.com/#/content/List_all_Content_for_User_ChatConversation_Attachment](https://doc.bunq.com/#/content/List_all_Content_for_User_ChatConversation_Attachment)
+r
 
 #### Tags
 
@@ -299,6 +321,7 @@ Managing the chat conversations for a user account.
 Used to manage the attachment content for an A/PI.
 
 **Human URL:** [https://doc.bunq.com/#/content](https://doc.bunq.com/#/content)
+r
 
 #### Tags
 
@@ -314,6 +337,7 @@ Used to manage the attachment content for an A/PI.
 Used to retrieve the raw content of an annual overview.
 
 **Human URL:** [https://doc.bunq.com/#/content/List_all_Content_for_User_ExportAnnualOverview](https://doc.bunq.com/#/content/List_all_Content_for_User_ExportAnnualOverview)
+r
 
 #### Tags
 
@@ -521,6 +545,7 @@ Needs description.
 Needs description.
 
 **Human URL:** [https://doc.bunq.com/#/monetary-account-external](https://doc.bunq.com/#/monetary-account-external)
+r
 
 #### Tags
 
