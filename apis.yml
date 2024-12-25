@@ -14,7 +14,7 @@ apis:
           overlays/bunq-activity-map-place-public-itemid-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-activity-map-place-public-itemid-openapi-original.yml
+      - url: openapi/bunq-activity-map-place-public-itemid-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -102,7 +102,7 @@ apis:
       - url: overlays/bunq-user-userid-monetary-account-openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-user-userid-monetary-account-openapi-original.yml
+      - url: openapi/bunq-user-userid-monetary-account-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -120,7 +120,7 @@ apis:
       - url: overlays/bunq-user-userid-attachment-openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-user-userid-attachment-openapi-original.yml
+      - url: openapi/bunq-user-userid-attachment-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -138,7 +138,7 @@ apis:
       - url: overlays/bunq-avatar--openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-avatar--openapi-original.yml
+      - url: openapi/bunq-avatar--openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -183,8 +183,7 @@ apis:
       - url: overlays/bunq-user-userid-bunqme-fundraiser-profile-openapi-search.yml
         type: OpenAPI
     properties:
-      - url: >-
-          openapibunq-user-userid-bunqme-fundraiser-profile-openapi-original.yml
+      - url: openapi/bunq-user-userid-bunqme-fundraiser-profile-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -207,7 +206,7 @@ apis:
           overlays/bunq-user-userid-oauth-client-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-user-userid-oauth-client-openapi-original.yml
+      - url: openapi/bunq-user-userid-oauth-client-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -234,7 +233,7 @@ apis:
       - url: overlays/bunq-user-userid-card-openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-user-userid-card-openapi-original.yml
+      - url: openapi/bunq-user-userid-card-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -255,7 +254,7 @@ apis:
           overlays/bunq-user-userid-certificate-pinned-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-user-userid-certificate-pinned-openapi-original.yml
+      - url: openapi/bunq-user-userid-certificate-pinned-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -275,7 +274,7 @@ apis:
           overlays/bunq-user-userid-challenge-request-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-user-userid-challenge-request-openapi-original.yml
+      - url: openapi/bunq-user-userid-challenge-request-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -294,7 +293,7 @@ apis:
       - url: overlays/bunq-user-userid-company-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-user-userid-company-openapi-original.yml
+      - url: openapi/bunq-user-userid-company-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -315,7 +314,7 @@ apis:
           overlays/bunq-user-userid-confirmation-of-funds-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-user-userid-confirmation-of-funds-openapi-original.yml
+      - url: openapi/bunq-user-userid-confirmation-of-funds-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -338,7 +337,7 @@ apis:
           overlays/bunq-user-userid-chat-conversation-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-user-userid-chat-conversation-openapi-original.yml
+      - url: openapi/bunq-user-userid-chat-conversation-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -384,8 +383,7 @@ apis:
           overlays/bunq-user-userid-export-annual-overview-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: >-
-          openapibunq-user-userid-export-annual-overview-openapi-original.yml
+      - url: openapi/bunq-user-userid-export-annual-overview-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -406,8 +404,7 @@ apis:
           overlays/bunq-user-userid-credential-password-ip-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: >-
-          openapibunq-user-userid-credential-password-ip-openapi-original.yml
+      - url: openapi/bunq-user-userid-credential-password-ip-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-currency-cloud-beneficiary-api
@@ -438,7 +435,7 @@ apis:
       - url: overlays/bunq-device--openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-device--openapi-original.yml
+      - url: openapi/bunq-device--openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-device-server-api
@@ -454,7 +451,7 @@ apis:
       - url: overlays/bunq-device-server--openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-device-server--openapi-original.yml
+      - url: openapi/bunq-device-server--openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-event-api
@@ -470,7 +467,7 @@ apis:
       - url: overlays/bunq-user-userid-event-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-user-userid-event-openapi-original.yml
+      - url: openapi/bunq-user-userid-event-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-feature-announcement-api
@@ -488,7 +485,7 @@ apis:
           overlays/bunq-user-userid-feature-announcement-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-user-userid-feature-announcement-openapi-original.yml
+      - url: openapi/bunq-user-userid-feature-announcement-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-insight-preference-date-api
@@ -506,8 +503,7 @@ apis:
           overlays/bunq-user-userid-insight-preference-date-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: >-
-          openapibunq-user-userid-insight-preference-date-openapi-original.yml
+      - url: openapi/bunq-user-userid-insight-preference-date-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-insights-api
@@ -523,7 +519,7 @@ apis:
       - url: overlays/bunq-user-userid-insights-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-user-userid-insights-openapi-original.yml
+      - url: openapi/bunq-user-userid-insights-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-installation-api
@@ -541,7 +537,7 @@ apis:
       - url: overlays/bunq-installation--openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-installation--openapi-original.yml
+      - url: openapi/bunq-installation--openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-invoice-api
@@ -559,7 +555,7 @@ apis:
       - url: overlays/bunq-user-userid-invoice-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-user-userid-invoice-openapi-original.yml
+      - url: openapi/bunq-user-userid-invoice-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-legal-name-api
@@ -576,7 +572,7 @@ apis:
           overlays/bunq-user-userid-legal-name-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-user-userid-legal-name-openapi-original.yml
+      - url: openapi/bunq-user-userid-legal-name-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-limit-api
@@ -591,7 +587,7 @@ apis:
       - url: overlays/bunq-user-userid-limit-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-user-userid-limit-openapi-original.yml
+      - url: openapi/bunq-user-userid-limit-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-monetary-account-bank-api
@@ -610,7 +606,7 @@ apis:
           overlays/bunq-user-userid-monetary-account-bank-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-user-userid-monetary-account-bank-openapi-original.yml
+      - url: openapi/bunq-user-userid-monetary-account-bank-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-monetary-account-card-api
@@ -629,7 +625,7 @@ apis:
           overlays/bunq-user-userid-monetary-account-card-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: openapibunq-user-userid-monetary-account-card-openapi-original.yml
+      - url: openapi/bunq-user-userid-monetary-account-card-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-monetary-account-external-api
@@ -650,8 +646,7 @@ apis:
           overlays/bunq-user-userid-monetary-account-external-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: >-
-          openapibunq-user-userid-monetary-account-external-openapi-original.yml
+      - url: openapi/bunq-user-userid-monetary-account-external-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-monetary-account-joint-api
@@ -670,8 +665,7 @@ apis:
           overlays/bunq-user-userid-monetary-account-joint-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: >-
-          openapibunq-user-userid-monetary-account-joint-openapi-original.yml
+      - url: openapi/bunq-user-userid-monetary-account-joint-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-monetary-account-savings-api
@@ -690,8 +684,7 @@ apis:
           overlays/bunq-user-userid-monetary-account-savings-openapi-api-evangelist-ratings.yml
         type: API Evangelist Ratings
     properties:
-      - url: >-
-          openapibunq-user-userid-monetary-account-savings-openapi-original.yml
+      - url: openapi/bunq-user-userid-monetary-account-savings-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-company-user-company-name-api
@@ -704,7 +697,7 @@ apis:
       - url: overlays/bunq-user-company-user-companyid-name-openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-user-company-user-companyid-name-openapi-original.yml
+      - url: openapi/bunq-user-company-user-companyid-name-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-notification-filter-email-api
@@ -718,8 +711,7 @@ apis:
       - url: overlays/bunq-user-userid-notification-filter-email-openapi-search.yml
         type: OpenAPI
     properties:
-      - url: >-
-          openapibunq-user-userid-notification-filter-email-openapi-original.yml
+      - url: openapi/bunq-user-userid-notification-filter-email-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-notification-filter-failure-api
@@ -748,8 +740,7 @@ apis:
       - url: overlays/bunq-user-userid-notification-filter-push-openapi-search.yml
         type: OpenAPI
     properties:
-      - url: >-
-          openapibunq-user-userid-notification-filter-push-openapi-original.yml
+      - url: openapi/bunq-user-userid-notification-filter-push-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-notification-filter-url-api
@@ -763,8 +754,7 @@ apis:
       - url: overlays/bunq-user-userid-notification-filter-url-openapi-search.yml
         type: OpenAPI
     properties:
-      - url: >-
-          openapibunq-user-userid-notification-filter-url-openapi-original.yml
+      - url: openapi/bunq-user-userid-notification-filter-url-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-payment-auto-allocate-api
@@ -778,7 +768,7 @@ apis:
       - url: overlays/bunq-user-userid-payment-auto-allocate-openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-user-userid-payment-auto-allocate-openapi-original.yml
+      - url: openapi/bunq-user-userid-payment-auto-allocate-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-payment-service-provider-credential-api
@@ -795,8 +785,7 @@ apis:
       - url: overlays/bunq-payment-service-provider-credential--openapi-search.yml
         type: OpenAPI
     properties:
-      - url: >-
-          openapibunq-payment-service-provider-credential--openapi-original.yml
+      - url: openapi/bunq-payment-service-provider-credential--openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-payment-service-provider-draft-payment-api
@@ -847,7 +836,7 @@ apis:
       - url: overlays/bunq-registry-import-splitwise-csv--openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-registry-import-splitwise-csv--openapi-original.yml
+      - url: openapi/bunq-registry-import-splitwise-csv--openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-registry-api
@@ -861,7 +850,7 @@ apis:
       - url: overlays/bunq-user-userid-registry-openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-user-userid-registry-openapi-original.yml
+      - url: openapi/bunq-user-userid-registry-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-sandbox-user-company-api
@@ -871,7 +860,7 @@ apis:
       - url: overlays/bunq-sandbox-user-company--openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-sandbox-user-company--openapi-original.yml
+      - url: openapi/bunq-sandbox-user-company--openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-sandbox-user-person-api
@@ -881,7 +870,7 @@ apis:
       - url: overlays/bunq-sandbox-user-person--openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-sandbox-user-person--openapi-original.yml
+      - url: openapi/bunq-sandbox-user-person--openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-schedule-api
@@ -893,7 +882,7 @@ apis:
       - url: overlays/bunq-user-userid-schedule-openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-user-userid-schedule-openapi-original.yml
+      - url: openapi/bunq-user-userid-schedule-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-server-error-api
@@ -903,7 +892,7 @@ apis:
       - url: overlays/bunq-server-error--openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-server-error--openapi-original.yml
+      - url: openapi/bunq-server-error--openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-installation-installation-server-public-key-api
@@ -929,7 +918,7 @@ apis:
       - url: overlays/bunq-session-itemid--openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-session-itemid--openapi-original.yml
+      - url: openapi/bunq-session-itemid--openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-session-server-api
@@ -939,7 +928,7 @@ apis:
       - url: overlays/bunq-session-server--openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-session-server--openapi-original.yml
+      - url: openapi/bunq-session-server--openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-share-invite-monetary-account-response-api
@@ -970,8 +959,7 @@ apis:
       - url: overlays/bunq-user-userid-token-qr-request-ideal-openapi-search.yml
         type: OpenAPI
     properties:
-      - url: >-
-          openapibunq-user-userid-token-qr-request-ideal-openapi-original.yml
+      - url: openapi/bunq-user-userid-token-qr-request-ideal-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-token-qr-request-sofort-api
@@ -983,8 +971,7 @@ apis:
       - url: overlays/bunq-user-userid-token-qr-request-sofort-openapi-search.yml
         type: OpenAPI
     properties:
-      - url: >-
-          openapibunq-user-userid-token-qr-request-sofort-openapi-original.yml
+      - url: openapi/bunq-user-userid-token-qr-request-sofort-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-transferwise-currency-api
@@ -997,7 +984,7 @@ apis:
       - url: overlays/bunq-user-userid-transferwise-currency-openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-user-userid-transferwise-currency-openapi-original.yml
+      - url: openapi/bunq-user-userid-transferwise-currency-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-transferwise-quote-api
@@ -1015,7 +1002,7 @@ apis:
       - url: overlays/bunq-user-userid-transferwise-quote-openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-user-userid-transferwise-quote-openapi-original.yml
+      - url: openapi/bunq-user-userid-transferwise-quote-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-transferwise-user-api
@@ -1027,7 +1014,7 @@ apis:
       - url: overlays/bunq-user-userid-transferwise-user-openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-user-userid-transferwise-user-openapi-original.yml
+      - url: openapi/bunq-user-userid-transferwise-user-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-tree-progress-api
@@ -1040,7 +1027,7 @@ apis:
       - url: overlays/bunq-user-userid-tree-progress-openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-user-userid-tree-progress-openapi-original.yml
+      - url: openapi/bunq-user-userid-tree-progress-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-item-api
@@ -1050,7 +1037,7 @@ apis:
       - url: overlays/bunq-user-itemid--openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-user-itemid--openapi-original.yml
+      - url: openapi/bunq-user-itemid--openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-company-item-api
@@ -1060,7 +1047,7 @@ apis:
       - url: overlays/bunq-user-company-itemid--openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-user-company-itemid--openapi-original.yml
+      - url: openapi/bunq-user-company-itemid--openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-payment-service-provider-item-api
@@ -1070,8 +1057,7 @@ apis:
       - url: overlays/bunq-user-payment-service-provider-itemid--openapi-search.yml
         type: OpenAPI
     properties:
-      - url: >-
-          openapibunq-user-payment-service-provider-itemid--openapi-original.yml
+      - url: openapi/bunq-user-payment-service-provider-itemid--openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-person-item-api
@@ -1081,7 +1067,7 @@ apis:
       - url: overlays/bunq-user-person-itemid--openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-user-person-itemid--openapi-original.yml
+      - url: openapi/bunq-user-person-itemid--openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-whitelist-sdd-api
@@ -1095,7 +1081,7 @@ apis:
       - url: overlays/bunq-user-userid-whitelist-sdd-openapi-search.yml
         type: OpenAPI
     properties:
-      - url: openapibunq-user-userid-whitelist-sdd-openapi-original.yml
+      - url: openapi/bunq-user-userid-whitelist-sdd-openapi-original.yml
         type: OpenAPI
     description: Needs description.
 name: Bunq
@@ -1137,11 +1123,6 @@ common:
     type: Terms of Service
 created: 2023/11/13
 modified: '2024-12-15'
-overlays:
-  - url: overlays/apis-io-search.yml
-    type: APIs.io Search
-  - url: overlays/apis-io-search.yml
-    type: API Evangelist Ratings
 description: >-
   We offer mobile banking that makes life easy-wherever, whenever. Join us and
   discover a simple, sustainable, and user-centered way of banking that makes
