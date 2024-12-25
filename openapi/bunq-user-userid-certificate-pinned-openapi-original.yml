@@ -1,0 +1,231 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/certificate-pinned'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    CertificatePinnedCreate:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id generated for the pinned certificate chain.
+          readOnly: true
+          writeOnly: false
+    CertificatePinnedDelete:
+      type: object
+    CertificatePinnedRead:
+      type: object
+      properties:
+        certificate_chain:
+          type: string
+          description: >-
+            The certificate chain in .PEM format. Certificates are glued with
+            newline characters.
+          readOnly: true
+          writeOnly: false
+        id:
+          type: integer
+          description: The id generated for the pinned certificate chain.
+          readOnly: true
+          writeOnly: false
+paths:
+  /user/{userID}/certificate-pinned:
+    post:
+      tags:
+        - - - - certificate-pinned
+      summary: ''
+      operationId: CREATE_CertificatePinned_for_User
+      description: Pin the certificate chain.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertificatePinned'
+      responses:
+        '200':
+          description: >-
+            This endpoint allow you to pin the certificate chains to your
+            account. These certificate chains are used for SSL validation
+            whenever a callback is initiated to one of your https callback urls.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificatePinnedCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - - - - certificate-pinned
+      summary: ''
+      operationId: List_all_CertificatePinned_for_User
+      description: List all the pinned certificate chain for the given user.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            This endpoint allow you to pin the certificate chains to your
+            account. These certificate chains are used for SSL validation
+            whenever a callback is initiated to one of your https callback urls.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CertificatePinnedListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/certificate-pinned/{itemId}:
+    delete:
+      tags:
+        - - - - certificate-pinned
+      summary: ''
+      operationId: DELETE_CertificatePinned_for_User
+      description: Remove the pinned certificate chain with the specific ID.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            This endpoint allow you to pin the certificate chains to your
+            account. These certificate chains are used for SSL validation
+            whenever a callback is initiated to one of your https callback urls.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificatePinnedDelete'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - - - - certificate-pinned
+      summary: ''
+      operationId: READ_CertificatePinned_for_User
+      description: Get the pinned certificate chain with the specified ID.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            This endpoint allow you to pin the certificate chains to your
+            account. These certificate chains are used for SSL validation
+            whenever a callback is initiated to one of your https callback urls.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificatePinnedRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

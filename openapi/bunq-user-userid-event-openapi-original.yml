@@ -1,0 +1,178 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/event'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    EventRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the event.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the event's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the event's last update.
+          readOnly: true
+          writeOnly: false
+        action:
+          type: string
+          description: 'The performed action. Can be: CREATE or UPDATE.'
+          readOnly: true
+          writeOnly: false
+        user_id:
+          type: string
+          description: The id of the user the event applied to (if it was a user event).
+          readOnly: true
+          writeOnly: false
+        monetary_account_id:
+          type: string
+          description: >-
+            The id of the monetary account the event applied to (if it was a
+            monetary account event).
+          readOnly: true
+          writeOnly: false
+        object:
+          type: object
+          description: The details of the external object the event was created for.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/EventObject'
+        status:
+          type: string
+          description: >-
+            The event status. Can be: FINALIZED or AWAITING_REPLY. An example of
+            FINALIZED event is a payment received event, while an AWAITING_REPLY
+            event is a request received event.
+          readOnly: true
+          writeOnly: false
+paths:
+  /user/{userID}/event/{itemId}:
+    get:
+      tags:
+        - - - - event
+      summary: ''
+      operationId: READ_Event_for_User
+      description: Get a specific event for a given user.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Used to view events. Events are automatically created and contain
+            information about everything that happens to your bunq account. In
+            the bunq app events are shown in your 'overview'. Examples of when
+            events are created or modified: payment sent, payment received,
+            request for payment received or connect invite received.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/event:
+    get:
+      tags:
+        - - - - event
+      summary: ''
+      operationId: List_all_Event_for_User
+      description: >-
+        Get a collection of events for a given user. You can add query the
+        parameters monetary_account_id, status and/or display_user_event to
+        filter the response. When monetary_account_id={id,id} is provided only
+        events that relate to these monetary account ids are returned. When
+        status={AWAITING_REPLY/FINALIZED} is provided the response only contains
+        events with the status AWAITING_REPLY or FINALIZED. When
+        display_user_event={true/false} is set to false user events are excluded
+        from the response, when not provided user events are displayed. User
+        events are events that are not related to a monetary account (for
+        example: connect invites).
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: >-
+            Used to view events. Events are automatically created and contain
+            information about everything that happens to your bunq account. In
+            the bunq app events are shown in your 'overview'. Examples of when
+            events are created or modified: payment sent, payment received,
+            request for payment received or connect invite received.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

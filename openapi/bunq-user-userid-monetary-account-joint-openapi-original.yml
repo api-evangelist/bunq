@@ -1,0 +1,352 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/monetary-account-joint'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    MonetaryAccountJointCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    MonetaryAccountJointRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the MonetaryAccountJoint.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the MonetaryAccountJoint's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the MonetaryAccountJoint's last update.
+          readOnly: true
+          writeOnly: false
+        avatar:
+          type: object
+          description: The Avatar of the MonetaryAccountJoint.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        currency:
+          type: string
+          description: >-
+            The currency of the MonetaryAccountJoint as an ISO 4217 formatted
+            currency code.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: >-
+            The description of the MonetaryAccountJoint. Defaults to 'bunq
+            account'.
+          readOnly: true
+          writeOnly: false
+        daily_limit:
+          type: object
+          description: >-
+            The daily spending limit Amount of the MonetaryAccountJoint.
+            Defaults to 1000 EUR. Currency must match the MonetaryAccountJoint's
+            currency. Limited to 10000 EUR.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        overdraft_limit:
+          type: object
+          description: The maximum Amount the MonetaryAccountJoint can be 'in the red'.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        balance:
+          type: object
+          description: The current available balance Amount of the MonetaryAccountJoint.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        alias:
+          type: array
+          description: The Aliases for the MonetaryAccountJoint.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Pointer'
+        public_uuid:
+          type: string
+          description: The MonetaryAccountJoint's public UUID.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: >-
+            The status of the MonetaryAccountJoint. Can be: ACTIVE, BLOCKED,
+            CANCELLED or PENDING_REOPEN
+          readOnly: true
+          writeOnly: false
+        sub_status:
+          type: string
+          description: >-
+            The sub-status of the MonetaryAccountJoint providing extra
+            information regarding the status. Will be NONE for ACTIVE or
+            PENDING_REOPEN, COMPLETELY or ONLY_ACCEPTING_INCOMING for BLOCKED
+            and REDEMPTION_INVOLUNTARY, REDEMPTION_VOLUNTARY or PERMANENT for
+            CANCELLED.
+          readOnly: true
+          writeOnly: false
+        reason:
+          type: string
+          description: >-
+            The reason for voluntarily cancelling (closing) the
+            MonetaryAccountJoint, can only be OTHER.
+          readOnly: true
+          writeOnly: false
+        reason_description:
+          type: string
+          description: >-
+            The optional free-form reason for voluntarily cancelling (closing)
+            the MonetaryAccountJoint. Can be any user provided message.
+          readOnly: true
+          writeOnly: false
+        all_co_owner:
+          type: array
+          description: The users the account will be joint with.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CoOwner'
+        user_id:
+          type: integer
+          description: The id of the User who owns the MonetaryAccountJoint.
+          readOnly: true
+          writeOnly: false
+        monetary_account_profile:
+          type: object
+          description: The profile of the account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountProfile'
+        setting:
+          type: object
+          description: The settings of the MonetaryAccountJoint.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountSetting'
+        all_auto_save_id:
+          type: array
+          description: The ids of the AutoSave.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/BunqId'
+    MonetaryAccountJointUpdate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+paths:
+  /user/{userID}/monetary-account-joint:
+    post:
+      tags:
+        - - - - monetary-account-joint
+      summary: ''
+      operationId: CREATE_MonetaryAccountJoint_for_User
+      description: The endpoint for joint monetary accounts.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MonetaryAccountJoint'
+      responses:
+        '200':
+          description: The endpoint for joint monetary accounts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonetaryAccountJointCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - - - - monetary-account-joint
+      summary: ''
+      operationId: List_all_MonetaryAccountJoint_for_User
+      description: The endpoint for joint monetary accounts.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: The endpoint for joint monetary accounts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MonetaryAccountJointListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/monetary-account-joint/{itemId}:
+    get:
+      tags:
+        - - - - monetary-account-joint
+      summary: ''
+      operationId: READ_MonetaryAccountJoint_for_User
+      description: The endpoint for joint monetary accounts.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: The endpoint for joint monetary accounts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonetaryAccountJointRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    put:
+      tags:
+        - - - - monetary-account-joint
+      summary: ''
+      operationId: UPDATE_MonetaryAccountJoint_for_User
+      description: The endpoint for joint monetary accounts.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MonetaryAccountJoint'
+      responses:
+        '200':
+          description: The endpoint for joint monetary accounts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonetaryAccountJointUpdate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

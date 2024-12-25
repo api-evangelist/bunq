@@ -1,0 +1,239 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/currency-cloud-beneficiary'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    CurrencyCloudBeneficiaryCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    CurrencyCloudBeneficiaryRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the profile.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the beneficiaries creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the beneficiaries last update.
+          readOnly: true
+          writeOnly: false
+        name:
+          type: string
+          description: The name of the beneficiary.
+          readOnly: true
+          writeOnly: false
+        account_number:
+          type: string
+          description: The account number to display for the beneficiary.
+          readOnly: true
+          writeOnly: false
+        currency:
+          type: string
+          description: The currency of the beneficiary.
+          readOnly: true
+          writeOnly: false
+        external_identifier:
+          type: string
+          description: The external identifier of the beneficiary.
+          readOnly: true
+          writeOnly: false
+paths:
+  /user/{userID}/currency-cloud-beneficiary:
+    post:
+      tags:
+        - - - - currency-cloud-beneficiary
+      summary: ''
+      operationId: CREATE_CurrencyCloudBeneficiary_for_User
+      description: Endpoint to manage CurrencyCloud beneficiaries.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CurrencyCloudBeneficiary'
+      responses:
+        '200':
+          description: Endpoint to manage CurrencyCloud beneficiaries.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyCloudBeneficiaryCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - - - - currency-cloud-beneficiary
+      summary: ''
+      operationId: List_all_CurrencyCloudBeneficiary_for_User
+      description: Endpoint to manage CurrencyCloud beneficiaries.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Endpoint to manage CurrencyCloud beneficiaries.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CurrencyCloudBeneficiaryListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/currency-cloud-beneficiary/{itemId}:
+    get:
+      tags:
+        - - - - currency-cloud-beneficiary
+      summary: ''
+      operationId: READ_CurrencyCloudBeneficiary_for_User
+      description: Endpoint to manage CurrencyCloud beneficiaries.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Endpoint to manage CurrencyCloud beneficiaries.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyCloudBeneficiaryRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/currency-cloud-beneficiary-requirement:
+    get:
+      tags:
+        - - - - currency-cloud-beneficiary-requirement
+      summary: ''
+      operationId: List_all_CurrencyCloudBeneficiaryRequirement_for_User
+      description: Endpoint to list requirements for CurrencyCloud beneficiaries.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Endpoint to list requirements for CurrencyCloud beneficiaries.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: >-
+                    #/components/schemas/CurrencyCloudBeneficiaryRequirementListing
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

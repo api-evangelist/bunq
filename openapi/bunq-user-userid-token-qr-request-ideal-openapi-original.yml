@@ -1,0 +1,201 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/token-qr-request-ideal'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    TokenQrRequestIdealCreate:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the RequestResponse.
+          readOnly: true
+          writeOnly: false
+        time_responded:
+          type: string
+          description: The timestamp of when the RequestResponse was responded to.
+          readOnly: true
+          writeOnly: false
+        time_expiry:
+          type: string
+          description: The timestamp of when the RequestResponse expired or will expire.
+          readOnly: true
+          writeOnly: false
+        monetary_account_id:
+          type: integer
+          description: The id of the MonetaryAccount the RequestResponse was received on.
+          readOnly: true
+          writeOnly: false
+        amount_inquired:
+          type: object
+          description: The requested Amount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_responded:
+          type: object
+          description: The Amount the RequestResponse was accepted with.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        alias:
+          type: object
+          description: >-
+            The LabelMonetaryAccount with the public information of the
+            MonetaryAccount this RequestResponse was received on.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counterparty_alias:
+          type: object
+          description: >-
+            The LabelMonetaryAccount with the public information of the
+            MonetaryAccount that is requesting money with this RequestResponse.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        description:
+          type: string
+          description: >-
+            The description for the RequestResponse provided by the requesting
+            party. Maximum 9000 characters.
+          readOnly: true
+          writeOnly: false
+        attachment:
+          type: array
+          description: The Attachments attached to the RequestResponse.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Attachment'
+        status:
+          type: string
+          description: The status of the created RequestResponse. Can only be PENDING.
+          readOnly: true
+          writeOnly: false
+        minimum_age:
+          type: integer
+          description: The minimum age the user accepting the RequestResponse must have.
+          readOnly: true
+          writeOnly: false
+        require_address:
+          type: string
+          description: Whether or not an address must be provided on accept.
+          readOnly: true
+          writeOnly: false
+        address_shipping:
+          type: object
+          description: >-
+            The shipping address provided by the accepting user if an address
+            was requested.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        address_billing:
+          type: object
+          description: >-
+            The billing address provided by the accepting user if an address was
+            requested.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        geolocation:
+          type: object
+          description: The Geolocation where the RequestResponse was created.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Geolocation'
+        redirect_url:
+          type: string
+          description: >-
+            The URL which the user is sent to after accepting or rejecting the
+            Request.
+          readOnly: true
+          writeOnly: false
+        type:
+          type: string
+          description: The type of the RequestResponse. Can be only be IDEAL.
+          readOnly: true
+          writeOnly: false
+        sub_type:
+          type: string
+          description: The subtype of the RequestResponse. Can be only be NONE.
+          readOnly: true
+          writeOnly: false
+        eligible_whitelist_id:
+          type: integer
+          description: The whitelist id for this action or null.
+          readOnly: true
+          writeOnly: false
+paths:
+  /user/{userID}/token-qr-request-ideal:
+    post:
+      tags:
+        - - - - token-qr-request-ideal
+      summary: ''
+      operationId: CREATE_TokenQrRequestIdeal_for_User
+      description: Create a request from an ideal transaction.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenQrRequestIdeal'
+      responses:
+        '200':
+          description: >-
+            Using this call you create a request for payment from an external
+            token provided with an ideal transaction. Make sure your iDEAL
+            payments are compliant with the iDEAL standards, by following the
+            following manual: https:/www.bunq.com/terms-idealstandards. It's
+            very important to keep these points in mind when you are using the
+            endpoint to make iDEAL payments from your application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenQrRequestIdealCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []

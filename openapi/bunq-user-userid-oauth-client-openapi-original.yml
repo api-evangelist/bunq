@@ -1,0 +1,530 @@
+openapi: 3.0.0
+info:
+  title: ' user/{userID}/oauth-client'
+  description: Needs description.
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+  - url: https://public-api.sandbox.bunq.com/{basePath}
+    description: Sandbox server
+    variables:
+      basePath:
+        default: v1
+  - url: https://api.bunq.com/{basePath}
+    description: Production server
+    variables:
+      basePath:
+        default: v1
+components:
+  schemas:
+    OauthCallbackUrlRead:
+      type: object
+      properties:
+        url:
+          type: string
+          description: The URL for this callback.
+          readOnly: true
+          writeOnly: false
+    OauthCallbackUrlUpdate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    OauthCallbackUrlDelete:
+      type: object
+    OauthCallbackUrlCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    OauthClientRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Id of the client.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: >-
+            The status of the pack group, can be ACTIVE, CANCELLED or
+            CANCELLED_PENDING.
+          readOnly: true
+          writeOnly: false
+        display_name:
+          type: string
+          description: The display name of this Oauth Client
+          readOnly: true
+          writeOnly: false
+        client_id:
+          type: string
+          description: The Client ID associated with this Oauth Client
+          readOnly: true
+          writeOnly: false
+        secret:
+          type: string
+          description: Secret associated with this Oauth Client
+          readOnly: true
+          writeOnly: false
+        callback_url:
+          type: array
+          description: The callback URLs which are bound to this Oauth Client
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/OauthCallbackUrl'
+    OauthClientUpdate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    OauthClientCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+paths:
+  /user/{userID}/oauth-client/{oauth-clientID}/callback-url/{itemId}:
+    get:
+      tags:
+        - - - - callback-url
+      summary: ''
+      operationId: READ_CallbackUrl_for_User_OauthClient
+      description: Used for managing OAuth Client Callback URLs.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: oauth-clientID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used for managing OAuth Client Callback URLs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OauthCallbackUrlRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    put:
+      tags:
+        - - - - callback-url
+      summary: ''
+      operationId: UPDATE_CallbackUrl_for_User_OauthClient
+      description: Used for managing OAuth Client Callback URLs.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: oauth-clientID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OauthCallbackUrl'
+      responses:
+        '200':
+          description: Used for managing OAuth Client Callback URLs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OauthCallbackUrlUpdate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    delete:
+      tags:
+        - - - - callback-url
+      summary: ''
+      operationId: DELETE_CallbackUrl_for_User_OauthClient
+      description: Used for managing OAuth Client Callback URLs.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: oauth-clientID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used for managing OAuth Client Callback URLs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OauthCallbackUrlDelete'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/oauth-client/{oauth-clientID}/callback-url:
+    post:
+      tags:
+        - - - - callback-url
+      summary: ''
+      operationId: CREATE_CallbackUrl_for_User_OauthClient
+      description: Used for managing OAuth Client Callback URLs.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: oauth-clientID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OauthCallbackUrl'
+      responses:
+        '200':
+          description: Used for managing OAuth Client Callback URLs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OauthCallbackUrlCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - - - - callback-url
+      summary: ''
+      operationId: List_all_CallbackUrl_for_User_OauthClient
+      description: Used for managing OAuth Client Callback URLs.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: oauth-clientID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used for managing OAuth Client Callback URLs.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OauthCallbackUrlListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/oauth-client/{itemId}:
+    get:
+      tags:
+        - - - - oauth-client
+      summary: ''
+      operationId: READ_OauthClient_for_User
+      description: Used for managing OAuth Clients.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used for managing OAuth Clients.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OauthClientRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    put:
+      tags:
+        - - - - oauth-client
+      summary: ''
+      operationId: UPDATE_OauthClient_for_User
+      description: Used for managing OAuth Clients.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: itemId
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OauthClient'
+      responses:
+        '200':
+          description: Used for managing OAuth Clients.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OauthClientUpdate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+  /user/{userID}/oauth-client:
+    post:
+      tags:
+        - - - - oauth-client
+      summary: ''
+      operationId: CREATE_OauthClient_for_User
+      description: Used for managing OAuth Clients.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OauthClient'
+      responses:
+        '200':
+          description: Used for managing OAuth Clients.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OauthClientCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+    get:
+      tags:
+        - - - - oauth-client
+      summary: ''
+      operationId: List_all_OauthClient_for_User
+      description: Used for managing OAuth Clients.
+      parameters:
+        - in: path
+          name: userID
+          description: ''
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Cache-Control'
+        - $ref: '#/components/parameters/User-Agent'
+        - $ref: '#/components/parameters/X-Bunq-Language'
+        - $ref: '#/components/parameters/X-Bunq-Region'
+        - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+        - $ref: '#/components/parameters/X-Bunq-Geolocation'
+        - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used for managing OAuth Clients.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OauthClientListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+tags: []
