@@ -1,4 +1,4 @@
-executed: '2025-01-06T01:46:36.253Z'
+executed: '2025-01-06T01:49:59.165Z'
 results:
   - code: apis-json-specification-aid-info
     message: There is an aid.
@@ -2411,22 +2411,6 @@ results:
       end:
         line: 289
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '11'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 290
-        character: 14
-      end:
-        line: 290
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -2438,11 +2422,27 @@ results:
     severity: 2
     range:
       start:
-        line: 291
+        line: 290
         character: 13
       end:
-        line: 291
+        line: 290
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '11'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 291
+        character: 14
+      end:
+        line: 291
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -2586,22 +2586,6 @@ results:
       end:
         line: 311
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '12'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 312
-        character: 14
-      end:
-        line: 312
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -2613,11 +2597,27 @@ results:
     severity: 2
     range:
       start:
-        line: 313
+        line: 312
         character: 13
       end:
-        line: 313
+        line: 312
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '12'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 313
+        character: 14
+      end:
+        line: 313
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -3229,22 +3229,6 @@ results:
       end:
         line: 385
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '15'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 386
-        character: 14
-      end:
-        line: 386
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -3256,11 +3240,27 @@ results:
     severity: 2
     range:
       start:
-        line: 387
+        line: 386
         character: 13
       end:
-        line: 387
+        line: 386
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '15'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 387
+        character: 14
+      end:
+        line: 387
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -3419,22 +3419,6 @@ results:
       end:
         line: 409
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '16'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 410
-        character: 14
-      end:
-        line: 410
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -3446,11 +3430,27 @@ results:
     severity: 2
     range:
       start:
-        line: 411
+        line: 410
         character: 13
       end:
-        line: 411
+        line: 410
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '16'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 411
+        character: 14
+      end:
+        line: 411
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -4783,22 +4783,6 @@ results:
       end:
         line: 530
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '19'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 531
-        character: 14
-      end:
-        line: 531
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -4810,11 +4794,27 @@ results:
     severity: 2
     range:
       start:
-        line: 532
+        line: 531
         character: 13
       end:
-        line: 532
+        line: 531
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '19'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 532
+        character: 14
+      end:
+        line: 532
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -4913,22 +4913,6 @@ results:
       end:
         line: 550
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '20'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 551
-        character: 14
-      end:
-        line: 551
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -4940,11 +4924,27 @@ results:
     severity: 2
     range:
       start:
-        line: 552
+        line: 551
         character: 13
       end:
-        line: 553
+        line: 552
         character: 85
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '20'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 553
+        character: 14
+      end:
+        line: 553
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -5043,22 +5043,6 @@ results:
       end:
         line: 570
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '21'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 571
-        character: 14
-      end:
-        line: 571
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -5070,11 +5054,27 @@ results:
     severity: 2
     range:
       start:
-        line: 572
+        line: 571
         character: 13
       end:
-        line: 572
+        line: 571
         character: 53
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '21'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 572
+        character: 14
+      end:
+        line: 572
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -5173,22 +5173,6 @@ results:
       end:
         line: 589
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '22'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 590
-        character: 14
-      end:
-        line: 590
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -5200,11 +5184,27 @@ results:
     severity: 2
     range:
       start:
-        line: 591
+        line: 590
         character: 13
       end:
-        line: 591
+        line: 590
         character: 53
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '22'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 591
+        character: 14
+      end:
+        line: 591
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -5303,22 +5303,6 @@ results:
       end:
         line: 608
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '23'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 609
-        character: 14
-      end:
-        line: 609
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -5330,11 +5314,27 @@ results:
     severity: 2
     range:
       start:
-        line: 610
+        line: 609
         character: 13
       end:
-        line: 610
+        line: 609
         character: 52
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '23'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 610
+        character: 14
+      end:
+        line: 610
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -5433,22 +5433,6 @@ results:
       end:
         line: 626
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '24'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 627
-        character: 14
-      end:
-        line: 627
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -5460,11 +5444,27 @@ results:
     severity: 2
     range:
       start:
-        line: 628
+        line: 627
         character: 13
       end:
-        line: 628
+        line: 627
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '24'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 628
+        character: 14
+      end:
+        line: 628
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -5563,22 +5563,6 @@ results:
       end:
         line: 646
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '25'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 647
-        character: 14
-      end:
-        line: 647
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -5590,11 +5574,27 @@ results:
     severity: 2
     range:
       start:
-        line: 648
+        line: 647
         character: 13
       end:
-        line: 648
+        line: 647
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '25'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 648
+        character: 14
+      end:
+        line: 648
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -5798,22 +5798,6 @@ results:
       end:
         line: 675
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '26'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 676
-        character: 14
-      end:
-        line: 676
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -5825,11 +5809,27 @@ results:
     severity: 2
     range:
       start:
-        line: 677
+        line: 676
         character: 13
       end:
-        line: 677
+        line: 676
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '26'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 677
+        character: 14
+      end:
+        line: 677
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -5928,22 +5928,6 @@ results:
       end:
         line: 693
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '27'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 694
-        character: 14
-      end:
-        line: 694
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -5955,11 +5939,27 @@ results:
     severity: 2
     range:
       start:
-        line: 695
+        line: 694
         character: 13
       end:
-        line: 695
+        line: 694
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '27'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 695
+        character: 14
+      end:
+        line: 695
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -6103,22 +6103,6 @@ results:
       end:
         line: 714
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '28'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 715
-        character: 14
-      end:
-        line: 715
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -6130,11 +6114,27 @@ results:
     severity: 2
     range:
       start:
-        line: 716
+        line: 715
         character: 13
       end:
-        line: 716
+        line: 715
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '28'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 716
+        character: 14
+      end:
+        line: 716
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -6308,22 +6308,6 @@ results:
       end:
         line: 739
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '29'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 740
-        character: 14
-      end:
-        line: 740
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -6335,11 +6319,27 @@ results:
     severity: 2
     range:
       start:
-        line: 741
+        line: 740
         character: 13
       end:
-        line: 741
+        line: 740
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '29'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 741
+        character: 14
+      end:
+        line: 741
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -6438,22 +6438,6 @@ results:
       end:
         line: 758
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '30'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 759
-        character: 14
-      end:
-        line: 759
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -6465,11 +6449,27 @@ results:
     severity: 2
     range:
       start:
-        line: 760
+        line: 759
         character: 13
       end:
-        line: 760
+        line: 759
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '30'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 760
+        character: 14
+      end:
+        line: 760
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -6613,22 +6613,6 @@ results:
       end:
         line: 781
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '31'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 782
-        character: 14
-      end:
-        line: 782
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -6640,11 +6624,27 @@ results:
     severity: 2
     range:
       start:
-        line: 783
+        line: 782
         character: 13
       end:
-        line: 783
+        line: 782
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '31'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 783
+        character: 14
+      end:
+        line: 783
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -6803,22 +6803,6 @@ results:
       end:
         line: 803
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '32'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 804
-        character: 14
-      end:
-        line: 804
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -6830,11 +6814,27 @@ results:
     severity: 2
     range:
       start:
-        line: 805
+        line: 804
         character: 13
       end:
-        line: 805
+        line: 804
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '32'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 805
+        character: 14
+      end:
+        line: 805
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -6993,22 +6993,6 @@ results:
       end:
         line: 827
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '33'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 828
-        character: 14
-      end:
-        line: 828
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -7020,11 +7004,27 @@ results:
     severity: 2
     range:
       start:
-        line: 829
+        line: 828
         character: 13
       end:
-        line: 829
+        line: 828
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '33'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 829
+        character: 14
+      end:
+        line: 829
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -7168,22 +7168,6 @@ results:
       end:
         line: 851
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '34'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 852
-        character: 14
-      end:
-        line: 852
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -7195,11 +7179,27 @@ results:
     severity: 2
     range:
       start:
-        line: 853
+        line: 852
         character: 13
       end:
-        line: 853
+        line: 852
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '34'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 853
+        character: 14
+      end:
+        line: 853
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -7373,22 +7373,6 @@ results:
       end:
         line: 878
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '35'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 879
-        character: 14
-      end:
-        line: 879
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -7400,11 +7384,27 @@ results:
     severity: 2
     range:
       start:
-        line: 880
+        line: 879
         character: 13
       end:
-        line: 880
+        line: 879
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '35'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 880
+        character: 14
+      end:
+        line: 880
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -7503,22 +7503,6 @@ results:
       end:
         line: 895
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '36'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 896
-        character: 14
-      end:
-        line: 896
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -7530,11 +7514,27 @@ results:
     severity: 2
     range:
       start:
-        line: 897
+        line: 896
         character: 13
       end:
-        line: 897
+        line: 896
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '36'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 897
+        character: 14
+      end:
+        line: 897
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -7678,22 +7678,6 @@ results:
       end:
         line: 916
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '37'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 917
-        character: 14
-      end:
-        line: 917
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -7705,11 +7689,27 @@ results:
     severity: 2
     range:
       start:
-        line: 918
+        line: 917
         character: 13
       end:
-        line: 918
+        line: 917
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '37'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 918
+        character: 14
+      end:
+        line: 918
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -7838,22 +7838,6 @@ results:
       end:
         line: 938
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '38'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 939
-        character: 14
-      end:
-        line: 939
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -7865,11 +7849,27 @@ results:
     severity: 2
     range:
       start:
-        line: 940
+        line: 939
         character: 13
       end:
-        line: 940
+        line: 939
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '38'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 940
+        character: 14
+      end:
+        line: 940
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -8043,22 +8043,6 @@ results:
       end:
         line: 962
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '39'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 963
-        character: 14
-      end:
-        line: 963
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -8070,11 +8054,27 @@ results:
     severity: 2
     range:
       start:
-        line: 964
+        line: 963
         character: 13
       end:
-        line: 964
+        line: 963
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '39'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 964
+        character: 14
+      end:
+        line: 964
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -8248,22 +8248,6 @@ results:
       end:
         line: 988
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '40'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 989
-        character: 14
-      end:
-        line: 989
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -8275,11 +8259,27 @@ results:
     severity: 2
     range:
       start:
-        line: 990
+        line: 989
         character: 13
       end:
-        line: 990
+        line: 989
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '40'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 990
+        character: 14
+      end:
+        line: 990
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -8482,22 +8482,6 @@ results:
       end:
         line: 1015
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '41'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1016
-        character: 14
-      end:
-        line: 1016
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -8509,11 +8493,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1017
+        line: 1016
         character: 13
       end:
-        line: 1017
+        line: 1016
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '41'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1017
+        character: 14
+      end:
+        line: 1017
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -8687,22 +8687,6 @@ results:
       end:
         line: 1038
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '42'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1039
-        character: 14
-      end:
-        line: 1039
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -8714,11 +8698,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1040
+        line: 1039
         character: 13
       end:
-        line: 1040
+        line: 1039
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '42'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1040
+        character: 14
+      end:
+        line: 1040
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -8892,22 +8892,6 @@ results:
       end:
         line: 1063
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '43'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1064
-        character: 14
-      end:
-        line: 1064
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -8919,11 +8903,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1065
+        line: 1064
         character: 13
       end:
-        line: 1065
+        line: 1064
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '43'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1065
+        character: 14
+      end:
+        line: 1065
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -9082,22 +9082,6 @@ results:
       end:
         line: 1084
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '44'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1085
-        character: 14
-      end:
-        line: 1085
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -9109,11 +9093,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1086
+        line: 1085
         character: 13
       end:
-        line: 1086
+        line: 1085
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '44'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1086
+        character: 14
+      end:
+        line: 1086
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -9272,22 +9272,6 @@ results:
       end:
         line: 1107
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '45'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1108
-        character: 14
-      end:
-        line: 1108
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -9299,11 +9283,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1109
+        line: 1108
         character: 13
       end:
-        line: 1109
+        line: 1108
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '45'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1109
+        character: 14
+      end:
+        line: 1109
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -9447,22 +9447,6 @@ results:
       end:
         line: 1129
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '46'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1130
-        character: 14
-      end:
-        line: 1130
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -9474,11 +9458,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1131
+        line: 1130
         character: 13
       end:
-        line: 1131
+        line: 1130
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '46'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1131
+        character: 14
+      end:
+        line: 1131
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -9637,22 +9637,6 @@ results:
       end:
         line: 1152
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '47'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1153
-        character: 14
-      end:
-        line: 1153
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -9664,11 +9648,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1154
+        line: 1153
         character: 13
       end:
-        line: 1154
+        line: 1153
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '47'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1154
+        character: 14
+      end:
+        line: 1154
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -9827,22 +9827,6 @@ results:
       end:
         line: 1173
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '48'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1174
-        character: 14
-      end:
-        line: 1174
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -9854,11 +9838,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1175
+        line: 1174
         character: 13
       end:
-        line: 1175
+        line: 1174
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '48'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1175
+        character: 14
+      end:
+        line: 1175
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -10077,22 +10077,6 @@ results:
       end:
         line: 1202
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '49'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1203
-        character: 14
-      end:
-        line: 1203
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -10104,11 +10088,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1204
+        line: 1203
         character: 13
       end:
-        line: 1204
+        line: 1203
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '49'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1204
+        character: 14
+      end:
+        line: 1204
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -10342,22 +10342,6 @@ results:
       end:
         line: 1229
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '50'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1230
-        character: 14
-      end:
-        line: 1230
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -10369,11 +10353,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1231
+        line: 1230
         character: 13
       end:
-        line: 1231
+        line: 1230
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '50'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1231
+        character: 14
+      end:
+        line: 1231
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -10472,22 +10472,6 @@ results:
       end:
         line: 1250
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '51'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1251
-        character: 14
-      end:
-        line: 1251
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -10499,11 +10483,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1252
+        line: 1251
         character: 13
       end:
-        line: 1252
+        line: 1251
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '51'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1252
+        character: 14
+      end:
+        line: 1252
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -10602,22 +10602,6 @@ results:
       end:
         line: 1268
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '52'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1269
-        character: 14
-      end:
-        line: 1269
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -10629,11 +10613,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1270
+        line: 1269
         character: 13
       end:
-        line: 1270
+        line: 1269
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '52'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1270
+        character: 14
+      end:
+        line: 1270
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -10792,22 +10792,6 @@ results:
       end:
         line: 1290
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '53'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1291
-        character: 14
-      end:
-        line: 1291
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -10819,11 +10803,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1292
+        line: 1291
         character: 13
       end:
-        line: 1292
+        line: 1291
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '53'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1292
+        character: 14
+      end:
+        line: 1292
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -10952,22 +10952,6 @@ results:
       end:
         line: 1310
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '54'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1311
-        character: 14
-      end:
-        line: 1311
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -10979,11 +10963,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1312
+        line: 1311
         character: 13
       end:
-        line: 1312
+        line: 1311
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '54'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1312
+        character: 14
+      end:
+        line: 1312
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -11172,22 +11172,6 @@ results:
       end:
         line: 1334
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '55'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1335
-        character: 14
-      end:
-        line: 1335
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -11199,11 +11183,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1336
+        line: 1335
         character: 13
       end:
-        line: 1336
+        line: 1335
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '55'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1336
+        character: 14
+      end:
+        line: 1336
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -11347,22 +11347,6 @@ results:
       end:
         line: 1355
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '56'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1356
-        character: 14
-      end:
-        line: 1356
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -11374,11 +11358,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1357
+        line: 1356
         character: 13
       end:
-        line: 1357
+        line: 1356
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '56'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1357
+        character: 14
+      end:
+        line: 1357
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -11507,22 +11507,6 @@ results:
       end:
         line: 1376
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '57'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1377
-        character: 14
-      end:
-        line: 1377
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -11534,11 +11518,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1378
+        line: 1377
         character: 13
       end:
-        line: 1378
+        line: 1377
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '57'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1378
+        character: 14
+      end:
+        line: 1378
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -11682,22 +11682,6 @@ results:
       end:
         line: 1396
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '58'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1397
-        character: 14
-      end:
-        line: 1397
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -11709,11 +11693,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1398
+        line: 1397
         character: 13
       end:
-        line: 1398
+        line: 1397
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '58'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1398
+        character: 14
+      end:
+        line: 1398
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -11932,22 +11932,6 @@ results:
       end:
         line: 1420
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '59'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1421
-        character: 14
-      end:
-        line: 1421
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -11959,11 +11943,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1422
+        line: 1421
         character: 13
       end:
-        line: 1422
+        line: 1421
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '59'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1422
+        character: 14
+      end:
+        line: 1422
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -12092,22 +12092,6 @@ results:
       end:
         line: 1441
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '60'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1442
-        character: 14
-      end:
-        line: 1442
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -12119,11 +12103,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1443
+        line: 1442
         character: 13
       end:
-        line: 1443
+        line: 1442
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '60'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1443
+        character: 14
+      end:
+        line: 1443
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -12267,22 +12267,6 @@ results:
       end:
         line: 1463
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '61'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1464
-        character: 14
-      end:
-        line: 1464
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -12294,11 +12278,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1465
+        line: 1464
         character: 13
       end:
-        line: 1465
+        line: 1464
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '61'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1465
+        character: 14
+      end:
+        line: 1465
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -12457,22 +12457,6 @@ results:
       end:
         line: 1485
         character: 21
-  - code: apis-json-apis-properties-documentation-info
-    message: Has Documentation
-    path:
-      - apis
-      - '62'
-      - properties
-      - '1'
-      - type
-    severity: 2
-    range:
-      start:
-        line: 1486
-        character: 14
-      end:
-        line: 1486
-        character: 27
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -12484,11 +12468,27 @@ results:
     severity: 2
     range:
       start:
-        line: 1487
+        line: 1486
         character: 13
       end:
-        line: 1487
+        line: 1486
         character: 34
+  - code: apis-json-apis-properties-documentation-info
+    message: Has Documentation
+    path:
+      - apis
+      - '62'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1487
+        character: 14
+      end:
+        line: 1487
+        character: 27
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -12574,8 +12574,8 @@ results:
         line: 1504
         character: 7
       end:
-        line: 1535
-        character: 26
+        line: 1583
+        character: 16
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -12856,6 +12856,272 @@ results:
       end:
         line: 1535
         character: 26
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '15'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 1538
+        character: 9
+      end:
+        line: 1538
+        character: 30
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '16'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 1542
+        character: 9
+      end:
+        line: 1542
+        character: 34
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '17'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 1546
+        character: 9
+      end:
+        line: 1546
+        character: 35
+  - code: apis-json-apis-properties-about-info
+    message: Has About
+    path:
+      - common
+      - '17'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1547
+        character: 10
+      end:
+        line: 1547
+        character: 15
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '18'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 1550
+        character: 9
+      end:
+        line: 1550
+        character: 38
+  - code: apis-json-apis-properties-security-info
+    message: Has Security Path
+    path:
+      - common
+      - '18'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1551
+        character: 10
+      end:
+        line: 1551
+        character: 18
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '19'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 1554
+        character: 9
+      end:
+        line: 1554
+        character: 32
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '20'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 1558
+        character: 9
+      end:
+        line: 1558
+        character: 67
+  - code: apis-json-apis-properties-pricing-info
+    message: Has Pricing
+    path:
+      - common
+      - '20'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1559
+        character: 10
+      end:
+        line: 1559
+        character: 17
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '21'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 1562
+        character: 9
+      end:
+        line: 1562
+        character: 34
+  - code: apis-json-apis-properties-support-support-info
+    message: Has Support Page
+    path:
+      - common
+      - '21'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1563
+        character: 10
+      end:
+        line: 1563
+        character: 17
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '22'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 1566
+        character: 9
+      end:
+        line: 1566
+        character: 40
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '23'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 1570
+        character: 9
+      end:
+        line: 1570
+        character: 56
+  - code: apis-json-apis-properties-terms-of-service-info
+    message: Has an API Terms of Service
+    path:
+      - common
+      - '23'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1571
+        character: 10
+      end:
+        line: 1571
+        character: 24
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '24'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 1574
+        character: 9
+      end:
+        line: 1574
+        character: 47
+  - code: apis-json-apis-properties-privacy-policy-info
+    message: Has an API Privacy Policy
+    path:
+      - common
+      - '24'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1575
+        character: 10
+      end:
+        line: 1575
+        character: 23
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '25'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 1578
+        character: 9
+      end:
+        line: 1578
+        character: 30
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '26'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 1582
+        character: 9
+      end:
+        line: 1582
+        character: 72
+  - code: apis-json-apis-properties-signup-info
+    message: Has a Sign Up
+    path:
+      - common
+      - '26'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 1583
+        character: 10
+      end:
+        line: 1583
+        character: 16
   - code: apis-json-created-info
     message: There is a created date.
     path:
@@ -12863,10 +13129,10 @@ results:
     severity: 2
     range:
       start:
-        line: 1536
+        line: 1584
         character: 9
       end:
-        line: 1536
+        line: 1584
         character: 19
   - code: apis-json-modified-info
     message: There is a modified date.
@@ -12875,10 +13141,10 @@ results:
     severity: 2
     range:
       start:
-        line: 1537
+        line: 1585
         character: 10
       end:
-        line: 1537
+        line: 1585
         character: 22
   - code: apis-json-description-info
     message: There is a description.
@@ -12887,10 +13153,10 @@ results:
     severity: 2
     range:
       start:
-        line: 1539
+        line: 1587
         character: 13
       end:
-        line: 1549
+        line: 1597
         character: 68
   - code: apis-json-maintainers-info
     message: There is a maintainer object.
@@ -12899,10 +13165,10 @@ results:
     severity: 2
     range:
       start:
-        line: 1550
+        line: 1598
         character: 12
       end:
-        line: 1553
+        line: 1601
         character: 33
   - code: apis-json-maintainers-fn-info
     message: There is a FN property for maintainers.
@@ -12913,10 +13179,10 @@ results:
     severity: 2
     range:
       start:
-        line: 1551
+        line: 1599
         character: 8
       end:
-        line: 1551
+        line: 1599
         character: 22
   - code: apis-json-maintainers-email-info
     message: There is a email property for maintainers.
@@ -12927,10 +13193,10 @@ results:
     severity: 2
     range:
       start:
-        line: 1553
+        line: 1601
         character: 11
       end:
-        line: 1553
+        line: 1601
         character: 33
   - code: apis-json-specification-version-info
     message: There is a specification version.
@@ -12939,8 +13205,8 @@ results:
     severity: 2
     range:
       start:
-        line: 1554
+        line: 1602
         character: 22
       end:
-        line: 1554
+        line: 1602
         character: 28
