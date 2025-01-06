@@ -3,12 +3,17 @@ url: https://raw.githubusercontent.com/api-search/banking/main/_apis/bunq/apis.m
 apis:
   - aid: bunq:bunq-activity-map-place-api
     name: Bunq Activity Map Place API
-    tags: []
+    tags:
+      - Activity
+      - Maps
+      - Places
+      - Public
+      - Item
     score: 85
     baseURL: https://public-api.sandbox.bunq.com/
     humanURL: https://doc.bunq.com/#/activity-map-place-public
     properties:
-      - url: openapi/bunq-activity-map-place-public-itemid-openapi-original.yml
+      - url: properties/bunq-activity-map-place-api-openapi.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -864,7 +869,7 @@ description: >-
   transactions. Bunq also provides various features such as instant payments,
   budgeting tools, and savings goals to help users better manage their money.
   Additionally, Bunq is known for its commitment to sustainability and
-  transparency, as they offer a green card that plants a tree for every ¬100
+  transparency, as they offer a green card that plants a tree for every 100
   spent, and they do not invest in industries that harm the environment.
   Overall, Bunq strives to redefine the banking experience by providing a
   user-friendly platform that puts the needs of its customers first.
