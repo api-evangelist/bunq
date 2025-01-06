@@ -3,16 +3,12 @@ url: https://raw.githubusercontent.com/api-search/banking/main/_apis/bunq/apis.m
 apis:
   - aid: bunq:bunq-activity-map-place-api
     name: Bunq Activity Map Place API
-    tags:
-      - Activity
-      - ' Maps'
-      - ' Places'
-      - ' Public'
+    tags: []
     score: 85
     baseURL: https://public-api.sandbox.bunq.com/
     humanURL: https://doc.bunq.com/#/activity-map-place-public
     properties:
-      - url: properties/bunq-activity-map-place-api-openapi.yml
+      - url: openapi/bunq-activity-map-place-public-itemid-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -31,7 +27,7 @@ apis:
     humanURL: https://doc.bunq.com/#/additional-transaction-information-category
     properties:
       - url: >-
-          openapibunq-user-userid-additional-transaction-information-category-openapi-original.yml
+          openapi/bunq-user-userid-additional-transaction-information-category-openapi-original.yml
         type: OpenAPI
     description: Manage additional information transactional categories.
   - aid: bunq:bunq-monetary-account-api
@@ -141,7 +137,7 @@ apis:
       https://doc.bunq.com/#/billing-contract-subscription/List_all_BillingContractSubscription_for_User
     properties:
       - url: >-
-          openapibunq-user-userid-billing-contract-subscription-openapi-original.yml
+          openapi/bunq-user-userid-billing-contract-subscription-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -288,7 +284,7 @@ apis:
     humanURL: https://doc.bunq.com/#/content
     properties:
       - url: >-
-          openapibunq-attachment-public-attachment-publicuuid-content-openapi-original.yml
+          openapi/bunq-attachment-public-attachment-publicuuid-content-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -330,7 +326,7 @@ apis:
     score: 294
     properties:
       - url: >-
-          openapibunq-user-userid-currency-cloud-beneficiary-openapi-original.yml
+          openapi/bunq-user-userid-currency-cloud-beneficiary-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-device-api
@@ -546,7 +542,7 @@ apis:
       - Users
     properties:
       - url: >-
-          openapibunq-user-userid-notification-filter-failure-openapi-original.yml
+          openapi/bunq-user-userid-notification-filter-failure-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-notification-filter-push-api
@@ -608,7 +604,7 @@ apis:
       - Items
     properties:
       - url: >-
-          openapibunq-user-userid-payment-service-provider-draft-payment-openapi-original.yml
+          openapi/bunq-user-userid-payment-service-provider-draft-payment-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-payment-service-provider-issuer-transaction-api
@@ -625,7 +621,7 @@ apis:
       - Items
     properties:
       - url: >-
-          openapibunq-user-userid-payment-service-provider-issuer-transaction-openapi-original.yml
+          openapi/bunq-user-userid-payment-service-provider-issuer-transaction-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-registry-import-splitwise-csv-api
@@ -685,7 +681,7 @@ apis:
       - Servers
     properties:
       - url: >-
-          openapibunq-installation-installationid-server-public-key-openapi-original.yml
+          openapi/bunq-installation-installationid-server-public-key-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-session-item-api
@@ -713,7 +709,7 @@ apis:
       - Users
     properties:
       - url: >-
-          openapibunq-user-userid-share-invite-monetary-account-response-openapi-original.yml
+          openapi/bunq-user-userid-share-invite-monetary-account-response-openapi-original.yml
         type: OpenAPI
     description: Needs description.
   - aid: bunq:bunq-user-token-qr-request-eal-api
