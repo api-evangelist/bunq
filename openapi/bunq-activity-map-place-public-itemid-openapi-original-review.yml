@@ -1,0 +1,1230 @@
+executed: '2025-01-06T01:34:36.385Z'
+results:
+  - code: openapi-external-docs-error
+    message: OpenAPI MUST Have External Documentation
+    path: []
+    severity: 0
+    range:
+      start:
+        line: 0
+        character: 0
+      end:
+        line: 67
+        character: 8
+  - code: openapi-info-title-info
+    message: Info Has Title
+    path:
+      - info
+      - title
+    severity: 2
+    range:
+      start:
+        line: 2
+        character: 9
+      end:
+        line: 2
+        character: 36
+  - code: openapi-info-title-upper-case-info
+    message: Info Title MUST Have First Characters Capitalized
+    path:
+      - info
+      - title
+    severity: 2
+    range:
+      start:
+        line: 2
+        character: 9
+      end:
+        line: 2
+        character: 36
+  - code: openapi-info-description-info
+    message: Info Has Description
+    path:
+      - info
+      - description
+    severity: 2
+    range:
+      start:
+        line: 3
+        character: 15
+      end:
+        line: 3
+        character: 56
+  - code: openapi-info-terms-of-service-info
+    message: Info Has Terms of Service
+    path:
+      - info
+      - termsOfService
+    severity: 2
+    range:
+      start:
+        line: 4
+        character: 18
+      end:
+        line: 4
+        character: 44
+  - code: openapi-info-contact-email-error
+    message: Info MUST Have Contact Email
+    path:
+      - info
+      - contact
+    severity: 0
+    range:
+      start:
+        line: 5
+        character: 10
+      end:
+        line: 7
+        character: 34
+  - code: openapi-info-contact-info
+    message: Info Has Contact Object
+    path:
+      - info
+      - contact
+    severity: 2
+    range:
+      start:
+        line: 5
+        character: 10
+      end:
+        line: 7
+        character: 34
+  - code: openapi-info-contact-name-info
+    message: Info Has Contact Name
+    path:
+      - info
+      - contact
+      - name
+    severity: 2
+    range:
+      start:
+        line: 6
+        character: 10
+      end:
+        line: 6
+        character: 32
+  - code: openapi-info-contact-url-info
+    message: Info Has Contact URL
+    path:
+      - info
+      - contact
+      - url
+    severity: 2
+    range:
+      start:
+        line: 7
+        character: 9
+      end:
+        line: 7
+        character: 34
+  - code: openapi-info-license-identifier-error
+    message: Info MUST Have License Identifier
+    path:
+      - info
+      - license
+    severity: 0
+    range:
+      start:
+        line: 8
+        character: 10
+      end:
+        line: 10
+        character: 57
+  - code: openapi-info-license-info
+    message: Info Has License
+    path:
+      - info
+      - license
+    severity: 2
+    range:
+      start:
+        line: 8
+        character: 10
+      end:
+        line: 10
+        character: 57
+  - code: openapi-info-license-name-info
+    message: Info License Name
+    path:
+      - info
+      - license
+      - name
+    severity: 2
+    range:
+      start:
+        line: 9
+        character: 10
+      end:
+        line: 9
+        character: 20
+  - code: openapi-info-license-url-info
+    message: Info Has License URL
+    path:
+      - info
+      - license
+      - url
+    severity: 2
+    range:
+      start:
+        line: 10
+        character: 9
+      end:
+        line: 10
+        character: 57
+  - code: openapi-info-version-info
+    message: Info Has Version
+    path:
+      - info
+      - version
+    severity: 2
+    range:
+      start:
+        line: 11
+        character: 11
+      end:
+        line: 11
+        character: 16
+  - code: openapi-components-examples-error
+    message: Components MUST Have a Examples Property
+    path:
+      - components
+    severity: 0
+    range:
+      start:
+        line: 23
+        character: 11
+      end:
+        line: 24
+        character: 13
+  - code: openapi-components-headers-error
+    message: Components MUST Have a Headers Property
+    path:
+      - components
+    severity: 0
+    range:
+      start:
+        line: 23
+        character: 11
+      end:
+        line: 24
+        character: 13
+  - code: openapi-components-parameters-error
+    message: Components MUST Have a Parameters Property
+    path:
+      - components
+    severity: 0
+    range:
+      start:
+        line: 23
+        character: 11
+      end:
+        line: 24
+        character: 13
+  - code: openapi-components-responses-error
+    message: Components MUST have a responses property.
+    path:
+      - components
+    severity: 0
+    range:
+      start:
+        line: 23
+        character: 11
+      end:
+        line: 24
+        character: 13
+  - code: openapi-security-schemes-error
+    message: Components MUST Have a Security Schemes
+    path:
+      - components
+    severity: 0
+    range:
+      start:
+        line: 23
+        character: 11
+      end:
+        line: 24
+        character: 13
+  - code: openapi-components-schemas-info
+    message: Components Have a Schema Property
+    path:
+      - components
+      - schemas
+    severity: 2
+    range:
+      start:
+        line: 24
+        character: 10
+      end:
+        line: 24
+        character: 13
+  - code: openapi-no-api-in-path-error
+    message: No API in Path
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+    severity: 0
+    range:
+      start:
+        line: 26
+        character: 38
+      end:
+        line: 66
+        character: 53
+  - code: openapi-no-path-trailing-slash-info
+    message: Path Trailing Slash
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+    severity: 2
+    range:
+      start:
+        line: 26
+        character: 38
+      end:
+        line: 66
+        character: 53
+  - code: openapi-version-in-path-info
+    message: Version in Path
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+    severity: 2
+    range:
+      start:
+        line: 26
+        character: 38
+      end:
+        line: 66
+        character: 53
+  - code: openapi-no-request-body-on-get-info
+    message: GET Request Body
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+    severity: 2
+    range:
+      start:
+        line: 27
+        character: 8
+      end:
+        line: 66
+        character: 53
+  - code: openapi-operation-security-definitions-error
+    message: Operations MUST Have a Security Definition
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+    severity: 0
+    range:
+      start:
+        line: 27
+        character: 8
+      end:
+        line: 66
+        character: 53
+  - code: openapi-operations-tags-info
+    message: Operations Has Tags
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - tags
+    severity: 2
+    range:
+      start:
+        line: 28
+        character: 11
+      end:
+        line: 33
+        character: 14
+  - code: openapi-operations-tags-upper-case-info
+    message: Operation Tag Names Have First Letter in Each Word Capitalized
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - tags
+      - '0'
+    severity: 2
+    range:
+      start:
+        line: 29
+        character: 10
+      end:
+        line: 29
+        character: 18
+  - code: openapi-operations-tags-upper-case-info
+    message: Operation Tag Names Have First Letter in Each Word Capitalized
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - tags
+      - '1'
+    severity: 2
+    range:
+      start:
+        line: 30
+        character: 10
+      end:
+        line: 30
+        character: 14
+  - code: openapi-operations-tags-upper-case-info
+    message: Operation Tag Names Have First Letter in Each Word Capitalized
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - tags
+      - '2'
+    severity: 2
+    range:
+      start:
+        line: 31
+        character: 10
+      end:
+        line: 31
+        character: 16
+  - code: openapi-operations-tags-upper-case-info
+    message: Operation Tag Names Have First Letter in Each Word Capitalized
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - tags
+      - '3'
+    severity: 2
+    range:
+      start:
+        line: 32
+        character: 10
+      end:
+        line: 32
+        character: 16
+  - code: openapi-operations-tags-upper-case-info
+    message: Operation Tag Names Have First Letter in Each Word Capitalized
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - tags
+      - '4'
+    severity: 2
+    range:
+      start:
+        line: 33
+        character: 10
+      end:
+        line: 33
+        character: 14
+  - code: openapi-operations-summary-error
+    message: Operation MUST Have a Summary
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - summary
+    severity: 0
+    range:
+      start:
+        line: 34
+        character: 15
+      end:
+        line: 34
+        character: 17
+  - code: openapi-operations-summary-period-none-info
+    message: Operation Has a Period.
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - summary
+    severity: 2
+    range:
+      start:
+        line: 34
+        character: 15
+      end:
+        line: 34
+        character: 17
+  - code: openapi-operations-operation-ids-camel-case-error
+    message: Operation Identifier MUST Be camelCase
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - operationId
+    severity: 0
+    range:
+      start:
+        line: 35
+        character: 19
+      end:
+        line: 35
+        character: 46
+  - code: openapi-operations-operation-ids-camel-case-info
+    message: Operation Identifier Is camelCase
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - operationId
+    severity: 2
+    range:
+      start:
+        line: 35
+        character: 19
+      end:
+        line: 35
+        character: 46
+  - code: openapi-operations-operation-ids-info
+    message: Operation Has Identifier
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - operationId
+    severity: 2
+    range:
+      start:
+        line: 35
+        character: 19
+      end:
+        line: 35
+        character: 46
+  - code: openapi-operations-description-info
+    message: Operation Has Description
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - description
+    severity: 2
+    range:
+      start:
+        line: 36
+        character: 19
+      end:
+        line: 36
+        character: 62
+  - code: openapi-parameters-componentized-error
+    message: Parameters MUST use components $ref.
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '0'
+    severity: 0
+    range:
+      start:
+        line: 38
+        character: 10
+      end:
+        line: 43
+        character: 25
+  - code: openapi-components-parameters-description-error
+    message: Parameters MUST Have a Description
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '0'
+      - description
+    severity: 1
+    range:
+      start:
+        line: 40
+        character: 23
+      end:
+        line: 40
+        character: 25
+  - code: openapi-components-parameters-description-error
+    message: Parameters MUST Have a Description
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '1'
+    severity: 1
+    range:
+      start:
+        line: 44
+        character: 10
+      end:
+        line: 44
+        character: 55
+  - code: invalid-ref
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '1'
+      - $ref
+    message: '''#/components/parameters/Cache-Control'' does not exist'
+    severity: 0
+    range:
+      start:
+        line: 44
+        character: 16
+      end:
+        line: 44
+        character: 55
+  - code: openapi-parameters-componentized-info
+    message: Parameters use components $ref.
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '1'
+      - $ref
+    severity: 2
+    range:
+      start:
+        line: 44
+        character: 16
+      end:
+        line: 44
+        character: 55
+  - code: openapi-components-parameters-description-error
+    message: Parameters MUST Have a Description
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '2'
+    severity: 1
+    range:
+      start:
+        line: 45
+        character: 10
+      end:
+        line: 45
+        character: 52
+  - code: invalid-ref
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '2'
+      - $ref
+    message: '''#/components/parameters/User-Agent'' does not exist'
+    severity: 0
+    range:
+      start:
+        line: 45
+        character: 16
+      end:
+        line: 45
+        character: 52
+  - code: openapi-parameters-componentized-info
+    message: Parameters use components $ref.
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '2'
+      - $ref
+    severity: 2
+    range:
+      start:
+        line: 45
+        character: 16
+      end:
+        line: 45
+        character: 52
+  - code: openapi-components-parameters-description-error
+    message: Parameters MUST Have a Description
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '3'
+    severity: 1
+    range:
+      start:
+        line: 46
+        character: 10
+      end:
+        line: 46
+        character: 57
+  - code: invalid-ref
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '3'
+      - $ref
+    message: '''#/components/parameters/X-Bunq-Language'' does not exist'
+    severity: 0
+    range:
+      start:
+        line: 46
+        character: 16
+      end:
+        line: 46
+        character: 57
+  - code: openapi-parameters-componentized-info
+    message: Parameters use components $ref.
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '3'
+      - $ref
+    severity: 2
+    range:
+      start:
+        line: 46
+        character: 16
+      end:
+        line: 46
+        character: 57
+  - code: openapi-components-parameters-description-error
+    message: Parameters MUST Have a Description
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '4'
+    severity: 1
+    range:
+      start:
+        line: 47
+        character: 10
+      end:
+        line: 47
+        character: 55
+  - code: invalid-ref
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '4'
+      - $ref
+    message: '''#/components/parameters/X-Bunq-Region'' does not exist'
+    severity: 0
+    range:
+      start:
+        line: 47
+        character: 16
+      end:
+        line: 47
+        character: 55
+  - code: openapi-parameters-componentized-info
+    message: Parameters use components $ref.
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '4'
+      - $ref
+    severity: 2
+    range:
+      start:
+        line: 47
+        character: 16
+      end:
+        line: 47
+        character: 55
+  - code: openapi-components-parameters-description-error
+    message: Parameters MUST Have a Description
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '5'
+    severity: 1
+    range:
+      start:
+        line: 48
+        character: 10
+      end:
+        line: 48
+        character: 66
+  - code: invalid-ref
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '5'
+      - $ref
+    message: '''#/components/parameters/X-Bunq-Client-Request-Id'' does not exist'
+    severity: 0
+    range:
+      start:
+        line: 48
+        character: 16
+      end:
+        line: 48
+        character: 66
+  - code: openapi-parameters-componentized-info
+    message: Parameters use components $ref.
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '5'
+      - $ref
+    severity: 2
+    range:
+      start:
+        line: 48
+        character: 16
+      end:
+        line: 48
+        character: 66
+  - code: openapi-components-parameters-description-error
+    message: Parameters MUST Have a Description
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '6'
+    severity: 1
+    range:
+      start:
+        line: 49
+        character: 10
+      end:
+        line: 49
+        character: 60
+  - code: invalid-ref
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '6'
+      - $ref
+    message: '''#/components/parameters/X-Bunq-Geolocation'' does not exist'
+    severity: 0
+    range:
+      start:
+        line: 49
+        character: 16
+      end:
+        line: 49
+        character: 60
+  - code: openapi-parameters-componentized-info
+    message: Parameters use components $ref.
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '6'
+      - $ref
+    severity: 2
+    range:
+      start:
+        line: 49
+        character: 16
+      end:
+        line: 49
+        character: 60
+  - code: openapi-components-parameters-description-error
+    message: Parameters MUST Have a Description
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '7'
+    severity: 1
+    range:
+      start:
+        line: 50
+        character: 10
+      end:
+        line: 50
+        character: 70
+  - code: invalid-ref
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '7'
+      - $ref
+    message: '''#/components/parameters/X-Bunq-Client-Authentication'' does not exist'
+    severity: 0
+    range:
+      start:
+        line: 50
+        character: 16
+      end:
+        line: 50
+        character: 70
+  - code: openapi-parameters-componentized-info
+    message: Parameters use components $ref.
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - parameters
+      - '7'
+      - $ref
+    severity: 2
+    range:
+      start:
+        line: 50
+        character: 16
+      end:
+        line: 50
+        character: 70
+  - code: openapi-response-get-401-status-code-error
+    message: GET Responses Has 401 Status Code
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - responses
+    severity: 0
+    range:
+      start:
+        line: 51
+        character: 16
+      end:
+        line: 66
+        character: 53
+  - code: openapi-response-get-403-status-code-error
+    message: GET Responses Has 403 Status Code
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - responses
+    severity: 0
+    range:
+      start:
+        line: 51
+        character: 16
+      end:
+        line: 66
+        character: 53
+  - code: openapi-response-get-429-status-code-error
+    message: GET Responses Has 429 Status Code
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - responses
+    severity: 0
+    range:
+      start:
+        line: 51
+        character: 16
+      end:
+        line: 66
+        character: 53
+  - code: openapi-response-get-500-status-code-error
+    message: GET Responses MUST Have 500 Status Code
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - responses
+    severity: 0
+    range:
+      start:
+        line: 51
+        character: 16
+      end:
+        line: 66
+        character: 53
+  - code: openapi-response-get-200-status-code-info
+    message: GET Responses Has 200 Status Codes
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - responses
+      - '200'
+    severity: 2
+    range:
+      start:
+        line: 52
+        character: 14
+      end:
+        line: 64
+        character: 66
+  - code: openapi-response-get-200-description-info
+    message: GET 200 Response has description.
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - responses
+      - '200'
+      - description
+    severity: 2
+    range:
+      start:
+        line: 53
+        character: 23
+      end:
+        line: 53
+        character: 66
+  - code: openapi-response-get-200-content-info
+    message: GET 200 Response Has Content.
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - responses
+      - '200'
+      - content
+    severity: 2
+    range:
+      start:
+        line: 54
+        character: 18
+      end:
+        line: 57
+        character: 71
+  - code: openapi-response-get-200-media-type-examples-error
+    message: GET 200 Response MUST Have Examples
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - responses
+      - '200'
+      - content
+      - application/json
+    severity: 0
+    range:
+      start:
+        line: 55
+        character: 29
+      end:
+        line: 57
+        character: 71
+  - code: openapi-response-get-200-media-type-info
+    message: GET 200 Response Has Media Type.
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - responses
+      - '200'
+      - content
+      - application/json
+    severity: 2
+    range:
+      start:
+        line: 55
+        character: 29
+      end:
+        line: 57
+        character: 71
+  - code: openapi-response-get-200-media-type-schema-info
+    message: GET 200 Response Has Schema
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - responses
+      - '200'
+      - content
+      - application/json
+      - schema
+    severity: 2
+    range:
+      start:
+        line: 56
+        character: 21
+      end:
+        line: 57
+        character: 71
+  - code: invalid-ref
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - responses
+      - '200'
+      - content
+      - application/json
+      - schema
+      - $ref
+    message: '''#/components/schemas/ActivityMapPlacePublicRead'' does not exist'
+    severity: 0
+    range:
+      start:
+        line: 57
+        character: 22
+      end:
+        line: 57
+        character: 71
+  - code: openapi-response-get-200-media-type-schema-ref-error
+    message: GET 200 Responses MUST Use Schema Reference
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - responses
+      - '200'
+      - content
+      - application/json
+      - schema
+      - $ref
+    severity: 0
+    range:
+      start:
+        line: 57
+        character: 22
+      end:
+        line: 57
+        character: 71
+  - code: invalid-ref
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - responses
+      - '200'
+      - headers
+      - X-Bunq-Client-Response-Id
+      - $ref
+    message: '''#/components/headers/X-Bunq-Client-Response-Id'' does not exist'
+    severity: 0
+    range:
+      start:
+        line: 60
+        character: 20
+      end:
+        line: 60
+        character: 68
+  - code: invalid-ref
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - responses
+      - '200'
+      - headers
+      - X-Bunq-Client-Request-Id
+      - $ref
+    message: '''#/components/headers/X-Bunq-Client-Request-Id'' does not exist'
+    severity: 0
+    range:
+      start:
+        line: 62
+        character: 20
+      end:
+        line: 62
+        character: 67
+  - code: invalid-ref
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - responses
+      - '200'
+      - headers
+      - X-Bunq-Server-Signature
+      - $ref
+    message: '''#/components/headers/X-Bunq-Server-Signature'' does not exist'
+    severity: 0
+    range:
+      start:
+        line: 64
+        character: 20
+      end:
+        line: 64
+        character: 66
+  - code: openapi-response-get-400-status-code-info
+    message: GET Responses Has 400 Status Codes
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - responses
+      - '400'
+    severity: 2
+    range:
+      start:
+        line: 65
+        character: 14
+      end:
+        line: 66
+        character: 53
+  - code: invalid-ref
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - responses
+      - '400'
+      - $ref
+    message: '''#/components/responses/GenericError'' does not exist'
+    severity: 0
+    range:
+      start:
+        line: 66
+        character: 16
+      end:
+        line: 66
+        character: 53
+  - code: openapi-response-get-400-schema-ref-error
+    message: GET 400 Responses MUST Use Schema Reference
+    path:
+      - paths
+      - /activity-map-place-public/{itemId}
+      - get
+      - responses
+      - '400'
+      - $ref
+    severity: 0
+    range:
+      start:
+        line: 66
+        character: 16
+      end:
+        line: 66
+        character: 53
+  - code: openapi-tags-object-info
+    message: OpenAPIs Have a Tag Object
+    path:
+      - tags
+    severity: 2
+    range:
+      start:
+        line: 67
+        character: 5
+      end:
+        line: 67
+        character: 8
+  - code: openapi-tags-one-error
+    message: MUST Be At Least One Tag
+    path:
+      - tags
+    severity: 0
+    range:
+      start:
+        line: 67
+        character: 5
+      end:
+        line: 67
+        character: 8
