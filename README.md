@@ -1,5 +1,5 @@
 # Bunq (bunq)
-We offer mobile banking that makes life easy-wherever, whenever. Join us and discover a simple, sustainable, and user-centered way of banking that makes everyday finances 100% hassle-free.
+Bunq is a digital bank that offers innovative banking solutions to its customers. With Bunq, users can easily manage their finances through their mobile app, which gives them full control over their accounts and transactions. Bunq also provides various features such as instant payments, budgeting tools, and savings goals to help users better manage their money. Additionally, Bunq is known for its commitment to sustainability and transparency, as they offer a green card that plants a tree for every ¬100 spent, and they do not invest in industries that harm the environment. Overall, Bunq strives to redefine the banking experience by providing a user-friendly platform that puts the needs of its customers first.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-search/banking/main/_apis/bunq/apis.md)
 
@@ -9,14 +9,14 @@ We offer mobile banking that makes life easy-wherever, whenever. Join us and dis
 - **Position:** Consuming 
 - **Access:** 3rd-Party 
 
-## Tags
+## Tags:
 
-- Banking
+ - Banking
 
 ## Timestamps
 
 - **Created:** 2023/11/13 
-- **Modified:** 2024-12-15 
+- **Modified:** 2025-01-05 
 
 ## APIs
 
@@ -24,958 +24,752 @@ We offer mobile banking that makes life easy-wherever, whenever. Join us and dis
 Managing activity map for a user account.
 
 **Human URL:** [https://doc.bunq.com/#/activity-map-place-public](https://doc.bunq.com/#/activity-map-place-public)
-r
+
 **Base URL:** [https://public-api.sandbox.bunq.com/](https://public-api.sandbox.bunq.com/)
-r
 
-#### Tags
 
+#### Tags:
+
+ - No Tags
 
 #### Properties
 
-- [OpenAPI](properties/bunq-activity-map-place-public-itemid-openapi-original.yml)
+- [OpenAPI](openapi/bunq-activity-map-place-public-itemid-openapi-original.yml)
 - [Documentation](https://doc.bunq.com/)
 ### Bunq Transaction Categories API
 Manage additional information transactional categories.
 
 **Human URL:** [https://doc.bunq.com/#/additional-transaction-information-category](https://doc.bunq.com/#/additional-transaction-information-category)
-r
+
 **Base URL:** [https://public-api.sandbox.bunq.com/](https://public-api.sandbox.bunq.com/)
-r
 
-#### Tags
 
-- Additional
-- Categories
-- Information
-- Transactions
-- Users
-- Defined
+#### Tags:
+
+ - Additional, Categories, Information, Transactions, Users, Defined
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-additional-transaction-information-category-openapi-original.yml)
+- [OpenAPI](openapibunq-user-userid-additional-transaction-information-category-openapi-original.yml)
 ### Bunq Monetary Account API
 Managing different types of monetary accounts.
 
 **Human URL:** [https://doc.bunq.com/#/monetary-account](https://doc.bunq.com/#/monetary-account)
-r
+
 **Base URL:** [https://public-api.sandbox.bunq.com/](https://public-api.sandbox.bunq.com/)
-r
 
-#### Tags
 
-- Accounts
-- Actions
-- Adyen
-- Allocate
-- Attachments
-- Auto
-- Bank
-- Batches
-- Cards
-- Cloud
-- Content
-- Conversions
-- Currencies
-- Customers
-- Definitions
-- Draft
-- Eal
-- Events
-- Exports
-- External
-- Filter
-- Fundraiser
-- Ideal
-- Inquiries
-- Instances
-- Invite
-- Invoices
-- Items
-- Joint
-- Mastercard
-- Merchants
-- Monetary
-- Notes
-- Notifications
-- Payments
-- Quotes
-- Responses
-- Results
-- Savings
-- Schedules
-- Services
-- Share
-- Statements
-- Switch
-- Tabs
-- Text
-- Transactions
-- URL
-- Users
-- Whitelist
+#### Tags:
+
+ - Accounts, Actions, Adyen, Allocate, Attachments, Auto, Bank, Batches, Cards, Cloud, Content, Conversions, Currencies, Customers, Definitions, Draft, Eal, Events, Exports, External, Filter, Fundraiser, Ideal, Inquiries, Instances, Invite, Invoices, Items, Joint, Mastercard, Merchants, Monetary, Notes, Notifications, Payments, Quotes, Responses, Results, Savings, Schedules, Services, Share, Statements, Switch, Tabs, Text, Transactions, URL, Users, Whitelist
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-monetary-account-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-monetary-account-openapi-original.yml)
 - [Documentation](https://doc.bunq.com/)
 ### Bunq Attachments API
 An API for managing attachments associated with a Bunq account.
 
 **Human URL:** [https://doc.bunq.com/#/attachment](https://doc.bunq.com/#/attachment)
-r
+
 **Base URL:** [https://public-api.sandbox.bunq.com/](https://public-api.sandbox.bunq.com/)
-r
 
-#### Tags
 
-- Attachments
-- Items
-- Users
-- Content
+#### Tags:
+
+ - Attachments, Items, Users, Content
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-attachment-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-attachment-openapi-original.yml)
 - [Documentation](https://doc.bunq.com/)
 ### Bunq Avatar API
 Avatars are public images used to represent you or your company. Avatars are used to represent users, monetary accounts and cash registers. Avatars cannot be deleted, only replaced. Avatars can be updated after uploading the image you would like to use through AttachmentPublic. Using the attachment_public_uuid which is returned you can update your Avatar. Avatars used for cash registers and company accounts will be reviewed by bunq.
 
 **Human URL:** [https://doc.bunq.com/#/avatar](https://doc.bunq.com/#/avatar)
-r
 
-#### Tags
 
-- Avatars
-- Items
+#### Tags:
+
+ - Avatars, Items
 
 #### Properties
 
-- [OpenAPI](properties/bunq-avatar--openapi-original.yml)
+- [OpenAPI](openapi/bunq-avatar--openapi-original.yml)
 - [Documentation](https://doc.bunq.com/)
 ### Bunq Billing Contract Subscription API
 Manage all subscription billing contract for the authenticated user.
 
 **Human URL:** [https://doc.bunq.com/#/billing-contract-subscription/List_all_BillingContractSubscription_for_User](https://doc.bunq.com/#/billing-contract-subscription/List_all_BillingContractSubscription_for_User)
-r
 
-#### Tags
 
-- Billing
-- Contracts
-- Subscriptions
-- Users
+#### Tags:
+
+ - Billing, Contracts, Subscriptions, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-billing-contract-subscription-openapi-original.yml)
+- [OpenAPI](openapibunq-user-userid-billing-contract-subscription-openapi-original.yml)
 - [Documentation](https://doc.bunq.com/)
 ### Bunq Fundraiser Profile API
 The /me profile for the Bunq user.
 
 **Human URL:** [https://doc.bunq.com/#/bunqme-fundraiser-profile/READ_BunqmeFundraiserProfile_for_User](https://doc.bunq.com/#/bunqme-fundraiser-profile/READ_BunqmeFundraiserProfile_for_User)
-r
 
-#### Tags
 
-- Fundraiser
-- Items
-- Profiles
-- Users
+#### Tags:
+
+ - Fundraiser, Items, Profiles, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-bunqme-fundraiser-profile-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-bunqme-fundraiser-profile-openapi-original.yml)
 - [Documentation](https://doc.bunq.com/)
 ### Bunq Oauth Client API
 For managing OAuth clients through an API.
 
 **Human URL:** [https://doc.bunq.com/#/](https://doc.bunq.com/#/)
-r
 
-#### Tags
 
-- Callback
-- Clients
-- Items
-- OAuth
-- URL
-- Users
+#### Tags:
+
+ - Callback, Clients, Items, OAuth, URL, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-oauth-client-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-oauth-client-openapi-original.yml)
 - [Documentation](https://doc.bunq.com/)
 ### Bunq Card API
 Managing cards and transactions made via cards.
 
 **Human URL:** [https://doc.bunq.com/#/card](https://doc.bunq.com/#/card)
-r
 
-#### Tags
 
-- Cards
-- Items
-- Users
-- Batches
-- Replace
-- Credit
-- Debit
-- Names
-- Content
-- Exports
-- Statements
-- CSV
-- PDF
-- Generated
+#### Tags:
+
+ - Cards, Items, Users, Batches, Replace, Credit, Debit, Names, Content, Exports, Statements, CSV, PDF, Generated
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-card-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-card-openapi-original.yml)
 - [Documentation](https://doc.bunq.com/)
 ### Bunq Certificate Pinning API
 Managing the pinned certificates for a user.
 
 **Human URL:** [https://doc.bunq.com/#/certificate-pinned](https://doc.bunq.com/#/certificate-pinned)
-r
 
-#### Tags
 
-- Certificates
-- Pinned
-- Users
-- Items
+#### Tags:
+
+ - Certificates, Pinned, Users, Items
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-certificate-pinned-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-certificate-pinned-openapi-original.yml)
 - [Documentation](https://doc.bunq.com/)
 ### Bunq Challenge Request API
 Managing the challenge requests for a user.
 
 **Human URL:** [https://doc.bunq.com/#/challenge-request](https://doc.bunq.com/#/challenge-request)
-r
 
-#### Tags
 
-- Challenges
-- Items
-- Users
+#### Tags:
+
+ - Challenges, Items, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-challenge-request-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-challenge-request-openapi-original.yml)
 - [Documentation](https://doc.bunq.com/)
 ### Bunq Company API
 Managing details of an accounts company information.
 
 **Human URL:** [https://doc.bunq.com/#/company](https://doc.bunq.com/#/company)
-r
 
-#### Tags
 
-- Companies
-- Users
-- Items
+#### Tags:
+
+ - Companies, Users, Items
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-company-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-company-openapi-original.yml)
 - [Documentation](https://doc.bunq.com/)
 ### Bunq Confirmation Of Funds API
 Used to confirm availability of funds on an account.
 
 **Human URL:** [https://doc.bunq.com/#/confirmation-of-funds/CREATE_ConfirmationOfFunds_for_User](https://doc.bunq.com/#/confirmation-of-funds/CREATE_ConfirmationOfFunds_for_User)
-r
 
-#### Tags
 
-- Confirmation
-- Funds
-- Users
+#### Tags:
+
+ - Confirmation, Funds, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-confirmation-of-funds-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-confirmation-of-funds-openapi-original.yml)
 - [Documentation](https://doc.bunq.com/)
 ### Bunq Chat Conversation API
 Managing the chat conversations for a user account.
 
 **Human URL:** [https://doc.bunq.com/#/content/List_all_Content_for_User_ChatConversation_Attachment](https://doc.bunq.com/#/content/List_all_Content_for_User_ChatConversation_Attachment)
-r
 
-#### Tags
 
-- Attachments
-- Chat
-- Content
-- Conversations
-- Users
+#### Tags:
+
+ - Attachments, Chat, Content, Conversations, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-chat-conversation-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-chat-conversation-openapi-original.yml)
 - [Documentation](https://doc.bunq.com/)
 ### Bunq Attachment Content API
 Used to manage the attachment content for an A/PI.
 
 **Human URL:** [https://doc.bunq.com/#/content](https://doc.bunq.com/#/content)
-r
 
-#### Tags
 
-- Attachments
-- Content
-- Public
+#### Tags:
+
+ - Attachments, Content, Public
 
 #### Properties
 
-- [OpenAPI](properties/bunq-attachment-public-attachment-publicuuid-content-openapi-original.yml)
+- [OpenAPI](openapibunq-attachment-public-attachment-publicuuid-content-openapi-original.yml)
 - [Documentation](https://doc.bunq.com/)
 ### Bunq Export Annual Overview API
 Used to retrieve the raw content of an annual overview.
 
 **Human URL:** [https://doc.bunq.com/#/content/List_all_Content_for_User_ExportAnnualOverview](https://doc.bunq.com/#/content/List_all_Content_for_User_ExportAnnualOverview)
-r
 
-#### Tags
 
-- Annual
-- Content
-- Exports
-- Overview
-- Users
-- Items
+#### Tags:
+
+ - Annual, Content, Exports, Overview, Users, Items
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-export-annual-overview-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-export-annual-overview-openapi-original.yml)
 - [Documentation](https://doc.bunq.com/)
 ### Bunq User Credential Password Ip API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Credentials
-- IP
-- Items
-- Password
-- Users
+ - Credentials, IP, Items, Password, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-credential-password-ip-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-credential-password-ip-openapi-original.yml)
 ### Bunq User Currency Cloud Beneficiary API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
+ - No Tags
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-currency-cloud-beneficiary-openapi-original.yml)
+- [OpenAPI](openapibunq-user-userid-currency-cloud-beneficiary-openapi-original.yml)
 ### Bunq Device API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Device
-- Items
+ - Device, Items
 
 #### Properties
 
-- [OpenAPI](properties/bunq-device--openapi-original.yml)
+- [OpenAPI](openapi/bunq-device--openapi-original.yml)
 ### Bunq Device Server API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Device
-- Items
-- Servers
+ - Device, Items, Servers
 
 #### Properties
 
-- [OpenAPI](properties/bunq-device-server--openapi-original.yml)
+- [OpenAPI](openapi/bunq-device-server--openapi-original.yml)
 ### Bunq User Event API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Events
-- Items
-- Users
+ - Events, Items, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-event-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-event-openapi-original.yml)
 ### Bunq User Feature Announcement API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Announcement
-- Feature
-- Items
-- Users
+ - Announcement, Feature, Items, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-feature-announcement-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-feature-announcement-openapi-original.yml)
 ### Bunq User Insight Preference Date API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Dates
-- Insights
-- Preferences
-- Users
+ - Dates, Insights, Preferences, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-insight-preference-date-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-insight-preference-date-openapi-original.yml)
 ### Bunq User Insights API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Insights
-- Users
-- Search
+ - Insights, Users, Search
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-insights-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-insights-openapi-original.yml)
 ### Bunq Installation API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Installations
-- Items
-- Keys
-- Public
-- Servers
+ - Installations, Items, Keys, Public, Servers
 
 #### Properties
 
-- [OpenAPI](properties/bunq-installation--openapi-original.yml)
+- [OpenAPI](openapi/bunq-installation--openapi-original.yml)
 ### Bunq User Invoice API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Invoices
-- Users
-- Items
-- Content
-- PDF
+ - Invoices, Users, Items, Content, PDF
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-invoice-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-invoice-openapi-original.yml)
 ### Bunq User Legal Name API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Legal
-- Names
-- Users
+ - Legal, Names, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-legal-name-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-legal-name-openapi-original.yml)
 ### Bunq User Limit API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Limits
-- Users
+ - Limits, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-limit-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-limit-openapi-original.yml)
 ### Bunq User Monetary Account Bank API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Accounts
-- Bank
-- Monetary
-- Users
-- Items
+ - Accounts, Bank, Monetary, Users, Items
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-monetary-account-bank-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-monetary-account-bank-openapi-original.yml)
 ### Bunq User Monetary Account Card API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Accounts
-- Cards
-- Items
-- Monetary
-- Users
+ - Accounts, Cards, Items, Monetary, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-monetary-account-card-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-monetary-account-card-openapi-original.yml)
 ### Bunq User Monetary Account External API
 Needs description.
 
 **Human URL:** [https://doc.bunq.com/#/monetary-account-external](https://doc.bunq.com/#/monetary-account-external)
-r
 
-#### Tags
 
-- Accounts
-- External
-- Monetary
-- Users
-- Items
-- Savings
+#### Tags:
+
+ - Accounts, External, Monetary, Users, Items, Savings
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-monetary-account-external-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-monetary-account-external-openapi-original.yml)
 ### Bunq User Monetary Account Joint API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Accounts
-- Joint
-- Monetary
-- Users
-- Items
+ - Accounts, Joint, Monetary, Users, Items
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-monetary-account-joint-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-monetary-account-joint-openapi-original.yml)
 ### Bunq User Monetary Account Savings API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Accounts
-- Monetary
-- Savings
-- Users
-- Items
+ - Accounts, Monetary, Savings, Users, Items
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-monetary-account-savings-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-monetary-account-savings-openapi-original.yml)
 ### Bunq User Company User Company Name API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Companies
-- Names
-- Users
+ - Companies, Names, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-company-user-companyid-name-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-company-user-companyid-name-openapi-original.yml)
 ### Bunq User Notification Filter Email API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Emails
-- Filter
-- Notifications
-- Users
+ - Emails, Filter, Notifications, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-notification-filter-email-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-notification-filter-email-openapi-original.yml)
 ### Bunq User Notification Filter Failure API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Failure
-- Filter
-- Notifications
-- Users
+ - Failure, Filter, Notifications, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-notification-filter-failure-openapi-original.yml)
+- [OpenAPI](openapibunq-user-userid-notification-filter-failure-openapi-original.yml)
 ### Bunq User Notification Filter Push API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Filter
-- Notifications
-- Users
+ - Filter, Notifications, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-notification-filter-push-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-notification-filter-push-openapi-original.yml)
 ### Bunq User Notification Filter Url API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Filter
-- Notifications
-- URL
-- Users
+ - Filter, Notifications, URL, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-notification-filter-url-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-notification-filter-url-openapi-original.yml)
 ### Bunq User Payment Auto Allocate API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Allocate
-- Auto
-- Payments
-- Users
+ - Allocate, Auto, Payments, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-payment-auto-allocate-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-payment-auto-allocate-openapi-original.yml)
 ### Bunq Payment Service Provider Credential API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Credentials
-- Er
-- Items
-- Payments
-- Prov
-- Providers
-- Services
+ - Credentials, Er, Items, Payments, Prov, Providers, Services
 
 #### Properties
 
-- [OpenAPI](properties/bunq-payment-service-provider-credential--openapi-original.yml)
+- [OpenAPI](openapi/bunq-payment-service-provider-credential--openapi-original.yml)
 ### Bunq User Payment Service Provider Draft Payment API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Draft
-- Er
-- Payments
-- Prov
-- Providers
-- Services
-- Users
-- Items
+ - Draft, Er, Payments, Prov, Providers, Services, Users, Items
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-payment-service-provider-draft-payment-openapi-original.yml)
+- [OpenAPI](openapibunq-user-userid-payment-service-provider-draft-payment-openapi-original.yml)
 ### Bunq User Payment Service Provider Issuer Transaction API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Er
-- Issuer
-- Payments
-- Prov
-- Providers
-- Services
-- Transactions
-- Users
-- Items
+ - Er, Issuer, Payments, Prov, Providers, Services, Transactions, Users, Items
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-payment-service-provider-issuer-transaction-openapi-original.yml)
+- [OpenAPI](openapibunq-user-userid-payment-service-provider-issuer-transaction-openapi-original.yml)
 ### Bunq Registry Import Splitwise Csv API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
+ - No Tags
 
 #### Properties
 
-- [OpenAPI](properties/bunq-registry-import-splitwise-csv--openapi-original.yml)
+- [OpenAPI](openapi/bunq-registry-import-splitwise-csv--openapi-original.yml)
 ### Bunq User Registry API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Registries
-- Settlements
-- Users
-- Items
+ - Registries, Settlements, Users, Items
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-registry-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-registry-openapi-original.yml)
 ### Bunq Sandbox User Company API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
+ - No Tags
 
 #### Properties
 
-- [OpenAPI](properties/bunq-sandbox-user-company--openapi-original.yml)
+- [OpenAPI](openapi/bunq-sandbox-user-company--openapi-original.yml)
 ### Bunq Sandbox User Person API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
+ - No Tags
 
 #### Properties
 
-- [OpenAPI](properties/bunq-sandbox-user-person--openapi-original.yml)
+- [OpenAPI](openapi/bunq-sandbox-user-person--openapi-original.yml)
 ### Bunq User Schedule API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Schedules
-- Users
+ - Schedules, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-schedule-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-schedule-openapi-original.yml)
 ### Bunq Server Error API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
+ - No Tags
 
 #### Properties
 
-- [OpenAPI](properties/bunq-server-error--openapi-original.yml)
+- [OpenAPI](openapi/bunq-server-error--openapi-original.yml)
 ### Bunq Installation Installation Server Public Key API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Installations
-- Keys
-- Public
-- Servers
+ - Installations, Keys, Public, Servers
 
 #### Properties
 
-- [OpenAPI](properties/bunq-installation-installationid-server-public-key-openapi-original.yml)
+- [OpenAPI](openapibunq-installation-installationid-server-public-key-openapi-original.yml)
 ### Bunq Session Item API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
+ - No Tags
 
 #### Properties
 
-- [OpenAPI](properties/bunq-session-itemid--openapi-original.yml)
+- [OpenAPI](openapi/bunq-session-itemid--openapi-original.yml)
 ### Bunq Session Server API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
+ - No Tags
 
 #### Properties
 
-- [OpenAPI](properties/bunq-session-server--openapi-original.yml)
+- [OpenAPI](openapi/bunq-session-server--openapi-original.yml)
 ### Bunq User Share Invite Monetary Account Response API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Accounts
-- Invite
-- Items
-- Monetary
-- Share
-- Users
+ - Accounts, Invite, Items, Monetary, Share, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-share-invite-monetary-account-response-openapi-original.yml)
+- [OpenAPI](openapibunq-user-userid-share-invite-monetary-account-response-openapi-original.yml)
 ### Bunq User Token Qr Request Eal API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Ideal
-- Tokens
-- Users
+ - Ideal, Tokens, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-token-qr-request-ideal-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-token-qr-request-ideal-openapi-original.yml)
 ### Bunq User Token Qr Request Sofort API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Tokens
-- Users
+ - Tokens, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-token-qr-request-sofort-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-token-qr-request-sofort-openapi-original.yml)
 ### Bunq User Transferwise Currency API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Currencies
-- Transferwise
-- Users
+ - Currencies, Transferwise, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-transferwise-currency-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-transferwise-currency-openapi-original.yml)
 ### Bunq User Transferwise Quote API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Quotes
-- Transferwise
-- Users
-- Items
-- Temporary
-- Recipient
-- Requirements
-- Transfers
+ - Quotes, Transferwise, Users, Items, Temporary, Recipient, Requirements, Transfers
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-transferwise-quote-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-transferwise-quote-openapi-original.yml)
 ### Bunq User Transferwise User API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Transferwise
-- Users
+ - Transferwise, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-transferwise-user-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-transferwise-user-openapi-original.yml)
 ### Bunq User Tree Progress API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Progress
-- Trees
-- Users
+ - Progress, Trees, Users
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-tree-progress-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-tree-progress-openapi-original.yml)
 ### Bunq User Item API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
+ - No Tags
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-itemid--openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-itemid--openapi-original.yml)
 ### Bunq User Company Item API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
+ - No Tags
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-company-itemid--openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-company-itemid--openapi-original.yml)
 ### Bunq User Payment Service Provider Item API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
+ - No Tags
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-payment-service-provider-itemid--openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-payment-service-provider-itemid--openapi-original.yml)
 ### Bunq User Person Item API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
+ - No Tags
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-person-itemid--openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-person-itemid--openapi-original.yml)
 ### Bunq User Whitelist Sdd API
 Needs description.
 
 
-#### Tags
+#### Tags:
 
-- Items
-- Users
-- Whitelist
-- Recurring
+ - Items, Users, Whitelist, Recurring
 
 #### Properties
 
-- [OpenAPI](properties/bunq-user-userid-whitelist-sdd-openapi-original.yml)
+- [OpenAPI](openapi/bunq-user-userid-whitelist-sdd-openapi-original.yml)
 
 ## Common Properties
 
