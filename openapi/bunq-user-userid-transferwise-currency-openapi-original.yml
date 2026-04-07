@@ -27,7 +27,7 @@ paths:
   /user/{userID}/transferwise-currency:
     get:
       tags:
-        -   -   -   - transferwise-currency
+        - User
       summary: ''
       operationId: List_all_TransferwiseCurrency_for_User
       description: Used to get a list of supported currencies for Transferwise.
@@ -63,4 +63,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

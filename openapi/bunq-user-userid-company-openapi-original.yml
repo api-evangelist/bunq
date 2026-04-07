@@ -54,7 +54,7 @@ paths:
   /user/{userID}/company:
     post:
       tags:
-        -   -   -   - company
+        - User
       summary: ''
       operationId: CREATE_Company_for_User
       description: Create and manage companies.
@@ -97,7 +97,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - company
+        - User
       summary: ''
       operationId: List_all_Company_for_User
       description: Create and manage companies.
@@ -136,7 +136,7 @@ paths:
   /user/{userID}/company/{itemId}:
     get:
       tags:
-        -   -   -   - company
+        - User
       summary: ''
       operationId: READ_Company_for_User
       description: Create and manage companies.
@@ -178,7 +178,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        -   -   -   - company
+        - User
       summary: ''
       operationId: UPDATE_Company_for_User
       description: Create and manage companies.
@@ -225,4 +225,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

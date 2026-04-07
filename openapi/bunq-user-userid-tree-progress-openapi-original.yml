@@ -27,7 +27,7 @@ paths:
   /user/{userID}/tree-progress:
     get:
       tags:
-        -   -   -   - tree-progress
+        - User
       summary: ''
       operationId: List_all_TreeProgress_for_User
       description: See how many trees this user has planted.
@@ -63,4 +63,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

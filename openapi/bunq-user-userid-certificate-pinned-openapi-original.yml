@@ -52,7 +52,7 @@ paths:
   /user/{userID}/certificate-pinned:
     post:
       tags:
-        -   -   -   - certificate-pinned
+        - User
       summary: ''
       operationId: CREATE_CertificatePinned_for_User
       description: Pin the certificate chain.
@@ -98,7 +98,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - certificate-pinned
+        - User
       summary: ''
       operationId: List_all_CertificatePinned_for_User
       description: List all the pinned certificate chain for the given user.
@@ -140,7 +140,7 @@ paths:
   /user/{userID}/certificate-pinned/{itemId}:
     delete:
       tags:
-        -   -   -   - certificate-pinned
+        - User
       summary: ''
       operationId: DELETE_CertificatePinned_for_User
       description: Remove the pinned certificate chain with the specific ID.
@@ -185,7 +185,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - certificate-pinned
+        - User
       summary: ''
       operationId: READ_CertificatePinned_for_User
       description: Get the pinned certificate chain with the specified ID.
@@ -228,4 +228,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

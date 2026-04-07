@@ -91,7 +91,7 @@ paths:
   /user/{userID}/registry/{registryID}/registry-settlement:
     post:
       tags:
-        -   -   -   - registry-settlement
+        - User
       summary: ''
       operationId: CREATE_RegistrySettlement_for_User_Registry
       description: Create a new Slice group settlement.
@@ -140,7 +140,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - registry-settlement
+        - User
       summary: ''
       operationId: List_all_RegistrySettlement_for_User_Registry
       description: Get a listing of all Slice group settlements.
@@ -185,7 +185,7 @@ paths:
   /user/{userID}/registry/{registryID}/registry-settlement/{itemId}:
     get:
       tags:
-        -   -   -   - registry-settlement
+        - User
       summary: ''
       operationId: READ_RegistrySettlement_for_User_Registry
       description: Get a specific Slice group settlement.
@@ -231,4 +231,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

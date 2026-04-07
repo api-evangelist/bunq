@@ -1,6 +1,5 @@
 aid: bunq
-url: 
-  https://raw.githubusercontent.com/api-search/banking/main/_apis/bunq/apis.md
+url: https://raw.githubusercontent.com/api-search/banking/main/_apis/bunq/apis.md
 apis:
   - aid: bunq:bunq-activity-map-place-api
     name: Bunq Activity Map Place API
@@ -42,9 +41,9 @@ apis:
     name: Bunq Attachments API
     tags:
       - Attachments
+      - Content
       - Items
       - Users
-      - Content
     baseURL: https://public-api.sandbox.bunq.com/
     humanURL: https://doc.bunq.com/#/attachment
     properties:
@@ -102,20 +101,20 @@ apis:
   - aid: bunq:bunq-card-api
     name: Bunq Card API
     tags:
-      - Cards
-      - Items
-      - Users
       - Batches
-      - Replace
-      - Credit
-      - Debit
-      - Names
+      - Cards
       - Content
-      - Exports
-      - Statements
+      - Credit
       - CSV
-      - PDF
+      - Debit
+      - Exports
       - Generated
+      - Items
+      - Names
+      - PDF
+      - Replace
+      - Statements
+      - Users
     humanURL: https://doc.bunq.com/#/card
     properties:
       - url: openapi/bunq-user-userid-card-openapi-original.yml
@@ -133,9 +132,9 @@ apis:
     name: Bunq Certificate Pinning API
     tags:
       - Certificates
+      - Items
       - Pinned
       - Users
-      - Items
     score: 292
     humanURL: https://doc.bunq.com/#/certificate-pinned
     properties:
@@ -197,8 +196,8 @@ apis:
     name: Bunq Company API
     tags:
       - Companies
-      - Users
       - Items
+      - Users
     score: 299
     humanURL: https://doc.bunq.com/#/company
     properties:
@@ -274,15 +273,14 @@ apis:
       - Annual
       - Content
       - Exports
+      - Items
       - Overview
       - Users
-      - Items
     score: 370
     humanURL: >-
       https://doc.bunq.com/#/content/List_all_Content_for_User_ExportAnnualOverview
     properties:
-      - url: 
-          openapi/bunq-user-userid-export-annual-overview-openapi-original.yml
+      - url: openapi/bunq-user-userid-export-annual-overview-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -397,7 +395,6 @@ apis:
       - Results
       - Savings
       - Schedules
-      - Services
       - Share
       - Statements
       - Switch
@@ -452,10 +449,8 @@ apis:
       - Payments
       - Prov
       - Providers
-      - Services
     properties:
-      - url: 
-          openapi/bunq-payment-service-provider-credential--openapi-original.yml
+      - url: openapi/bunq-payment-service-provider-credential--openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -559,10 +554,10 @@ apis:
     tags:
       - Additional
       - Categories
+      - Defined
       - Information
       - Transactions
       - Users
-      - Defined
     score: 156
     baseURL: https://public-api.sandbox.bunq.com/
     humanURL: https://doc.bunq.com/#/additional-transaction-information-category
@@ -620,8 +615,7 @@ apis:
       - Users
     score: 484
     properties:
-      - url: 
-          openapi/bunq-user-userid-credential-password-ip-openapi-original.yml
+      - url: openapi/bunq-user-userid-credential-password-ip-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -697,8 +691,7 @@ apis:
       - Users
     score: 86
     properties:
-      - url: 
-          openapi/bunq-user-userid-insight-preference-date-openapi-original.yml
+      - url: openapi/bunq-user-userid-insight-preference-date-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -713,8 +706,8 @@ apis:
     name: Bunq User Insights API
     tags:
       - Insights
-      - Users
       - Search
+      - Users
     score: 154
     properties:
       - url: openapi/bunq-user-userid-insights-openapi-original.yml
@@ -731,11 +724,11 @@ apis:
   - aid: bunq:bunq-user-invoice-api
     name: Bunq User Invoice API
     tags:
-      - Invoices
-      - Users
-      - Items
       - Content
+      - Invoices
+      - Items
       - PDF
+      - Users
     score: 241
     properties:
       - url: openapi/bunq-user-userid-invoice-openapi-original.yml
@@ -806,9 +799,9 @@ apis:
     tags:
       - Accounts
       - Bank
+      - Items
       - Monetary
       - Users
-      - Items
     score: 299
     properties:
       - url: openapi/bunq-user-userid-monetary-account-bank-openapi-original.yml
@@ -846,10 +839,10 @@ apis:
     tags:
       - Accounts
       - External
-      - Monetary
-      - Users
       - Items
+      - Monetary
       - Savings
+      - Users
     score: 580
     humanURL: https://doc.bunq.com/#/monetary-account-external
     properties:
@@ -868,14 +861,13 @@ apis:
     name: Bunq User Monetary Account Joint API
     tags:
       - Accounts
+      - Items
       - Joint
       - Monetary
       - Users
-      - Items
     score: 300
     properties:
-      - url: 
-          openapi/bunq-user-userid-monetary-account-joint-openapi-original.yml
+      - url: openapi/bunq-user-userid-monetary-account-joint-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -890,14 +882,13 @@ apis:
     name: Bunq User Monetary Account Savings API
     tags:
       - Accounts
+      - Items
       - Monetary
       - Savings
       - Users
-      - Items
     score: 301
     properties:
-      - url: 
-          openapi/bunq-user-userid-monetary-account-savings-openapi-original.yml
+      - url: openapi/bunq-user-userid-monetary-account-savings-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -955,8 +946,7 @@ apis:
       - Notifications
       - Users
     properties:
-      - url: 
-          openapi/bunq-user-userid-notification-filter-push-openapi-original.yml
+      - url: openapi/bunq-user-userid-notification-filter-push-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -975,8 +965,7 @@ apis:
       - URL
       - Users
     properties:
-      - url: 
-          openapi/bunq-user-userid-notification-filter-url-openapi-original.yml
+      - url: openapi/bunq-user-userid-notification-filter-url-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -1008,12 +997,11 @@ apis:
     tags:
       - Draft
       - Er
+      - Items
       - Payments
       - Prov
       - Providers
-      - Services
       - Users
-      - Items
     properties:
       - url: >-
           openapi/bunq-user-userid-payment-service-provider-draft-payment-openapi-original.yml
@@ -1032,13 +1020,12 @@ apis:
     tags:
       - Er
       - Issuer
+      - Items
       - Payments
       - Prov
       - Providers
-      - Services
       - Transactions
       - Users
-      - Items
     properties:
       - url: >-
           openapi/bunq-user-userid-payment-service-provider-issuer-transaction-openapi-original.yml
@@ -1085,10 +1072,10 @@ apis:
   - aid: bunq:bunq-user-registry-api
     name: Bunq User Registry API
     tags:
+      - Items
       - Registries
       - Settlements
       - Users
-      - Items
     properties:
       - url: openapi/bunq-user-userid-registry-openapi-original.yml
         type: OpenAPI
@@ -1147,8 +1134,7 @@ apis:
       - Tokens
       - Users
     properties:
-      - url: 
-          openapi/bunq-user-userid-token-qr-request-ideal-openapi-original.yml
+      - url: openapi/bunq-user-userid-token-qr-request-ideal-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -1164,8 +1150,7 @@ apis:
       - Tokens
       - Users
     properties:
-      - url: 
-          openapi/bunq-user-userid-token-qr-request-sofort-openapi-original.yml
+      - url: openapi/bunq-user-userid-token-qr-request-sofort-openapi-original.yml
         type: OpenAPI
       - url: https://doc.bunq.com/
         type: Documentation
@@ -1195,14 +1180,14 @@ apis:
   - aid: bunq:bunq-user-transferwise-quote-api
     name: Bunq User Transferwise Quote API
     tags:
-      - Quotes
-      - Transferwise
-      - Users
       - Items
-      - Temporary
+      - Quotes
       - Recipient
       - Requirements
+      - Temporary
       - Transfers
+      - Transferwise
+      - Users
     properties:
       - url: openapi/bunq-user-userid-transferwise-quote-openapi-original.yml
         type: OpenAPI
@@ -1254,9 +1239,9 @@ apis:
     name: Bunq User Whitelist Sdd API
     tags:
       - Items
+      - Recurring
       - Users
       - Whitelist
-      - Recurring
     properties:
       - url: openapi/bunq-user-userid-whitelist-sdd-openapi-original.yml
         type: OpenAPI
@@ -1273,8 +1258,7 @@ name: Bunq
 tags:
   - Banking
 type: Contract
-image: 
-  https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 score: 1805
 access: 3rd-Party
 common:

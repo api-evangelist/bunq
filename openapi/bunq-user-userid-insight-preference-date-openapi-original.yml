@@ -27,7 +27,7 @@ paths:
   /user/{userID}/insight-preference-date:
     get:
       tags:
-        -   -   -   - insight-preference-date
+        - User
       summary: ''
       operationId: List_all_InsightPreferenceDate_for_User
       description: Used to allow users to set insight/budget preferences.
@@ -63,4 +63,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

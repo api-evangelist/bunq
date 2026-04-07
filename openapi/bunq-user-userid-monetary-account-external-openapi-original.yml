@@ -341,7 +341,7 @@ paths:
   /user/{userID}/monetary-account-external:
     post:
       tags:
-        -   -   -   - monetary-account-external
+        - User
       summary: ''
       operationId: CREATE_MonetaryAccountExternal_for_User
       description: >-
@@ -388,7 +388,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - monetary-account-external
+        - User
       summary: ''
       operationId: List_all_MonetaryAccountExternal_for_User
       description: >-
@@ -431,7 +431,7 @@ paths:
   /user/{userID}/monetary-account-external/{itemId}:
     get:
       tags:
-        -   -   -   - monetary-account-external
+        - User
       summary: ''
       operationId: READ_MonetaryAccountExternal_for_User
       description: >-
@@ -477,7 +477,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        -   -   -   - monetary-account-external
+        - User
       summary: ''
       operationId: UPDATE_MonetaryAccountExternal_for_User
       description: >-
@@ -531,7 +531,7 @@ paths:
   /user/{userID}/monetary-account-external-savings:
     post:
       tags:
-        -   -   -   - monetary-account-external-savings
+        - User
       summary: ''
       operationId: CREATE_MonetaryAccountExternalSavings_for_User
       description: >-
@@ -578,7 +578,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - monetary-account-external-savings
+        - User
       summary: ''
       operationId: List_all_MonetaryAccountExternalSavings_for_User
       description: >-
@@ -621,7 +621,7 @@ paths:
   /user/{userID}/monetary-account-external-savings/{itemId}:
     get:
       tags:
-        -   -   -   - monetary-account-external-savings
+        - User
       summary: ''
       operationId: READ_MonetaryAccountExternalSavings_for_User
       description: >-
@@ -667,7 +667,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        -   -   -   - monetary-account-external-savings
+        - User
       summary: ''
       operationId: UPDATE_MonetaryAccountExternalSavings_for_User
       description: >-
@@ -718,4 +718,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

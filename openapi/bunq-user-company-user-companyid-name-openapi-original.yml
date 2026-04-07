@@ -27,7 +27,7 @@ paths:
   /user-company/{user-companyID}/name:
     get:
       tags:
-        -   -   -   - name
+        - User Company
       summary: ''
       operationId: List_all_Name_for_UserCompany
       description: Return all the known (trade) names for a specific user company.
@@ -66,4 +66,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User Company

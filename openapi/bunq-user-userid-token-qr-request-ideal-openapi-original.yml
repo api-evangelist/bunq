@@ -151,7 +151,7 @@ paths:
   /user/{userID}/token-qr-request-ideal:
     post:
       tags:
-        -   -   -   - token-qr-request-ideal
+        - User
       summary: ''
       operationId: CREATE_TokenQrRequestIdeal_for_User
       description: Create a request from an ideal transaction.
@@ -198,4 +198,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

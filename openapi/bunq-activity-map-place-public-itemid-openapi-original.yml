@@ -27,7 +27,7 @@ paths:
   /activity-map-place-public/{itemId}:
     get:
       tags:
-        -   -   -   - activity-map-place-public
+        - Activity Map Place Public
       summary: ''
       operationId: READ_ActivityMapPlacePublic
       description: Public endpoint for getting the place info.
@@ -61,4 +61,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: Activity Map Place Public

@@ -27,7 +27,7 @@ paths:
   /user/{userID}/legal-name:
     get:
       tags:
-        -   -   -   - legal-name
+        - User
       summary: ''
       operationId: List_all_LegalName_for_User
       description: Endpoint for getting available legal names that can be used by the user.
@@ -65,4 +65,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

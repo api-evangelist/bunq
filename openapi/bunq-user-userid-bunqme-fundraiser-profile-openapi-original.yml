@@ -97,7 +97,7 @@ paths:
   /user/{userID}/bunqme-fundraiser-profile/{itemId}:
     get:
       tags:
-        -   -   -   - bunqme-fundraiser-profile
+        - User
       summary: ''
       operationId: READ_BunqmeFundraiserProfile_for_User
       description: bunq.me public profile of the user.
@@ -140,7 +140,7 @@ paths:
   /user/{userID}/bunqme-fundraiser-profile:
     get:
       tags:
-        -   -   -   - bunqme-fundraiser-profile
+        - User
       summary: ''
       operationId: List_all_BunqmeFundraiserProfile_for_User
       description: bunq.me public profile of the user.
@@ -176,4 +176,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

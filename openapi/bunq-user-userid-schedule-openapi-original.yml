@@ -27,7 +27,7 @@ paths:
   /user/{userID}/schedule:
     get:
       tags:
-        -   -   -   - schedule
+        - User
       summary: ''
       operationId: List_all_Schedule_for_User
       description: >-
@@ -69,4 +69,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

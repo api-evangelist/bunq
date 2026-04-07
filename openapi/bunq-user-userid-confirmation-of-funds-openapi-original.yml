@@ -36,7 +36,7 @@ paths:
   /user/{userID}/confirmation-of-funds:
     post:
       tags:
-        -   -   -   - confirmation-of-funds
+        - User
       summary: ''
       operationId: CREATE_ConfirmationOfFunds_for_User
       description: Used to confirm availability of funds on an account.
@@ -77,4 +77,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

@@ -42,7 +42,7 @@ paths:
   /avatar/{itemId}:
     get:
       tags:
-        -   -   -   - avatar
+        - Avatar
       summary: ''
       operationId: READ_Avatar
       description: >-
@@ -90,4 +90,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: Avatar

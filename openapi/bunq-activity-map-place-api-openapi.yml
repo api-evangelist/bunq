@@ -28,10 +28,10 @@ paths:
     get:
       tags:
         - Activity
+        - Item
         - Maps
         - Places
         - Public
-        - Item
       summary: ''
       operationId: READ_ActivityMapPlacePublic
       description: Public endpoint for getting the place info.
@@ -65,4 +65,9 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: Activity
+  - name: Item
+  - name: Maps
+  - name: Places
+  - name: Public

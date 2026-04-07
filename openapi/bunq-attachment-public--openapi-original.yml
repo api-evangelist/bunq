@@ -51,7 +51,7 @@ paths:
   /attachment-public/{itemId}:
     get:
       tags:
-        -   -   -   - attachment-public
+        - Attachment Public
       summary: ''
       operationId: READ_AttachmentPublic
       description: >-
@@ -94,7 +94,7 @@ paths:
   /attachment-public/{attachment-publicUUID}/content:
     get:
       tags:
-        -   -   -   - content
+        - Attachment Public
       summary: ''
       operationId: List_all_Content_for_AttachmentPublic
       description: Get the raw content of a specific attachment.
@@ -133,4 +133,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: Attachment Public

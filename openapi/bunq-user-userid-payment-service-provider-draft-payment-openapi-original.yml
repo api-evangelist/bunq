@@ -69,7 +69,7 @@ paths:
   /user/{userID}/payment-service-provider-draft-payment:
     post:
       tags:
-        -   -   -   - payment-service-provider-draft-payment
+        - User
       summary: ''
       operationId: CREATE_PaymentServiceProviderDraftPayment_for_User
       description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
@@ -112,7 +112,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - payment-service-provider-draft-payment
+        - User
       summary: ''
       operationId: List_all_PaymentServiceProviderDraftPayment_for_User
       description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
@@ -152,7 +152,7 @@ paths:
   /user/{userID}/payment-service-provider-draft-payment/{itemId}:
     put:
       tags:
-        -   -   -   - payment-service-provider-draft-payment
+        - User
       summary: ''
       operationId: UPDATE_PaymentServiceProviderDraftPayment_for_User
       description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
@@ -201,7 +201,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - payment-service-provider-draft-payment
+        - User
       summary: ''
       operationId: READ_PaymentServiceProviderDraftPayment_for_User
       description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
@@ -241,4 +241,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

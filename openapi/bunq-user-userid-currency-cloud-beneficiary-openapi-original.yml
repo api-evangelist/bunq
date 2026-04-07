@@ -74,7 +74,7 @@ paths:
   /user/{userID}/currency-cloud-beneficiary:
     post:
       tags:
-        -   -   -   - currency-cloud-beneficiary
+        - User
       summary: ''
       operationId: CREATE_CurrencyCloudBeneficiary_for_User
       description: Endpoint to manage CurrencyCloud beneficiaries.
@@ -117,7 +117,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - currency-cloud-beneficiary
+        - User
       summary: ''
       operationId: List_all_CurrencyCloudBeneficiary_for_User
       description: Endpoint to manage CurrencyCloud beneficiaries.
@@ -156,7 +156,7 @@ paths:
   /user/{userID}/currency-cloud-beneficiary/{itemId}:
     get:
       tags:
-        -   -   -   - currency-cloud-beneficiary
+        - User
       summary: ''
       operationId: READ_CurrencyCloudBeneficiary_for_User
       description: Endpoint to manage CurrencyCloud beneficiaries.
@@ -199,7 +199,7 @@ paths:
   /user/{userID}/currency-cloud-beneficiary-requirement:
     get:
       tags:
-        -   -   -   - currency-cloud-beneficiary-requirement
+        - User
       summary: ''
       operationId: List_all_CurrencyCloudBeneficiaryRequirement_for_User
       description: Endpoint to list requirements for CurrencyCloud beneficiaries.
@@ -236,4 +236,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

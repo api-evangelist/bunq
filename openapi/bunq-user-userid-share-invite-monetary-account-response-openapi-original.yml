@@ -124,7 +124,7 @@ paths:
   /user/{userID}/share-invite-monetary-account-response/{itemId}:
     get:
       tags:
-        -   -   -   - share-invite-monetary-account-response
+        - User
       summary: ''
       operationId: READ_ShareInviteMonetaryAccountResponse_for_User
       description: Return the details of a specific share a user was invited to.
@@ -169,7 +169,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        -   -   -   - share-invite-monetary-account-response
+        - User
       summary: ''
       operationId: UPDATE_ShareInviteMonetaryAccountResponse_for_User
       description: Accept or reject a share a user was invited to.
@@ -222,7 +222,7 @@ paths:
   /user/{userID}/share-invite-monetary-account-response:
     get:
       tags:
-        -   -   -   - share-invite-monetary-account-response
+        - User
       summary: ''
       operationId: List_all_ShareInviteMonetaryAccountResponse_for_User
       description: Return all the shares a user was invited to.
@@ -262,4 +262,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

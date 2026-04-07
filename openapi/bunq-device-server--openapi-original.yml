@@ -62,7 +62,7 @@ paths:
   /device-server/{itemId}:
     get:
       tags:
-        -   -   -   - device-server
+        - Device Server
       summary: ''
       operationId: READ_DeviceServer
       description: Get one of your DeviceServers.
@@ -99,4 +99,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: Device Server

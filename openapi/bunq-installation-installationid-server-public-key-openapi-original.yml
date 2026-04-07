@@ -27,7 +27,7 @@ paths:
   /installation/{installationID}/server-public-key:
     get:
       tags:
-        -   -   -   - server-public-key
+        - Installation
       summary: ''
       operationId: List_all_ServerPublicKey_for_Installation
       description: Show the ServerPublicKey for this Installation.
@@ -66,4 +66,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: Installation

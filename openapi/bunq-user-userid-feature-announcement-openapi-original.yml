@@ -53,7 +53,7 @@ paths:
   /user/{userID}/feature-announcement/{itemId}:
     get:
       tags:
-        -   -   -   - feature-announcement
+        - User
       summary: ''
       operationId: READ_FeatureAnnouncement_for_User
       description: view for updating the feature display.
@@ -93,4 +93,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

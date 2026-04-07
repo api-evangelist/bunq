@@ -51,7 +51,7 @@ paths:
   /user/{userID}/attachment/{itemId}:
     get:
       tags:
-        -   -   -   - attachment
+        - User
       summary: ''
       operationId: READ_Attachment_for_User
       description: >-
@@ -100,7 +100,7 @@ paths:
   /user/{userID}/attachment/{attachmentID}/content:
     get:
       tags:
-        -   -   -   - content
+        - User
       summary: ''
       operationId: List_all_Content_for_User_Attachment
       description: Get the raw content of a specific attachment.
@@ -145,4 +145,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

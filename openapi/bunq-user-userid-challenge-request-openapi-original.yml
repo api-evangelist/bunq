@@ -89,7 +89,7 @@ paths:
   /user/{userID}/challenge-request/{itemId}:
     get:
       tags:
-        -   -   -   - challenge-request
+        - User
       summary: ''
       operationId: READ_ChallengeRequest_for_User
       description: Endpoint for apps to fetch a challenge request.
@@ -132,7 +132,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        -   -   -   - challenge-request
+        - User
       summary: ''
       operationId: UPDATE_ChallengeRequest_for_User
       description: Endpoint for apps to fetch a challenge request.
@@ -180,4 +180,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

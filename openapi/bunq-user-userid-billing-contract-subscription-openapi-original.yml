@@ -27,7 +27,7 @@ paths:
   /user/{userID}/billing-contract-subscription:
     get:
       tags:
-        -   -   -   - billing-contract-subscription
+        - User
       summary: ''
       operationId: List_all_BillingContractSubscription_for_User
       description: Get all subscription billing contract for the authenticated user.
@@ -63,4 +63,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

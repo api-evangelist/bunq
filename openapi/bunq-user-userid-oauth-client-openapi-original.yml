@@ -110,7 +110,7 @@ paths:
   /user/{userID}/oauth-client/{oauth-clientID}/callback-url/{itemId}:
     get:
       tags:
-        -   -   -   - callback-url
+        - User
       summary: ''
       operationId: READ_CallbackUrl_for_User_OauthClient
       description: Used for managing OAuth Client Callback URLs.
@@ -158,7 +158,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        -   -   -   - callback-url
+        - User
       summary: ''
       operationId: UPDATE_CallbackUrl_for_User_OauthClient
       description: Used for managing OAuth Client Callback URLs.
@@ -213,7 +213,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        -   -   -   - callback-url
+        - User
       summary: ''
       operationId: DELETE_CallbackUrl_for_User_OauthClient
       description: Used for managing OAuth Client Callback URLs.
@@ -262,7 +262,7 @@ paths:
   /user/{userID}/oauth-client/{oauth-clientID}/callback-url:
     post:
       tags:
-        -   -   -   - callback-url
+        - User
       summary: ''
       operationId: CREATE_CallbackUrl_for_User_OauthClient
       description: Used for managing OAuth Client Callback URLs.
@@ -311,7 +311,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - callback-url
+        - User
       summary: ''
       operationId: List_all_CallbackUrl_for_User_OauthClient
       description: Used for managing OAuth Client Callback URLs.
@@ -356,7 +356,7 @@ paths:
   /user/{userID}/oauth-client/{itemId}:
     get:
       tags:
-        -   -   -   - oauth-client
+        - User
       summary: ''
       operationId: READ_OauthClient_for_User
       description: Used for managing OAuth Clients.
@@ -398,7 +398,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        -   -   -   - oauth-client
+        - User
       summary: ''
       operationId: UPDATE_OauthClient_for_User
       description: Used for managing OAuth Clients.
@@ -448,7 +448,7 @@ paths:
   /user/{userID}/oauth-client:
     post:
       tags:
-        -   -   -   - oauth-client
+        - User
       summary: ''
       operationId: CREATE_OauthClient_for_User
       description: Used for managing OAuth Clients.
@@ -491,7 +491,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - oauth-client
+        - User
       summary: ''
       operationId: List_all_OauthClient_for_User
       description: Used for managing OAuth Clients.
@@ -527,4 +527,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

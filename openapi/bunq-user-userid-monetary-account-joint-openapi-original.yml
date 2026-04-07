@@ -178,7 +178,7 @@ paths:
   /user/{userID}/monetary-account-joint:
     post:
       tags:
-        -   -   -   - monetary-account-joint
+        - User
       summary: ''
       operationId: CREATE_MonetaryAccountJoint_for_User
       description: The endpoint for joint monetary accounts.
@@ -221,7 +221,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - monetary-account-joint
+        - User
       summary: ''
       operationId: List_all_MonetaryAccountJoint_for_User
       description: The endpoint for joint monetary accounts.
@@ -260,7 +260,7 @@ paths:
   /user/{userID}/monetary-account-joint/{itemId}:
     get:
       tags:
-        -   -   -   - monetary-account-joint
+        - User
       summary: ''
       operationId: READ_MonetaryAccountJoint_for_User
       description: The endpoint for joint monetary accounts.
@@ -302,7 +302,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        -   -   -   - monetary-account-joint
+        - User
       summary: ''
       operationId: UPDATE_MonetaryAccountJoint_for_User
       description: The endpoint for joint monetary accounts.
@@ -349,4 +349,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

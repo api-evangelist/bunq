@@ -109,7 +109,7 @@ paths:
   /user/{userID}/monetary-account-card/{itemId}:
     get:
       tags:
-        -   -   -   - monetary-account-card
+        - User
       summary: ''
       operationId: READ_MonetaryAccountCard_for_User
       description: Get a specific MonetaryAccountCard.
@@ -151,7 +151,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        -   -   -   - monetary-account-card
+        - User
       summary: ''
       operationId: UPDATE_MonetaryAccountCard_for_User
       description: Update a specific existing MonetaryAccountCard.
@@ -201,7 +201,7 @@ paths:
   /user/{userID}/monetary-account-card:
     get:
       tags:
-        -   -   -   - monetary-account-card
+        - User
       summary: ''
       operationId: List_all_MonetaryAccountCard_for_User
       description: Gets a listing of all MonetaryAccountCard of a given user.
@@ -237,4 +237,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

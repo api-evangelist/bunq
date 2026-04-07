@@ -264,7 +264,7 @@ paths:
   /user/{userID}/whitelist-sdd/{itemId}:
     get:
       tags:
-        -   -   -   - whitelist-sdd
+        - User
       summary: ''
       operationId: READ_WhitelistSdd_for_User
       description: Get a specific recurring SDD whitelist entry.
@@ -307,7 +307,7 @@ paths:
   /user/{userID}/whitelist-sdd:
     get:
       tags:
-        -   -   -   - whitelist-sdd
+        - User
       summary: ''
       operationId: List_all_WhitelistSdd_for_User
       description: >-
@@ -348,7 +348,7 @@ paths:
   /user/{userID}/whitelist-sdd-one-off/{itemId}:
     get:
       tags:
-        -   -   -   - whitelist-sdd-one-off
+        - User
       summary: ''
       operationId: READ_WhitelistSddOneOff_for_User
       description: Get a specific one off SDD whitelist entry.
@@ -392,7 +392,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        -   -   -   - whitelist-sdd-one-off
+        - User
       summary: ''
       operationId: UPDATE_WhitelistSddOneOff_for_User
       description: >-
@@ -445,7 +445,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        -   -   -   - whitelist-sdd-one-off
+        - User
       summary: ''
       operationId: DELETE_WhitelistSddOneOff_for_User
       description: >-
@@ -492,7 +492,7 @@ paths:
   /user/{userID}/whitelist-sdd-one-off:
     post:
       tags:
-        -   -   -   - whitelist-sdd-one-off
+        - User
       summary: ''
       operationId: CREATE_WhitelistSddOneOff_for_User
       description: Create a new one off SDD whitelist entry.
@@ -537,7 +537,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - whitelist-sdd-one-off
+        - User
       summary: ''
       operationId: List_all_WhitelistSddOneOff_for_User
       description: >-
@@ -580,7 +580,7 @@ paths:
   /user/{userID}/whitelist-sdd-recurring/{itemId}:
     get:
       tags:
-        -   -   -   - whitelist-sdd-recurring
+        - User
       summary: ''
       operationId: READ_WhitelistSddRecurring_for_User
       description: Get a specific recurring SDD whitelist entry.
@@ -624,7 +624,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        -   -   -   - whitelist-sdd-recurring
+        - User
       summary: ''
       operationId: UPDATE_WhitelistSddRecurring_for_User
       description: >-
@@ -677,7 +677,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        -   -   -   - whitelist-sdd-recurring
+        - User
       summary: ''
       operationId: DELETE_WhitelistSddRecurring_for_User
       description: >-
@@ -724,7 +724,7 @@ paths:
   /user/{userID}/whitelist-sdd-recurring:
     post:
       tags:
-        -   -   -   - whitelist-sdd-recurring
+        - User
       summary: ''
       operationId: CREATE_WhitelistSddRecurring_for_User
       description: Create a new recurring SDD whitelist entry.
@@ -769,7 +769,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - whitelist-sdd-recurring
+        - User
       summary: ''
       operationId: List_all_WhitelistSddRecurring_for_User
       description: >-
@@ -809,4 +809,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

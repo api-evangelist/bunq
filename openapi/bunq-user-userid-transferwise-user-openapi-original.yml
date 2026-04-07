@@ -36,7 +36,7 @@ paths:
   /user/{userID}/transferwise-user:
     post:
       tags:
-        -   -   -   - transferwise-user
+        - User
       summary: ''
       operationId: CREATE_TransferwiseUser_for_User
       description: Used to manage Transferwise users.
@@ -79,7 +79,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - transferwise-user
+        - User
       summary: ''
       operationId: List_all_TransferwiseUser_for_User
       description: Used to manage Transferwise users.
@@ -115,4 +115,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

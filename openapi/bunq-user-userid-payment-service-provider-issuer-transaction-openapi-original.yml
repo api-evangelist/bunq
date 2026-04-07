@@ -114,7 +114,7 @@ paths:
   /user/{userID}/payment-service-provider-issuer-transaction:
     post:
       tags:
-        -   -   -   - payment-service-provider-issuer-transaction
+        - User
       summary: ''
       operationId: CREATE_PaymentServiceProviderIssuerTransaction_for_User
       description: The endpoint for payment service provider issuer transactions
@@ -158,7 +158,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - payment-service-provider-issuer-transaction
+        - User
       summary: ''
       operationId: List_all_PaymentServiceProviderIssuerTransaction_for_User
       description: The endpoint for payment service provider issuer transactions
@@ -198,7 +198,7 @@ paths:
   /user/{userID}/payment-service-provider-issuer-transaction/{itemId}:
     get:
       tags:
-        -   -   -   - payment-service-provider-issuer-transaction
+        - User
       summary: ''
       operationId: READ_PaymentServiceProviderIssuerTransaction_for_User
       description: The endpoint for payment service provider issuer transactions
@@ -241,7 +241,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        -   -   -   - payment-service-provider-issuer-transaction
+        - User
       summary: ''
       operationId: UPDATE_PaymentServiceProviderIssuerTransaction_for_User
       description: The endpoint for payment service provider issuer transactions
@@ -289,4 +289,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

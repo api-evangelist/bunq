@@ -36,7 +36,7 @@ paths:
   /user/{userID}/notification-filter-push:
     post:
       tags:
-        -   -   -   - notification-filter-push
+        - User
       summary: ''
       operationId: CREATE_NotificationFilterPush_for_User
       description: Manage the push notification filters for a user.
@@ -79,7 +79,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - notification-filter-push
+        - User
       summary: ''
       operationId: List_all_NotificationFilterPush_for_User
       description: Manage the push notification filters for a user.
@@ -115,4 +115,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

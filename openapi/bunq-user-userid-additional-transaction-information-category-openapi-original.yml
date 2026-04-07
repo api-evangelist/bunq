@@ -36,7 +36,7 @@ paths:
   /user/{userID}/additional-transaction-information-category:
     get:
       tags:
-        -   -   -   - additional-transaction-information-category
+        - User
       summary: ''
       operationId: List_all_AdditionalTransactionInformationCategory_for_User
       description: Get the available categories.
@@ -76,7 +76,7 @@ paths:
   /user/{userID}/additional-transaction-information-category-user-defined:
     post:
       tags:
-        -   -   -   - additional-transaction-information-category-user-defined
+        - User
       summary: ''
       operationId: CREATE_AdditionalTransactionInformationCategoryUserDefined_for_User
       description: Manage user-defined categories.
@@ -119,4 +119,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

@@ -121,7 +121,7 @@ paths:
   /user/{userID}/invoice:
     get:
       tags:
-        -   -   -   - invoice
+        - User
       summary: ''
       operationId: List_all_Invoice_for_User
       description: Used to list bunq invoices by user.
@@ -160,7 +160,7 @@ paths:
   /user/{userID}/invoice/{itemId}:
     get:
       tags:
-        -   -   -   - invoice
+        - User
       summary: ''
       operationId: READ_Invoice_for_User
       description: Used to list bunq invoices by user.
@@ -203,7 +203,7 @@ paths:
   /user/{userID}/invoice/{invoiceID}/pdf-content:
     get:
       tags:
-        -   -   -   - pdf-content
+        - User
       summary: ''
       operationId: List_all_PdfContent_for_User_Invoice
       description: Get a PDF export of an invoice.
@@ -245,4 +245,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

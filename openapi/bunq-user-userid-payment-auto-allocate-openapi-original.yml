@@ -27,7 +27,7 @@ paths:
   /user/{userID}/payment-auto-allocate:
     get:
       tags:
-        -   -   -   - payment-auto-allocate
+        - User
       summary: ''
       operationId: List_all_PaymentAutoAllocate_for_User
       description: List a users automatic payment auto allocated settings.
@@ -63,4 +63,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

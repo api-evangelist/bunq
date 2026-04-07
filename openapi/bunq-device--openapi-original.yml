@@ -36,7 +36,7 @@ paths:
   /device/{itemId}:
     get:
       tags:
-        -   -   -   - device
+        - Device
       summary: ''
       operationId: READ_Device
       description: Get a single Device. A Device is either a DevicePhone or a DeviceServer.
@@ -72,4 +72,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: Device

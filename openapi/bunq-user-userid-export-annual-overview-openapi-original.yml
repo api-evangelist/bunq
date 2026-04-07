@@ -66,7 +66,7 @@ paths:
   /user/{userID}/export-annual-overview/{export-annual-overviewID}/content:
     get:
       tags:
-        -   -   -   - content
+        - User
       summary: ''
       operationId: List_all_Content_for_User_ExportAnnualOverview
       description: Used to retrieve the raw content of an annual overview.
@@ -114,7 +114,7 @@ paths:
   /user/{userID}/export-annual-overview:
     post:
       tags:
-        -   -   -   - export-annual-overview
+        - User
       summary: ''
       operationId: CREATE_ExportAnnualOverview_for_User
       description: >-
@@ -163,7 +163,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - export-annual-overview
+        - User
       summary: ''
       operationId: List_all_ExportAnnualOverview_for_User
       description: List all the annual overviews for a user.
@@ -206,7 +206,7 @@ paths:
   /user/{userID}/export-annual-overview/{itemId}:
     get:
       tags:
-        -   -   -   - export-annual-overview
+        - User
       summary: ''
       operationId: READ_ExportAnnualOverview_for_User
       description: Get an annual overview for a user by its id.
@@ -252,7 +252,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        -   -   -   - export-annual-overview
+        - User
       summary: ''
       operationId: DELETE_ExportAnnualOverview_for_User
       description: >-
@@ -299,4 +299,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

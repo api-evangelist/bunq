@@ -300,7 +300,7 @@ paths:
   /user/{userID}/transferwise-quote:
     post:
       tags:
-        -   -   -   - transferwise-quote
+        - User
       summary: ''
       operationId: CREATE_TransferwiseQuote_for_User
       description: >-
@@ -348,7 +348,7 @@ paths:
   /user/{userID}/transferwise-quote/{itemId}:
     get:
       tags:
-        -   -   -   - transferwise-quote
+        - User
       summary: ''
       operationId: READ_TransferwiseQuote_for_User
       description: >-
@@ -395,7 +395,7 @@ paths:
   /user/{userID}/transferwise-quote-temporary:
     post:
       tags:
-        -   -   -   - transferwise-quote-temporary
+        - User
       summary: ''
       operationId: CREATE_TransferwiseQuoteTemporary_for_User
       description: >-
@@ -443,7 +443,7 @@ paths:
   /user/{userID}/transferwise-quote-temporary/{itemId}:
     get:
       tags:
-        -   -   -   - transferwise-quote-temporary
+        - User
       summary: ''
       operationId: READ_TransferwiseQuoteTemporary_for_User
       description: >-
@@ -490,7 +490,7 @@ paths:
   /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-recipient:
     post:
       tags:
-        -   -   -   - transferwise-recipient
+        - User
       summary: ''
       operationId: CREATE_TransferwiseRecipient_for_User_TransferwiseQuote
       description: Used to manage recipient accounts with Transferwise.
@@ -539,7 +539,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - transferwise-recipient
+        - User
       summary: ''
       operationId: List_all_TransferwiseRecipient_for_User_TransferwiseQuote
       description: Used to manage recipient accounts with Transferwise.
@@ -584,7 +584,7 @@ paths:
   /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-recipient/{itemId}:
     get:
       tags:
-        -   -   -   - transferwise-recipient
+        - User
       summary: ''
       operationId: READ_TransferwiseRecipient_for_User_TransferwiseQuote
       description: Used to manage recipient accounts with Transferwise.
@@ -632,7 +632,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        -   -   -   - transferwise-recipient
+        - User
       summary: ''
       operationId: DELETE_TransferwiseRecipient_for_User_TransferwiseQuote
       description: Used to manage recipient accounts with Transferwise.
@@ -681,7 +681,7 @@ paths:
   /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-recipient-requirement:
     post:
       tags:
-        -   -   -   - transferwise-recipient-requirement
+        - User
       summary: ''
       operationId: CREATE_TransferwiseRecipientRequirement_for_User_TransferwiseQuote
       description: >-
@@ -734,7 +734,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - transferwise-recipient-requirement
+        - User
       summary: ''
       operationId: List_all_TransferwiseRecipientRequirement_for_User_TransferwiseQuote
       description: >-
@@ -783,7 +783,7 @@ paths:
   /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-transfer:
     post:
       tags:
-        -   -   -   - transferwise-transfer
+        - User
       summary: ''
       operationId: CREATE_TransferwiseTransfer_for_User_TransferwiseQuote
       description: Used to create Transferwise payments.
@@ -832,7 +832,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        -   -   -   - transferwise-transfer
+        - User
       summary: ''
       operationId: List_all_TransferwiseTransfer_for_User_TransferwiseQuote
       description: Used to create Transferwise payments.
@@ -877,7 +877,7 @@ paths:
   /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-transfer/{itemId}:
     get:
       tags:
-        -   -   -   - transferwise-transfer
+        - User
       summary: ''
       operationId: READ_TransferwiseTransfer_for_User_TransferwiseQuote
       description: Used to create Transferwise payments.
@@ -926,7 +926,7 @@ paths:
   /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-transfer-requirement:
     post:
       tags:
-        -   -   -   - transferwise-transfer-requirement
+        - User
       summary: ''
       operationId: CREATE_TransferwiseTransferRequirement_for_User_TransferwiseQuote
       description: Used to determine the account requirements for Transferwise transfers.
@@ -975,4 +975,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User

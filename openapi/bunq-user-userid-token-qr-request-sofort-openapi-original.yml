@@ -36,7 +36,7 @@ paths:
   /user/{userID}/token-qr-request-sofort:
     post:
       tags:
-        -   -   -   - token-qr-request-sofort
+        - User
       summary: ''
       operationId: CREATE_TokenQrRequestSofort_for_User
       description: Create a request from an SOFORT transaction.
@@ -79,4 +79,5 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-tags: []
+tags:
+  - name: User
