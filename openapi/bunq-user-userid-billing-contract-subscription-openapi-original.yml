@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/billing-contract-subscription'
+  title: 'Bunq user/{userID}/billing-contract-subscription'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -27,7 +27,7 @@ paths:
   /user/{userID}/billing-contract-subscription:
     get:
       tags:
-        - - - - billing-contract-subscription
+        -   -   -   - billing-contract-subscription
       summary: ''
       operationId: List_all_BillingContractSubscription_for_User
       description: Get all subscription billing contract for the authenticated user.

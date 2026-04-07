@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/card'
+  title: 'Bunq user/{userID}/card'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -458,7 +458,7 @@ paths:
   /user/{userID}/card/{itemId}:
     put:
       tags:
-        - - - - card
+        -   -   -   - card
       summary: ''
       operationId: UPDATE_Card_for_User
       description: >-
@@ -513,7 +513,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - card
+        -   -   -   - card
       summary: ''
       operationId: READ_Card_for_User
       description: Return the details of a specific card.
@@ -558,7 +558,7 @@ paths:
   /user/{userID}/card:
     get:
       tags:
-        - - - - card
+        -   -   -   - card
       summary: ''
       operationId: List_all_Card_for_User
       description: Return all the cards available to the user.
@@ -599,7 +599,7 @@ paths:
   /user/{userID}/card-batch:
     post:
       tags:
-        - - - - card-batch
+        -   -   -   - card-batch
       summary: ''
       operationId: CREATE_CardBatch_for_User
       description: Used to update multiple cards in a batch.
@@ -643,7 +643,7 @@ paths:
   /user/{userID}/card-batch-replace:
     post:
       tags:
-        - - - - card-batch-replace
+        -   -   -   - card-batch-replace
       summary: ''
       operationId: CREATE_CardBatchReplace_for_User
       description: Used to replace multiple cards in a batch.
@@ -687,7 +687,7 @@ paths:
   /user/{userID}/card-credit:
     post:
       tags:
-        - - - - card-credit
+        -   -   -   - card-credit
       summary: ''
       operationId: CREATE_CardCredit_for_User
       description: Create a new credit card request.
@@ -734,7 +734,7 @@ paths:
   /user/{userID}/card-debit:
     post:
       tags:
-        - - - - card-debit
+        -   -   -   - card-debit
       summary: ''
       operationId: CREATE_CardDebit_for_User
       description: Create a new debit card request.
@@ -781,7 +781,7 @@ paths:
   /user/{userID}/card-name:
     get:
       tags:
-        - - - - card-name
+        -   -   -   - card-name
       summary: ''
       operationId: List_all_CardName_for_User
       description: Return all the accepted card names for a specific user.
@@ -824,7 +824,7 @@ paths:
   /user/{userID}/card/{cardID}/export-statement-card/{export-statement-cardID}/content:
     get:
       tags:
-        - - - - content
+        -   -   -   - content
       summary: ''
       operationId: List_all_Content_for_User_Card_ExportStatementCard
       description: >-
@@ -883,7 +883,7 @@ paths:
   /user/{userID}/card/{cardID}/export-statement-card/{itemId}:
     get:
       tags:
-        - - - - export-statement-card
+        -   -   -   - export-statement-card
       summary: ''
       operationId: READ_ExportStatementCard_for_User_Card
       description: >-
@@ -936,7 +936,7 @@ paths:
   /user/{userID}/card/{cardID}/export-statement-card:
     get:
       tags:
-        - - - - export-statement-card
+        -   -   -   - export-statement-card
       summary: ''
       operationId: List_all_ExportStatementCard_for_User_Card
       description: >-
@@ -985,7 +985,7 @@ paths:
   /user/{userID}/card/{cardID}/export-statement-card-csv:
     post:
       tags:
-        - - - - export-statement-card-csv
+        -   -   -   - export-statement-card-csv
       summary: ''
       operationId: CREATE_ExportStatementCardCsv_for_User_Card
       description: Used to serialize ExportStatementCardCsv
@@ -1034,7 +1034,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - export-statement-card-csv
+        -   -   -   - export-statement-card-csv
       summary: ''
       operationId: List_all_ExportStatementCardCsv_for_User_Card
       description: Used to serialize ExportStatementCardCsv
@@ -1079,7 +1079,7 @@ paths:
   /user/{userID}/card/{cardID}/export-statement-card-csv/{itemId}:
     get:
       tags:
-        - - - - export-statement-card-csv
+        -   -   -   - export-statement-card-csv
       summary: ''
       operationId: READ_ExportStatementCardCsv_for_User_Card
       description: Used to serialize ExportStatementCardCsv
@@ -1127,7 +1127,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - export-statement-card-csv
+        -   -   -   - export-statement-card-csv
       summary: ''
       operationId: DELETE_ExportStatementCardCsv_for_User_Card
       description: Used to serialize ExportStatementCardCsv
@@ -1176,7 +1176,7 @@ paths:
   /user/{userID}/card/{cardID}/export-statement-card-pdf:
     post:
       tags:
-        - - - - export-statement-card-pdf
+        -   -   -   - export-statement-card-pdf
       summary: ''
       operationId: CREATE_ExportStatementCardPdf_for_User_Card
       description: Used to serialize ExportStatementCardPdf
@@ -1225,7 +1225,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - export-statement-card-pdf
+        -   -   -   - export-statement-card-pdf
       summary: ''
       operationId: List_all_ExportStatementCardPdf_for_User_Card
       description: Used to serialize ExportStatementCardPdf
@@ -1270,7 +1270,7 @@ paths:
   /user/{userID}/card/{cardID}/export-statement-card-pdf/{itemId}:
     get:
       tags:
-        - - - - export-statement-card-pdf
+        -   -   -   - export-statement-card-pdf
       summary: ''
       operationId: READ_ExportStatementCardPdf_for_User_Card
       description: Used to serialize ExportStatementCardPdf
@@ -1318,7 +1318,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - export-statement-card-pdf
+        -   -   -   - export-statement-card-pdf
       summary: ''
       operationId: DELETE_ExportStatementCardPdf_for_User_Card
       description: Used to serialize ExportStatementCardPdf
@@ -1367,7 +1367,7 @@ paths:
   /user/{userID}/card/{cardID}/generated-cvc2:
     post:
       tags:
-        - - - - generated-cvc2
+        -   -   -   - generated-cvc2
       summary: ''
       operationId: CREATE_GeneratedCvc2_for_User_Card
       description: Generate a new CVC2 code for a card.
@@ -1416,7 +1416,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - generated-cvc2
+        -   -   -   - generated-cvc2
       summary: ''
       operationId: List_all_GeneratedCvc2_for_User_Card
       description: Get all generated CVC2 codes for a card.
@@ -1461,7 +1461,7 @@ paths:
   /user/{userID}/card/{cardID}/generated-cvc2/{itemId}:
     get:
       tags:
-        - - - - generated-cvc2
+        -   -   -   - generated-cvc2
       summary: ''
       operationId: READ_GeneratedCvc2_for_User_Card
       description: Get the details for a specific generated CVC2 code.
@@ -1509,7 +1509,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - generated-cvc2
+        -   -   -   - generated-cvc2
       summary: ''
       operationId: UPDATE_GeneratedCvc2_for_User_Card
       description: Endpoint for generating and retrieving a new CVC2 code.
@@ -1565,7 +1565,7 @@ paths:
   /user/{userID}/card/{cardID}/replace:
     post:
       tags:
-        - - - - replace
+        -   -   -   - replace
       summary: ''
       operationId: CREATE_Replace_for_User_Card
       description: Request a card replacement.

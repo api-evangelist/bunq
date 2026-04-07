@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/chat-conversation'
+  title: 'Bunq user/{userID}/chat-conversation'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -27,7 +27,7 @@ paths:
   /user/{userID}/chat-conversation/{chat-conversationID}/attachment/{attachmentID}/content:
     get:
       tags:
-        - - - - content
+        -   -   -   - content
       summary: ''
       operationId: List_all_Content_for_User_ChatConversation_Attachment
       description: Get the raw content of a specific attachment.

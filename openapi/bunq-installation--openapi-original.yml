@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' installation/'
+  title: 'Bunq installation/'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -37,7 +37,7 @@ paths:
   /installation/{itemId}:
     get:
       tags:
-        - - - - installation
+        -   -   -   - installation
       summary: ''
       operationId: READ_Installation
       description: >-
@@ -82,7 +82,7 @@ paths:
   /installation/{installationID}/server-public-key:
     get:
       tags:
-        - - - - server-public-key
+        -   -   -   - server-public-key
       summary: ''
       operationId: List_all_ServerPublicKey_for_Installation
       description: Show the ServerPublicKey for this Installation.

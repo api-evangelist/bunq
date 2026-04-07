@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' sandbox-user-person/'
+  title: 'Bunq sandbox-user-person/'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:

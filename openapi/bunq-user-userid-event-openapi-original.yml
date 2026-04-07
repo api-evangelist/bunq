@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/event'
+  title: 'Bunq user/{userID}/event'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -76,7 +76,7 @@ paths:
   /user/{userID}/event/{itemId}:
     get:
       tags:
-        - - - - event
+        -   -   -   - event
       summary: ''
       operationId: READ_Event_for_User
       description: Get a specific event for a given user.
@@ -124,7 +124,7 @@ paths:
   /user/{userID}/event:
     get:
       tags:
-        - - - - event
+        -   -   -   - event
       summary: ''
       operationId: List_all_Event_for_User
       description: >-

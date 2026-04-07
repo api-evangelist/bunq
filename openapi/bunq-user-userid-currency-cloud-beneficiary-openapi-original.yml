@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/currency-cloud-beneficiary'
+  title: 'Bunq user/{userID}/currency-cloud-beneficiary'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -74,7 +74,7 @@ paths:
   /user/{userID}/currency-cloud-beneficiary:
     post:
       tags:
-        - - - - currency-cloud-beneficiary
+        -   -   -   - currency-cloud-beneficiary
       summary: ''
       operationId: CREATE_CurrencyCloudBeneficiary_for_User
       description: Endpoint to manage CurrencyCloud beneficiaries.
@@ -117,7 +117,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - currency-cloud-beneficiary
+        -   -   -   - currency-cloud-beneficiary
       summary: ''
       operationId: List_all_CurrencyCloudBeneficiary_for_User
       description: Endpoint to manage CurrencyCloud beneficiaries.
@@ -156,7 +156,7 @@ paths:
   /user/{userID}/currency-cloud-beneficiary/{itemId}:
     get:
       tags:
-        - - - - currency-cloud-beneficiary
+        -   -   -   - currency-cloud-beneficiary
       summary: ''
       operationId: READ_CurrencyCloudBeneficiary_for_User
       description: Endpoint to manage CurrencyCloud beneficiaries.
@@ -199,7 +199,7 @@ paths:
   /user/{userID}/currency-cloud-beneficiary-requirement:
     get:
       tags:
-        - - - - currency-cloud-beneficiary-requirement
+        -   -   -   - currency-cloud-beneficiary-requirement
       summary: ''
       operationId: List_all_CurrencyCloudBeneficiaryRequirement_for_User
       description: Endpoint to list requirements for CurrencyCloud beneficiaries.

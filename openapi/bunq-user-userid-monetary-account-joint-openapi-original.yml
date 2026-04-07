@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/monetary-account-joint'
+  title: 'Bunq user/{userID}/monetary-account-joint'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -178,7 +178,7 @@ paths:
   /user/{userID}/monetary-account-joint:
     post:
       tags:
-        - - - - monetary-account-joint
+        -   -   -   - monetary-account-joint
       summary: ''
       operationId: CREATE_MonetaryAccountJoint_for_User
       description: The endpoint for joint monetary accounts.
@@ -221,7 +221,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - monetary-account-joint
+        -   -   -   - monetary-account-joint
       summary: ''
       operationId: List_all_MonetaryAccountJoint_for_User
       description: The endpoint for joint monetary accounts.
@@ -260,7 +260,7 @@ paths:
   /user/{userID}/monetary-account-joint/{itemId}:
     get:
       tags:
-        - - - - monetary-account-joint
+        -   -   -   - monetary-account-joint
       summary: ''
       operationId: READ_MonetaryAccountJoint_for_User
       description: The endpoint for joint monetary accounts.
@@ -302,7 +302,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - monetary-account-joint
+        -   -   -   - monetary-account-joint
       summary: ''
       operationId: UPDATE_MonetaryAccountJoint_for_User
       description: The endpoint for joint monetary accounts.

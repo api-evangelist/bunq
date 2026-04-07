@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' sandbox-user-company/'
+  title: 'Bunq sandbox-user-company/'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:

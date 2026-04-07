@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' activity-map-place-public/{itemId}/'
+  title: 'Bunq activity-map-place-public/{itemId}/'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -27,7 +27,7 @@ paths:
   /activity-map-place-public/{itemId}:
     get:
       tags:
-        - - - - activity-map-place-public
+        -   -   -   - activity-map-place-public
       summary: ''
       operationId: READ_ActivityMapPlacePublic
       description: Public endpoint for getting the place info.

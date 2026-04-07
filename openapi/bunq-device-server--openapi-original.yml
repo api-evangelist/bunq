@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' device-server/'
+  title: 'Bunq device-server/'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -62,7 +62,7 @@ paths:
   /device-server/{itemId}:
     get:
       tags:
-        - - - - device-server
+        -   -   -   - device-server
       summary: ''
       operationId: READ_DeviceServer
       description: Get one of your DeviceServers.

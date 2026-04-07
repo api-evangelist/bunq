@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/payment-service-provider-issuer-transaction'
+  title: 'Bunq user/{userID}/payment-service-provider-issuer-transaction'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -114,7 +114,7 @@ paths:
   /user/{userID}/payment-service-provider-issuer-transaction:
     post:
       tags:
-        - - - - payment-service-provider-issuer-transaction
+        -   -   -   - payment-service-provider-issuer-transaction
       summary: ''
       operationId: CREATE_PaymentServiceProviderIssuerTransaction_for_User
       description: The endpoint for payment service provider issuer transactions
@@ -158,7 +158,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - payment-service-provider-issuer-transaction
+        -   -   -   - payment-service-provider-issuer-transaction
       summary: ''
       operationId: List_all_PaymentServiceProviderIssuerTransaction_for_User
       description: The endpoint for payment service provider issuer transactions
@@ -198,7 +198,7 @@ paths:
   /user/{userID}/payment-service-provider-issuer-transaction/{itemId}:
     get:
       tags:
-        - - - - payment-service-provider-issuer-transaction
+        -   -   -   - payment-service-provider-issuer-transaction
       summary: ''
       operationId: READ_PaymentServiceProviderIssuerTransaction_for_User
       description: The endpoint for payment service provider issuer transactions
@@ -241,7 +241,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - payment-service-provider-issuer-transaction
+        -   -   -   - payment-service-provider-issuer-transaction
       summary: ''
       operationId: UPDATE_PaymentServiceProviderIssuerTransaction_for_User
       description: The endpoint for payment service provider issuer transactions

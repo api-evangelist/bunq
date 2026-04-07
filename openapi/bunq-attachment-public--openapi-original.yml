@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' attachment-public/'
+  title: 'Bunq attachment-public/'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -51,7 +51,7 @@ paths:
   /attachment-public/{itemId}:
     get:
       tags:
-        - - - - attachment-public
+        -   -   -   - attachment-public
       summary: ''
       operationId: READ_AttachmentPublic
       description: >-
@@ -94,7 +94,7 @@ paths:
   /attachment-public/{attachment-publicUUID}/content:
     get:
       tags:
-        - - - - content
+        -   -   -   - content
       summary: ''
       operationId: List_all_Content_for_AttachmentPublic
       description: Get the raw content of a specific attachment.

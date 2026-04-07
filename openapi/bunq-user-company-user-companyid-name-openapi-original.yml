@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user-company/{user-companyID}/name'
+  title: 'Bunq user-company/{user-companyID}/name'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -27,7 +27,7 @@ paths:
   /user-company/{user-companyID}/name:
     get:
       tags:
-        - - - - name
+        -   -   -   - name
       summary: ''
       operationId: List_all_Name_for_UserCompany
       description: Return all the known (trade) names for a specific user company.

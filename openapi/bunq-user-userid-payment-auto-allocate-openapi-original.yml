@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/payment-auto-allocate'
+  title: 'Bunq user/{userID}/payment-auto-allocate'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -27,7 +27,7 @@ paths:
   /user/{userID}/payment-auto-allocate:
     get:
       tags:
-        - - - - payment-auto-allocate
+        -   -   -   - payment-auto-allocate
       summary: ''
       operationId: List_all_PaymentAutoAllocate_for_User
       description: List a users automatic payment auto allocated settings.

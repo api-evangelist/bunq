@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' avatar/'
+  title: 'Bunq avatar/'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -42,7 +42,7 @@ paths:
   /avatar/{itemId}:
     get:
       tags:
-        - - - - avatar
+        -   -   -   - avatar
       summary: ''
       operationId: READ_Avatar
       description: >-

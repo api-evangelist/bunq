@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/notification-filter-email'
+  title: 'Bunq user/{userID}/notification-filter-email'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -36,7 +36,7 @@ paths:
   /user/{userID}/notification-filter-email:
     post:
       tags:
-        - - - - notification-filter-email
+        -   -   -   - notification-filter-email
       summary: ''
       operationId: CREATE_NotificationFilterEmail_for_User
       description: Manage the email notification filters for a user.
@@ -79,7 +79,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - notification-filter-email
+        -   -   -   - notification-filter-email
       summary: ''
       operationId: List_all_NotificationFilterEmail_for_User
       description: Manage the email notification filters for a user.

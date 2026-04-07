@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/bunqme-fundraiser-profile'
+  title: 'Bunq user/{userID}/bunqme-fundraiser-profile'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -97,7 +97,7 @@ paths:
   /user/{userID}/bunqme-fundraiser-profile/{itemId}:
     get:
       tags:
-        - - - - bunqme-fundraiser-profile
+        -   -   -   - bunqme-fundraiser-profile
       summary: ''
       operationId: READ_BunqmeFundraiserProfile_for_User
       description: bunq.me public profile of the user.
@@ -140,7 +140,7 @@ paths:
   /user/{userID}/bunqme-fundraiser-profile:
     get:
       tags:
-        - - - - bunqme-fundraiser-profile
+        -   -   -   - bunqme-fundraiser-profile
       summary: ''
       operationId: List_all_BunqmeFundraiserProfile_for_User
       description: bunq.me public profile of the user.

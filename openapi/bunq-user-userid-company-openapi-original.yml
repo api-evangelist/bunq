@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/company'
+  title: 'Bunq user/{userID}/company'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -54,7 +54,7 @@ paths:
   /user/{userID}/company:
     post:
       tags:
-        - - - - company
+        -   -   -   - company
       summary: ''
       operationId: CREATE_Company_for_User
       description: Create and manage companies.
@@ -97,7 +97,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - company
+        -   -   -   - company
       summary: ''
       operationId: List_all_Company_for_User
       description: Create and manage companies.
@@ -136,7 +136,7 @@ paths:
   /user/{userID}/company/{itemId}:
     get:
       tags:
-        - - - - company
+        -   -   -   - company
       summary: ''
       operationId: READ_Company_for_User
       description: Create and manage companies.
@@ -178,7 +178,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - company
+        -   -   -   - company
       summary: ''
       operationId: UPDATE_Company_for_User
       description: Create and manage companies.

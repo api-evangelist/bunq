@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/insights'
+  title: 'Bunq user/{userID}/insights'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -27,7 +27,7 @@ paths:
   /user/{userID}/insights:
     get:
       tags:
-        - - - - insights
+        -   -   -   - insights
       summary: ''
       operationId: List_all_Insights_for_User
       description: Used to get insights about transactions between given time range.
@@ -66,7 +66,7 @@ paths:
   /user/{userID}/insights-search:
     get:
       tags:
-        - - - - insights-search
+        -   -   -   - insights-search
       summary: ''
       operationId: List_all_InsightsSearch_for_User
       description: Used to get events based on time and insight category.

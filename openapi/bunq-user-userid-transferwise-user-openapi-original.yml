@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/transferwise-user'
+  title: 'Bunq user/{userID}/transferwise-user'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -36,7 +36,7 @@ paths:
   /user/{userID}/transferwise-user:
     post:
       tags:
-        - - - - transferwise-user
+        -   -   -   - transferwise-user
       summary: ''
       operationId: CREATE_TransferwiseUser_for_User
       description: Used to manage Transferwise users.
@@ -79,7 +79,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - transferwise-user
+        -   -   -   - transferwise-user
       summary: ''
       operationId: List_all_TransferwiseUser_for_User
       description: Used to manage Transferwise users.

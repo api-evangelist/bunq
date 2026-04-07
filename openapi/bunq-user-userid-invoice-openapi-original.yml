@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/invoice'
+  title: 'Bunq user/{userID}/invoice'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -121,7 +121,7 @@ paths:
   /user/{userID}/invoice:
     get:
       tags:
-        - - - - invoice
+        -   -   -   - invoice
       summary: ''
       operationId: List_all_Invoice_for_User
       description: Used to list bunq invoices by user.
@@ -160,7 +160,7 @@ paths:
   /user/{userID}/invoice/{itemId}:
     get:
       tags:
-        - - - - invoice
+        -   -   -   - invoice
       summary: ''
       operationId: READ_Invoice_for_User
       description: Used to list bunq invoices by user.
@@ -203,7 +203,7 @@ paths:
   /user/{userID}/invoice/{invoiceID}/pdf-content:
     get:
       tags:
-        - - - - pdf-content
+        -   -   -   - pdf-content
       summary: ''
       operationId: List_all_PdfContent_for_User_Invoice
       description: Get a PDF export of an invoice.

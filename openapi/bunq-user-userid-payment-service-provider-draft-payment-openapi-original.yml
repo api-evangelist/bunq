@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/payment-service-provider-draft-payment'
+  title: 'Bunq user/{userID}/payment-service-provider-draft-payment'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -69,7 +69,7 @@ paths:
   /user/{userID}/payment-service-provider-draft-payment:
     post:
       tags:
-        - - - - payment-service-provider-draft-payment
+        -   -   -   - payment-service-provider-draft-payment
       summary: ''
       operationId: CREATE_PaymentServiceProviderDraftPayment_for_User
       description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
@@ -112,7 +112,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - payment-service-provider-draft-payment
+        -   -   -   - payment-service-provider-draft-payment
       summary: ''
       operationId: List_all_PaymentServiceProviderDraftPayment_for_User
       description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
@@ -152,7 +152,7 @@ paths:
   /user/{userID}/payment-service-provider-draft-payment/{itemId}:
     put:
       tags:
-        - - - - payment-service-provider-draft-payment
+        -   -   -   - payment-service-provider-draft-payment
       summary: ''
       operationId: UPDATE_PaymentServiceProviderDraftPayment_for_User
       description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
@@ -201,7 +201,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - payment-service-provider-draft-payment
+        -   -   -   - payment-service-provider-draft-payment
       summary: ''
       operationId: READ_PaymentServiceProviderDraftPayment_for_User
       description: Manage the PaymentServiceProviderDraftPayment's for a PISP.

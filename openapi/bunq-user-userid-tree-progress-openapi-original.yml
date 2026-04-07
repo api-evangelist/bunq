@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/tree-progress'
+  title: 'Bunq user/{userID}/tree-progress'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -27,7 +27,7 @@ paths:
   /user/{userID}/tree-progress:
     get:
       tags:
-        - - - - tree-progress
+        -   -   -   - tree-progress
       summary: ''
       operationId: List_all_TreeProgress_for_User
       description: See how many trees this user has planted.

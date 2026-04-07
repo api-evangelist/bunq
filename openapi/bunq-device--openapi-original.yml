@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' device/'
+  title: 'Bunq device/'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -36,7 +36,7 @@ paths:
   /device/{itemId}:
     get:
       tags:
-        - - - - device
+        -   -   -   - device
       summary: ''
       operationId: READ_Device
       description: Get a single Device. A Device is either a DevicePhone or a DeviceServer.

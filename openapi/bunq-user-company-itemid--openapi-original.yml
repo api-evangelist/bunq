@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user-company/{itemId}/'
+  title: 'Bunq user-company/{itemId}/'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:

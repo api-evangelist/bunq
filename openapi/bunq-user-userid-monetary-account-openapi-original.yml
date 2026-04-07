@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/monetary-account'
+  title: 'Bunq user/{userID}/monetary-account'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -4832,7 +4832,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/attachment:
     post:
       tags:
-        - - - - attachment
+        -   -   -   - attachment
       summary: ''
       operationId: CREATE_Attachment_for_User_MonetaryAccount
       description: >-
@@ -4890,7 +4890,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/bunqme-fundraiser-result/{itemId}:
     get:
       tags:
-        - - - - bunqme-fundraiser-result
+        -   -   -   - bunqme-fundraiser-result
       summary: ''
       operationId: READ_BunqmeFundraiserResult_for_User_MonetaryAccount
       description: bunq.me fundraiser result containing all payments.
@@ -4939,7 +4939,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/bunqme-tab:
     post:
       tags:
-        - - - - bunqme-tab
+        -   -   -   - bunqme-tab
       summary: ''
       operationId: CREATE_BunqmeTab_for_User_MonetaryAccount
       description: >-
@@ -4994,7 +4994,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - bunqme-tab
+        -   -   -   - bunqme-tab
       summary: ''
       operationId: List_all_BunqmeTab_for_User_MonetaryAccount
       description: >-
@@ -5045,7 +5045,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/bunqme-tab/{itemId}:
     put:
       tags:
-        - - - - bunqme-tab
+        -   -   -   - bunqme-tab
       summary: ''
       operationId: UPDATE_BunqmeTab_for_User_MonetaryAccount
       description: >-
@@ -5106,7 +5106,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - bunqme-tab
+        -   -   -   - bunqme-tab
       summary: ''
       operationId: READ_BunqmeTab_for_User_MonetaryAccount
       description: >-
@@ -5161,7 +5161,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/bunqme-tab-result-response/{itemId}:
     get:
       tags:
-        - - - - bunqme-tab-result-response
+        -   -   -   - bunqme-tab-result-response
       summary: ''
       operationId: READ_BunqmeTabResultResponse_for_User_MonetaryAccount
       description: >-
@@ -5216,7 +5216,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/attachment/{attachmentID}/content:
     get:
       tags:
-        - - - - content
+        -   -   -   - content
       summary: ''
       operationId: List_all_Content_for_User_MonetaryAccount_Attachment
       description: Get the raw content of a specific attachment.
@@ -5270,7 +5270,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/export-rib/{export-ribID}/content:
     get:
       tags:
-        - - - - content
+        -   -   -   - content
       summary: ''
       operationId: List_all_Content_for_User_MonetaryAccount_ExportRib
       description: Used to retrieve the raw content of an RIB.
@@ -5321,7 +5321,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/customer-statement/{customer-statementID}/content:
     get:
       tags:
-        - - - - content
+        -   -   -   - content
       summary: ''
       operationId: List_all_Content_for_User_MonetaryAccount_CustomerStatement
       description: >-
@@ -5380,7 +5380,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/event/{eventID}/statement/{statementID}/content:
     get:
       tags:
-        - - - - content
+        -   -   -   - content
       summary: ''
       operationId: List_all_Content_for_User_MonetaryAccount_Event_Statement
       description: Fetch the raw content of a payment statement export.
@@ -5437,7 +5437,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/currency-cloud-payment-quote:
     post:
       tags:
-        - - - - currency-cloud-payment-quote
+        -   -   -   - currency-cloud-payment-quote
       summary: ''
       operationId: CREATE_CurrencyCloudPaymentQuote_for_User_MonetaryAccount
       description: Endpoint for managing currency conversions.
@@ -5487,7 +5487,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/currency-conversion:
     get:
       tags:
-        - - - - currency-conversion
+        -   -   -   - currency-conversion
       summary: ''
       operationId: List_all_CurrencyConversion_for_User_MonetaryAccount
       description: Endpoint for managing currency conversions.
@@ -5532,7 +5532,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/currency-conversion/{itemId}:
     get:
       tags:
-        - - - - currency-conversion
+        -   -   -   - currency-conversion
       summary: ''
       operationId: READ_CurrencyConversion_for_User_MonetaryAccount
       description: Endpoint for managing currency conversions.
@@ -5581,7 +5581,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/currency-conversion-quote:
     post:
       tags:
-        - - - - currency-conversion-quote
+        -   -   -   - currency-conversion-quote
       summary: ''
       operationId: CREATE_CurrencyConversionQuote_for_User_MonetaryAccount
       description: Endpoint to create a quote for currency conversions.
@@ -5631,7 +5631,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/currency-conversion-quote/{itemId}:
     get:
       tags:
-        - - - - currency-conversion-quote
+        -   -   -   - currency-conversion-quote
       summary: ''
       operationId: READ_CurrencyConversionQuote_for_User_MonetaryAccount
       description: Endpoint to create a quote for currency conversions.
@@ -5679,7 +5679,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - currency-conversion-quote
+        -   -   -   - currency-conversion-quote
       summary: ''
       operationId: UPDATE_CurrencyConversionQuote_for_User_MonetaryAccount
       description: Endpoint to create a quote for currency conversions.
@@ -5735,7 +5735,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/customer-statement:
     post:
       tags:
-        - - - - customer-statement
+        -   -   -   - customer-statement
       summary: ''
       operationId: CREATE_CustomerStatement_for_User_MonetaryAccount
       description: >-
@@ -5788,7 +5788,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - customer-statement
+        -   -   -   - customer-statement
       summary: ''
       operationId: List_all_CustomerStatement_for_User_MonetaryAccount
       description: >-
@@ -5837,7 +5837,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/customer-statement/{itemId}:
     get:
       tags:
-        - - - - customer-statement
+        -   -   -   - customer-statement
       summary: ''
       operationId: READ_CustomerStatement_for_User_MonetaryAccount
       description: >-
@@ -5889,7 +5889,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - customer-statement
+        -   -   -   - customer-statement
       summary: ''
       operationId: DELETE_CustomerStatement_for_User_MonetaryAccount
       description: >-
@@ -5942,7 +5942,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/payment-auto-allocate/{payment-auto-allocateID}/definition:
     get:
       tags:
-        - - - - definition
+        -   -   -   - definition
       summary: ''
       operationId: List_all_Definition_for_User_MonetaryAccount_PaymentAutoAllocate
       description: List all the definitions in a payment auto allocate.
@@ -5993,7 +5993,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/draft-payment:
     post:
       tags:
-        - - - - draft-payment
+        -   -   -   - draft-payment
       summary: ''
       operationId: CREATE_DraftPayment_for_User_MonetaryAccount
       description: Create a new DraftPayment.
@@ -6044,7 +6044,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - draft-payment
+        -   -   -   - draft-payment
       summary: ''
       operationId: List_all_DraftPayment_for_User_MonetaryAccount
       description: Get a listing of all DraftPayments from a given MonetaryAccount.
@@ -6091,7 +6091,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/draft-payment/{itemId}:
     put:
       tags:
-        - - - - draft-payment
+        -   -   -   - draft-payment
       summary: ''
       operationId: UPDATE_DraftPayment_for_User_MonetaryAccount
       description: Update a DraftPayment.
@@ -6148,7 +6148,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - draft-payment
+        -   -   -   - draft-payment
       summary: ''
       operationId: READ_DraftPayment_for_User_MonetaryAccount
       description: Get a specific DraftPayment.
@@ -6199,7 +6199,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/export-rib:
     post:
       tags:
-        - - - - export-rib
+        -   -   -   - export-rib
       summary: ''
       operationId: CREATE_ExportRib_for_User_MonetaryAccount
       description: Create a new RIB.
@@ -6248,7 +6248,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - export-rib
+        -   -   -   - export-rib
       summary: ''
       operationId: List_all_ExportRib_for_User_MonetaryAccount
       description: List all the RIBs for a monetary account.
@@ -6293,7 +6293,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/export-rib/{itemId}:
     get:
       tags:
-        - - - - export-rib
+        -   -   -   - export-rib
       summary: ''
       operationId: READ_ExportRib_for_User_MonetaryAccount
       description: Get a RIB for a monetary account by its id.
@@ -6341,7 +6341,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - export-rib
+        -   -   -   - export-rib
       summary: ''
       operationId: DELETE_ExportRib_for_User_MonetaryAccount
       description: Used to create new and read existing RIBs of a monetary account
@@ -6390,7 +6390,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/ideal-merchant-transaction:
     post:
       tags:
-        - - - - ideal-merchant-transaction
+        -   -   -   - ideal-merchant-transaction
       summary: ''
       operationId: CREATE_IdealMerchantTransaction_for_User_MonetaryAccount
       description: View for requesting iDEAL transactions and polling their status.
@@ -6439,7 +6439,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - ideal-merchant-transaction
+        -   -   -   - ideal-merchant-transaction
       summary: ''
       operationId: List_all_IdealMerchantTransaction_for_User_MonetaryAccount
       description: View for requesting iDEAL transactions and polling their status.
@@ -6484,7 +6484,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/ideal-merchant-transaction/{itemId}:
     get:
       tags:
-        - - - - ideal-merchant-transaction
+        -   -   -   - ideal-merchant-transaction
       summary: ''
       operationId: READ_IdealMerchantTransaction_for_User_MonetaryAccount
       description: View for requesting iDEAL transactions and polling their status.
@@ -6533,7 +6533,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/payment-auto-allocate/{payment-auto-allocateID}/instance:
     get:
       tags:
-        - - - - instance
+        -   -   -   - instance
       summary: ''
       operationId: List_all_Instance_for_User_MonetaryAccount_PaymentAutoAllocate
       description: List all the times a users payment was automatically allocated.
@@ -6584,7 +6584,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/payment-auto-allocate/{payment-auto-allocateID}/instance/{itemId}:
     get:
       tags:
-        - - - - instance
+        -   -   -   - instance
       summary: ''
       operationId: READ_Instance_for_User_MonetaryAccount_PaymentAutoAllocate
       description: List all the times a users payment was automatically allocated.
@@ -6639,7 +6639,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/invoice:
     get:
       tags:
-        - - - - invoice
+        -   -   -   - invoice
       summary: ''
       operationId: List_all_Invoice_for_User_MonetaryAccount
       description: Used to view a bunq invoice.
@@ -6684,7 +6684,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/invoice/{itemId}:
     get:
       tags:
-        - - - - invoice
+        -   -   -   - invoice
       summary: ''
       operationId: READ_Invoice_for_User_MonetaryAccount
       description: Used to view a bunq invoice.
@@ -6733,7 +6733,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/mastercard-action/{itemId}:
     get:
       tags:
-        - - - - mastercard-action
+        -   -   -   - mastercard-action
       summary: ''
       operationId: READ_MastercardAction_for_User_MonetaryAccount
       description: MasterCard transaction view.
@@ -6782,7 +6782,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/mastercard-action:
     get:
       tags:
-        - - - - mastercard-action
+        -   -   -   - mastercard-action
       summary: ''
       operationId: List_all_MastercardAction_for_User_MonetaryAccount
       description: MasterCard transaction view.
@@ -6827,7 +6827,7 @@ paths:
   /user/{userID}/monetary-account/{itemId}:
     get:
       tags:
-        - - - - monetary-account
+        -   -   -   - monetary-account
       summary: ''
       operationId: READ_MonetaryAccount_for_User
       description: Get a specific MonetaryAccount.
@@ -6876,7 +6876,7 @@ paths:
   /user/{userID}/monetary-account:
     get:
       tags:
-        - - - - monetary-account
+        -   -   -   - monetary-account
       summary: ''
       operationId: List_all_MonetaryAccount_for_User
       description: Get a collection of all your MonetaryAccounts.
@@ -6921,7 +6921,7 @@ paths:
   /user/{userID}/monetary-account-bank:
     post:
       tags:
-        - - - - monetary-account-bank
+        -   -   -   - monetary-account-bank
       summary: ''
       operationId: CREATE_MonetaryAccountBank_for_User
       description: Create new MonetaryAccountBank.
@@ -6972,7 +6972,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - monetary-account-bank
+        -   -   -   - monetary-account-bank
       summary: ''
       operationId: List_all_MonetaryAccountBank_for_User
       description: Gets a listing of all MonetaryAccountBanks of a given user.
@@ -7019,7 +7019,7 @@ paths:
   /user/{userID}/monetary-account-bank/{itemId}:
     get:
       tags:
-        - - - - monetary-account-bank
+        -   -   -   - monetary-account-bank
       summary: ''
       operationId: READ_MonetaryAccountBank_for_User
       description: Get a specific MonetaryAccountBank.
@@ -7069,7 +7069,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - monetary-account-bank
+        -   -   -   - monetary-account-bank
       summary: ''
       operationId: UPDATE_MonetaryAccountBank_for_User
       description: Update a specific existing MonetaryAccountBank.
@@ -7127,7 +7127,7 @@ paths:
   /user/{userID}/monetary-account-card/{itemId}:
     get:
       tags:
-        - - - - monetary-account-card
+        -   -   -   - monetary-account-card
       summary: ''
       operationId: READ_MonetaryAccountCard_for_User
       description: Get a specific MonetaryAccountCard.
@@ -7169,7 +7169,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - monetary-account-card
+        -   -   -   - monetary-account-card
       summary: ''
       operationId: UPDATE_MonetaryAccountCard_for_User
       description: Update a specific existing MonetaryAccountCard.
@@ -7219,7 +7219,7 @@ paths:
   /user/{userID}/monetary-account-card:
     get:
       tags:
-        - - - - monetary-account-card
+        -   -   -   - monetary-account-card
       summary: ''
       operationId: List_all_MonetaryAccountCard_for_User
       description: Gets a listing of all MonetaryAccountCard of a given user.
@@ -7258,7 +7258,7 @@ paths:
   /user/{userID}/monetary-account-external:
     post:
       tags:
-        - - - - monetary-account-external
+        -   -   -   - monetary-account-external
       summary: ''
       operationId: CREATE_MonetaryAccountExternal_for_User
       description: >-
@@ -7305,7 +7305,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - monetary-account-external
+        -   -   -   - monetary-account-external
       summary: ''
       operationId: List_all_MonetaryAccountExternal_for_User
       description: >-
@@ -7348,7 +7348,7 @@ paths:
   /user/{userID}/monetary-account-external/{itemId}:
     get:
       tags:
-        - - - - monetary-account-external
+        -   -   -   - monetary-account-external
       summary: ''
       operationId: READ_MonetaryAccountExternal_for_User
       description: >-
@@ -7394,7 +7394,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - monetary-account-external
+        -   -   -   - monetary-account-external
       summary: ''
       operationId: UPDATE_MonetaryAccountExternal_for_User
       description: >-
@@ -7448,7 +7448,7 @@ paths:
   /user/{userID}/monetary-account-external-savings:
     post:
       tags:
-        - - - - monetary-account-external-savings
+        -   -   -   - monetary-account-external-savings
       summary: ''
       operationId: CREATE_MonetaryAccountExternalSavings_for_User
       description: >-
@@ -7495,7 +7495,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - monetary-account-external-savings
+        -   -   -   - monetary-account-external-savings
       summary: ''
       operationId: List_all_MonetaryAccountExternalSavings_for_User
       description: >-
@@ -7538,7 +7538,7 @@ paths:
   /user/{userID}/monetary-account-external-savings/{itemId}:
     get:
       tags:
-        - - - - monetary-account-external-savings
+        -   -   -   - monetary-account-external-savings
       summary: ''
       operationId: READ_MonetaryAccountExternalSavings_for_User
       description: >-
@@ -7584,7 +7584,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - monetary-account-external-savings
+        -   -   -   - monetary-account-external-savings
       summary: ''
       operationId: UPDATE_MonetaryAccountExternalSavings_for_User
       description: >-
@@ -7638,7 +7638,7 @@ paths:
   /user/{userID}/monetary-account-joint:
     post:
       tags:
-        - - - - monetary-account-joint
+        -   -   -   - monetary-account-joint
       summary: ''
       operationId: CREATE_MonetaryAccountJoint_for_User
       description: The endpoint for joint monetary accounts.
@@ -7681,7 +7681,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - monetary-account-joint
+        -   -   -   - monetary-account-joint
       summary: ''
       operationId: List_all_MonetaryAccountJoint_for_User
       description: The endpoint for joint monetary accounts.
@@ -7720,7 +7720,7 @@ paths:
   /user/{userID}/monetary-account-joint/{itemId}:
     get:
       tags:
-        - - - - monetary-account-joint
+        -   -   -   - monetary-account-joint
       summary: ''
       operationId: READ_MonetaryAccountJoint_for_User
       description: The endpoint for joint monetary accounts.
@@ -7762,7 +7762,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - monetary-account-joint
+        -   -   -   - monetary-account-joint
       summary: ''
       operationId: UPDATE_MonetaryAccountJoint_for_User
       description: The endpoint for joint monetary accounts.
@@ -7812,7 +7812,7 @@ paths:
   /user/{userID}/monetary-account-savings:
     post:
       tags:
-        - - - - monetary-account-savings
+        -   -   -   - monetary-account-savings
       summary: ''
       operationId: CREATE_MonetaryAccountSavings_for_User
       description: Create new MonetaryAccountSavings.
@@ -7855,7 +7855,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - monetary-account-savings
+        -   -   -   - monetary-account-savings
       summary: ''
       operationId: List_all_MonetaryAccountSavings_for_User
       description: Gets a listing of all MonetaryAccountSavingss of a given user.
@@ -7894,7 +7894,7 @@ paths:
   /user/{userID}/monetary-account-savings/{itemId}:
     get:
       tags:
-        - - - - monetary-account-savings
+        -   -   -   - monetary-account-savings
       summary: ''
       operationId: READ_MonetaryAccountSavings_for_User
       description: Get a specific MonetaryAccountSavings.
@@ -7936,7 +7936,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - monetary-account-savings
+        -   -   -   - monetary-account-savings
       summary: ''
       operationId: UPDATE_MonetaryAccountSavings_for_User
       description: Update a specific existing MonetaryAccountSavings.
@@ -7986,7 +7986,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/adyen-card-transaction/{adyen-card-transactionID}/note-attachment:
     post:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: CREATE_NoteAttachment_for_User_MonetaryAccount_AdyenCardTransaction
       description: Used to manage attachment notes.
@@ -8041,7 +8041,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: List_all_NoteAttachment_for_User_MonetaryAccount_AdyenCardTransaction
       description: Used to manage attachment notes.
@@ -8090,10 +8090,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/adyen-card-transaction/{adyen-card-transactionID}/note-attachment/{itemId}:
-    put:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/adyen-card-transaction/{adyen-card-transactionID}/note-attachment/{itemId}
+  : put:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: UPDATE_NoteAttachment_for_User_MonetaryAccount_AdyenCardTransaction
       description: Used to manage attachment notes.
@@ -8154,7 +8154,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: DELETE_NoteAttachment_for_User_MonetaryAccount_AdyenCardTransaction
       description: Used to manage attachment notes.
@@ -8208,7 +8208,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: READ_NoteAttachment_for_User_MonetaryAccount_AdyenCardTransaction
       description: Used to manage attachment notes.
@@ -8263,7 +8263,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/switch-service-payment/{switch-service-paymentID}/note-attachment:
     post:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: CREATE_NoteAttachment_for_User_MonetaryAccount_SwitchServicePayment
       description: Used to manage attachment notes.
@@ -8320,7 +8320,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: List_all_NoteAttachment_for_User_MonetaryAccount_SwitchServicePayment
       description: Manage the notes for a given user.
@@ -8369,10 +8369,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/switch-service-payment/{switch-service-paymentID}/note-attachment/{itemId}:
-    put:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/switch-service-payment/{switch-service-paymentID}/note-attachment/{itemId}
+  : put:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: UPDATE_NoteAttachment_for_User_MonetaryAccount_SwitchServicePayment
       description: Used to manage attachment notes.
@@ -8435,7 +8435,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: DELETE_NoteAttachment_for_User_MonetaryAccount_SwitchServicePayment
       description: Used to manage attachment notes.
@@ -8490,7 +8490,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: READ_NoteAttachment_for_User_MonetaryAccount_SwitchServicePayment
       description: Used to manage attachment notes.
@@ -8546,7 +8546,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/bunqme-fundraiser-result/{bunqme-fundraiser-resultID}/note-attachment:
     post:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: CREATE_NoteAttachment_for_User_MonetaryAccount_BunqmeFundraiserResult
       description: Used to manage attachment notes.
@@ -8602,7 +8602,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: List_all_NoteAttachment_for_User_MonetaryAccount_BunqmeFundraiserResult
       description: Manage the notes for a given user.
@@ -8651,10 +8651,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/bunqme-fundraiser-result/{bunqme-fundraiser-resultID}/note-attachment/{itemId}:
-    put:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/bunqme-fundraiser-result/{bunqme-fundraiser-resultID}/note-attachment/{itemId}
+  : put:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: UPDATE_NoteAttachment_for_User_MonetaryAccount_BunqmeFundraiserResult
       description: Used to manage attachment notes.
@@ -8716,7 +8716,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: DELETE_NoteAttachment_for_User_MonetaryAccount_BunqmeFundraiserResult
       description: Used to manage attachment notes.
@@ -8771,7 +8771,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: READ_NoteAttachment_for_User_MonetaryAccount_BunqmeFundraiserResult
       description: Used to manage attachment notes.
@@ -8826,7 +8826,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/draft-payment/{draft-paymentID}/note-attachment:
     post:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: CREATE_NoteAttachment_for_User_MonetaryAccount_DraftPayment
       description: Used to manage attachment notes.
@@ -8881,7 +8881,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: List_all_NoteAttachment_for_User_MonetaryAccount_DraftPayment
       description: Manage the notes for a given user.
@@ -8932,7 +8932,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/draft-payment/{draft-paymentID}/note-attachment/{itemId}:
     put:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: UPDATE_NoteAttachment_for_User_MonetaryAccount_DraftPayment
       description: Used to manage attachment notes.
@@ -8993,7 +8993,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: DELETE_NoteAttachment_for_User_MonetaryAccount_DraftPayment
       description: Used to manage attachment notes.
@@ -9047,7 +9047,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: READ_NoteAttachment_for_User_MonetaryAccount_DraftPayment
       description: Used to manage attachment notes.
@@ -9099,10 +9099,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/ideal-merchant-transaction/{ideal-merchant-transactionID}/note-attachment:
-    post:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/ideal-merchant-transaction/{ideal-merchant-transactionID}/note-attachment
+  : post:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: CREATE_NoteAttachment_for_User_MonetaryAccount_IdealMerchantTransaction
       description: Used to manage attachment notes.
@@ -9158,7 +9158,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: >-
         List_all_NoteAttachment_for_User_MonetaryAccount_IdealMerchantTransaction
@@ -9208,10 +9208,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/ideal-merchant-transaction/{ideal-merchant-transactionID}/note-attachment/{itemId}:
-    put:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/ideal-merchant-transaction/{ideal-merchant-transactionID}/note-attachment/{itemId}
+  : put:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: UPDATE_NoteAttachment_for_User_MonetaryAccount_IdealMerchantTransaction
       description: Used to manage attachment notes.
@@ -9273,7 +9273,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: DELETE_NoteAttachment_for_User_MonetaryAccount_IdealMerchantTransaction
       description: Used to manage attachment notes.
@@ -9328,7 +9328,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: READ_NoteAttachment_for_User_MonetaryAccount_IdealMerchantTransaction
       description: Used to manage attachment notes.
@@ -9384,7 +9384,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/mastercard-action/{mastercard-actionID}/note-attachment:
     post:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: CREATE_NoteAttachment_for_User_MonetaryAccount_MastercardAction
       description: Used to manage attachment notes.
@@ -9439,7 +9439,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: List_all_NoteAttachment_for_User_MonetaryAccount_MastercardAction
       description: Manage the notes for a given user.
@@ -9490,7 +9490,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/mastercard-action/{mastercard-actionID}/note-attachment/{itemId}:
     put:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: UPDATE_NoteAttachment_for_User_MonetaryAccount_MastercardAction
       description: Used to manage attachment notes.
@@ -9551,7 +9551,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: DELETE_NoteAttachment_for_User_MonetaryAccount_MastercardAction
       description: Used to manage attachment notes.
@@ -9605,7 +9605,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: READ_NoteAttachment_for_User_MonetaryAccount_MastercardAction
       description: Used to manage attachment notes.
@@ -9660,7 +9660,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/payment-batch/{payment-batchID}/note-attachment:
     post:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: CREATE_NoteAttachment_for_User_MonetaryAccount_PaymentBatch
       description: Used to manage attachment notes.
@@ -9715,7 +9715,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: List_all_NoteAttachment_for_User_MonetaryAccount_PaymentBatch
       description: Manage the notes for a given user.
@@ -9766,7 +9766,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/payment-batch/{payment-batchID}/note-attachment/{itemId}:
     put:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: UPDATE_NoteAttachment_for_User_MonetaryAccount_PaymentBatch
       description: Used to manage attachment notes.
@@ -9827,7 +9827,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: DELETE_NoteAttachment_for_User_MonetaryAccount_PaymentBatch
       description: Used to manage attachment notes.
@@ -9881,7 +9881,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: READ_NoteAttachment_for_User_MonetaryAccount_PaymentBatch
       description: Used to manage attachment notes.
@@ -9936,7 +9936,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/payment/{paymentID}/note-attachment:
     post:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: CREATE_NoteAttachment_for_User_MonetaryAccount_Payment
       description: Used to manage attachment notes.
@@ -9991,7 +9991,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: List_all_NoteAttachment_for_User_MonetaryAccount_Payment
       description: Manage the notes for a given user.
@@ -10042,7 +10042,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/payment/{paymentID}/note-attachment/{itemId}:
     put:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: UPDATE_NoteAttachment_for_User_MonetaryAccount_Payment
       description: Used to manage attachment notes.
@@ -10103,7 +10103,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: DELETE_NoteAttachment_for_User_MonetaryAccount_Payment
       description: Used to manage attachment notes.
@@ -10157,7 +10157,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: READ_NoteAttachment_for_User_MonetaryAccount_Payment
       description: Used to manage attachment notes.
@@ -10212,7 +10212,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/request-inquiry-batch/{request-inquiry-batchID}/note-attachment:
     post:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: CREATE_NoteAttachment_for_User_MonetaryAccount_RequestInquiryBatch
       description: Used to manage attachment notes.
@@ -10267,7 +10267,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: List_all_NoteAttachment_for_User_MonetaryAccount_RequestInquiryBatch
       description: Manage the notes for a given user.
@@ -10316,10 +10316,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/request-inquiry-batch/{request-inquiry-batchID}/note-attachment/{itemId}:
-    put:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/request-inquiry-batch/{request-inquiry-batchID}/note-attachment/{itemId}
+  : put:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: UPDATE_NoteAttachment_for_User_MonetaryAccount_RequestInquiryBatch
       description: Used to manage attachment notes.
@@ -10380,7 +10380,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: DELETE_NoteAttachment_for_User_MonetaryAccount_RequestInquiryBatch
       description: Used to manage attachment notes.
@@ -10434,7 +10434,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: READ_NoteAttachment_for_User_MonetaryAccount_RequestInquiryBatch
       description: Used to manage attachment notes.
@@ -10489,7 +10489,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/request-inquiry/{request-inquiryID}/note-attachment:
     post:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: CREATE_NoteAttachment_for_User_MonetaryAccount_RequestInquiry
       description: Used to manage attachment notes.
@@ -10544,7 +10544,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: List_all_NoteAttachment_for_User_MonetaryAccount_RequestInquiry
       description: Manage the notes for a given user.
@@ -10595,7 +10595,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/request-inquiry/{request-inquiryID}/note-attachment/{itemId}:
     put:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: UPDATE_NoteAttachment_for_User_MonetaryAccount_RequestInquiry
       description: Used to manage attachment notes.
@@ -10656,7 +10656,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: DELETE_NoteAttachment_for_User_MonetaryAccount_RequestInquiry
       description: Used to manage attachment notes.
@@ -10710,7 +10710,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: READ_NoteAttachment_for_User_MonetaryAccount_RequestInquiry
       description: Used to manage attachment notes.
@@ -10765,7 +10765,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/request-response/{request-responseID}/note-attachment:
     post:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: CREATE_NoteAttachment_for_User_MonetaryAccount_RequestResponse
       description: Used to manage attachment notes.
@@ -10820,7 +10820,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: List_all_NoteAttachment_for_User_MonetaryAccount_RequestResponse
       description: Manage the notes for a given user.
@@ -10871,7 +10871,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/request-response/{request-responseID}/note-attachment/{itemId}:
     put:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: UPDATE_NoteAttachment_for_User_MonetaryAccount_RequestResponse
       description: Used to manage attachment notes.
@@ -10932,7 +10932,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: DELETE_NoteAttachment_for_User_MonetaryAccount_RequestResponse
       description: Used to manage attachment notes.
@@ -10986,7 +10986,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: READ_NoteAttachment_for_User_MonetaryAccount_RequestResponse
       description: Used to manage attachment notes.
@@ -11038,10 +11038,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/schedule/{scheduleID}/schedule-instance/{schedule-instanceID}/note-attachment:
-    post:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/schedule/{scheduleID}/schedule-instance/{schedule-instanceID}/note-attachment
+  : post:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: CREATE_NoteAttachment_for_User_MonetaryAccount_Schedule_ScheduleInstance
       description: Used to manage attachment notes.
@@ -11102,7 +11102,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: >-
         List_all_NoteAttachment_for_User_MonetaryAccount_Schedule_ScheduleInstance
@@ -11157,10 +11157,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/schedule/{scheduleID}/schedule-instance/{schedule-instanceID}/note-attachment/{itemId}:
-    put:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/schedule/{scheduleID}/schedule-instance/{schedule-instanceID}/note-attachment/{itemId}
+  : put:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: UPDATE_NoteAttachment_for_User_MonetaryAccount_Schedule_ScheduleInstance
       description: Used to manage attachment notes.
@@ -11227,7 +11227,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: DELETE_NoteAttachment_for_User_MonetaryAccount_Schedule_ScheduleInstance
       description: Used to manage attachment notes.
@@ -11287,7 +11287,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: READ_NoteAttachment_for_User_MonetaryAccount_Schedule_ScheduleInstance
       description: Used to manage attachment notes.
@@ -11348,7 +11348,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/schedule-payment-batch/{schedule-payment-batchID}/note-attachment:
     post:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: CREATE_NoteAttachment_for_User_MonetaryAccount_SchedulePaymentBatch
       description: Used to manage attachment notes.
@@ -11403,7 +11403,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: List_all_NoteAttachment_for_User_MonetaryAccount_SchedulePaymentBatch
       description: Manage the notes for a given user.
@@ -11452,10 +11452,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/schedule-payment-batch/{schedule-payment-batchID}/note-attachment/{itemId}:
-    put:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/schedule-payment-batch/{schedule-payment-batchID}/note-attachment/{itemId}
+  : put:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: UPDATE_NoteAttachment_for_User_MonetaryAccount_SchedulePaymentBatch
       description: Used to manage attachment notes.
@@ -11516,7 +11516,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: DELETE_NoteAttachment_for_User_MonetaryAccount_SchedulePaymentBatch
       description: Used to manage attachment notes.
@@ -11570,7 +11570,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: READ_NoteAttachment_for_User_MonetaryAccount_SchedulePaymentBatch
       description: Used to manage attachment notes.
@@ -11625,7 +11625,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/schedule-payment/{schedule-paymentID}/note-attachment:
     post:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: CREATE_NoteAttachment_for_User_MonetaryAccount_SchedulePayment
       description: Used to manage attachment notes.
@@ -11680,7 +11680,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: List_all_NoteAttachment_for_User_MonetaryAccount_SchedulePayment
       description: Manage the notes for a given user.
@@ -11731,7 +11731,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/schedule-payment/{schedule-paymentID}/note-attachment/{itemId}:
     put:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: UPDATE_NoteAttachment_for_User_MonetaryAccount_SchedulePayment
       description: Used to manage attachment notes.
@@ -11792,7 +11792,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: DELETE_NoteAttachment_for_User_MonetaryAccount_SchedulePayment
       description: Used to manage attachment notes.
@@ -11846,7 +11846,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: READ_NoteAttachment_for_User_MonetaryAccount_SchedulePayment
       description: Used to manage attachment notes.
@@ -11898,10 +11898,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/sofort-merchant-transaction/{sofort-merchant-transactionID}/note-attachment:
-    post:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/sofort-merchant-transaction/{sofort-merchant-transactionID}/note-attachment
+  : post:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: CREATE_NoteAttachment_for_User_MonetaryAccount_SofortMerchantTransaction
       description: Used to manage attachment notes.
@@ -11957,7 +11957,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: >-
         List_all_NoteAttachment_for_User_MonetaryAccount_SofortMerchantTransaction
@@ -12007,10 +12007,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/sofort-merchant-transaction/{sofort-merchant-transactionID}/note-attachment/{itemId}:
-    put:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/sofort-merchant-transaction/{sofort-merchant-transactionID}/note-attachment/{itemId}
+  : put:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: UPDATE_NoteAttachment_for_User_MonetaryAccount_SofortMerchantTransaction
       description: Used to manage attachment notes.
@@ -12072,7 +12072,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: DELETE_NoteAttachment_for_User_MonetaryAccount_SofortMerchantTransaction
       description: Used to manage attachment notes.
@@ -12127,7 +12127,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: READ_NoteAttachment_for_User_MonetaryAccount_SofortMerchantTransaction
       description: Used to manage attachment notes.
@@ -12180,10 +12180,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/whitelist/{whitelistID}/whitelist-result/{whitelist-resultID}/note-attachment:
-    post:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/whitelist/{whitelistID}/whitelist-result/{whitelist-resultID}/note-attachment
+  : post:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: CREATE_NoteAttachment_for_User_MonetaryAccount_Whitelist_WhitelistResult
       description: Used to manage attachment notes.
@@ -12244,7 +12244,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: >-
         List_all_NoteAttachment_for_User_MonetaryAccount_Whitelist_WhitelistResult
@@ -12299,10 +12299,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/whitelist/{whitelistID}/whitelist-result/{whitelist-resultID}/note-attachment/{itemId}:
-    put:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/whitelist/{whitelistID}/whitelist-result/{whitelist-resultID}/note-attachment/{itemId}
+  : put:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: UPDATE_NoteAttachment_for_User_MonetaryAccount_Whitelist_WhitelistResult
       description: Used to manage attachment notes.
@@ -12369,7 +12369,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: DELETE_NoteAttachment_for_User_MonetaryAccount_Whitelist_WhitelistResult
       description: Used to manage attachment notes.
@@ -12429,7 +12429,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-attachment
+        -   -   -   - note-attachment
       summary: ''
       operationId: READ_NoteAttachment_for_User_MonetaryAccount_Whitelist_WhitelistResult
       description: Used to manage attachment notes.
@@ -12490,7 +12490,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/adyen-card-transaction/{adyen-card-transactionID}/note-text:
     post:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: CREATE_NoteText_for_User_MonetaryAccount_AdyenCardTransaction
       description: Used to manage text notes.
@@ -12545,7 +12545,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: List_all_NoteText_for_User_MonetaryAccount_AdyenCardTransaction
       description: Used to manage text notes.
@@ -12596,7 +12596,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/adyen-card-transaction/{adyen-card-transactionID}/note-text/{itemId}:
     put:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: UPDATE_NoteText_for_User_MonetaryAccount_AdyenCardTransaction
       description: Used to manage text notes.
@@ -12657,7 +12657,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: DELETE_NoteText_for_User_MonetaryAccount_AdyenCardTransaction
       description: Used to manage text notes.
@@ -12711,7 +12711,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: READ_NoteText_for_User_MonetaryAccount_AdyenCardTransaction
       description: Used to manage text notes.
@@ -12766,7 +12766,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/switch-service-payment/{switch-service-paymentID}/note-text:
     post:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: CREATE_NoteText_for_User_MonetaryAccount_SwitchServicePayment
       description: Used to manage text notes.
@@ -12823,7 +12823,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: List_all_NoteText_for_User_MonetaryAccount_SwitchServicePayment
       description: Manage the notes for a given user.
@@ -12875,7 +12875,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/switch-service-payment/{switch-service-paymentID}/note-text/{itemId}:
     put:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: UPDATE_NoteText_for_User_MonetaryAccount_SwitchServicePayment
       description: Used to manage text notes.
@@ -12938,7 +12938,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: DELETE_NoteText_for_User_MonetaryAccount_SwitchServicePayment
       description: Used to manage text notes.
@@ -12993,7 +12993,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: READ_NoteText_for_User_MonetaryAccount_SwitchServicePayment
       description: Used to manage text notes.
@@ -13049,7 +13049,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/bunqme-fundraiser-result/{bunqme-fundraiser-resultID}/note-text:
     post:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: CREATE_NoteText_for_User_MonetaryAccount_BunqmeFundraiserResult
       description: Used to manage text notes.
@@ -13104,7 +13104,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: List_all_NoteText_for_User_MonetaryAccount_BunqmeFundraiserResult
       description: Manage the notes for a given user.
@@ -13152,10 +13152,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/bunqme-fundraiser-result/{bunqme-fundraiser-resultID}/note-text/{itemId}:
-    put:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/bunqme-fundraiser-result/{bunqme-fundraiser-resultID}/note-text/{itemId}
+  : put:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: UPDATE_NoteText_for_User_MonetaryAccount_BunqmeFundraiserResult
       description: Used to manage text notes.
@@ -13216,7 +13216,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: DELETE_NoteText_for_User_MonetaryAccount_BunqmeFundraiserResult
       description: Used to manage text notes.
@@ -13270,7 +13270,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: READ_NoteText_for_User_MonetaryAccount_BunqmeFundraiserResult
       description: Used to manage text notes.
@@ -13325,7 +13325,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/draft-payment/{draft-paymentID}/note-text:
     post:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: CREATE_NoteText_for_User_MonetaryAccount_DraftPayment
       description: Used to manage text notes.
@@ -13380,7 +13380,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: List_all_NoteText_for_User_MonetaryAccount_DraftPayment
       description: Manage the notes for a given user.
@@ -13431,7 +13431,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/draft-payment/{draft-paymentID}/note-text/{itemId}:
     put:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: UPDATE_NoteText_for_User_MonetaryAccount_DraftPayment
       description: Used to manage text notes.
@@ -13492,7 +13492,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: DELETE_NoteText_for_User_MonetaryAccount_DraftPayment
       description: Used to manage text notes.
@@ -13546,7 +13546,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: READ_NoteText_for_User_MonetaryAccount_DraftPayment
       description: Used to manage text notes.
@@ -13601,7 +13601,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/ideal-merchant-transaction/{ideal-merchant-transactionID}/note-text:
     post:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: CREATE_NoteText_for_User_MonetaryAccount_IdealMerchantTransaction
       description: Used to manage text notes.
@@ -13656,7 +13656,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: List_all_NoteText_for_User_MonetaryAccount_IdealMerchantTransaction
       description: Manage the notes for a given user.
@@ -13704,10 +13704,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/ideal-merchant-transaction/{ideal-merchant-transactionID}/note-text/{itemId}:
-    put:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/ideal-merchant-transaction/{ideal-merchant-transactionID}/note-text/{itemId}
+  : put:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: UPDATE_NoteText_for_User_MonetaryAccount_IdealMerchantTransaction
       description: Used to manage text notes.
@@ -13768,7 +13768,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: DELETE_NoteText_for_User_MonetaryAccount_IdealMerchantTransaction
       description: Used to manage text notes.
@@ -13822,7 +13822,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: READ_NoteText_for_User_MonetaryAccount_IdealMerchantTransaction
       description: Used to manage text notes.
@@ -13877,7 +13877,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/mastercard-action/{mastercard-actionID}/note-text:
     post:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: CREATE_NoteText_for_User_MonetaryAccount_MastercardAction
       description: Used to manage text notes.
@@ -13932,7 +13932,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: List_all_NoteText_for_User_MonetaryAccount_MastercardAction
       description: Manage the notes for a given user.
@@ -13983,7 +13983,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/mastercard-action/{mastercard-actionID}/note-text/{itemId}:
     put:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: UPDATE_NoteText_for_User_MonetaryAccount_MastercardAction
       description: Used to manage text notes.
@@ -14044,7 +14044,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: DELETE_NoteText_for_User_MonetaryAccount_MastercardAction
       description: Used to manage text notes.
@@ -14098,7 +14098,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: READ_NoteText_for_User_MonetaryAccount_MastercardAction
       description: Used to manage text notes.
@@ -14153,7 +14153,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/payment-batch/{payment-batchID}/note-text:
     post:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: CREATE_NoteText_for_User_MonetaryAccount_PaymentBatch
       description: Used to manage text notes.
@@ -14208,7 +14208,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: List_all_NoteText_for_User_MonetaryAccount_PaymentBatch
       description: Manage the notes for a given user.
@@ -14259,7 +14259,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/payment-batch/{payment-batchID}/note-text/{itemId}:
     put:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: UPDATE_NoteText_for_User_MonetaryAccount_PaymentBatch
       description: Used to manage text notes.
@@ -14320,7 +14320,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: DELETE_NoteText_for_User_MonetaryAccount_PaymentBatch
       description: Used to manage text notes.
@@ -14374,7 +14374,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: READ_NoteText_for_User_MonetaryAccount_PaymentBatch
       description: Used to manage text notes.
@@ -14429,7 +14429,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/payment/{paymentID}/note-text:
     post:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: CREATE_NoteText_for_User_MonetaryAccount_Payment
       description: Used to manage text notes.
@@ -14484,7 +14484,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: List_all_NoteText_for_User_MonetaryAccount_Payment
       description: Manage the notes for a given user.
@@ -14535,7 +14535,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/payment/{paymentID}/note-text/{itemId}:
     put:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: UPDATE_NoteText_for_User_MonetaryAccount_Payment
       description: Used to manage text notes.
@@ -14596,7 +14596,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: DELETE_NoteText_for_User_MonetaryAccount_Payment
       description: Used to manage text notes.
@@ -14650,7 +14650,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: READ_NoteText_for_User_MonetaryAccount_Payment
       description: Used to manage text notes.
@@ -14705,7 +14705,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/request-inquiry-batch/{request-inquiry-batchID}/note-text:
     post:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: CREATE_NoteText_for_User_MonetaryAccount_RequestInquiryBatch
       description: Used to manage text notes.
@@ -14760,7 +14760,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: List_all_NoteText_for_User_MonetaryAccount_RequestInquiryBatch
       description: Manage the notes for a given user.
@@ -14811,7 +14811,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/request-inquiry-batch/{request-inquiry-batchID}/note-text/{itemId}:
     put:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: UPDATE_NoteText_for_User_MonetaryAccount_RequestInquiryBatch
       description: Used to manage text notes.
@@ -14872,7 +14872,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: DELETE_NoteText_for_User_MonetaryAccount_RequestInquiryBatch
       description: Used to manage text notes.
@@ -14926,7 +14926,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: READ_NoteText_for_User_MonetaryAccount_RequestInquiryBatch
       description: Used to manage text notes.
@@ -14981,7 +14981,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/request-inquiry/{request-inquiryID}/note-text:
     post:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: CREATE_NoteText_for_User_MonetaryAccount_RequestInquiry
       description: Used to manage text notes.
@@ -15036,7 +15036,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: List_all_NoteText_for_User_MonetaryAccount_RequestInquiry
       description: Manage the notes for a given user.
@@ -15087,7 +15087,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/request-inquiry/{request-inquiryID}/note-text/{itemId}:
     put:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: UPDATE_NoteText_for_User_MonetaryAccount_RequestInquiry
       description: Used to manage text notes.
@@ -15148,7 +15148,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: DELETE_NoteText_for_User_MonetaryAccount_RequestInquiry
       description: Used to manage text notes.
@@ -15202,7 +15202,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: READ_NoteText_for_User_MonetaryAccount_RequestInquiry
       description: Used to manage text notes.
@@ -15257,7 +15257,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/request-response/{request-responseID}/note-text:
     post:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: CREATE_NoteText_for_User_MonetaryAccount_RequestResponse
       description: Used to manage text notes.
@@ -15312,7 +15312,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: List_all_NoteText_for_User_MonetaryAccount_RequestResponse
       description: Manage the notes for a given user.
@@ -15363,7 +15363,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/request-response/{request-responseID}/note-text/{itemId}:
     put:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: UPDATE_NoteText_for_User_MonetaryAccount_RequestResponse
       description: Used to manage text notes.
@@ -15424,7 +15424,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: DELETE_NoteText_for_User_MonetaryAccount_RequestResponse
       description: Used to manage text notes.
@@ -15478,7 +15478,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: READ_NoteText_for_User_MonetaryAccount_RequestResponse
       description: Used to manage text notes.
@@ -15530,10 +15530,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/schedule/{scheduleID}/schedule-instance/{schedule-instanceID}/note-text:
-    post:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/schedule/{scheduleID}/schedule-instance/{schedule-instanceID}/note-text
+  : post:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: CREATE_NoteText_for_User_MonetaryAccount_Schedule_ScheduleInstance
       description: Used to manage text notes.
@@ -15594,7 +15594,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: List_all_NoteText_for_User_MonetaryAccount_Schedule_ScheduleInstance
       description: Manage the notes for a given user.
@@ -15648,10 +15648,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/schedule/{scheduleID}/schedule-instance/{schedule-instanceID}/note-text/{itemId}:
-    put:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/schedule/{scheduleID}/schedule-instance/{schedule-instanceID}/note-text/{itemId}
+  : put:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: UPDATE_NoteText_for_User_MonetaryAccount_Schedule_ScheduleInstance
       description: Used to manage text notes.
@@ -15718,7 +15718,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: DELETE_NoteText_for_User_MonetaryAccount_Schedule_ScheduleInstance
       description: Used to manage text notes.
@@ -15778,7 +15778,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: READ_NoteText_for_User_MonetaryAccount_Schedule_ScheduleInstance
       description: Used to manage text notes.
@@ -15839,7 +15839,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/schedule-payment-batch/{schedule-payment-batchID}/note-text:
     post:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: CREATE_NoteText_for_User_MonetaryAccount_SchedulePaymentBatch
       description: Used to manage text notes.
@@ -15894,7 +15894,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: List_all_NoteText_for_User_MonetaryAccount_SchedulePaymentBatch
       description: Manage the notes for a given user.
@@ -15945,7 +15945,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/schedule-payment-batch/{schedule-payment-batchID}/note-text/{itemId}:
     put:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: UPDATE_NoteText_for_User_MonetaryAccount_SchedulePaymentBatch
       description: Used to manage text notes.
@@ -16006,7 +16006,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: DELETE_NoteText_for_User_MonetaryAccount_SchedulePaymentBatch
       description: Used to manage text notes.
@@ -16060,7 +16060,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: READ_NoteText_for_User_MonetaryAccount_SchedulePaymentBatch
       description: Used to manage text notes.
@@ -16115,7 +16115,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/schedule-payment/{schedule-paymentID}/note-text:
     post:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: CREATE_NoteText_for_User_MonetaryAccount_SchedulePayment
       description: Used to manage text notes.
@@ -16170,7 +16170,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: List_all_NoteText_for_User_MonetaryAccount_SchedulePayment
       description: Manage the notes for a given user.
@@ -16221,7 +16221,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/schedule-payment/{schedule-paymentID}/note-text/{itemId}:
     put:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: UPDATE_NoteText_for_User_MonetaryAccount_SchedulePayment
       description: Used to manage text notes.
@@ -16282,7 +16282,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: DELETE_NoteText_for_User_MonetaryAccount_SchedulePayment
       description: Used to manage text notes.
@@ -16336,7 +16336,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: READ_NoteText_for_User_MonetaryAccount_SchedulePayment
       description: Used to manage text notes.
@@ -16391,7 +16391,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/sofort-merchant-transaction/{sofort-merchant-transactionID}/note-text:
     post:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: CREATE_NoteText_for_User_MonetaryAccount_SofortMerchantTransaction
       description: Used to manage text notes.
@@ -16446,7 +16446,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: List_all_NoteText_for_User_MonetaryAccount_SofortMerchantTransaction
       description: Manage the notes for a given user.
@@ -16495,10 +16495,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/sofort-merchant-transaction/{sofort-merchant-transactionID}/note-text/{itemId}:
-    put:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/sofort-merchant-transaction/{sofort-merchant-transactionID}/note-text/{itemId}
+  : put:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: UPDATE_NoteText_for_User_MonetaryAccount_SofortMerchantTransaction
       description: Used to manage text notes.
@@ -16559,7 +16559,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: DELETE_NoteText_for_User_MonetaryAccount_SofortMerchantTransaction
       description: Used to manage text notes.
@@ -16613,7 +16613,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: READ_NoteText_for_User_MonetaryAccount_SofortMerchantTransaction
       description: Used to manage text notes.
@@ -16665,10 +16665,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/whitelist/{whitelistID}/whitelist-result/{whitelist-resultID}/note-text:
-    post:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/whitelist/{whitelistID}/whitelist-result/{whitelist-resultID}/note-text
+  : post:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: CREATE_NoteText_for_User_MonetaryAccount_Whitelist_WhitelistResult
       description: Used to manage text notes.
@@ -16729,7 +16729,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: List_all_NoteText_for_User_MonetaryAccount_Whitelist_WhitelistResult
       description: Manage the notes for a given user.
@@ -16783,10 +16783,10 @@ paths:
               $ref: '#/components/headers/X-Bunq-Server-Signature'
         '400':
           $ref: '#/components/responses/GenericError'
-  /user/{userID}/monetary-account/{monetary-accountID}/whitelist/{whitelistID}/whitelist-result/{whitelist-resultID}/note-text/{itemId}:
-    put:
+  ? /user/{userID}/monetary-account/{monetary-accountID}/whitelist/{whitelistID}/whitelist-result/{whitelist-resultID}/note-text/{itemId}
+  : put:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: UPDATE_NoteText_for_User_MonetaryAccount_Whitelist_WhitelistResult
       description: Used to manage text notes.
@@ -16853,7 +16853,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: DELETE_NoteText_for_User_MonetaryAccount_Whitelist_WhitelistResult
       description: Used to manage text notes.
@@ -16913,7 +16913,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - note-text
+        -   -   -   - note-text
       summary: ''
       operationId: READ_NoteText_for_User_MonetaryAccount_Whitelist_WhitelistResult
       description: Used to manage text notes.
@@ -16974,7 +16974,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/notification-filter-url:
     post:
       tags:
-        - - - - notification-filter-url
+        -   -   -   - notification-filter-url
       summary: ''
       operationId: CREATE_NotificationFilterUrl_for_User_MonetaryAccount
       description: Manage the url notification filters for a user.
@@ -17024,7 +17024,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - notification-filter-url
+        -   -   -   - notification-filter-url
       summary: ''
       operationId: List_all_NotificationFilterUrl_for_User_MonetaryAccount
       description: Manage the url notification filters for a user.
@@ -17070,7 +17070,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/payment:
     post:
       tags:
-        - - - - payment
+        -   -   -   - payment
       summary: ''
       operationId: CREATE_Payment_for_User_MonetaryAccount
       description: Create a new Payment.
@@ -17125,7 +17125,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - payment
+        -   -   -   - payment
       summary: ''
       operationId: List_all_Payment_for_User_MonetaryAccount
       description: >-
@@ -17178,7 +17178,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/payment/{itemId}:
     get:
       tags:
-        - - - - payment
+        -   -   -   - payment
       summary: ''
       operationId: READ_Payment_for_User_MonetaryAccount
       description: Get a specific previous Payment.
@@ -17233,7 +17233,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/mastercard-action/{mastercard-actionID}/payment:
     get:
       tags:
-        - - - - payment
+        -   -   -   - payment
       summary: ''
       operationId: List_all_Payment_for_User_MonetaryAccount_MastercardAction
       description: MasterCard transaction view.
@@ -17284,7 +17284,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/payment-auto-allocate:
     post:
       tags:
-        - - - - payment-auto-allocate
+        -   -   -   - payment-auto-allocate
       summary: ''
       operationId: CREATE_PaymentAutoAllocate_for_User_MonetaryAccount
       description: Manage a users automatic payment auto allocated settings.
@@ -17333,7 +17333,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - payment-auto-allocate
+        -   -   -   - payment-auto-allocate
       summary: ''
       operationId: List_all_PaymentAutoAllocate_for_User_MonetaryAccount
       description: Manage a users automatic payment auto allocated settings.
@@ -17378,7 +17378,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/payment-auto-allocate/{itemId}:
     get:
       tags:
-        - - - - payment-auto-allocate
+        -   -   -   - payment-auto-allocate
       summary: ''
       operationId: READ_PaymentAutoAllocate_for_User_MonetaryAccount
       description: Manage a users automatic payment auto allocated settings.
@@ -17426,7 +17426,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - payment-auto-allocate
+        -   -   -   - payment-auto-allocate
       summary: ''
       operationId: UPDATE_PaymentAutoAllocate_for_User_MonetaryAccount
       description: Manage a users automatic payment auto allocated settings.
@@ -17481,7 +17481,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - payment-auto-allocate
+        -   -   -   - payment-auto-allocate
       summary: ''
       operationId: DELETE_PaymentAutoAllocate_for_User_MonetaryAccount
       description: Manage a users automatic payment auto allocated settings.
@@ -17530,7 +17530,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/payment-batch:
     post:
       tags:
-        - - - - payment-batch
+        -   -   -   - payment-batch
       summary: ''
       operationId: CREATE_PaymentBatch_for_User_MonetaryAccount
       description: >-
@@ -17583,7 +17583,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - payment-batch
+        -   -   -   - payment-batch
       summary: ''
       operationId: List_all_PaymentBatch_for_User_MonetaryAccount
       description: Return all the payment batches for a monetary account.
@@ -17630,7 +17630,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/payment-batch/{itemId}:
     put:
       tags:
-        - - - - payment-batch
+        -   -   -   - payment-batch
       summary: ''
       operationId: UPDATE_PaymentBatch_for_User_MonetaryAccount
       description: >-
@@ -17689,7 +17689,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - payment-batch
+        -   -   -   - payment-batch
       summary: ''
       operationId: READ_PaymentBatch_for_User_MonetaryAccount
       description: Return the details of a specific payment batch.
@@ -17740,7 +17740,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/request-inquiry:
     post:
       tags:
-        - - - - request-inquiry
+        -   -   -   - request-inquiry
       summary: ''
       operationId: CREATE_RequestInquiry_for_User_MonetaryAccount
       description: Create a new payment request.
@@ -17796,7 +17796,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - request-inquiry
+        -   -   -   - request-inquiry
       summary: ''
       operationId: List_all_RequestInquiry_for_User_MonetaryAccount
       description: >-
@@ -17850,7 +17850,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/request-inquiry/{itemId}:
     put:
       tags:
-        - - - - request-inquiry
+        -   -   -   - request-inquiry
       summary: ''
       operationId: UPDATE_RequestInquiry_for_User_MonetaryAccount
       description: Revoke a request for payment, by updating the status to REVOKED.
@@ -17912,7 +17912,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - request-inquiry
+        -   -   -   - request-inquiry
       summary: ''
       operationId: READ_RequestInquiry_for_User_MonetaryAccount
       description: >-
@@ -17970,7 +17970,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/request-inquiry-batch:
     post:
       tags:
-        - - - - request-inquiry-batch
+        -   -   -   - request-inquiry-batch
       summary: ''
       operationId: CREATE_RequestInquiryBatch_for_User_MonetaryAccount
       description: >-
@@ -18023,7 +18023,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - request-inquiry-batch
+        -   -   -   - request-inquiry-batch
       summary: ''
       operationId: List_all_RequestInquiryBatch_for_User_MonetaryAccount
       description: Return all the request batches for a monetary account.
@@ -18070,7 +18070,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/request-inquiry-batch/{itemId}:
     put:
       tags:
-        - - - - request-inquiry-batch
+        -   -   -   - request-inquiry-batch
       summary: ''
       operationId: UPDATE_RequestInquiryBatch_for_User_MonetaryAccount
       description: >-
@@ -18129,7 +18129,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - request-inquiry-batch
+        -   -   -   - request-inquiry-batch
       summary: ''
       operationId: READ_RequestInquiryBatch_for_User_MonetaryAccount
       description: Return the details of a specific request batch.
@@ -18180,7 +18180,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/request-response/{itemId}:
     put:
       tags:
-        - - - - request-response
+        -   -   -   - request-response
       summary: ''
       operationId: UPDATE_RequestResponse_for_User_MonetaryAccount
       description: Update the status to accept or reject the RequestResponse.
@@ -18241,7 +18241,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - request-response
+        -   -   -   - request-response
       summary: ''
       operationId: READ_RequestResponse_for_User_MonetaryAccount
       description: Get the details for a specific existing RequestResponse.
@@ -18296,7 +18296,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/request-response:
     get:
       tags:
-        - - - - request-response
+        -   -   -   - request-response
       summary: ''
       operationId: List_all_RequestResponse_for_User_MonetaryAccount
       description: Get all RequestResponses for a MonetaryAccount.
@@ -18347,7 +18347,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/schedule/{itemId}:
     get:
       tags:
-        - - - - schedule
+        -   -   -   - schedule
       summary: ''
       operationId: READ_Schedule_for_User_MonetaryAccount
       description: Get a specific schedule definition for a given monetary account.
@@ -18396,7 +18396,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/schedule:
     get:
       tags:
-        - - - - schedule
+        -   -   -   - schedule
       summary: ''
       operationId: List_all_Schedule_for_User_MonetaryAccount
       description: >-
@@ -18446,7 +18446,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/schedule/{scheduleID}/schedule-instance/{itemId}:
     get:
       tags:
-        - - - - schedule-instance
+        -   -   -   - schedule-instance
       summary: ''
       operationId: READ_ScheduleInstance_for_User_MonetaryAccount_Schedule
       description: view for reading, updating and listing the scheduled instance.
@@ -18500,7 +18500,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - schedule-instance
+        -   -   -   - schedule-instance
       summary: ''
       operationId: UPDATE_ScheduleInstance_for_User_MonetaryAccount_Schedule
       description: view for reading, updating and listing the scheduled instance.
@@ -18562,7 +18562,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/schedule/{scheduleID}/schedule-instance:
     get:
       tags:
-        - - - - schedule-instance
+        -   -   -   - schedule-instance
       summary: ''
       operationId: List_all_ScheduleInstance_for_User_MonetaryAccount_Schedule
       description: view for reading, updating and listing the scheduled instance.
@@ -18613,7 +18613,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/schedule-payment:
     post:
       tags:
-        - - - - schedule-payment
+        -   -   -   - schedule-payment
       summary: ''
       operationId: CREATE_SchedulePayment_for_User_MonetaryAccount
       description: Endpoint for schedule payments.
@@ -18662,7 +18662,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - schedule-payment
+        -   -   -   - schedule-payment
       summary: ''
       operationId: List_all_SchedulePayment_for_User_MonetaryAccount
       description: Endpoint for schedule payments.
@@ -18707,7 +18707,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/schedule-payment/{itemId}:
     delete:
       tags:
-        - - - - schedule-payment
+        -   -   -   - schedule-payment
       summary: ''
       operationId: DELETE_SchedulePayment_for_User_MonetaryAccount
       description: Endpoint for schedule payments.
@@ -18755,7 +18755,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - schedule-payment
+        -   -   -   - schedule-payment
       summary: ''
       operationId: READ_SchedulePayment_for_User_MonetaryAccount
       description: Endpoint for schedule payments.
@@ -18803,7 +18803,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - schedule-payment
+        -   -   -   - schedule-payment
       summary: ''
       operationId: UPDATE_SchedulePayment_for_User_MonetaryAccount
       description: Endpoint for schedule payments.
@@ -18859,7 +18859,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/schedule-payment-batch/{itemId}:
     get:
       tags:
-        - - - - schedule-payment-batch
+        -   -   -   - schedule-payment-batch
       summary: ''
       operationId: READ_SchedulePaymentBatch_for_User_MonetaryAccount
       description: Endpoint for schedule payment batches.
@@ -18907,7 +18907,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - schedule-payment-batch
+        -   -   -   - schedule-payment-batch
       summary: ''
       operationId: UPDATE_SchedulePaymentBatch_for_User_MonetaryAccount
       description: Endpoint for schedule payment batches.
@@ -18962,7 +18962,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     delete:
       tags:
-        - - - - schedule-payment-batch
+        -   -   -   - schedule-payment-batch
       summary: ''
       operationId: DELETE_SchedulePaymentBatch_for_User_MonetaryAccount
       description: Endpoint for schedule payment batches.
@@ -19011,7 +19011,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/schedule-payment-batch:
     post:
       tags:
-        - - - - schedule-payment-batch
+        -   -   -   - schedule-payment-batch
       summary: ''
       operationId: CREATE_SchedulePaymentBatch_for_User_MonetaryAccount
       description: Endpoint for schedule payment batches.
@@ -19061,7 +19061,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/share-invite-monetary-account-inquiry:
     post:
       tags:
-        - - - - share-invite-monetary-account-inquiry
+        -   -   -   - share-invite-monetary-account-inquiry
       summary: ''
       operationId: CREATE_ShareInviteMonetaryAccountInquiry_for_User_MonetaryAccount
       description: >-
@@ -19118,7 +19118,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - share-invite-monetary-account-inquiry
+        -   -   -   - share-invite-monetary-account-inquiry
       summary: ''
       operationId: List_all_ShareInviteMonetaryAccountInquiry_for_User_MonetaryAccount
       description: >-
@@ -19173,7 +19173,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/share-invite-monetary-account-inquiry/{itemId}:
     get:
       tags:
-        - - - - share-invite-monetary-account-inquiry
+        -   -   -   - share-invite-monetary-account-inquiry
       summary: ''
       operationId: READ_ShareInviteMonetaryAccountInquiry_for_User_MonetaryAccount
       description: >-
@@ -19228,7 +19228,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - share-invite-monetary-account-inquiry
+        -   -   -   - share-invite-monetary-account-inquiry
       summary: ''
       operationId: UPDATE_ShareInviteMonetaryAccountInquiry_for_User_MonetaryAccount
       description: >-
@@ -19292,7 +19292,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/sofort-merchant-transaction/{itemId}:
     get:
       tags:
-        - - - - sofort-merchant-transaction
+        -   -   -   - sofort-merchant-transaction
       summary: ''
       operationId: READ_SofortMerchantTransaction_for_User_MonetaryAccount
       description: View for requesting Sofort transactions and polling their status.
@@ -19341,7 +19341,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/sofort-merchant-transaction:
     get:
       tags:
-        - - - - sofort-merchant-transaction
+        -   -   -   - sofort-merchant-transaction
       summary: ''
       operationId: List_all_SofortMerchantTransaction_for_User_MonetaryAccount
       description: View for requesting Sofort transactions and polling their status.
@@ -19386,7 +19386,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/event/{eventID}/statement:
     post:
       tags:
-        - - - - statement
+        -   -   -   - statement
       summary: ''
       operationId: CREATE_Statement_for_User_MonetaryAccount_Event
       description: Used to create a statement export of a single payment.
@@ -19442,7 +19442,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/event/{eventID}/statement/{itemId}:
     get:
       tags:
-        - - - - statement
+        -   -   -   - statement
       summary: ''
       operationId: READ_Statement_for_User_MonetaryAccount_Event
       description: Used to create a statement export of a single payment.
@@ -19497,7 +19497,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/switch-service-payment/{itemId}:
     get:
       tags:
-        - - - - switch-service-payment
+        -   -   -   - switch-service-payment
       summary: ''
       operationId: READ_SwitchServicePayment_for_User_MonetaryAccount
       description: >-
@@ -19551,7 +19551,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/whitelist-sdd/{itemId}:
     get:
       tags:
-        - - - - whitelist-sdd
+        -   -   -   - whitelist-sdd
       summary: ''
       operationId: READ_WhitelistSdd_for_User_MonetaryAccount
       description: Get a specific SDD whitelist entry.
@@ -19602,7 +19602,7 @@ paths:
   /user/{userID}/monetary-account/{monetary-accountID}/whitelist-sdd:
     get:
       tags:
-        - - - - whitelist-sdd
+        -   -   -   - whitelist-sdd
       summary: ''
       operationId: List_all_WhitelistSdd_for_User_MonetaryAccount
       description: >-

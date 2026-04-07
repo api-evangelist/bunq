@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/monetary-account-card'
+  title: 'Bunq user/{userID}/monetary-account-card'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -109,7 +109,7 @@ paths:
   /user/{userID}/monetary-account-card/{itemId}:
     get:
       tags:
-        - - - - monetary-account-card
+        -   -   -   - monetary-account-card
       summary: ''
       operationId: READ_MonetaryAccountCard_for_User
       description: Get a specific MonetaryAccountCard.
@@ -151,7 +151,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - monetary-account-card
+        -   -   -   - monetary-account-card
       summary: ''
       operationId: UPDATE_MonetaryAccountCard_for_User
       description: Update a specific existing MonetaryAccountCard.
@@ -201,7 +201,7 @@ paths:
   /user/{userID}/monetary-account-card:
     get:
       tags:
-        - - - - monetary-account-card
+        -   -   -   - monetary-account-card
       summary: ''
       operationId: List_all_MonetaryAccountCard_for_User
       description: Gets a listing of all MonetaryAccountCard of a given user.

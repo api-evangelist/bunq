@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/token-qr-request-sofort'
+  title: 'Bunq user/{userID}/token-qr-request-sofort'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -36,7 +36,7 @@ paths:
   /user/{userID}/token-qr-request-sofort:
     post:
       tags:
-        - - - - token-qr-request-sofort
+        -   -   -   - token-qr-request-sofort
       summary: ''
       operationId: CREATE_TokenQrRequestSofort_for_User
       description: Create a request from an SOFORT transaction.

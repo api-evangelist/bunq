@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user-payment-service-provider/{itemId}/'
+  title: 'Bunq user-payment-service-provider/{itemId}/'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:

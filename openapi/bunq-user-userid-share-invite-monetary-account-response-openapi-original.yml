@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/share-invite-monetary-account-response'
+  title: 'Bunq user/{userID}/share-invite-monetary-account-response'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -124,7 +124,7 @@ paths:
   /user/{userID}/share-invite-monetary-account-response/{itemId}:
     get:
       tags:
-        - - - - share-invite-monetary-account-response
+        -   -   -   - share-invite-monetary-account-response
       summary: ''
       operationId: READ_ShareInviteMonetaryAccountResponse_for_User
       description: Return the details of a specific share a user was invited to.
@@ -169,7 +169,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - share-invite-monetary-account-response
+        -   -   -   - share-invite-monetary-account-response
       summary: ''
       operationId: UPDATE_ShareInviteMonetaryAccountResponse_for_User
       description: Accept or reject a share a user was invited to.
@@ -222,7 +222,7 @@ paths:
   /user/{userID}/share-invite-monetary-account-response:
     get:
       tags:
-        - - - - share-invite-monetary-account-response
+        -   -   -   - share-invite-monetary-account-response
       summary: ''
       operationId: List_all_ShareInviteMonetaryAccountResponse_for_User
       description: Return all the shares a user was invited to.

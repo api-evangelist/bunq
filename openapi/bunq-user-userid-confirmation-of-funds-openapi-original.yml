@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/confirmation-of-funds'
+  title: 'Bunq user/{userID}/confirmation-of-funds'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -36,7 +36,7 @@ paths:
   /user/{userID}/confirmation-of-funds:
     post:
       tags:
-        - - - - confirmation-of-funds
+        -   -   -   - confirmation-of-funds
       summary: ''
       operationId: CREATE_ConfirmationOfFunds_for_User
       description: Used to confirm availability of funds on an account.

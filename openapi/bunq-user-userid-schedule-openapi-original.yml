@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/schedule'
+  title: 'Bunq user/{userID}/schedule'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -27,7 +27,7 @@ paths:
   /user/{userID}/schedule:
     get:
       tags:
-        - - - - schedule
+        -   -   -   - schedule
       summary: ''
       operationId: List_all_Schedule_for_User
       description: >-

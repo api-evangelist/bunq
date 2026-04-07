@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/legal-name'
+  title: 'Bunq user/{userID}/legal-name'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -27,7 +27,7 @@ paths:
   /user/{userID}/legal-name:
     get:
       tags:
-        - - - - legal-name
+        -   -   -   - legal-name
       summary: ''
       operationId: List_all_LegalName_for_User
       description: Endpoint for getting available legal names that can be used by the user.

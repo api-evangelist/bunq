@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' session/{itemId}/'
+  title: 'Bunq session/{itemId}/'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:

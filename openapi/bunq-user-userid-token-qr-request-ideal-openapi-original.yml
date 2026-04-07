@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/token-qr-request-ideal'
+  title: 'Bunq user/{userID}/token-qr-request-ideal'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -151,7 +151,7 @@ paths:
   /user/{userID}/token-qr-request-ideal:
     post:
       tags:
-        - - - - token-qr-request-ideal
+        -   -   -   - token-qr-request-ideal
       summary: ''
       operationId: CREATE_TokenQrRequestIdeal_for_User
       description: Create a request from an ideal transaction.

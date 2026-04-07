@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/challenge-request'
+  title: 'Bunq user/{userID}/challenge-request'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -89,7 +89,7 @@ paths:
   /user/{userID}/challenge-request/{itemId}:
     get:
       tags:
-        - - - - challenge-request
+        -   -   -   - challenge-request
       summary: ''
       operationId: READ_ChallengeRequest_for_User
       description: Endpoint for apps to fetch a challenge request.
@@ -132,7 +132,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - challenge-request
+        -   -   -   - challenge-request
       summary: ''
       operationId: UPDATE_ChallengeRequest_for_User
       description: Endpoint for apps to fetch a challenge request.

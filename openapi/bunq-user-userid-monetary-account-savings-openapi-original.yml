@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/monetary-account-savings'
+  title: 'Bunq user/{userID}/monetary-account-savings'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -190,7 +190,7 @@ paths:
   /user/{userID}/monetary-account-savings:
     post:
       tags:
-        - - - - monetary-account-savings
+        -   -   -   - monetary-account-savings
       summary: ''
       operationId: CREATE_MonetaryAccountSavings_for_User
       description: Create new MonetaryAccountSavings.
@@ -233,7 +233,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     get:
       tags:
-        - - - - monetary-account-savings
+        -   -   -   - monetary-account-savings
       summary: ''
       operationId: List_all_MonetaryAccountSavings_for_User
       description: Gets a listing of all MonetaryAccountSavingss of a given user.
@@ -272,7 +272,7 @@ paths:
   /user/{userID}/monetary-account-savings/{itemId}:
     get:
       tags:
-        - - - - monetary-account-savings
+        -   -   -   - monetary-account-savings
       summary: ''
       operationId: READ_MonetaryAccountSavings_for_User
       description: Get a specific MonetaryAccountSavings.
@@ -314,7 +314,7 @@ paths:
           $ref: '#/components/responses/GenericError'
     put:
       tags:
-        - - - - monetary-account-savings
+        -   -   -   - monetary-account-savings
       summary: ''
       operationId: UPDATE_MonetaryAccountSavings_for_User
       description: Update a specific existing MonetaryAccountSavings.

@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: ' user/{userID}/limit'
+  title: 'Bunq user/{userID}/limit'
   description: Needs description.
   termsOfService: http://bunq.com/terms-api/
   contact:
@@ -27,7 +27,7 @@ paths:
   /user/{userID}/limit:
     get:
       tags:
-        - - - - limit
+        -   -   -   - limit
       summary: ''
       operationId: List_all_Limit_for_User
       description: Get all limits for the authenticated user.
