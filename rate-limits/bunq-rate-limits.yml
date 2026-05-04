@@ -1,0 +1,396 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Bunq
+providerId: bunq
+created: '2026-05-04'
+modified: '2026-05-04'
+tags:
+  - Banking
+  - Rate Limiting
+  - Quotas
+  - Throttling
+description: Machine-readable rate limit definitions for the Bunq API surface. Captures per-tier quotas,
+  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
+  with published provider limits.
+headers:
+  limit: X-RateLimit-Limit
+  remaining: X-RateLimit-Remaining
+  reset: X-RateLimit-Reset
+  retryAfter: Retry-After
+  policy: RateLimit-Policy
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+  serviceUnavailable: 503
+limits:
+  - tier: free
+    name: Free Tier Default
+    scope: api-key
+    metric: requests_per_minute
+    limit: 10
+    burst: 20
+    timeFrame: minute
+    applies:
+      - Bunq Activity Map Place API
+      - Bunq Attachment Content API
+      - Bunq Attachments API
+      - Bunq Avatar API
+      - Bunq Billing Contract Subscription API
+      - Bunq Card API
+      - Bunq Certificate Pinning API
+      - Bunq Challenge Request API
+      - Bunq Chat Conversation API
+      - Bunq Company API
+      - Bunq Confirmation of Funds API
+      - Bunq Device API
+      - Bunq Device Server API
+      - Bunq Export Annual Overview API
+      - Bunq Fundraiser Profile API
+      - Bunq Installation API
+      - Bunq Installation Installation Server Public Key API
+      - Bunq Monetary Account API
+      - Bunq Oauth Client API
+      - Bunq Payment Service Provider Credential API
+      - Bunq Registry Import Splitwise Csv API
+      - Bunq Sandbox User Company API
+      - Bunq Sandbox User Person API
+      - Bunq Server Error API
+      - Bunq Session Item API
+      - Bunq Session Server API
+      - Bunq Transaction Categories API
+      - Bunq User Company Item API
+      - Bunq User Company User Company Name API
+      - Bunq User Credential Password Ip API
+      - Bunq User Currency Cloud Beneficiary API
+      - Bunq User Event API
+      - Bunq User Feature Announcement API
+      - Bunq User Insight Preference Date API
+      - Bunq User Insights API
+      - Bunq User Invoice API
+      - Bunq User Item API
+      - Bunq User Legal Name API
+      - Bunq User Limit API
+      - Bunq User Monetary Account Bank API
+      - Bunq User Monetary Account Card API
+      - Bunq User Monetary Account External API
+      - Bunq User Monetary Account Joint API
+      - Bunq User Monetary Account Savings API
+      - Bunq User Notification Filter Email API
+      - Bunq User Notification Filter Failure API
+      - Bunq User Notification Filter Push API
+      - Bunq User Notification Filter Url API
+      - Bunq User Payment Auto Allocate API
+      - Bunq User Payment Service Provider Draft Payment API
+      - Bunq User Payment Service Provider Issuer Transaction API
+      - Bunq User Payment Service Provider Item API
+      - Bunq User Person Item API
+      - Bunq User Registry API
+      - Bunq User Schedule API
+      - Bunq User Share Invite Monetary Account Response API
+      - Bunq User Token Qr Request Eal API
+      - Bunq User Token Qr Request Sofort API
+      - Bunq User Transferwise Currency API
+      - Bunq User Transferwise Quote API
+      - Bunq User Transferwise User API
+      - Bunq User Tree Progress API
+      - Bunq User Whitelist Sdd API
+  - tier: free
+    name: Free Tier Monthly Quota
+    scope: api-key
+    metric: requests_per_month
+    limit: 1000
+    timeFrame: month
+    applies:
+      - Bunq Activity Map Place API
+      - Bunq Attachment Content API
+      - Bunq Attachments API
+      - Bunq Avatar API
+      - Bunq Billing Contract Subscription API
+      - Bunq Card API
+      - Bunq Certificate Pinning API
+      - Bunq Challenge Request API
+      - Bunq Chat Conversation API
+      - Bunq Company API
+      - Bunq Confirmation of Funds API
+      - Bunq Device API
+      - Bunq Device Server API
+      - Bunq Export Annual Overview API
+      - Bunq Fundraiser Profile API
+      - Bunq Installation API
+      - Bunq Installation Installation Server Public Key API
+      - Bunq Monetary Account API
+      - Bunq Oauth Client API
+      - Bunq Payment Service Provider Credential API
+      - Bunq Registry Import Splitwise Csv API
+      - Bunq Sandbox User Company API
+      - Bunq Sandbox User Person API
+      - Bunq Server Error API
+      - Bunq Session Item API
+      - Bunq Session Server API
+      - Bunq Transaction Categories API
+      - Bunq User Company Item API
+      - Bunq User Company User Company Name API
+      - Bunq User Credential Password Ip API
+      - Bunq User Currency Cloud Beneficiary API
+      - Bunq User Event API
+      - Bunq User Feature Announcement API
+      - Bunq User Insight Preference Date API
+      - Bunq User Insights API
+      - Bunq User Invoice API
+      - Bunq User Item API
+      - Bunq User Legal Name API
+      - Bunq User Limit API
+      - Bunq User Monetary Account Bank API
+      - Bunq User Monetary Account Card API
+      - Bunq User Monetary Account External API
+      - Bunq User Monetary Account Joint API
+      - Bunq User Monetary Account Savings API
+      - Bunq User Notification Filter Email API
+      - Bunq User Notification Filter Failure API
+      - Bunq User Notification Filter Push API
+      - Bunq User Notification Filter Url API
+      - Bunq User Payment Auto Allocate API
+      - Bunq User Payment Service Provider Draft Payment API
+      - Bunq User Payment Service Provider Issuer Transaction API
+      - Bunq User Payment Service Provider Item API
+      - Bunq User Person Item API
+      - Bunq User Registry API
+      - Bunq User Schedule API
+      - Bunq User Share Invite Monetary Account Response API
+      - Bunq User Token Qr Request Eal API
+      - Bunq User Token Qr Request Sofort API
+      - Bunq User Transferwise Currency API
+      - Bunq User Transferwise Quote API
+      - Bunq User Transferwise User API
+      - Bunq User Tree Progress API
+      - Bunq User Whitelist Sdd API
+  - tier: professional
+    name: Professional Tier Default
+    scope: api-key
+    metric: requests_per_minute
+    limit: 100
+    burst: 200
+    timeFrame: minute
+    applies:
+      - Bunq Activity Map Place API
+      - Bunq Attachment Content API
+      - Bunq Attachments API
+      - Bunq Avatar API
+      - Bunq Billing Contract Subscription API
+      - Bunq Card API
+      - Bunq Certificate Pinning API
+      - Bunq Challenge Request API
+      - Bunq Chat Conversation API
+      - Bunq Company API
+      - Bunq Confirmation of Funds API
+      - Bunq Device API
+      - Bunq Device Server API
+      - Bunq Export Annual Overview API
+      - Bunq Fundraiser Profile API
+      - Bunq Installation API
+      - Bunq Installation Installation Server Public Key API
+      - Bunq Monetary Account API
+      - Bunq Oauth Client API
+      - Bunq Payment Service Provider Credential API
+      - Bunq Registry Import Splitwise Csv API
+      - Bunq Sandbox User Company API
+      - Bunq Sandbox User Person API
+      - Bunq Server Error API
+      - Bunq Session Item API
+      - Bunq Session Server API
+      - Bunq Transaction Categories API
+      - Bunq User Company Item API
+      - Bunq User Company User Company Name API
+      - Bunq User Credential Password Ip API
+      - Bunq User Currency Cloud Beneficiary API
+      - Bunq User Event API
+      - Bunq User Feature Announcement API
+      - Bunq User Insight Preference Date API
+      - Bunq User Insights API
+      - Bunq User Invoice API
+      - Bunq User Item API
+      - Bunq User Legal Name API
+      - Bunq User Limit API
+      - Bunq User Monetary Account Bank API
+      - Bunq User Monetary Account Card API
+      - Bunq User Monetary Account External API
+      - Bunq User Monetary Account Joint API
+      - Bunq User Monetary Account Savings API
+      - Bunq User Notification Filter Email API
+      - Bunq User Notification Filter Failure API
+      - Bunq User Notification Filter Push API
+      - Bunq User Notification Filter Url API
+      - Bunq User Payment Auto Allocate API
+      - Bunq User Payment Service Provider Draft Payment API
+      - Bunq User Payment Service Provider Issuer Transaction API
+      - Bunq User Payment Service Provider Item API
+      - Bunq User Person Item API
+      - Bunq User Registry API
+      - Bunq User Schedule API
+      - Bunq User Share Invite Monetary Account Response API
+      - Bunq User Token Qr Request Eal API
+      - Bunq User Token Qr Request Sofort API
+      - Bunq User Transferwise Currency API
+      - Bunq User Transferwise Quote API
+      - Bunq User Transferwise User API
+      - Bunq User Tree Progress API
+      - Bunq User Whitelist Sdd API
+  - tier: professional
+    name: Professional Tier Monthly Quota
+    scope: api-key
+    metric: requests_per_month
+    limit: 100000
+    timeFrame: month
+    applies:
+      - Bunq Activity Map Place API
+      - Bunq Attachment Content API
+      - Bunq Attachments API
+      - Bunq Avatar API
+      - Bunq Billing Contract Subscription API
+      - Bunq Card API
+      - Bunq Certificate Pinning API
+      - Bunq Challenge Request API
+      - Bunq Chat Conversation API
+      - Bunq Company API
+      - Bunq Confirmation of Funds API
+      - Bunq Device API
+      - Bunq Device Server API
+      - Bunq Export Annual Overview API
+      - Bunq Fundraiser Profile API
+      - Bunq Installation API
+      - Bunq Installation Installation Server Public Key API
+      - Bunq Monetary Account API
+      - Bunq Oauth Client API
+      - Bunq Payment Service Provider Credential API
+      - Bunq Registry Import Splitwise Csv API
+      - Bunq Sandbox User Company API
+      - Bunq Sandbox User Person API
+      - Bunq Server Error API
+      - Bunq Session Item API
+      - Bunq Session Server API
+      - Bunq Transaction Categories API
+      - Bunq User Company Item API
+      - Bunq User Company User Company Name API
+      - Bunq User Credential Password Ip API
+      - Bunq User Currency Cloud Beneficiary API
+      - Bunq User Event API
+      - Bunq User Feature Announcement API
+      - Bunq User Insight Preference Date API
+      - Bunq User Insights API
+      - Bunq User Invoice API
+      - Bunq User Item API
+      - Bunq User Legal Name API
+      - Bunq User Limit API
+      - Bunq User Monetary Account Bank API
+      - Bunq User Monetary Account Card API
+      - Bunq User Monetary Account External API
+      - Bunq User Monetary Account Joint API
+      - Bunq User Monetary Account Savings API
+      - Bunq User Notification Filter Email API
+      - Bunq User Notification Filter Failure API
+      - Bunq User Notification Filter Push API
+      - Bunq User Notification Filter Url API
+      - Bunq User Payment Auto Allocate API
+      - Bunq User Payment Service Provider Draft Payment API
+      - Bunq User Payment Service Provider Issuer Transaction API
+      - Bunq User Payment Service Provider Item API
+      - Bunq User Person Item API
+      - Bunq User Registry API
+      - Bunq User Schedule API
+      - Bunq User Share Invite Monetary Account Response API
+      - Bunq User Token Qr Request Eal API
+      - Bunq User Token Qr Request Sofort API
+      - Bunq User Transferwise Currency API
+      - Bunq User Transferwise Quote API
+      - Bunq User Transferwise User API
+      - Bunq User Tree Progress API
+      - Bunq User Whitelist Sdd API
+  - tier: enterprise
+    name: Enterprise Negotiated Limit
+    scope: contract
+    metric: requests_per_minute
+    limit: 1000
+    burst: 5000
+    timeFrame: minute
+    applies:
+      - Bunq Activity Map Place API
+      - Bunq Attachment Content API
+      - Bunq Attachments API
+      - Bunq Avatar API
+      - Bunq Billing Contract Subscription API
+      - Bunq Card API
+      - Bunq Certificate Pinning API
+      - Bunq Challenge Request API
+      - Bunq Chat Conversation API
+      - Bunq Company API
+      - Bunq Confirmation of Funds API
+      - Bunq Device API
+      - Bunq Device Server API
+      - Bunq Export Annual Overview API
+      - Bunq Fundraiser Profile API
+      - Bunq Installation API
+      - Bunq Installation Installation Server Public Key API
+      - Bunq Monetary Account API
+      - Bunq Oauth Client API
+      - Bunq Payment Service Provider Credential API
+      - Bunq Registry Import Splitwise Csv API
+      - Bunq Sandbox User Company API
+      - Bunq Sandbox User Person API
+      - Bunq Server Error API
+      - Bunq Session Item API
+      - Bunq Session Server API
+      - Bunq Transaction Categories API
+      - Bunq User Company Item API
+      - Bunq User Company User Company Name API
+      - Bunq User Credential Password Ip API
+      - Bunq User Currency Cloud Beneficiary API
+      - Bunq User Event API
+      - Bunq User Feature Announcement API
+      - Bunq User Insight Preference Date API
+      - Bunq User Insights API
+      - Bunq User Invoice API
+      - Bunq User Item API
+      - Bunq User Legal Name API
+      - Bunq User Limit API
+      - Bunq User Monetary Account Bank API
+      - Bunq User Monetary Account Card API
+      - Bunq User Monetary Account External API
+      - Bunq User Monetary Account Joint API
+      - Bunq User Monetary Account Savings API
+      - Bunq User Notification Filter Email API
+      - Bunq User Notification Filter Failure API
+      - Bunq User Notification Filter Push API
+      - Bunq User Notification Filter Url API
+      - Bunq User Payment Auto Allocate API
+      - Bunq User Payment Service Provider Draft Payment API
+      - Bunq User Payment Service Provider Issuer Transaction API
+      - Bunq User Payment Service Provider Item API
+      - Bunq User Person Item API
+      - Bunq User Registry API
+      - Bunq User Schedule API
+      - Bunq User Share Invite Monetary Account Response API
+      - Bunq User Token Qr Request Eal API
+      - Bunq User Token Qr Request Sofort API
+      - Bunq User Transferwise Currency API
+      - Bunq User Transferwise Quote API
+      - Bunq User Transferwise User API
+      - Bunq User Tree Progress API
+      - Bunq User Whitelist Sdd API
+policies:
+  - name: Backoff Strategy
+    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
+      when present.
+  - name: Burst Handling
+    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
+      before throttling engages.
+  - name: Quota Reset
+    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
+      windows reset on a sliding-window basis.
+  - name: Fair Use
+    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
+      may be subject to fair-use throttling.
+maintainers:
+  - FN: API Evangelist
+    url: http://apievangelist.com
+    email: info@apievangelist.com
