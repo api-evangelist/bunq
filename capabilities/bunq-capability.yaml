@@ -1,0 +1,73 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq Activity Map Place API
+  description: Managing activity map for a user account.
+  tags:
+  - Bunq
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: bunq
+    baseUri: https://public-api.sandbox.bunq.com/v1
+    description: Bunq Activity Map Place API HTTP API.
+    resources:
+    - name: activity-map-place-public-itemid
+      path: /activity-map-place-public/{itemId}
+      operations:
+      - name: read-activitymapplacepublic
+        method: GET
+        description: Public endpoint for getting the place info.
+        inputParameters:
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: bunq-rest
+    description: REST adapter for Bunq Activity Map Place API.
+    resources:
+    - path: /activity-map-place-public/{itemId}
+      name: read-activitymapplacepublic
+      operations:
+      - method: GET
+        name: read-activitymapplacepublic
+        description: Public endpoint for getting the place info.
+        call: bunq.read-activitymapplacepublic
+        with:
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: bunq-mcp
+    transport: http
+    description: MCP adapter for Bunq Activity Map Place API for AI agent use.
+    tools:
+    - name: read-activitymapplacepublic
+      description: Public endpoint for getting the place info.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bunq.read-activitymapplacepublic
+      with:
+        itemId: tools.itemId
+      inputParameters:
+      - name: itemId
+        type: integer
+        description: itemId
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
