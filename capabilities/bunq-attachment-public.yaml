@@ -1,0 +1,168 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: bunq API — Attachment Public
+  description: 'bunq API — Attachment Public. 3 operations. Lead operation: Attachment Public. Self-contained Naftiko capability
+    covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - Attachment Public
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bunq-attachment-public
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: bunq API — Attachment Public business capability. Self-contained, no shared references.
+    resources:
+    - name: attachment-public
+      path: /attachment-public
+      operations:
+      - name: createattachmentpublic
+        method: POST
+        description: Create a new public attachment. Create a POST request with a payload that contains a binary representation
+          of the file, without any JSON wrapping. Make sure you define the MIME type (i.e. image/jpeg, or image/png) in the
+          Content-Type header
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: attachment-public-attachment-publicUUID-content
+      path: /attachment-public/{attachment-publicUUID}/content
+      operations:
+      - name: listallcontentforattachmentpublic
+        method: GET
+        description: Get the raw content of a specific attachment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: attachment-publicUUID
+          in: path
+          type: string
+          required: true
+    - name: attachment-public-itemId
+      path: /attachment-public/{itemId}
+      operations:
+      - name: readattachmentpublic
+        method: GET
+        description: Get a specific attachment's metadata through its UUID. The Content-Type header of the response will describe
+          the MIME type of the attachment file.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: bunq-attachment-public-rest
+    port: 8080
+    description: REST adapter for bunq API — Attachment Public. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/attachment-public
+      name: attachment-public
+      description: REST surface for attachment-public.
+      operations:
+      - method: POST
+        name: createattachmentpublic
+        description: Create a new public attachment. Create a POST request with a payload that contains a binary representation
+          of the file, without any JSON wrapping. Make sure you define the MIME type (i.e. image/jpeg, or image/png) in the
+          Content-Type header
+        call: bunq-attachment-public.createattachmentpublic
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/attachment-public/{attachment-publicuuid}/content
+      name: attachment-public-attachment-publicuuid-content
+      description: REST surface for attachment-public-attachment-publicUUID-content.
+      operations:
+      - method: GET
+        name: listallcontentforattachmentpublic
+        description: Get the raw content of a specific attachment.
+        call: bunq-attachment-public.listallcontentforattachmentpublic
+        with:
+          attachment-publicUUID: rest.attachment-publicUUID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/attachment-public/{itemid}
+      name: attachment-public-itemid
+      description: REST surface for attachment-public-itemId.
+      operations:
+      - method: GET
+        name: readattachmentpublic
+        description: Get a specific attachment's metadata through its UUID. The Content-Type header of the response will describe
+          the MIME type of the attachment file.
+        call: bunq-attachment-public.readattachmentpublic
+        with:
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bunq-attachment-public-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for bunq API — Attachment Public. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: create-new-public-attachment-create
+      description: Create a new public attachment. Create a POST request with a payload that contains a binary representation
+        of the file, without any JSON wrapping. Make sure you define the MIME type (i.e. image/jpeg, or image/png) in the
+        Content-Type header
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bunq-attachment-public.createattachmentpublic
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-raw-content-specific-attachment
+      description: Get the raw content of a specific attachment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bunq-attachment-public.listallcontentforattachmentpublic
+      with:
+        attachment-publicUUID: tools.attachment-publicUUID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-specific-attachment-s-metadata-through
+      description: Get a specific attachment's metadata through its UUID. The Content-Type header of the response will describe
+        the MIME type of the attachment file.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bunq-attachment-public.readattachmentpublic
+      with:
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.

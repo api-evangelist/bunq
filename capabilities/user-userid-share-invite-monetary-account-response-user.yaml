@@ -1,0 +1,171 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq user/{userID}/share-invite-monetary-account-response — User
+  description: 'Bunq user/{userID}/share-invite-monetary-account-response — User. 3 operations. Lead operation: User. Self-contained
+    Naftiko capability covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - User
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-userid-share-invite-monetary-account-response-user
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq user/{userID}/share-invite-monetary-account-response — User business capability. Self-contained, no
+      shared references.
+    resources:
+    - name: user-userID-share-invite-monetary-account-response
+      path: /user/{userID}/share-invite-monetary-account-response
+      operations:
+      - name: listallshareinvitemonetaryaccountresponseforuser
+        method: GET
+        description: Return all the shares a user was invited to.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+    - name: user-userID-share-invite-monetary-account-response-itemId
+      path: /user/{userID}/share-invite-monetary-account-response/{itemId}
+      operations:
+      - name: readshareinvitemonetaryaccountresponseforuser
+        method: GET
+        description: Return the details of a specific share a user was invited to.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+      - name: updateshareinvitemonetaryaccountresponseforuser
+        method: PUT
+        description: Accept or reject a share a user was invited to.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: user-userid-share-invite-monetary-account-response-user-rest
+    port: 8080
+    description: REST adapter for Bunq user/{userID}/share-invite-monetary-account-response — User. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/user/{userid}/share-invite-monetary-account-response
+      name: user-userid-share-invite-monetary-account-response
+      description: REST surface for user-userID-share-invite-monetary-account-response.
+      operations:
+      - method: GET
+        name: listallshareinvitemonetaryaccountresponseforuser
+        description: Return all the shares a user was invited to.
+        call: user-userid-share-invite-monetary-account-response-user.listallshareinvitemonetaryaccountresponseforuser
+        with:
+          userID: rest.userID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user/{userid}/share-invite-monetary-account-response/{itemid}
+      name: user-userid-share-invite-monetary-account-response-itemid
+      description: REST surface for user-userID-share-invite-monetary-account-response-itemId.
+      operations:
+      - method: GET
+        name: readshareinvitemonetaryaccountresponseforuser
+        description: Return the details of a specific share a user was invited to.
+        call: user-userid-share-invite-monetary-account-response-user.readshareinvitemonetaryaccountresponseforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateshareinvitemonetaryaccountresponseforuser
+        description: Accept or reject a share a user was invited to.
+        call: user-userid-share-invite-monetary-account-response-user.updateshareinvitemonetaryaccountresponseforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-userid-share-invite-monetary-account-response-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq user/{userID}/share-invite-monetary-account-response — User. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: return-all-shares-user-was
+      description: Return all the shares a user was invited to.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-share-invite-monetary-account-response-user.listallshareinvitemonetaryaccountresponseforuser
+      with:
+        userID: tools.userID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: return-details-specific-share-user
+      description: Return the details of a specific share a user was invited to.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-share-invite-monetary-account-response-user.readshareinvitemonetaryaccountresponseforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: accept-reject-share-user-was
+      description: Accept or reject a share a user was invited to.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user-userid-share-invite-monetary-account-response-user.updateshareinvitemonetaryaccountresponseforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

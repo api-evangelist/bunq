@@ -1,0 +1,129 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq user/{userID}/attachment — User
+  description: 'Bunq user/{userID}/attachment — User. 2 operations. Lead operation: User. Self-contained Naftiko capability
+    covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - User
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-userid-attachment-user
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq user/{userID}/attachment — User business capability. Self-contained, no shared references.
+    resources:
+    - name: user-userID-attachment-attachmentID-content
+      path: /user/{userID}/attachment/{attachmentID}/content
+      operations:
+      - name: listallcontentforuserattachment
+        method: GET
+        description: Get the raw content of a specific attachment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: attachmentID
+          in: path
+          type: integer
+          required: true
+    - name: user-userID-attachment-itemId
+      path: /user/{userID}/attachment/{itemId}
+      operations:
+      - name: readattachmentforuser
+        method: GET
+        description: Get a specific attachment. The header of the response contains the content-type of the attachment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: user-userid-attachment-user-rest
+    port: 8080
+    description: REST adapter for Bunq user/{userID}/attachment — User. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/user/{userid}/attachment/{attachmentid}/content
+      name: user-userid-attachment-attachmentid-content
+      description: REST surface for user-userID-attachment-attachmentID-content.
+      operations:
+      - method: GET
+        name: listallcontentforuserattachment
+        description: Get the raw content of a specific attachment.
+        call: user-userid-attachment-user.listallcontentforuserattachment
+        with:
+          userID: rest.userID
+          attachmentID: rest.attachmentID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user/{userid}/attachment/{itemid}
+      name: user-userid-attachment-itemid
+      description: REST surface for user-userID-attachment-itemId.
+      operations:
+      - method: GET
+        name: readattachmentforuser
+        description: Get a specific attachment. The header of the response contains the content-type of the attachment.
+        call: user-userid-attachment-user.readattachmentforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-userid-attachment-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq user/{userID}/attachment — User. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-raw-content-specific-attachment
+      description: Get the raw content of a specific attachment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-attachment-user.listallcontentforuserattachment
+      with:
+        userID: tools.userID
+        attachmentID: tools.attachmentID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-specific-attachment-header-response
+      description: Get a specific attachment. The header of the response contains the content-type of the attachment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-attachment-user.readattachmentforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.

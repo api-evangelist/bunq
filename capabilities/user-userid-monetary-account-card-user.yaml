@@ -1,0 +1,170 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq user/{userID}/monetary-account-card — User
+  description: 'Bunq user/{userID}/monetary-account-card — User. 3 operations. Lead operation: User. Self-contained Naftiko
+    capability covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - User
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-userid-monetary-account-card-user
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq user/{userID}/monetary-account-card — User business capability. Self-contained, no shared references.
+    resources:
+    - name: user-userID-monetary-account-card
+      path: /user/{userID}/monetary-account-card
+      operations:
+      - name: listallmonetaryaccountcardforuser
+        method: GET
+        description: Gets a listing of all MonetaryAccountCard of a given user.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+    - name: user-userID-monetary-account-card-itemId
+      path: /user/{userID}/monetary-account-card/{itemId}
+      operations:
+      - name: readmonetaryaccountcardforuser
+        method: GET
+        description: Get a specific MonetaryAccountCard.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+      - name: updatemonetaryaccountcardforuser
+        method: PUT
+        description: Update a specific existing MonetaryAccountCard.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: user-userid-monetary-account-card-user-rest
+    port: 8080
+    description: REST adapter for Bunq user/{userID}/monetary-account-card — User. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/user/{userid}/monetary-account-card
+      name: user-userid-monetary-account-card
+      description: REST surface for user-userID-monetary-account-card.
+      operations:
+      - method: GET
+        name: listallmonetaryaccountcardforuser
+        description: Gets a listing of all MonetaryAccountCard of a given user.
+        call: user-userid-monetary-account-card-user.listallmonetaryaccountcardforuser
+        with:
+          userID: rest.userID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user/{userid}/monetary-account-card/{itemid}
+      name: user-userid-monetary-account-card-itemid
+      description: REST surface for user-userID-monetary-account-card-itemId.
+      operations:
+      - method: GET
+        name: readmonetaryaccountcardforuser
+        description: Get a specific MonetaryAccountCard.
+        call: user-userid-monetary-account-card-user.readmonetaryaccountcardforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatemonetaryaccountcardforuser
+        description: Update a specific existing MonetaryAccountCard.
+        call: user-userid-monetary-account-card-user.updatemonetaryaccountcardforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-userid-monetary-account-card-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq user/{userID}/monetary-account-card — User. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: gets-listing-all-monetaryaccountcard-given
+      description: Gets a listing of all MonetaryAccountCard of a given user.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-monetary-account-card-user.listallmonetaryaccountcardforuser
+      with:
+        userID: tools.userID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-specific-monetaryaccountcard
+      description: Get a specific MonetaryAccountCard.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-monetary-account-card-user.readmonetaryaccountcardforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-specific-existing-monetaryaccountcard
+      description: Update a specific existing MonetaryAccountCard.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user-userid-monetary-account-card-user.updatemonetaryaccountcardforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

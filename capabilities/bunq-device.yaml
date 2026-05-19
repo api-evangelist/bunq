@@ -1,0 +1,108 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: bunq API — Device
+  description: 'bunq API — Device. 2 operations. Lead operation: Device. Self-contained Naftiko capability covering one Bunq
+    business surface.'
+  tags:
+  - Bunq
+  - Device
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bunq-device
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: bunq API — Device business capability. Self-contained, no shared references.
+    resources:
+    - name: device
+      path: /device
+      operations:
+      - name: listalldevice
+        method: GET
+        description: Get a collection of Devices. A Device is either a DevicePhone or a DeviceServer.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: device-itemId
+      path: /device/{itemId}
+      operations:
+      - name: readdevice
+        method: GET
+        description: Get a single Device. A Device is either a DevicePhone or a DeviceServer.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: bunq-device-rest
+    port: 8080
+    description: REST adapter for bunq API — Device. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/device
+      name: device
+      description: REST surface for device.
+      operations:
+      - method: GET
+        name: listalldevice
+        description: Get a collection of Devices. A Device is either a DevicePhone or a DeviceServer.
+        call: bunq-device.listalldevice
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/device/{itemid}
+      name: device-itemid
+      description: REST surface for device-itemId.
+      operations:
+      - method: GET
+        name: readdevice
+        description: Get a single Device. A Device is either a DevicePhone or a DeviceServer.
+        call: bunq-device.readdevice
+        with:
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bunq-device-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for bunq API — Device. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-collection-devices-device-is
+      description: Get a collection of Devices. A Device is either a DevicePhone or a DeviceServer.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bunq-device.listalldevice
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-single-device-device-is
+      description: Get a single Device. A Device is either a DevicePhone or a DeviceServer.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bunq-device.readdevice
+      with:
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,76 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq user/{userID}/legal-name — User
+  description: 'Bunq user/{userID}/legal-name — User. 1 operations. Lead operation: User. Self-contained Naftiko capability
+    covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - User
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-userid-legal-name-user
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq user/{userID}/legal-name — User business capability. Self-contained, no shared references.
+    resources:
+    - name: user-userID-legal-name
+      path: /user/{userID}/legal-name
+      operations:
+      - name: listalllegalnameforuser
+        method: GET
+        description: Endpoint for getting available legal names that can be used by the user.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: user-userid-legal-name-user-rest
+    port: 8080
+    description: REST adapter for Bunq user/{userID}/legal-name — User. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/user/{userid}/legal-name
+      name: user-userid-legal-name
+      description: REST surface for user-userID-legal-name.
+      operations:
+      - method: GET
+        name: listalllegalnameforuser
+        description: Endpoint for getting available legal names that can be used by the user.
+        call: user-userid-legal-name-user.listalllegalnameforuser
+        with:
+          userID: rest.userID
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-userid-legal-name-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq user/{userID}/legal-name — User. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: endpoint-getting-available-legal-names
+      description: Endpoint for getting available legal names that can be used by the user.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-legal-name-user.listalllegalnameforuser
+      with:
+        userID: tools.userID
+      outputParameters:
+      - type: object
+        mapping: $.

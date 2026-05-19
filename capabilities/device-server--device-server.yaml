@@ -1,0 +1,76 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq device-server/ — Device Server
+  description: 'Bunq device-server/ — Device Server. 1 operations. Lead operation: Device Server. Self-contained Naftiko capability
+    covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - Device Server
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: device-server--device-server
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq device-server/ — Device Server business capability. Self-contained, no shared references.
+    resources:
+    - name: device-server-itemId
+      path: /device-server/{itemId}
+      operations:
+      - name: readdeviceserver
+        method: GET
+        description: Get one of your DeviceServers.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: device-server--device-server-rest
+    port: 8080
+    description: REST adapter for Bunq device-server/ — Device Server. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/device-server/{itemid}
+      name: device-server-itemid
+      description: REST surface for device-server-itemId.
+      operations:
+      - method: GET
+        name: readdeviceserver
+        description: Get one of your DeviceServers.
+        call: device-server--device-server.readdeviceserver
+        with:
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: device-server--device-server-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq device-server/ — Device Server. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-one-your-deviceservers
+      description: Get one of your DeviceServers.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: device-server--device-server.readdeviceserver
+      with:
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.

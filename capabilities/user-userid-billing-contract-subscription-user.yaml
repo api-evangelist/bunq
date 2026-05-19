@@ -1,0 +1,76 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq user/{userID}/billing-contract-subscription — User
+  description: 'Bunq user/{userID}/billing-contract-subscription — User. 1 operations. Lead operation: User. Self-contained
+    Naftiko capability covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - User
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-userid-billing-contract-subscription-user
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq user/{userID}/billing-contract-subscription — User business capability. Self-contained, no shared references.
+    resources:
+    - name: user-userID-billing-contract-subscription
+      path: /user/{userID}/billing-contract-subscription
+      operations:
+      - name: listallbillingcontractsubscriptionforuser
+        method: GET
+        description: Get all subscription billing contract for the authenticated user.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: user-userid-billing-contract-subscription-user-rest
+    port: 8080
+    description: REST adapter for Bunq user/{userID}/billing-contract-subscription — User. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/user/{userid}/billing-contract-subscription
+      name: user-userid-billing-contract-subscription
+      description: REST surface for user-userID-billing-contract-subscription.
+      operations:
+      - method: GET
+        name: listallbillingcontractsubscriptionforuser
+        description: Get all subscription billing contract for the authenticated user.
+        call: user-userid-billing-contract-subscription-user.listallbillingcontractsubscriptionforuser
+        with:
+          userID: rest.userID
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-userid-billing-contract-subscription-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq user/{userID}/billing-contract-subscription — User. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: get-all-subscription-billing-contract
+      description: Get all subscription billing contract for the authenticated user.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-billing-contract-subscription-user.listallbillingcontractsubscriptionforuser
+      with:
+        userID: tools.userID
+      outputParameters:
+      - type: object
+        mapping: $.

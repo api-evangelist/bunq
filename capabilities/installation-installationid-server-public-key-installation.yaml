@@ -1,0 +1,77 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq installation/{installationID}/server-public-key — Installation
+  description: 'Bunq installation/{installationID}/server-public-key — Installation. 1 operations. Lead operation: Installation.
+    Self-contained Naftiko capability covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - Installation
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: installation-installationid-server-public-key-installation
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq installation/{installationID}/server-public-key — Installation business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: installation-installationID-server-public-key
+      path: /installation/{installationID}/server-public-key
+      operations:
+      - name: listallserverpublickeyforinstallation
+        method: GET
+        description: Show the ServerPublicKey for this Installation.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: installationID
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: installation-installationid-server-public-key-installation-rest
+    port: 8080
+    description: REST adapter for Bunq installation/{installationID}/server-public-key — Installation. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/installation/{installationid}/server-public-key
+      name: installation-installationid-server-public-key
+      description: REST surface for installation-installationID-server-public-key.
+      operations:
+      - method: GET
+        name: listallserverpublickeyforinstallation
+        description: Show the ServerPublicKey for this Installation.
+        call: installation-installationid-server-public-key-installation.listallserverpublickeyforinstallation
+        with:
+          installationID: rest.installationID
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: installation-installationid-server-public-key-installation-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq installation/{installationID}/server-public-key — Installation. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: show-serverpublickey-this-installation
+      description: Show the ServerPublicKey for this Installation.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: installation-installationid-server-public-key-installation.listallserverpublickeyforinstallation
+      with:
+        installationID: tools.installationID
+      outputParameters:
+      - type: object
+        mapping: $.

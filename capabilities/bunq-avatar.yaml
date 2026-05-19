@@ -1,0 +1,130 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: bunq API — Avatar
+  description: 'bunq API — Avatar. 2 operations. Lead operation: Avatar. Self-contained Naftiko capability covering one Bunq
+    business surface.'
+  tags:
+  - Bunq
+  - Avatar
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bunq-avatar
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: bunq API — Avatar business capability. Self-contained, no shared references.
+    resources:
+    - name: avatar
+      path: /avatar
+      operations:
+      - name: createavatar
+        method: POST
+        description: Avatars are public images used to represent you or your company. Avatars are used to represent users,
+          monetary accounts and cash registers. Avatars cannot be deleted, only replaced. Avatars can be updated after uploading
+          the image you would
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: avatar-itemId
+      path: /avatar/{itemId}
+      operations:
+      - name: readavatar
+        method: GET
+        description: Avatars are public images used to represent you or your company. Avatars are used to represent users,
+          monetary accounts and cash registers. Avatars cannot be deleted, only replaced. Avatars can be updated after uploading
+          the image you would
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: bunq-avatar-rest
+    port: 8080
+    description: REST adapter for bunq API — Avatar. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/avatar
+      name: avatar
+      description: REST surface for avatar.
+      operations:
+      - method: POST
+        name: createavatar
+        description: Avatars are public images used to represent you or your company. Avatars are used to represent users,
+          monetary accounts and cash registers. Avatars cannot be deleted, only replaced. Avatars can be updated after uploading
+          the image you would
+        call: bunq-avatar.createavatar
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/avatar/{itemid}
+      name: avatar-itemid
+      description: REST surface for avatar-itemId.
+      operations:
+      - method: GET
+        name: readavatar
+        description: Avatars are public images used to represent you or your company. Avatars are used to represent users,
+          monetary accounts and cash registers. Avatars cannot be deleted, only replaced. Avatars can be updated after uploading
+          the image you would
+        call: bunq-avatar.readavatar
+        with:
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bunq-avatar-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for bunq API — Avatar. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: avatars-are-public-images-used
+      description: Avatars are public images used to represent you or your company. Avatars are used to represent users, monetary
+        accounts and cash registers. Avatars cannot be deleted, only replaced. Avatars can be updated after uploading the
+        image you would
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bunq-avatar.createavatar
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avatars-are-public-images-used-2
+      description: Avatars are public images used to represent you or your company. Avatars are used to represent users, monetary
+        accounts and cash registers. Avatars cannot be deleted, only replaced. Avatars can be updated after uploading the
+        image you would
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bunq-avatar.readavatar
+      with:
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.

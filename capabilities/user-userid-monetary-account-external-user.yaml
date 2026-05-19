@@ -1,0 +1,387 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq user/{userID}/monetary-account-external — User
+  description: 'Bunq user/{userID}/monetary-account-external — User. 8 operations. Lead operation: User. Self-contained Naftiko
+    capability covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - User
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-userid-monetary-account-external-user
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq user/{userID}/monetary-account-external — User business capability. Self-contained, no shared references.
+    resources:
+    - name: user-userID-monetary-account-external
+      path: /user/{userID}/monetary-account-external
+      operations:
+      - name: createmonetaryaccountexternalforuser
+        method: POST
+        description: Endpoint for managing monetary accounts which are connected to external services.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listallmonetaryaccountexternalforuser
+        method: GET
+        description: Endpoint for managing monetary accounts which are connected to external services.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+    - name: user-userID-monetary-account-external-savings
+      path: /user/{userID}/monetary-account-external-savings
+      operations:
+      - name: createmonetaryaccountexternalsavingsforuser
+        method: POST
+        description: Endpoint for managing monetary account savings which are connected to external services.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listallmonetaryaccountexternalsavingsforuser
+        method: GET
+        description: Endpoint for managing monetary account savings which are connected to external services.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+    - name: user-userID-monetary-account-external-savings-itemId
+      path: /user/{userID}/monetary-account-external-savings/{itemId}
+      operations:
+      - name: readmonetaryaccountexternalsavingsforuser
+        method: GET
+        description: Endpoint for managing monetary account savings which are connected to external services.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+      - name: updatemonetaryaccountexternalsavingsforuser
+        method: PUT
+        description: Endpoint for managing monetary account savings which are connected to external services.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: user-userID-monetary-account-external-itemId
+      path: /user/{userID}/monetary-account-external/{itemId}
+      operations:
+      - name: readmonetaryaccountexternalforuser
+        method: GET
+        description: Endpoint for managing monetary accounts which are connected to external services.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+      - name: updatemonetaryaccountexternalforuser
+        method: PUT
+        description: Endpoint for managing monetary accounts which are connected to external services.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: user-userid-monetary-account-external-user-rest
+    port: 8080
+    description: REST adapter for Bunq user/{userID}/monetary-account-external — User. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/user/{userid}/monetary-account-external
+      name: user-userid-monetary-account-external
+      description: REST surface for user-userID-monetary-account-external.
+      operations:
+      - method: POST
+        name: createmonetaryaccountexternalforuser
+        description: Endpoint for managing monetary accounts which are connected to external services.
+        call: user-userid-monetary-account-external-user.createmonetaryaccountexternalforuser
+        with:
+          userID: rest.userID
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallmonetaryaccountexternalforuser
+        description: Endpoint for managing monetary accounts which are connected to external services.
+        call: user-userid-monetary-account-external-user.listallmonetaryaccountexternalforuser
+        with:
+          userID: rest.userID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user/{userid}/monetary-account-external-savings
+      name: user-userid-monetary-account-external-savings
+      description: REST surface for user-userID-monetary-account-external-savings.
+      operations:
+      - method: POST
+        name: createmonetaryaccountexternalsavingsforuser
+        description: Endpoint for managing monetary account savings which are connected to external services.
+        call: user-userid-monetary-account-external-user.createmonetaryaccountexternalsavingsforuser
+        with:
+          userID: rest.userID
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallmonetaryaccountexternalsavingsforuser
+        description: Endpoint for managing monetary account savings which are connected to external services.
+        call: user-userid-monetary-account-external-user.listallmonetaryaccountexternalsavingsforuser
+        with:
+          userID: rest.userID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user/{userid}/monetary-account-external-savings/{itemid}
+      name: user-userid-monetary-account-external-savings-itemid
+      description: REST surface for user-userID-monetary-account-external-savings-itemId.
+      operations:
+      - method: GET
+        name: readmonetaryaccountexternalsavingsforuser
+        description: Endpoint for managing monetary account savings which are connected to external services.
+        call: user-userid-monetary-account-external-user.readmonetaryaccountexternalsavingsforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatemonetaryaccountexternalsavingsforuser
+        description: Endpoint for managing monetary account savings which are connected to external services.
+        call: user-userid-monetary-account-external-user.updatemonetaryaccountexternalsavingsforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user/{userid}/monetary-account-external/{itemid}
+      name: user-userid-monetary-account-external-itemid
+      description: REST surface for user-userID-monetary-account-external-itemId.
+      operations:
+      - method: GET
+        name: readmonetaryaccountexternalforuser
+        description: Endpoint for managing monetary accounts which are connected to external services.
+        call: user-userid-monetary-account-external-user.readmonetaryaccountexternalforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatemonetaryaccountexternalforuser
+        description: Endpoint for managing monetary accounts which are connected to external services.
+        call: user-userid-monetary-account-external-user.updatemonetaryaccountexternalforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-userid-monetary-account-external-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq user/{userID}/monetary-account-external — User. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: endpoint-managing-monetary-accounts-which
+      description: Endpoint for managing monetary accounts which are connected to external services.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user-userid-monetary-account-external-user.createmonetaryaccountexternalforuser
+      with:
+        userID: tools.userID
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: endpoint-managing-monetary-accounts-which-2
+      description: Endpoint for managing monetary accounts which are connected to external services.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-monetary-account-external-user.listallmonetaryaccountexternalforuser
+      with:
+        userID: tools.userID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: endpoint-managing-monetary-account-savings
+      description: Endpoint for managing monetary account savings which are connected to external services.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user-userid-monetary-account-external-user.createmonetaryaccountexternalsavingsforuser
+      with:
+        userID: tools.userID
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: endpoint-managing-monetary-account-savings-2
+      description: Endpoint for managing monetary account savings which are connected to external services.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-monetary-account-external-user.listallmonetaryaccountexternalsavingsforuser
+      with:
+        userID: tools.userID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: endpoint-managing-monetary-account-savings-3
+      description: Endpoint for managing monetary account savings which are connected to external services.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-monetary-account-external-user.readmonetaryaccountexternalsavingsforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: endpoint-managing-monetary-account-savings-4
+      description: Endpoint for managing monetary account savings which are connected to external services.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user-userid-monetary-account-external-user.updatemonetaryaccountexternalsavingsforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: endpoint-managing-monetary-accounts-which-3
+      description: Endpoint for managing monetary accounts which are connected to external services.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-monetary-account-external-user.readmonetaryaccountexternalforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: endpoint-managing-monetary-accounts-which-4
+      description: Endpoint for managing monetary accounts which are connected to external services.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user-userid-monetary-account-external-user.updatemonetaryaccountexternalforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

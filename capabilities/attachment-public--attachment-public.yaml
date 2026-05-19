@@ -1,0 +1,120 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq attachment-public/ — Attachment Public
+  description: 'Bunq attachment-public/ — Attachment Public. 2 operations. Lead operation: Attachment Public. Self-contained
+    Naftiko capability covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - Attachment Public
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: attachment-public--attachment-public
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq attachment-public/ — Attachment Public business capability. Self-contained, no shared references.
+    resources:
+    - name: attachment-public-attachment-publicUUID-content
+      path: /attachment-public/{attachment-publicUUID}/content
+      operations:
+      - name: listallcontentforattachmentpublic
+        method: GET
+        description: Get the raw content of a specific attachment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: attachment-publicUUID
+          in: path
+          type: string
+          required: true
+    - name: attachment-public-itemId
+      path: /attachment-public/{itemId}
+      operations:
+      - name: readattachmentpublic
+        method: GET
+        description: Get a specific attachment's metadata through its UUID. The Content-Type header of the response will describe
+          the MIME type of the attachment file.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: attachment-public--attachment-public-rest
+    port: 8080
+    description: REST adapter for Bunq attachment-public/ — Attachment Public. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/attachment-public/{attachment-publicuuid}/content
+      name: attachment-public-attachment-publicuuid-content
+      description: REST surface for attachment-public-attachment-publicUUID-content.
+      operations:
+      - method: GET
+        name: listallcontentforattachmentpublic
+        description: Get the raw content of a specific attachment.
+        call: attachment-public--attachment-public.listallcontentforattachmentpublic
+        with:
+          attachment-publicUUID: rest.attachment-publicUUID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/attachment-public/{itemid}
+      name: attachment-public-itemid
+      description: REST surface for attachment-public-itemId.
+      operations:
+      - method: GET
+        name: readattachmentpublic
+        description: Get a specific attachment's metadata through its UUID. The Content-Type header of the response will describe
+          the MIME type of the attachment file.
+        call: attachment-public--attachment-public.readattachmentpublic
+        with:
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: attachment-public--attachment-public-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq attachment-public/ — Attachment Public. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-raw-content-specific-attachment
+      description: Get the raw content of a specific attachment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: attachment-public--attachment-public.listallcontentforattachmentpublic
+      with:
+        attachment-publicUUID: tools.attachment-publicUUID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-specific-attachment-s-metadata-through
+      description: Get a specific attachment's metadata through its UUID. The Content-Type header of the response will describe
+        the MIME type of the attachment file.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: attachment-public--attachment-public.readattachmentpublic
+      with:
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.

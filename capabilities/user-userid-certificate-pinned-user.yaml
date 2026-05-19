@@ -1,0 +1,204 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq user/{userID}/certificate-pinned — User
+  description: 'Bunq user/{userID}/certificate-pinned — User. 4 operations. Lead operation: User. Self-contained Naftiko capability
+    covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - User
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-userid-certificate-pinned-user
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq user/{userID}/certificate-pinned — User business capability. Self-contained, no shared references.
+    resources:
+    - name: user-userID-certificate-pinned
+      path: /user/{userID}/certificate-pinned
+      operations:
+      - name: createcertificatepinnedforuser
+        method: POST
+        description: Pin the certificate chain.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listallcertificatepinnedforuser
+        method: GET
+        description: List all the pinned certificate chain for the given user.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+    - name: user-userID-certificate-pinned-itemId
+      path: /user/{userID}/certificate-pinned/{itemId}
+      operations:
+      - name: deletecertificatepinnedforuser
+        method: DELETE
+        description: Remove the pinned certificate chain with the specific ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+      - name: readcertificatepinnedforuser
+        method: GET
+        description: Get the pinned certificate chain with the specified ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: user-userid-certificate-pinned-user-rest
+    port: 8080
+    description: REST adapter for Bunq user/{userID}/certificate-pinned — User. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/user/{userid}/certificate-pinned
+      name: user-userid-certificate-pinned
+      description: REST surface for user-userID-certificate-pinned.
+      operations:
+      - method: POST
+        name: createcertificatepinnedforuser
+        description: Pin the certificate chain.
+        call: user-userid-certificate-pinned-user.createcertificatepinnedforuser
+        with:
+          userID: rest.userID
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallcertificatepinnedforuser
+        description: List all the pinned certificate chain for the given user.
+        call: user-userid-certificate-pinned-user.listallcertificatepinnedforuser
+        with:
+          userID: rest.userID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user/{userid}/certificate-pinned/{itemid}
+      name: user-userid-certificate-pinned-itemid
+      description: REST surface for user-userID-certificate-pinned-itemId.
+      operations:
+      - method: DELETE
+        name: deletecertificatepinnedforuser
+        description: Remove the pinned certificate chain with the specific ID.
+        call: user-userid-certificate-pinned-user.deletecertificatepinnedforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: readcertificatepinnedforuser
+        description: Get the pinned certificate chain with the specified ID.
+        call: user-userid-certificate-pinned-user.readcertificatepinnedforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-userid-certificate-pinned-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq user/{userID}/certificate-pinned — User. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: pin-certificate-chain
+      description: Pin the certificate chain.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user-userid-certificate-pinned-user.createcertificatepinnedforuser
+      with:
+        userID: tools.userID
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-pinned-certificate-chain
+      description: List all the pinned certificate chain for the given user.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-certificate-pinned-user.listallcertificatepinnedforuser
+      with:
+        userID: tools.userID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: remove-pinned-certificate-chain-specific
+      description: Remove the pinned certificate chain with the specific ID.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user-userid-certificate-pinned-user.deletecertificatepinnedforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-pinned-certificate-chain-specified
+      description: Get the pinned certificate chain with the specified ID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-certificate-pinned-user.readcertificatepinnedforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,76 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq user/{userID}/limit — User
+  description: 'Bunq user/{userID}/limit — User. 1 operations. Lead operation: User. Self-contained Naftiko capability covering
+    one Bunq business surface.'
+  tags:
+  - Bunq
+  - User
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-userid-limit-user
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq user/{userID}/limit — User business capability. Self-contained, no shared references.
+    resources:
+    - name: user-userID-limit
+      path: /user/{userID}/limit
+      operations:
+      - name: listalllimitforuser
+        method: GET
+        description: Get all limits for the authenticated user.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: user-userid-limit-user-rest
+    port: 8080
+    description: REST adapter for Bunq user/{userID}/limit — User. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/user/{userid}/limit
+      name: user-userid-limit
+      description: REST surface for user-userID-limit.
+      operations:
+      - method: GET
+        name: listalllimitforuser
+        description: Get all limits for the authenticated user.
+        call: user-userid-limit-user.listalllimitforuser
+        with:
+          userID: rest.userID
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-userid-limit-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq user/{userID}/limit — User. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-all-limits-authenticated-user
+      description: Get all limits for the authenticated user.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-limit-user.listalllimitforuser
+      with:
+        userID: tools.userID
+      outputParameters:
+      - type: object
+        mapping: $.

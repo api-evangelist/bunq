@@ -1,0 +1,205 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq user/{userID}/currency-cloud-beneficiary — User
+  description: 'Bunq user/{userID}/currency-cloud-beneficiary — User. 4 operations. Lead operation: User. Self-contained Naftiko
+    capability covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - User
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-userid-currency-cloud-beneficiary-user
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq user/{userID}/currency-cloud-beneficiary — User business capability. Self-contained, no shared references.
+    resources:
+    - name: user-userID-currency-cloud-beneficiary
+      path: /user/{userID}/currency-cloud-beneficiary
+      operations:
+      - name: createcurrencycloudbeneficiaryforuser
+        method: POST
+        description: Endpoint to manage CurrencyCloud beneficiaries.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listallcurrencycloudbeneficiaryforuser
+        method: GET
+        description: Endpoint to manage CurrencyCloud beneficiaries.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+    - name: user-userID-currency-cloud-beneficiary-requirement
+      path: /user/{userID}/currency-cloud-beneficiary-requirement
+      operations:
+      - name: listallcurrencycloudbeneficiaryrequirementforuser
+        method: GET
+        description: Endpoint to list requirements for CurrencyCloud beneficiaries.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+    - name: user-userID-currency-cloud-beneficiary-itemId
+      path: /user/{userID}/currency-cloud-beneficiary/{itemId}
+      operations:
+      - name: readcurrencycloudbeneficiaryforuser
+        method: GET
+        description: Endpoint to manage CurrencyCloud beneficiaries.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: user-userid-currency-cloud-beneficiary-user-rest
+    port: 8080
+    description: REST adapter for Bunq user/{userID}/currency-cloud-beneficiary — User. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/user/{userid}/currency-cloud-beneficiary
+      name: user-userid-currency-cloud-beneficiary
+      description: REST surface for user-userID-currency-cloud-beneficiary.
+      operations:
+      - method: POST
+        name: createcurrencycloudbeneficiaryforuser
+        description: Endpoint to manage CurrencyCloud beneficiaries.
+        call: user-userid-currency-cloud-beneficiary-user.createcurrencycloudbeneficiaryforuser
+        with:
+          userID: rest.userID
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallcurrencycloudbeneficiaryforuser
+        description: Endpoint to manage CurrencyCloud beneficiaries.
+        call: user-userid-currency-cloud-beneficiary-user.listallcurrencycloudbeneficiaryforuser
+        with:
+          userID: rest.userID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user/{userid}/currency-cloud-beneficiary-requirement
+      name: user-userid-currency-cloud-beneficiary-requirement
+      description: REST surface for user-userID-currency-cloud-beneficiary-requirement.
+      operations:
+      - method: GET
+        name: listallcurrencycloudbeneficiaryrequirementforuser
+        description: Endpoint to list requirements for CurrencyCloud beneficiaries.
+        call: user-userid-currency-cloud-beneficiary-user.listallcurrencycloudbeneficiaryrequirementforuser
+        with:
+          userID: rest.userID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user/{userid}/currency-cloud-beneficiary/{itemid}
+      name: user-userid-currency-cloud-beneficiary-itemid
+      description: REST surface for user-userID-currency-cloud-beneficiary-itemId.
+      operations:
+      - method: GET
+        name: readcurrencycloudbeneficiaryforuser
+        description: Endpoint to manage CurrencyCloud beneficiaries.
+        call: user-userid-currency-cloud-beneficiary-user.readcurrencycloudbeneficiaryforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-userid-currency-cloud-beneficiary-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq user/{userID}/currency-cloud-beneficiary — User. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: endpoint-manage-currencycloud-beneficiaries
+      description: Endpoint to manage CurrencyCloud beneficiaries.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user-userid-currency-cloud-beneficiary-user.createcurrencycloudbeneficiaryforuser
+      with:
+        userID: tools.userID
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: endpoint-manage-currencycloud-beneficiaries-2
+      description: Endpoint to manage CurrencyCloud beneficiaries.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-currency-cloud-beneficiary-user.listallcurrencycloudbeneficiaryforuser
+      with:
+        userID: tools.userID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: endpoint-list-requirements-currencycloud-beneficiaries
+      description: Endpoint to list requirements for CurrencyCloud beneficiaries.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-currency-cloud-beneficiary-user.listallcurrencycloudbeneficiaryrequirementforuser
+      with:
+        userID: tools.userID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: endpoint-manage-currencycloud-beneficiaries-3
+      description: Endpoint to manage CurrencyCloud beneficiaries.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-currency-cloud-beneficiary-user.readcurrencycloudbeneficiaryforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.

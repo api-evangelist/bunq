@@ -1,0 +1,212 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq user/{userID}/payment-service-provider-issuer-transaction — User
+  description: 'Bunq user/{userID}/payment-service-provider-issuer-transaction — User. 4 operations. Lead operation: User.
+    Self-contained Naftiko capability covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - User
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-userid-payment-service-provider-issuer-transaction-user
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq user/{userID}/payment-service-provider-issuer-transaction — User business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: user-userID-payment-service-provider-issuer-transaction
+      path: /user/{userID}/payment-service-provider-issuer-transaction
+      operations:
+      - name: createpaymentserviceproviderissuertransactionforuser
+        method: POST
+        description: The endpoint for payment service provider issuer transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listallpaymentserviceproviderissuertransactionforuser
+        method: GET
+        description: The endpoint for payment service provider issuer transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+    - name: user-userID-payment-service-provider-issuer-transaction-itemId
+      path: /user/{userID}/payment-service-provider-issuer-transaction/{itemId}
+      operations:
+      - name: readpaymentserviceproviderissuertransactionforuser
+        method: GET
+        description: The endpoint for payment service provider issuer transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+      - name: updatepaymentserviceproviderissuertransactionforuser
+        method: PUT
+        description: The endpoint for payment service provider issuer transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: user-userid-payment-service-provider-issuer-transaction-user-rest
+    port: 8080
+    description: REST adapter for Bunq user/{userID}/payment-service-provider-issuer-transaction — User. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/user/{userid}/payment-service-provider-issuer-transaction
+      name: user-userid-payment-service-provider-issuer-transaction
+      description: REST surface for user-userID-payment-service-provider-issuer-transaction.
+      operations:
+      - method: POST
+        name: createpaymentserviceproviderissuertransactionforuser
+        description: The endpoint for payment service provider issuer transactions
+        call: user-userid-payment-service-provider-issuer-transaction-user.createpaymentserviceproviderissuertransactionforuser
+        with:
+          userID: rest.userID
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallpaymentserviceproviderissuertransactionforuser
+        description: The endpoint for payment service provider issuer transactions
+        call: user-userid-payment-service-provider-issuer-transaction-user.listallpaymentserviceproviderissuertransactionforuser
+        with:
+          userID: rest.userID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user/{userid}/payment-service-provider-issuer-transaction/{itemid}
+      name: user-userid-payment-service-provider-issuer-transaction-itemid
+      description: REST surface for user-userID-payment-service-provider-issuer-transaction-itemId.
+      operations:
+      - method: GET
+        name: readpaymentserviceproviderissuertransactionforuser
+        description: The endpoint for payment service provider issuer transactions
+        call: user-userid-payment-service-provider-issuer-transaction-user.readpaymentserviceproviderissuertransactionforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatepaymentserviceproviderissuertransactionforuser
+        description: The endpoint for payment service provider issuer transactions
+        call: user-userid-payment-service-provider-issuer-transaction-user.updatepaymentserviceproviderissuertransactionforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-userid-payment-service-provider-issuer-transaction-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq user/{userID}/payment-service-provider-issuer-transaction — User. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: endpoint-payment-service-provider-issuer
+      description: The endpoint for payment service provider issuer transactions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user-userid-payment-service-provider-issuer-transaction-user.createpaymentserviceproviderissuertransactionforuser
+      with:
+        userID: tools.userID
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: endpoint-payment-service-provider-issuer-2
+      description: The endpoint for payment service provider issuer transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-payment-service-provider-issuer-transaction-user.listallpaymentserviceproviderissuertransactionforuser
+      with:
+        userID: tools.userID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: endpoint-payment-service-provider-issuer-3
+      description: The endpoint for payment service provider issuer transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-payment-service-provider-issuer-transaction-user.readpaymentserviceproviderissuertransactionforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: endpoint-payment-service-provider-issuer-4
+      description: The endpoint for payment service provider issuer transactions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user-userid-payment-service-provider-issuer-transaction-user.updatepaymentserviceproviderissuertransactionforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

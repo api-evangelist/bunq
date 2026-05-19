@@ -1,0 +1,211 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq user/{userID}/monetary-account-joint — User
+  description: 'Bunq user/{userID}/monetary-account-joint — User. 4 operations. Lead operation: User. Self-contained Naftiko
+    capability covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - User
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-userid-monetary-account-joint-user
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq user/{userID}/monetary-account-joint — User business capability. Self-contained, no shared references.
+    resources:
+    - name: user-userID-monetary-account-joint
+      path: /user/{userID}/monetary-account-joint
+      operations:
+      - name: createmonetaryaccountjointforuser
+        method: POST
+        description: The endpoint for joint monetary accounts.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listallmonetaryaccountjointforuser
+        method: GET
+        description: The endpoint for joint monetary accounts.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+    - name: user-userID-monetary-account-joint-itemId
+      path: /user/{userID}/monetary-account-joint/{itemId}
+      operations:
+      - name: readmonetaryaccountjointforuser
+        method: GET
+        description: The endpoint for joint monetary accounts.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+      - name: updatemonetaryaccountjointforuser
+        method: PUT
+        description: The endpoint for joint monetary accounts.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: user-userid-monetary-account-joint-user-rest
+    port: 8080
+    description: REST adapter for Bunq user/{userID}/monetary-account-joint — User. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/user/{userid}/monetary-account-joint
+      name: user-userid-monetary-account-joint
+      description: REST surface for user-userID-monetary-account-joint.
+      operations:
+      - method: POST
+        name: createmonetaryaccountjointforuser
+        description: The endpoint for joint monetary accounts.
+        call: user-userid-monetary-account-joint-user.createmonetaryaccountjointforuser
+        with:
+          userID: rest.userID
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallmonetaryaccountjointforuser
+        description: The endpoint for joint monetary accounts.
+        call: user-userid-monetary-account-joint-user.listallmonetaryaccountjointforuser
+        with:
+          userID: rest.userID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user/{userid}/monetary-account-joint/{itemid}
+      name: user-userid-monetary-account-joint-itemid
+      description: REST surface for user-userID-monetary-account-joint-itemId.
+      operations:
+      - method: GET
+        name: readmonetaryaccountjointforuser
+        description: The endpoint for joint monetary accounts.
+        call: user-userid-monetary-account-joint-user.readmonetaryaccountjointforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatemonetaryaccountjointforuser
+        description: The endpoint for joint monetary accounts.
+        call: user-userid-monetary-account-joint-user.updatemonetaryaccountjointforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-userid-monetary-account-joint-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq user/{userID}/monetary-account-joint — User. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: endpoint-joint-monetary-accounts
+      description: The endpoint for joint monetary accounts.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user-userid-monetary-account-joint-user.createmonetaryaccountjointforuser
+      with:
+        userID: tools.userID
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: endpoint-joint-monetary-accounts-2
+      description: The endpoint for joint monetary accounts.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-monetary-account-joint-user.listallmonetaryaccountjointforuser
+      with:
+        userID: tools.userID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: endpoint-joint-monetary-accounts-3
+      description: The endpoint for joint monetary accounts.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-monetary-account-joint-user.readmonetaryaccountjointforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: endpoint-joint-monetary-accounts-4
+      description: The endpoint for joint monetary accounts.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user-userid-monetary-account-joint-user.updatemonetaryaccountjointforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,76 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: bunq API — User Payment Service Provider
+  description: 'bunq API — User Payment Service Provider. 1 operations. Lead operation: User Payment Service Provider. Self-contained
+    Naftiko capability covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - User Payment Service Provider
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bunq-user-payment-service-provider
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: bunq API — User Payment Service Provider business capability. Self-contained, no shared references.
+    resources:
+    - name: user-payment-service-provider-itemId
+      path: /user-payment-service-provider/{itemId}
+      operations:
+      - name: readuserpaymentserviceprovider
+        method: GET
+        description: Used to view UserPaymentServiceProvider for session creation.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: bunq-user-payment-service-provider-rest
+    port: 8080
+    description: REST adapter for bunq API — User Payment Service Provider. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/user-payment-service-provider/{itemid}
+      name: user-payment-service-provider-itemid
+      description: REST surface for user-payment-service-provider-itemId.
+      operations:
+      - method: GET
+        name: readuserpaymentserviceprovider
+        description: Used to view UserPaymentServiceProvider for session creation.
+        call: bunq-user-payment-service-provider.readuserpaymentserviceprovider
+        with:
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bunq-user-payment-service-provider-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for bunq API — User Payment Service Provider. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: used-view-userpaymentserviceprovider-session-creation
+      description: Used to view UserPaymentServiceProvider for session creation.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bunq-user-payment-service-provider.readuserpaymentserviceprovider
+      with:
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.

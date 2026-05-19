@@ -1,0 +1,212 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq user/{userID}/payment-service-provider-draft-payment — User
+  description: 'Bunq user/{userID}/payment-service-provider-draft-payment — User. 4 operations. Lead operation: User. Self-contained
+    Naftiko capability covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - User
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-userid-payment-service-provider-draft-payment-user
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq user/{userID}/payment-service-provider-draft-payment — User business capability. Self-contained, no
+      shared references.
+    resources:
+    - name: user-userID-payment-service-provider-draft-payment
+      path: /user/{userID}/payment-service-provider-draft-payment
+      operations:
+      - name: createpaymentserviceproviderdraftpaymentforuser
+        method: POST
+        description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listallpaymentserviceproviderdraftpaymentforuser
+        method: GET
+        description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+    - name: user-userID-payment-service-provider-draft-payment-itemId
+      path: /user/{userID}/payment-service-provider-draft-payment/{itemId}
+      operations:
+      - name: updatepaymentserviceproviderdraftpaymentforuser
+        method: PUT
+        description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: readpaymentserviceproviderdraftpaymentforuser
+        method: GET
+        description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: user-userid-payment-service-provider-draft-payment-user-rest
+    port: 8080
+    description: REST adapter for Bunq user/{userID}/payment-service-provider-draft-payment — User. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/user/{userid}/payment-service-provider-draft-payment
+      name: user-userid-payment-service-provider-draft-payment
+      description: REST surface for user-userID-payment-service-provider-draft-payment.
+      operations:
+      - method: POST
+        name: createpaymentserviceproviderdraftpaymentforuser
+        description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+        call: user-userid-payment-service-provider-draft-payment-user.createpaymentserviceproviderdraftpaymentforuser
+        with:
+          userID: rest.userID
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallpaymentserviceproviderdraftpaymentforuser
+        description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+        call: user-userid-payment-service-provider-draft-payment-user.listallpaymentserviceproviderdraftpaymentforuser
+        with:
+          userID: rest.userID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user/{userid}/payment-service-provider-draft-payment/{itemid}
+      name: user-userid-payment-service-provider-draft-payment-itemid
+      description: REST surface for user-userID-payment-service-provider-draft-payment-itemId.
+      operations:
+      - method: PUT
+        name: updatepaymentserviceproviderdraftpaymentforuser
+        description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+        call: user-userid-payment-service-provider-draft-payment-user.updatepaymentserviceproviderdraftpaymentforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: readpaymentserviceproviderdraftpaymentforuser
+        description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+        call: user-userid-payment-service-provider-draft-payment-user.readpaymentserviceproviderdraftpaymentforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-userid-payment-service-provider-draft-payment-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq user/{userID}/payment-service-provider-draft-payment — User. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: manage-paymentserviceproviderdraftpayment-s-pisp
+      description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user-userid-payment-service-provider-draft-payment-user.createpaymentserviceproviderdraftpaymentforuser
+      with:
+        userID: tools.userID
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: manage-paymentserviceproviderdraftpayment-s-pisp-2
+      description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-payment-service-provider-draft-payment-user.listallpaymentserviceproviderdraftpaymentforuser
+      with:
+        userID: tools.userID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: manage-paymentserviceproviderdraftpayment-s-pisp-3
+      description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user-userid-payment-service-provider-draft-payment-user.updatepaymentserviceproviderdraftpaymentforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: manage-paymentserviceproviderdraftpayment-s-pisp-4
+      description: Manage the PaymentServiceProviderDraftPayment's for a PISP.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-payment-service-provider-draft-payment-user.readpaymentserviceproviderdraftpaymentforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.

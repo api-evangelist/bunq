@@ -1,0 +1,129 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq user/{userID}/event — User
+  description: 'Bunq user/{userID}/event — User. 2 operations. Lead operation: User. Self-contained Naftiko capability covering
+    one Bunq business surface.'
+  tags:
+  - Bunq
+  - User
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-userid-event-user
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq user/{userID}/event — User business capability. Self-contained, no shared references.
+    resources:
+    - name: user-userID-event
+      path: /user/{userID}/event
+      operations:
+      - name: listalleventforuser
+        method: GET
+        description: Get a collection of events for a given user. You can add query the parameters monetary_account_id, status
+          and/or display_user_event to filter the response. When monetary_account_id={id,id} is provided only events that
+          relate to these moneta
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+    - name: user-userID-event-itemId
+      path: /user/{userID}/event/{itemId}
+      operations:
+      - name: readeventforuser
+        method: GET
+        description: Get a specific event for a given user.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: user-userid-event-user-rest
+    port: 8080
+    description: REST adapter for Bunq user/{userID}/event — User. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/user/{userid}/event
+      name: user-userid-event
+      description: REST surface for user-userID-event.
+      operations:
+      - method: GET
+        name: listalleventforuser
+        description: Get a collection of events for a given user. You can add query the parameters monetary_account_id, status
+          and/or display_user_event to filter the response. When monetary_account_id={id,id} is provided only events that
+          relate to these moneta
+        call: user-userid-event-user.listalleventforuser
+        with:
+          userID: rest.userID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user/{userid}/event/{itemid}
+      name: user-userid-event-itemid
+      description: REST surface for user-userID-event-itemId.
+      operations:
+      - method: GET
+        name: readeventforuser
+        description: Get a specific event for a given user.
+        call: user-userid-event-user.readeventforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-userid-event-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq user/{userID}/event — User. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-collection-events-given-user
+      description: Get a collection of events for a given user. You can add query the parameters monetary_account_id, status
+        and/or display_user_event to filter the response. When monetary_account_id={id,id} is provided only events that relate
+        to these moneta
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-event-user.listalleventforuser
+      with:
+        userID: tools.userID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-specific-event-given-user
+      description: Get a specific event for a given user.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-event-user.readeventforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.

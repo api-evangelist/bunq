@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq user/{userID}/feature-announcement — User
+  description: 'Bunq user/{userID}/feature-announcement — User. 1 operations. Lead operation: User. Self-contained Naftiko
+    capability covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - User
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-userid-feature-announcement-user
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq user/{userID}/feature-announcement — User business capability. Self-contained, no shared references.
+    resources:
+    - name: user-userID-feature-announcement-itemId
+      path: /user/{userID}/feature-announcement/{itemId}
+      operations:
+      - name: readfeatureannouncementforuser
+        method: GET
+        description: view for updating the feature display.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: user-userid-feature-announcement-user-rest
+    port: 8080
+    description: REST adapter for Bunq user/{userID}/feature-announcement — User. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/user/{userid}/feature-announcement/{itemid}
+      name: user-userid-feature-announcement-itemid
+      description: REST surface for user-userID-feature-announcement-itemId.
+      operations:
+      - method: GET
+        name: readfeatureannouncementforuser
+        description: view for updating the feature display.
+        call: user-userid-feature-announcement-user.readfeatureannouncementforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-userid-feature-announcement-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq user/{userID}/feature-announcement — User. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: view-updating-feature-display
+      description: view for updating the feature display.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-feature-announcement-user.readfeatureannouncementforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.

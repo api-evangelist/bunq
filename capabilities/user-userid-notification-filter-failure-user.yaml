@@ -1,0 +1,117 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq user/{userID}/notification-filter-failure — User
+  description: 'Bunq user/{userID}/notification-filter-failure — User. 2 operations. Lead operation: User. Self-contained
+    Naftiko capability covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - User
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-userid-notification-filter-failure-user
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq user/{userID}/notification-filter-failure — User business capability. Self-contained, no shared references.
+    resources:
+    - name: user-userID-notification-filter-failure
+      path: /user/{userID}/notification-filter-failure
+      operations:
+      - name: createnotificationfilterfailureforuser
+        method: POST
+        description: Manage the url notification filters for a user.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listallnotificationfilterfailureforuser
+        method: GET
+        description: Manage the url notification filters for a user.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: user-userid-notification-filter-failure-user-rest
+    port: 8080
+    description: REST adapter for Bunq user/{userID}/notification-filter-failure — User. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/user/{userid}/notification-filter-failure
+      name: user-userid-notification-filter-failure
+      description: REST surface for user-userID-notification-filter-failure.
+      operations:
+      - method: POST
+        name: createnotificationfilterfailureforuser
+        description: Manage the url notification filters for a user.
+        call: user-userid-notification-filter-failure-user.createnotificationfilterfailureforuser
+        with:
+          userID: rest.userID
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallnotificationfilterfailureforuser
+        description: Manage the url notification filters for a user.
+        call: user-userid-notification-filter-failure-user.listallnotificationfilterfailureforuser
+        with:
+          userID: rest.userID
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-userid-notification-filter-failure-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq user/{userID}/notification-filter-failure — User. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: manage-url-notification-filters-user
+      description: Manage the url notification filters for a user.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user-userid-notification-filter-failure-user.createnotificationfilterfailureforuser
+      with:
+        userID: tools.userID
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: manage-url-notification-filters-user-2
+      description: Manage the url notification filters for a user.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-notification-filter-failure-user.listallnotificationfilterfailureforuser
+      with:
+        userID: tools.userID
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,123 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bunq user/{userID}/bunqme-fundraiser-profile — User
+  description: 'Bunq user/{userID}/bunqme-fundraiser-profile — User. 2 operations. Lead operation: User. Self-contained Naftiko
+    capability covering one Bunq business surface.'
+  tags:
+  - Bunq
+  - User
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUNQ_API_KEY: BUNQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-userid-bunqme-fundraiser-profile-user
+    baseUri: https://public-api.sandbox.bunq.com/{basePath}
+    description: Bunq user/{userID}/bunqme-fundraiser-profile — User business capability. Self-contained, no shared references.
+    resources:
+    - name: user-userID-bunqme-fundraiser-profile
+      path: /user/{userID}/bunqme-fundraiser-profile
+      operations:
+      - name: listallbunqmefundraiserprofileforuser
+        method: GET
+        description: bunq.me public profile of the user.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+    - name: user-userID-bunqme-fundraiser-profile-itemId
+      path: /user/{userID}/bunqme-fundraiser-profile/{itemId}
+      operations:
+      - name: readbunqmefundraiserprofileforuser
+        method: GET
+        description: bunq.me public profile of the user.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userID
+          in: path
+          type: integer
+          required: true
+        - name: itemId
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: user-userid-bunqme-fundraiser-profile-user-rest
+    port: 8080
+    description: REST adapter for Bunq user/{userID}/bunqme-fundraiser-profile — User. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/user/{userid}/bunqme-fundraiser-profile
+      name: user-userid-bunqme-fundraiser-profile
+      description: REST surface for user-userID-bunqme-fundraiser-profile.
+      operations:
+      - method: GET
+        name: listallbunqmefundraiserprofileforuser
+        description: bunq.me public profile of the user.
+        call: user-userid-bunqme-fundraiser-profile-user.listallbunqmefundraiserprofileforuser
+        with:
+          userID: rest.userID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user/{userid}/bunqme-fundraiser-profile/{itemid}
+      name: user-userid-bunqme-fundraiser-profile-itemid
+      description: REST surface for user-userID-bunqme-fundraiser-profile-itemId.
+      operations:
+      - method: GET
+        name: readbunqmefundraiserprofileforuser
+        description: bunq.me public profile of the user.
+        call: user-userid-bunqme-fundraiser-profile-user.readbunqmefundraiserprofileforuser
+        with:
+          userID: rest.userID
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-userid-bunqme-fundraiser-profile-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bunq user/{userID}/bunqme-fundraiser-profile — User. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: bunq-me-public-profile-user
+      description: bunq.me public profile of the user.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-bunqme-fundraiser-profile-user.listallbunqmefundraiserprofileforuser
+      with:
+        userID: tools.userID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bunq-me-public-profile-user-2
+      description: bunq.me public profile of the user.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-userid-bunqme-fundraiser-profile-user.readbunqmefundraiserprofileforuser
+      with:
+        userID: tools.userID
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.
