@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MonetaryAccountLight",
+  "title": "MonetaryAccountLight",
+  "type": "object",
+  "properties": {
+    "currency": {
+      "type": "string",
+      "description": "The currency of the MonetaryAccountLight as an ISO 4217 formatted currency code.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "description": {
+      "type": "string",
+      "description": "The description of the MonetaryAccountLight. Defaults to 'bunq account'.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "daily_limit": {
+      "type": "object",
+      "description": "The daily spending limit Amount of the MonetaryAccountLight. Defaults to 1000 EUR. Currency must match the MonetaryAccountLight's currency. Limited to 10000 EUR.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "avatar_uuid": {
+      "type": "string",
+      "description": "The UUID of the Avatar of the MonetaryAccountLight.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the MonetaryAccountLight. Can be: ACTIVE, BLOCKED, CANCELLED or PENDING_REOPEN",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "sub_status": {
+      "type": "string",
+      "description": "The sub-status of the MonetaryAccountLight providing extra information regarding the status. Will be NONE for ACTIVE or PENDING_REOPEN, COMPLETELY or ONLY_ACCEPTING_INCOMING for BLOCKED and REDEMPTION_INVOLUNTARY, REDEMPTION_VOLUNTARY or PERMANENT for CANCELLED.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "reason": {
+      "type": "string",
+      "description": "The reason for voluntarily cancelling (closing) the MonetaryAccountBank, can only be OTHER.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "reason_description": {
+      "type": "string",
+      "description": "The optional free-form reason for voluntarily cancelling (closing) the MonetaryAccountBank. Can be any user provided message.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "setting": {
+      "type": "object",
+      "description": "The settings of the MonetaryAccountLight.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/MonetaryAccountSetting"
+    },
+    "id": {
+      "type": "integer",
+      "description": "The id of the MonetaryAccountLight.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "created": {
+      "type": "string",
+      "description": "The timestamp of the MonetaryAccountLight's creation.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "updated": {
+      "type": "string",
+      "description": "The timestamp of the MonetaryAccountLight's last update.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "avatar": {
+      "type": "object",
+      "description": "The Avatar of the MonetaryAccountLight.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Avatar"
+    },
+    "balance": {
+      "type": "object",
+      "description": "The current available balance Amount of the MonetaryAccountLight.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "alias": {
+      "type": "array",
+      "description": "The Aliases for the MonetaryAccountLight.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/Pointer"
+      }
+    },
+    "public_uuid": {
+      "type": "string",
+      "description": "The MonetaryAccountLight's public UUID.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "user_id": {
+      "type": "integer",
+      "description": "The id of the User who owns the MonetaryAccountLight.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "balance_maximum": {
+      "type": "object",
+      "description": "The maximum balance Amount of the MonetaryAccountLight.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "budget_month_used": {
+      "type": "object",
+      "description": "The amount of the monthly budget used.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "budget_month_maximum": {
+      "type": "object",
+      "description": "The total amount of the monthly budget.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "budget_year_used": {
+      "type": "object",
+      "description": "The amount of the yearly budget used.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "budget_year_maximum": {
+      "type": "object",
+      "description": "The total amount of the yearly budget.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "budget_withdrawal_year_used": {
+      "type": "object",
+      "description": "The amount of the yearly withdrawal budget used.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "budget_withdrawal_year_maximum": {
+      "type": "object",
+      "description": "The total amount of the yearly withdrawal budget.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    }
+  }
+}

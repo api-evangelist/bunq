@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FeatureAnnouncement",
+  "title": "FeatureAnnouncement",
+  "type": "object",
+  "properties": {
+    "avatar": {
+      "type": "object",
+      "description": "The Avatar of the event overview.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Avatar"
+    },
+    "title": {
+      "type": "string",
+      "description": "The event overview title of the feature display",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "sub_title": {
+      "type": "string",
+      "description": "The event overview subtitle of the feature display",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of the feature announcement so apps can override with their own stuff if desired",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

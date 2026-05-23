@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeviceRead",
+  "title": "DeviceRead",
+  "type": "object",
+  "properties": {
+    "DeviceServer": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/DeviceServer"
+    }
+  }
+}

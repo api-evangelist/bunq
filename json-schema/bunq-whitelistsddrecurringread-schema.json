@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WhitelistSddRecurringRead",
+  "title": "WhitelistSddRecurringRead",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The ID of the whitelist entry.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "monetary_account_incoming_id": {
+      "type": "integer",
+      "description": "The account to which payments will come in before possibly being 'redirected' by the whitelist.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "monetary_account_paying_id": {
+      "type": "integer",
+      "description": "The account from which payments will be deducted when a transaction is matched with this whitelist.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of the SDD whitelist, can be CORE or B2B.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the whitelist.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "credit_scheme_identifier": {
+      "type": "string",
+      "description": "The credit scheme ID provided by the counterparty.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "mandate_identifier": {
+      "type": "string",
+      "description": "The mandate ID provided by the counterparty.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "counterparty_alias": {
+      "type": "object",
+      "description": "The account to which payments will be paid.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelMonetaryAccount"
+    },
+    "maximum_amount_per_month": {
+      "type": "object",
+      "description": "The monthly maximum amount that can be deducted from the target account.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "maximum_amount_per_payment": {
+      "type": "object",
+      "description": "The maximum amount per payment that can be deducted from the target account.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "user_alias_created": {
+      "type": "object",
+      "description": "The user who created the whitelist entry.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelUser"
+    }
+  }
+}

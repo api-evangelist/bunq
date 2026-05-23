@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AttachmentUrl",
+  "title": "AttachmentUrl",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The file type of attachment.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "url": {
+      "type": "string",
+      "description": "The URL where the attachment can be downloaded.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

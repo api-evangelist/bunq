@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TransferwiseTransferRequirement",
+  "title": "TransferwiseTransferRequirement",
+  "type": "object",
+  "properties": {
+    "recipient_id": {
+      "type": "string",
+      "description": "The id of the target account.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "detail": {
+      "type": "array",
+      "description": "The fields which were specified as \"required\" and have since been filled by the user. Always provide the full list.",
+      "readOnly": false,
+      "writeOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/TransferwiseRequirementField"
+      }
+    }
+  },
+  "required": [
+    "recipient_id"
+  ]
+}

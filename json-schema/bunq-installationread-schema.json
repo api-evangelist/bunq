@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InstallationRead",
+  "title": "InstallationRead",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the Installation as created on the server. You can use this id to request the server's public key again.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

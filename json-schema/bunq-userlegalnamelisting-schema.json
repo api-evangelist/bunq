@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserLegalNameListing",
+  "title": "UserLegalNameListing",
+  "type": "object",
+  "properties": {
+    "legal_names": {
+      "type": "array",
+      "description": "All legal names that can be used by the user",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

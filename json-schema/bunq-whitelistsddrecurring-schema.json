@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WhitelistSddRecurring",
+  "title": "WhitelistSddRecurring",
+  "type": "object",
+  "properties": {
+    "monetary_account_paying_id": {
+      "type": "integer",
+      "description": "ID of the monetary account of which you want to pay from.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "request_id": {
+      "type": "integer",
+      "description": "ID of the request for which you want to whitelist the originating SDD.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "maximum_amount_per_month": {
+      "type": "object",
+      "description": "The maximum amount of money that is allowed to be deducted per month based on the whitelist.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "maximum_amount_per_payment": {
+      "type": "object",
+      "description": "The maximum amount of money that is allowed to be deducted per payment based on the whitelist.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    }
+  },
+  "required": [
+    "monetary_account_paying_id",
+    "request_id"
+  ]
+}

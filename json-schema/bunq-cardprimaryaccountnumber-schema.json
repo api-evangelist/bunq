@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CardPrimaryAccountNumber",
+  "title": "CardPrimaryAccountNumber",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The ID for this Virtual PAN.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "description": {
+      "type": "string",
+      "description": "The description for this PAN.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "status": {
+      "type": "string",
+      "description": "The status for this PAN, only for Online Cards.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "monetary_account_id": {
+      "type": "integer",
+      "description": "The ID of the monetary account to assign to this PAN, only for Online Cards.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "uuid": {
+      "type": "string",
+      "description": "The UUID for this Virtual PAN.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "four_digit": {
+      "type": "string",
+      "description": "The last four digits of the PAN.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

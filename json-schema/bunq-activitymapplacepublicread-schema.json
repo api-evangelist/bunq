@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ActivityMapPlacePublicRead",
+  "title": "ActivityMapPlacePublicRead",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the place.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "public_uuid": {
+      "type": "string",
+      "description": "The public uuid of the place.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "geolocation": {
+      "type": "object",
+      "description": "The geolocation of this place.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Geolocation"
+    },
+    "address": {
+      "type": "object",
+      "description": "The address of this place.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Address"
+    },
+    "phone_number": {
+      "type": "string",
+      "description": "The phone number of this place.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "url_merchant": {
+      "type": "string",
+      "description": "The URL to this place's merchant website.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "url_google_maps": {
+      "type": "string",
+      "description": "The URL to the place's Google maps location.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "all_attachment_photo": {
+      "type": "array",
+      "description": "The attachments for the place's photos.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/AttachmentPublic"
+      }
+    },
+    "all_type": {
+      "type": "array",
+      "description": "The google types of the place.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "all_opening_period": {
+      "type": "array",
+      "description": "The opening periods of the place.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "number_of_recommendation_total": {
+      "type": "integer",
+      "description": "The total number of recommendations.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

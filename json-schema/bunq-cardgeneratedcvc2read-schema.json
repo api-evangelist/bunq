@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CardGeneratedCvc2Read",
+  "title": "CardGeneratedCvc2Read",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the cvc code.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "created": {
+      "type": "string",
+      "description": "The timestamp of the cvc code's creation.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "updated": {
+      "type": "string",
+      "description": "The timestamp of the cvc code's last update.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of generated cvc2. Can be STATIC or GENERATED.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "cvc2": {
+      "type": "string",
+      "description": "The cvc2 code.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the cvc2. Can be AVAILABLE, USED, EXPIRED, BLOCKED.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "expiry_time": {
+      "type": "string",
+      "description": "Expiry time of the cvc2.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

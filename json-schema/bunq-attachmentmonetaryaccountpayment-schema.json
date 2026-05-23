@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AttachmentMonetaryAccountPayment",
+  "title": "AttachmentMonetaryAccountPayment",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the attached Attachment.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "monetary_account_id": {
+      "type": "integer",
+      "description": "The id of the MonetaryAccount this Attachment is attached from.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

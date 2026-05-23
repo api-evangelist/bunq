@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DraftPayment",
+  "title": "DraftPayment",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The status of the DraftPayment.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "entries": {
+      "type": "array",
+      "description": "The list of entries in the DraftPayment. Each entry will result in a payment when the DraftPayment is accepted.",
+      "readOnly": false,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/DraftPaymentEntry"
+      }
+    },
+    "previous_updated_timestamp": {
+      "type": "string",
+      "description": "The last updated_timestamp that you received for this DraftPayment. This needs to be provided to prevent race conditions.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "number_of_required_accepts": {
+      "type": "integer",
+      "description": "The number of accepts that are required for the draft payment to receive status ACCEPTED. Currently only 1 is valid.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "schedule": {
+      "type": "object",
+      "description": "The schedule details when creating or updating a scheduled payment.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Schedule"
+    }
+  },
+  "required": [
+    "entries",
+    "number_of_required_accepts"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Customer",
+  "title": "Customer",
+  "type": "object",
+  "properties": {
+    "billing_account_id": {
+      "type": "string",
+      "description": "The primary billing account account's id.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "invoice_notification_preference": {
+      "type": "string",
+      "description": "The preferred notification type for invoices.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "id": {
+      "type": "integer",
+      "description": "The id of the customer.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "created": {
+      "type": "string",
+      "description": "The timestamp of the customer object's creation.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "updated": {
+      "type": "string",
+      "description": "The timestamp of the customer object's last update.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

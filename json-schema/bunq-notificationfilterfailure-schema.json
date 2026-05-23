@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NotificationFilterFailure",
+  "title": "NotificationFilterFailure",
+  "type": "object",
+  "properties": {
+    "notification_filter_failed_ids": {
+      "type": "string",
+      "description": "The IDs to retry.",
+      "readOnly": false,
+      "writeOnly": true
+    }
+  },
+  "required": [
+    "notification_filter_failed_ids"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SchedulePayment",
+  "title": "SchedulePayment",
+  "type": "object",
+  "properties": {
+    "payment": {
+      "type": "object",
+      "description": "The payment details.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/SchedulePaymentEntry"
+    },
+    "schedule": {
+      "type": "object",
+      "description": "The schedule details.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Schedule"
+    },
+    "status": {
+      "type": "string",
+      "description": "The schedule status, options: ACTIVE, FINISHED, CANCELLED.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

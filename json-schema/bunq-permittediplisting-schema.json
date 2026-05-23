@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PermittedIpListing",
+  "title": "PermittedIpListing",
+  "type": "object",
+  "properties": {
+    "ip": {
+      "type": "string",
+      "description": "The IP address.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the IP. May be \"ACTIVE\" or \"INACTIVE\". It is only possible to make requests from \"ACTIVE\" IP addresses. Only \"ACTIVE\" IPs will be billed.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

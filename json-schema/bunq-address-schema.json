@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Address",
+  "title": "Address",
+  "type": "object",
+  "properties": {
+    "street": {
+      "type": "string",
+      "description": "The street.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "house_number": {
+      "type": "string",
+      "description": "The house number.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "po_box": {
+      "type": "string",
+      "description": "The PO box.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "postal_code": {
+      "type": "string",
+      "description": "The postal code.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "city": {
+      "type": "string",
+      "description": "The city.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "country": {
+      "type": "string",
+      "description": "The country as an ISO 3166-1 alpha-2 country code.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "extra": {
+      "type": "string",
+      "description": "The apartment, building or other extra information for addresses.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "mailbox_name": {
+      "type": "string",
+      "description": "The name on the mailbox (only used for Postal addresses).",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "province": {
+      "type": "string",
+      "description": "The province according to local standard.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "is_user_address_updated": {
+      "type": "boolean",
+      "description": "To show whether user created or updated her address for app event listing.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

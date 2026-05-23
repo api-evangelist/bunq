@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ScheduleInstanceAnchorObject",
+  "title": "ScheduleInstanceAnchorObject",
+  "type": "object",
+  "properties": {
+    "Payment": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Payment"
+    },
+    "PaymentBatch": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/PaymentBatch"
+    }
+  }
+}

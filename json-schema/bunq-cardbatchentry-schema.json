@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CardBatchEntry",
+  "title": "CardBatchEntry",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The ID of the card that needs to be updated.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "status": {
+      "type": "string",
+      "description": "The status to set for the card. Can be ACTIVE, DEACTIVATED, LOST, STOLEN or CANCELLED, and can only be set to LOST/STOLEN/CANCELLED when order status is ACCEPTED_FOR_PRODUCTION/DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED. Can only be set to DEACTIVATED after initial activation, i.e. order_status is DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED. Mind that all the possible choices (apart from ACTIVE and DEACTIVATED) are permanent and cannot be changed after.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "card_limit": {
+      "type": "object",
+      "description": "The spending limit for the card.",
+      "readOnly": false,
+      "writeOnly": true,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "card_limit_atm": {
+      "type": "object",
+      "description": "The ATM spending limit for the card.",
+      "readOnly": false,
+      "writeOnly": true,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "country_permission": {
+      "type": "array",
+      "description": "The countries for which to grant (temporary) permissions to use the card.",
+      "readOnly": false,
+      "writeOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/CardCountryPermission"
+      }
+    },
+    "monetary_account_id_fallback": {
+      "type": "integer",
+      "description": "ID of the MA to be used as fallback for this card if insufficient balance. Fallback account is removed if not supplied.",
+      "readOnly": false,
+      "writeOnly": true
+    }
+  },
+  "required": [
+    "id"
+  ]
+}

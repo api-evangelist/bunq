@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeviceServerCreate",
+  "title": "DeviceServerCreate",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the DeviceServer as created on the server.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

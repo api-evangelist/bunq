@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TransferwiseRequirementField",
+  "title": "TransferwiseRequirementField",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "The name of the required field.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "value": {
+      "type": "string",
+      "description": "The value of the required field.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "name": {
+      "type": "string",
+      "description": "The descriptive label of the field.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "group": {
+      "type": "object",
+      "description": "The field group.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/TransferwiseRequirementFieldGroup"
+    }
+  },
+  "required": [
+    "key",
+    "value"
+  ]
+}

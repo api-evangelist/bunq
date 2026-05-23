@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EventObject",
+  "title": "EventObject",
+  "type": "object",
+  "properties": {
+    "BunqMeTab": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/BunqMeTab"
+    },
+    "BunqMeTabResultResponse": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/BunqMeTabResultResponse"
+    },
+    "BunqMeFundraiserResult": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/BunqMeFundraiserResult"
+    },
+    "Card": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Card"
+    },
+    "CardDebit": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/CardDebit"
+    },
+    "DraftPayment": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/DraftPayment"
+    },
+    "FeatureAnnouncement": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/FeatureAnnouncement"
+    },
+    "IdealMerchantTransaction": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/IdealMerchantTransaction"
+    },
+    "Invoice": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Invoice"
+    },
+    "ScheduledPayment": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/SchedulePayment"
+    },
+    "ScheduledPaymentBatch": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/SchedulePaymentBatch"
+    },
+    "ScheduledInstance": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/ScheduleInstance"
+    },
+    "MasterCardAction": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/MasterCardAction"
+    },
+    "BankSwitchServiceNetherlandsIncomingPayment": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/BankSwitchServiceNetherlandsIncomingPayment"
+    },
+    "Payment": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Payment"
+    },
+    "PaymentBatch": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/PaymentBatch"
+    },
+    "RequestInquiryBatch": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/RequestInquiryBatch"
+    },
+    "RequestInquiry": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/RequestInquiry"
+    },
+    "RequestResponse": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/RequestResponse"
+    },
+    "ShareInviteBankInquiry": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/ShareInviteMonetaryAccountInquiry"
+    },
+    "ShareInviteBankResponse": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/ShareInviteMonetaryAccountResponse"
+    },
+    "SofortMerchantTransaction": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/SofortMerchantTransaction"
+    },
+    "TransferwisePayment": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/TransferwiseTransfer"
+    }
+  }
+}

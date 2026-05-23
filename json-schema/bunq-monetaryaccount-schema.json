@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MonetaryAccount",
+  "title": "MonetaryAccount",
+  "type": "object",
+  "properties": {
+    "MonetaryAccountBank": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/MonetaryAccountBank"
+    },
+    "MonetaryAccountJoint": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/MonetaryAccountJoint"
+    },
+    "MonetaryAccountLight": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/MonetaryAccountLight"
+    },
+    "MonetaryAccountSavings": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/MonetaryAccountSavings"
+    },
+    "MonetaryAccountExternal": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/MonetaryAccountExternal"
+    },
+    "MonetaryAccountInvestment": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/MonetaryAccountInvestment"
+    },
+    "MonetaryAccountExternalSavings": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/MonetaryAccountExternalSavings"
+    }
+  }
+}

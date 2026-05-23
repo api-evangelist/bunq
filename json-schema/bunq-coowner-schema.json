@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CoOwner",
+  "title": "CoOwner",
+  "type": "object",
+  "properties": {
+    "alias": {
+      "type": "object",
+      "description": "The Alias of the co-owner.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelUser"
+    },
+    "status": {
+      "type": "string",
+      "description": "Can be: ACCEPTED, REJECTED, PENDING or REVOKED",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

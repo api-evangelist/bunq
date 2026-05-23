@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BankSwitchServiceNetherlandsIncomingPaymentRead",
+  "title": "BankSwitchServiceNetherlandsIncomingPaymentRead",
+  "type": "object",
+  "properties": {
+    "bank_switch_service": {
+      "type": "object",
+      "description": "The bank switch service details.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/BankSwitchServiceNetherlandsIncoming"
+    },
+    "payment": {
+      "type": "object",
+      "description": "The payment made using bank switch service.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Payment"
+    }
+  }
+}

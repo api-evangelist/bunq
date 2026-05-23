@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExportRibCreate",
+  "title": "ExportRibCreate",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the rib as created on the server.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

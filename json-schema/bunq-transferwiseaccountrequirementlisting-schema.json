@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TransferwiseAccountRequirementListing",
+  "title": "TransferwiseAccountRequirementListing",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "A possible recipient account type.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "label": {
+      "type": "string",
+      "description": "The label of the possible recipient account type to show to the user.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "fields": {
+      "type": "array",
+      "description": "The fields which the user needs to fill.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/TransferwiseRequirementField"
+      }
+    }
+  }
+}

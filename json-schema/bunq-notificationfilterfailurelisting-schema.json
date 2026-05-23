@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NotificationFilterFailureListing",
+  "title": "NotificationFilterFailureListing",
+  "type": "object",
+  "properties": {
+    "notification_filters": {
+      "type": "array",
+      "description": "The types of notifications that will result in a url notification for this user.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/NotificationFilter"
+      }
+    },
+    "category": {
+      "type": "string",
+      "description": "The category of the failed notification.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "event_type": {
+      "type": "string",
+      "description": "The event type of the failed notification.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "object_id": {
+      "type": "integer",
+      "description": "The object id used to generate the body of the notification.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "exception_message": {
+      "type": "string",
+      "description": "The exception bunq encountered when processing the callback.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "response_code": {
+      "type": "integer",
+      "description": "The response code (or null) received from the endpoint.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

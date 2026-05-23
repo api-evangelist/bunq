@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SchedulePaymentEntry",
+  "title": "SchedulePaymentEntry",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "type": "object",
+      "description": "The Amount transferred by the Payment. Will be negative for outgoing Payments and positive for incoming Payments (relative to the MonetaryAccount indicated by monetary_account_id).",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "counterparty_alias": {
+      "type": "object",
+      "description": "The LabelMonetaryAccount containing the public information of the other (counterparty) side of the Payment.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelMonetaryAccount"
+    },
+    "description": {
+      "type": "string",
+      "description": "The description for the Payment. Maximum 140 characters for Payments to external IBANs, 9000 characters for Payments to only other bunq MonetaryAccounts.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "attachment": {
+      "type": "array",
+      "description": "The Attachments attached to the Payment.",
+      "readOnly": false,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/AttachmentMonetaryAccountPayment"
+      }
+    },
+    "merchant_reference": {
+      "type": "string",
+      "description": "Optional data included with the Payment specific to the merchant.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "allow_bunqto": {
+      "type": "boolean",
+      "description": "Whether or not sending a bunq.to payment is allowed.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "alias": {
+      "type": "object",
+      "description": "The LabelMonetaryAccount containing the public information of 'this' (party) side of the Payment.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelMonetaryAccount"
+    }
+  }
+}

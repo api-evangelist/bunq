@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CardDebit",
+  "title": "CardDebit",
+  "type": "object",
+  "properties": {
+    "second_line": {
+      "type": "string",
+      "description": "The second line of text on the card, used as name/description for it. It can contain at most 17 characters and it can be empty.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "name_on_card": {
+      "type": "string",
+      "description": "The user's name as it will be on the card. Check 'card-name' for the available card names for a user.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "preferred_name_on_card": {
+      "type": "string",
+      "description": "The user's preferred name that can be put on the card.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "alias": {
+      "type": "object",
+      "description": "The pointer to the monetary account that will be connected at first with the card. Its IBAN code is also the one that will be printed on the card itself. The pointer must be of type IBAN.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Pointer"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of card to order. Can be MAESTRO or MASTERCARD.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "product_type": {
+      "type": "string",
+      "description": "The product type of the card to order.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "pin_code_assignment": {
+      "type": "array",
+      "description": "Array of Types, PINs, account IDs assigned to the card.",
+      "readOnly": false,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/CardPinAssignment"
+      }
+    },
+    "monetary_account_id_fallback": {
+      "type": "integer",
+      "description": "ID of the MA to be used as fallback for this card if insufficient balance. Fallback account is removed if not supplied.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "order_status": {
+      "type": "string",
+      "description": "The order status of this card. Can be CARD_REQUEST_PENDING or VIRTUAL_DELIVERY.",
+      "readOnly": false,
+      "writeOnly": false
+    }
+  },
+  "required": [
+    "second_line",
+    "name_on_card",
+    "type",
+    "product_type"
+  ]
+}

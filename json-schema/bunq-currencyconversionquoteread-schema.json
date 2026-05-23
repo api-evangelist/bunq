@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CurrencyConversionQuoteRead",
+  "title": "CurrencyConversionQuoteRead",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the quote.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "created": {
+      "type": "string",
+      "description": "The timestamp of the quote's creation.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "updated": {
+      "type": "string",
+      "description": "The timestamp of the quote's last update.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the quote.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "amount_source": {
+      "type": "object",
+      "description": "The amount to convert.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "amount_target": {
+      "type": "object",
+      "description": "The amount to convert to.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "rate": {
+      "type": "string",
+      "description": "The conversion rate.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "time_expiry": {
+      "type": "string",
+      "description": "Timestamp for when this quote expires and the user should request a new one.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

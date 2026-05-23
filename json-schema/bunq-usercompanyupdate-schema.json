@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserCompanyUpdate",
+  "title": "UserCompanyUpdate",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the modified company.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

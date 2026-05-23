@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TreeProgressListing",
+  "title": "TreeProgressListing",
+  "type": "object",
+  "properties": {
+    "number_of_tree": {
+      "type": "integer",
+      "description": "The number of trees this user and all users have planted.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "progress_tree_next": {
+      "type": "integer",
+      "description": "The progress towards the next tree.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "url_invite_profile": {
+      "type": "string",
+      "description": "URL of the invite profile.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "label_user": {
+      "type": "object",
+      "description": "The label of the user the progress belongs to.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelUser"
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MonetaryAccountCardListing",
+  "title": "MonetaryAccountCardListing",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the MonetaryAccountCard.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "created": {
+      "type": "string",
+      "description": "The timestamp of the MonetaryAccountCard's creation.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "updated": {
+      "type": "string",
+      "description": "The timestamp of the MonetaryAccountCard's last update.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "currency": {
+      "type": "string",
+      "description": "The currency of the MonetaryAccountCard as an ISO 4217 formatted currency code.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "description": {
+      "type": "string",
+      "description": "The description of the MonetaryAccountCard. Defaults to 'prepaid credit card'.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "daily_limit": {
+      "type": "object",
+      "description": "The daily spending limit Amount of the MonetaryAccountCard.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "balance": {
+      "type": "object",
+      "description": "The current available balance Amount of the MonetaryAccountCard.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "alias": {
+      "type": "array",
+      "description": "The Aliases for the MonetaryAccountCard.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/Pointer"
+      }
+    },
+    "public_uuid": {
+      "type": "string",
+      "description": "The MonetaryAccountCard's public UUID.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the MonetaryAccountCard.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "sub_status": {
+      "type": "string",
+      "description": "The sub-status of the MonetaryAccountCard providing extra information regarding the status.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "user_id": {
+      "type": "integer",
+      "description": "The id of the User who owns the MonetaryAccountCard.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CardGeneratedCvc2",
+  "title": "CardGeneratedCvc2",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The type of generated cvc2. Can be STATIC or GENERATED.",
+      "readOnly": false,
+      "writeOnly": false
+    }
+  }
+}

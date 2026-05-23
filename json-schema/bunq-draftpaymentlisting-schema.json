@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DraftPaymentListing",
+  "title": "DraftPaymentListing",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the created DrafPayment.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "monetary_account_id": {
+      "type": "integer",
+      "description": "The id of the MonetaryAccount the DraftPayment applies to.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "user_alias_created": {
+      "type": "object",
+      "description": "The label of the User who created the DraftPayment.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelUser"
+    },
+    "responses": {
+      "type": "array",
+      "description": "All responses to this draft payment.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/DraftPaymentResponse"
+      }
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the DraftPayment.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of the DraftPayment.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "entries": {
+      "type": "array",
+      "description": "The entries in the DraftPayment.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/DraftPaymentEntry"
+      }
+    },
+    "object": {
+      "type": "object",
+      "description": "The Payment or PaymentBatch. This will only be present after the DraftPayment has been accepted.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/DraftPaymentAnchorObject"
+    },
+    "request_reference_split_the_bill": {
+      "type": "array",
+      "description": "The reference to the object used for split the bill. Can be RequestInquiry or RequestInquiryBatch",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/RequestInquiryReference"
+      }
+    },
+    "schedule": {
+      "type": "object",
+      "description": "The schedule details.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Schedule"
+    }
+  }
+}

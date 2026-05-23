@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ShareDetail",
+  "title": "ShareDetail",
+  "type": "object",
+  "properties": {
+    "payment": {
+      "type": "object",
+      "description": "The share details for a payment share. In the response 'payment' is replaced by 'ShareDetailPayment'.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/ShareDetailPayment"
+    },
+    "read_only": {
+      "type": "object",
+      "description": "The share details for viewing a share. In the response 'read_only' is replaced by 'ShareDetailReadOnly'.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/ShareDetailReadOnly"
+    },
+    "draft_payment": {
+      "type": "object",
+      "description": "The share details for a draft payment share. In the response 'draft_payment' is replaced by 'ShareDetailDraftPayment'.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/ShareDetailDraftPayment"
+    }
+  }
+}

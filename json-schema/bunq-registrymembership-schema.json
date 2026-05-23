@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RegistryMembership",
+  "title": "RegistryMembership",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "description": "The UUID of the membership.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "alias": {
+      "type": "object",
+      "description": "The LabelMonetaryAccount of the user who belongs to this RegistryMembership.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelMonetaryAccount"
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the RegistryMembership.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "auto_add_card_transaction": {
+      "type": "string",
+      "description": "The setting for adding automatically card transactions to the registry. (deprecated)",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "setting": {
+      "type": "object",
+      "description": "Registry membership setting.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/RegistryMembershipSetting"
+    },
+    "membership_ticount_id": {
+      "type": "integer",
+      "description": "The original TricountId of the membership for backwards compatibility. May be used as an alternative to the UUID to identify specific memberships to allow clients to sync changes made offline before the Tricount migration.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "balance": {
+      "type": "object",
+      "description": "The balance of this RegistryMembership.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "total_amount_spent": {
+      "type": "object",
+      "description": "The total amount spent of this RegistryMembership.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "status_settlement": {
+      "type": "string",
+      "description": "The status of the settlement of the Registry. Can be PENDING or SETTLED.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "registry_id": {
+      "type": "integer",
+      "description": "The registry id.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "registry_title": {
+      "type": "string",
+      "description": "The registry title.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "registry_description": {
+      "type": "string",
+      "description": "For dinner and grocery expenses.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "invitor": {
+      "type": "object",
+      "description": "The label of the user that sent the invite.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelUser"
+    }
+  }
+}

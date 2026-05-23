@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RegistrySettlementItem",
+  "title": "RegistrySettlementItem",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "type": "object",
+      "description": "The amount of the RegistrySettlementItem.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "membership_paying": {
+      "type": "object",
+      "description": "The membership of the user that has to pay.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/RegistryMembership"
+    },
+    "membership_receiving": {
+      "type": "object",
+      "description": "The membership of the user that will receive money.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/RegistryMembership"
+    },
+    "paying_user_alias": {
+      "type": "object",
+      "description": "The LabelMonetaryAccount of the user that has to pay the request.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelMonetaryAccount"
+    },
+    "receiving_user_alias": {
+      "type": "object",
+      "description": "The LabelMonetaryAccount of the user that will receive the amount.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelMonetaryAccount"
+    },
+    "payment_status": {
+      "type": "string",
+      "description": "The status of the RequestInquiry or DraftPayment for this settlement item.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

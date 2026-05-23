@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InstallationServerPublicKeyListing",
+  "title": "InstallationServerPublicKeyListing",
+  "type": "object",
+  "properties": {
+    "server_public_key": {
+      "type": "string",
+      "description": "The server's public key for this Installation.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

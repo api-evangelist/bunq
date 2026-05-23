@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CardNameListing",
+  "title": "CardNameListing",
+  "type": "object",
+  "properties": {
+    "possible_card_name_array": {
+      "type": "array",
+      "description": "All possible variations (of suitable length) of user's legal name for the debit card.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

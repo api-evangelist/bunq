@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExportStatement",
+  "title": "ExportStatement",
+  "type": "object",
+  "properties": {
+    "statement_format": {
+      "type": "string",
+      "description": "The format type of statement. Allowed values: MT940, CSV, PDF.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "date_start": {
+      "type": "string",
+      "description": "The start date for making statements.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "date_end": {
+      "type": "string",
+      "description": "The end date for making statements.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "regional_format": {
+      "type": "string",
+      "description": "Required for CSV exports. The regional format of the statement, can be UK_US (comma-separated) or EUROPEAN (semicolon-separated).",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "include_attachment": {
+      "type": "boolean",
+      "description": "Only for PDF exports. Includes attachments to mutations in the export, such as scanned receipts.",
+      "readOnly": false,
+      "writeOnly": true
+    }
+  },
+  "required": [
+    "statement_format",
+    "date_start",
+    "date_end"
+  ]
+}

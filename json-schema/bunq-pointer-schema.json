@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Pointer",
+  "title": "Pointer",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The alias type, can be: EMAIL|PHONE_NUMBER|IBAN.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "value": {
+      "type": "string",
+      "description": "The alias value.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "name": {
+      "type": "string",
+      "description": "The alias name.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "service": {
+      "type": "string",
+      "description": "The pointer service. Only required for external counterparties.",
+      "readOnly": false,
+      "writeOnly": true
+    }
+  }
+}

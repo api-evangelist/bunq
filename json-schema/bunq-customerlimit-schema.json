@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomerLimit",
+  "title": "CustomerLimit",
+  "type": "object",
+  "properties": {
+    "limit_monetary_account": {
+      "type": "integer",
+      "description": "The limit of monetary accounts.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "limit_monetary_account_remaining": {
+      "type": "integer",
+      "description": "The amount of additional monetary accounts you can create.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "limit_card_debit_maestro": {
+      "type": "integer",
+      "description": "The limit of Maestro cards.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "limit_card_debit_mastercard": {
+      "type": "integer",
+      "description": "The limit of MasterCard cards.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "limit_card_debit_wildcard": {
+      "type": "integer",
+      "description": "DEPRECTATED: The limit of wildcards, e.g. Maestro or MasterCard cards.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "limit_card_wildcard": {
+      "type": "integer",
+      "description": "The limit of wildcards, e.g. Maestro or MasterCard cards.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "limit_card_replacement": {
+      "type": "integer",
+      "description": "The limit of free replacement cards.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "limit_amount_monthly": {
+      "type": "object",
+      "description": "The maximum amount a user is allowed to spend in a month.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "spent_amount_monthly": {
+      "type": "object",
+      "description": "The amount the user has spent in the last month.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    }
+  }
+}

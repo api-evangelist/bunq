@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CardBatch",
+  "title": "CardBatch",
+  "type": "object",
+  "properties": {
+    "cards": {
+      "type": "array",
+      "description": "The cards that need to be updated.",
+      "readOnly": false,
+      "writeOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/CardBatchEntry"
+      }
+    }
+  },
+  "required": [
+    "cards"
+  ]
+}

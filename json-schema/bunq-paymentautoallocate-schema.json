@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PaymentAutoAllocate",
+  "title": "PaymentAutoAllocate",
+  "type": "object",
+  "properties": {
+    "payment_id": {
+      "type": "integer",
+      "description": "The payment that should be used to define the triggers for the payment auto allocate.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "type": {
+      "type": "string",
+      "description": "Whether a payment should be sorted ONCE or RECURRING.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "definition": {
+      "type": "array",
+      "description": "The definition of how the money should be allocated.",
+      "readOnly": false,
+      "writeOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/PaymentAutoAllocateDefinition"
+      }
+    }
+  },
+  "required": [
+    "payment_id",
+    "type",
+    "definition"
+  ]
+}

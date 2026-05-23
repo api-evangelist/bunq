@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Company",
+  "title": "Company",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The company name.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "address_main": {
+      "type": "object",
+      "description": "The company's main address.",
+      "readOnly": false,
+      "writeOnly": true,
+      "$ref": "#/components/schemas/Address"
+    },
+    "address_postal": {
+      "type": "object",
+      "description": "The company's postal address.",
+      "readOnly": false,
+      "writeOnly": true,
+      "$ref": "#/components/schemas/Address"
+    },
+    "country": {
+      "type": "string",
+      "description": "The country where the company is registered.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "ubo": {
+      "type": "array",
+      "description": "The names and birth dates of the company's ultimate beneficiary owners. Minimum zero, maximum four.",
+      "readOnly": false,
+      "writeOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/Ubo"
+      }
+    },
+    "chamber_of_commerce_number": {
+      "type": "string",
+      "description": "The company's chamber of commerce number.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "legal_form": {
+      "type": "string",
+      "description": "The company's legal form.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "subscription_type": {
+      "type": "string",
+      "description": "The subscription type for the company.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "avatar_uuid": {
+      "type": "string",
+      "description": "The public UUID of the company's avatar.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "vat_number": {
+      "type": "object",
+      "description": "DEPRECATED All the vat numbers of the company",
+      "readOnly": false,
+      "writeOnly": true,
+      "$ref": "#/components/schemas/CompanyVatNumber"
+    },
+    "vat_numbers": {
+      "type": "array",
+      "description": "All the vat numbers of the company",
+      "readOnly": false,
+      "writeOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/CompanyVatNumber"
+      }
+    },
+    "signup_track_type": {
+      "type": "string",
+      "description": "The type of signup track the user is following.",
+      "readOnly": false,
+      "writeOnly": true
+    }
+  },
+  "required": [
+    "name",
+    "address_main",
+    "address_postal",
+    "country",
+    "legal_form",
+    "subscription_type"
+  ]
+}

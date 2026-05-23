@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Avatar",
+  "title": "Avatar",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "description": "The public UUID of the avatar.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "anchor_uuid": {
+      "type": "string",
+      "description": "The public UUID of object this avatar is anchored to.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "image": {
+      "type": "array",
+      "description": "The actual image information of this avatar.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/Image"
+      }
+    },
+    "style": {
+      "type": "string",
+      "description": "The style (if applicable) for this Avatar.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CurrencyCloudBeneficiary",
+  "title": "CurrencyCloudBeneficiary",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the beneficiary.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "country": {
+      "type": "string",
+      "description": "The country of the beneficiary.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "currency": {
+      "type": "string",
+      "description": "The currency of the beneficiary.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "payment_type": {
+      "type": "string",
+      "description": "The payment type this requirement is for.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "legal_entity_type": {
+      "type": "string",
+      "description": "The legal entity type of the beneficiary.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "all_field": {
+      "type": "array",
+      "description": "All fields that were required by CurrencyCloud. Obtained through the CurrencyCloudBeneficiaryRequirement listing.",
+      "readOnly": false,
+      "writeOnly": true,
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "name",
+    "country",
+    "currency",
+    "payment_type",
+    "legal_entity_type",
+    "all_field"
+  ]
+}

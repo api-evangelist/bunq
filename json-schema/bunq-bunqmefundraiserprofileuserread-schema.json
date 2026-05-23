@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BunqMeFundraiserProfileUserRead",
+  "title": "BunqMeFundraiserProfileUserRead",
+  "type": "object",
+  "properties": {
+    "monetary_account_id": {
+      "type": "integer",
+      "description": "Id of the monetary account on which you want to receive bunq.me payments.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "owner_user_id": {
+      "type": "integer",
+      "description": "Id of the user owning the profile.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "color": {
+      "type": "string",
+      "description": "The color chosen for the bunq.me fundraiser profile in hexadecimal format.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "alias": {
+      "type": "object",
+      "description": "The LabelMonetaryAccount with the public information of the User and the MonetaryAccount that created the bunq.me fundraiser profile.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelMonetaryAccount"
+    },
+    "currency": {
+      "type": "string",
+      "description": "The currency of the MonetaryAccount that created the bunq.me fundraiser profile.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "description": {
+      "type": "string",
+      "description": "The description of the bunq.me fundraiser profile.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "attachment": {
+      "type": "object",
+      "description": "The attachment used for the background of the bunq.me fundraiser profile.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/AttachmentPublic"
+    },
+    "pointer": {
+      "type": "object",
+      "description": "The pointer (url) which will be used to access the bunq.me fundraiser profile.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Pointer"
+    },
+    "redirect_url": {
+      "type": "string",
+      "description": "The URL which the user is sent to when a payment is completed.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the bunq.me fundraiser profile, can be ACTIVE or DEACTIVATED.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TransferwiseQuote",
+  "title": "TransferwiseQuote",
+  "type": "object",
+  "properties": {
+    "currency_source": {
+      "type": "string",
+      "description": "The source currency.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "currency_target": {
+      "type": "string",
+      "description": "The target currency.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "amount_source": {
+      "type": "object",
+      "description": "The source amount.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "amount_target": {
+      "type": "object",
+      "description": "The target amount.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "id": {
+      "type": "integer",
+      "description": "The id of the quote.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "created": {
+      "type": "string",
+      "description": "The timestamp of the quote's creation.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "updated": {
+      "type": "string",
+      "description": "The timestamp of the quote's last update.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "time_expiry": {
+      "type": "string",
+      "description": "The expiration timestamp of the quote.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "quote_id": {
+      "type": "string",
+      "description": "The quote id Transferwise needs.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "amount_fee": {
+      "type": "object",
+      "description": "The fee amount.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "rate": {
+      "type": "string",
+      "description": "The rate.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "time_delivery_estimate": {
+      "type": "string",
+      "description": "The estimated delivery time.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  },
+  "required": [
+    "currency_source",
+    "currency_target"
+  ]
+}

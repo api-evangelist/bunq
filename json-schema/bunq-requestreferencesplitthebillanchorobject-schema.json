@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RequestReferenceSplitTheBillAnchorObject",
+  "title": "RequestReferenceSplitTheBillAnchorObject",
+  "type": "object",
+  "properties": {
+    "BillingInvoice": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Invoice"
+    },
+    "DraftPayment": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/DraftPayment"
+    },
+    "MasterCardAction": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/MasterCardAction"
+    },
+    "Payment": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Payment"
+    },
+    "PaymentBatch": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/PaymentBatch"
+    },
+    "RequestResponse": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/RequestResponse"
+    },
+    "ScheduleInstance": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/ScheduleInstance"
+    },
+    "WhitelistResult": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/WhitelistResult"
+    },
+    "TransferwisePayment": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/TransferwiseTransfer"
+    },
+    "CurrencyConversion": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/CurrencyConversion"
+    }
+  }
+}

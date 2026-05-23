@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Ubo",
+  "title": "Ubo",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the ultimate beneficiary owner.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "date_of_birth": {
+      "type": "string",
+      "description": "The date of birth of the ultimate beneficiary owner.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "nationality": {
+      "type": "string",
+      "description": "The nationality of the ultimate beneficiary owner.",
+      "readOnly": false,
+      "writeOnly": false
+    }
+  }
+}

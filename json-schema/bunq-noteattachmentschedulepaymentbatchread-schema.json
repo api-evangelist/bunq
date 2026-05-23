@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NoteAttachmentSchedulePaymentBatchRead",
+  "title": "NoteAttachmentSchedulePaymentBatchRead",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the note.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "created": {
+      "type": "string",
+      "description": "The timestamp of the note's creation.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "updated": {
+      "type": "string",
+      "description": "The timestamp of the note's last update.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "label_user_creator": {
+      "type": "object",
+      "description": "The label of the user who created this note.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelUser"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of the attachment.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "attachment": {
+      "type": "array",
+      "description": "The attachment attached to the note.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/AttachmentMonetaryAccountPayment"
+      }
+    }
+  }
+}

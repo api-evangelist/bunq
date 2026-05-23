@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LabelMonetaryAccount",
+  "title": "LabelMonetaryAccount",
+  "type": "object",
+  "properties": {
+    "iban": {
+      "type": "string",
+      "description": "The IBAN of the monetary account.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "display_name": {
+      "type": "string",
+      "description": "The name to display with this monetary account.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "avatar": {
+      "type": "object",
+      "description": "The avatar of the monetary account.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Avatar"
+    },
+    "label_user": {
+      "type": "object",
+      "description": "The user this monetary account belongs to.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelUser"
+    },
+    "country": {
+      "type": "string",
+      "description": "The country of the user. Formatted as a ISO 3166-1 alpha-2 country code.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "bunq_me": {
+      "type": "object",
+      "description": "Bunq.me pointer with type and value.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Pointer"
+    },
+    "is_light": {
+      "type": "boolean",
+      "description": "Whether or not the monetary account is light.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "swift_bic": {
+      "type": "string",
+      "description": "The BIC used for a SWIFT payment.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "swift_account_number": {
+      "type": "string",
+      "description": "The account number used for a SWIFT payment. May or may not be an IBAN.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "transferwise_account_number": {
+      "type": "string",
+      "description": "The account number used for a Transferwise payment. May or may not be an IBAN.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "transferwise_bank_code": {
+      "type": "string",
+      "description": "The bank code used for a Transferwise payment. May or may not be a BIC.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "merchant_category_code": {
+      "type": "string",
+      "description": "The merchant category code.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

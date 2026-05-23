@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MonetaryAccountJoint",
+  "title": "MonetaryAccountJoint",
+  "type": "object",
+  "properties": {
+    "currency": {
+      "type": "string",
+      "description": "The currency of the MonetaryAccountJoint as an ISO 4217 formatted currency code.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "description": {
+      "type": "string",
+      "description": "The description of the MonetaryAccountJoint. Defaults to 'bunq account'.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "daily_limit": {
+      "type": "object",
+      "description": "The daily spending limit Amount of the MonetaryAccountJoint. Defaults to 1000 EUR. Currency must match the MonetaryAccountJoint's currency. Limited to 10000 EUR.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "overdraft_limit": {
+      "type": "object",
+      "description": "The maximum Amount the MonetaryAccountJoint can be 'in the red'.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "alias": {
+      "type": "array",
+      "description": "The Aliases for the MonetaryAccountJoint.",
+      "readOnly": false,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/Pointer"
+      }
+    },
+    "avatar_uuid": {
+      "type": "string",
+      "description": "The UUID of the Avatar of the MonetaryAccountJoint.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the MonetaryAccountJoint. Can be: ACTIVE, BLOCKED, CANCELLED or PENDING_REOPEN",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "sub_status": {
+      "type": "string",
+      "description": "The sub-status of the MonetaryAccountJoint providing extra information regarding the status. Will be NONE for ACTIVE or PENDING_REOPEN, COMPLETELY or ONLY_ACCEPTING_INCOMING for BLOCKED and REDEMPTION_INVOLUNTARY, REDEMPTION_VOLUNTARY or PERMANENT for CANCELLED.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "reason": {
+      "type": "string",
+      "description": "The reason for voluntarily cancelling (closing) the MonetaryAccountJoint, can only be OTHER.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "reason_description": {
+      "type": "string",
+      "description": "The optional free-form reason for voluntarily cancelling (closing) the MonetaryAccountJoint. Can be any user provided message.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "all_co_owner": {
+      "type": "array",
+      "description": "The users the account will be joint with.",
+      "readOnly": false,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/CoOwner"
+      }
+    },
+    "setting": {
+      "type": "object",
+      "description": "The settings of the MonetaryAccountJoint.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/MonetaryAccountSetting"
+    },
+    "id": {
+      "type": "integer",
+      "description": "The id of the MonetaryAccountJoint.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "created": {
+      "type": "string",
+      "description": "The timestamp of the MonetaryAccountJoint's creation.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "updated": {
+      "type": "string",
+      "description": "The timestamp of the MonetaryAccountJoint's last update.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "avatar": {
+      "type": "object",
+      "description": "The Avatar of the MonetaryAccountJoint.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Avatar"
+    },
+    "balance": {
+      "type": "object",
+      "description": "The current available balance Amount of the MonetaryAccountJoint.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "public_uuid": {
+      "type": "string",
+      "description": "The MonetaryAccountJoint's public UUID.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "user_id": {
+      "type": "integer",
+      "description": "The id of the User who owns the MonetaryAccountJoint.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "monetary_account_profile": {
+      "type": "object",
+      "description": "The profile of the account.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/MonetaryAccountProfile"
+    },
+    "all_auto_save_id": {
+      "type": "array",
+      "description": "The ids of the AutoSave.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/BunqId"
+      }
+    }
+  }
+}

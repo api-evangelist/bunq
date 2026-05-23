@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Certificate",
+  "title": "Certificate",
+  "type": "object",
+  "properties": {
+    "certificate": {
+      "type": "string",
+      "description": "A single certificate in the chain in .PEM format.",
+      "readOnly": false,
+      "writeOnly": false
+    }
+  }
+}

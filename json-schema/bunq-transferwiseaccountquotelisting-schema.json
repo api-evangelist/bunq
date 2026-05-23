@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TransferwiseAccountQuoteListing",
+  "title": "TransferwiseAccountQuoteListing",
+  "type": "object",
+  "properties": {
+    "account_id": {
+      "type": "string",
+      "description": "Transferwise's id of the account.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "currency": {
+      "type": "string",
+      "description": "The currency the account.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "country": {
+      "type": "string",
+      "description": "The country of the account.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "name_account_holder": {
+      "type": "string",
+      "description": "The name of the account holder.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "account_number": {
+      "type": "string",
+      "description": "The account number.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "bank_code": {
+      "type": "string",
+      "description": "The bank code.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

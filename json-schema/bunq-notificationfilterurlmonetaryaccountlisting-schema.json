@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NotificationFilterUrlMonetaryAccountListing",
+  "title": "NotificationFilterUrlMonetaryAccountListing",
+  "type": "object",
+  "properties": {
+    "notification_filters": {
+      "type": "array",
+      "description": "The types of notifications that will result in a url notification for this monetary account.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/NotificationFilterUrl"
+      }
+    }
+  }
+}

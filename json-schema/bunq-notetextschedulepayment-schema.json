@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NoteTextSchedulePayment",
+  "title": "NoteTextSchedulePayment",
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "string",
+      "description": "The content of the note.",
+      "readOnly": false,
+      "writeOnly": false
+    }
+  }
+}

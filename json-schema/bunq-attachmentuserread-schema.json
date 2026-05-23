@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AttachmentUserRead",
+  "title": "AttachmentUserRead",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the attachment.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "created": {
+      "type": "string",
+      "description": "The timestamp of the attachment's creation.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "updated": {
+      "type": "string",
+      "description": "The timestamp of the attachment's last update.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "attachment": {
+      "type": "object",
+      "description": "The attachment.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Attachment"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Installation",
+  "title": "Installation",
+  "type": "object",
+  "properties": {
+    "client_public_key": {
+      "type": "string",
+      "description": "Your public key. This is the public part of the key pair that you are going to use to create value of the \"X-Bunq-Client-Signature\" header for all future API calls.",
+      "readOnly": false,
+      "writeOnly": true
+    }
+  },
+  "required": [
+    "client_public_key"
+  ]
+}

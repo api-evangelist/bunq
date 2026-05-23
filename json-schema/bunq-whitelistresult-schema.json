@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WhitelistResult",
+  "title": "WhitelistResult",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The ID of the whitelist entry.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "monetary_account_paying_id": {
+      "type": "integer",
+      "description": "The account from which payments will be deducted when a transaction is matched with this whitelist.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the WhitelistResult.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "sub_status": {
+      "type": "string",
+      "description": "The subStatus of the WhitelistResult.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "error_message": {
+      "type": "array",
+      "description": "The message when the whitelist result has failed due to user error.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    "whitelist": {
+      "type": "object",
+      "description": "The corresponding whitelist.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Whitelist"
+    },
+    "object": {
+      "type": "object",
+      "description": "The details of the external object the event was created for.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/WhitelistResultViewAnchoredObject"
+    },
+    "request_reference_split_the_bill": {
+      "type": "array",
+      "description": "The reference to the object used for split the bill. Can be RequestInquiry or RequestInquiryBatch",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/RequestInquiryReference"
+      }
+    }
+  }
+}

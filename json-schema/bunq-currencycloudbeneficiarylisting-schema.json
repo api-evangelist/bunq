@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CurrencyCloudBeneficiaryListing",
+  "title": "CurrencyCloudBeneficiaryListing",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the profile.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "created": {
+      "type": "string",
+      "description": "The timestamp of the beneficiaries creation.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "updated": {
+      "type": "string",
+      "description": "The timestamp of the beneficiaries last update.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the beneficiary.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "account_number": {
+      "type": "string",
+      "description": "The account number to display for the beneficiary.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "currency": {
+      "type": "string",
+      "description": "The currency of the beneficiary.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "external_identifier": {
+      "type": "string",
+      "description": "The external identifier of the beneficiary.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

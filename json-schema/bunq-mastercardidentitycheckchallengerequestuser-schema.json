@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MasterCardIdentityCheckChallengeRequestUser",
+  "title": "MasterCardIdentityCheckChallengeRequestUser",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The status of the identity check. Can be ACCEPTED_PENDING_RESPONSE or REJECTED_PENDING_RESPONSE.",
+      "readOnly": false,
+      "writeOnly": false
+    }
+  },
+  "required": [
+    "status"
+  ]
+}

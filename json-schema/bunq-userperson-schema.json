@@ -1,0 +1,253 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserPerson",
+  "title": "UserPerson",
+  "type": "object",
+  "properties": {
+    "subscription_type": {
+      "type": "string",
+      "description": "The subscription type the user should start on.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "first_name": {
+      "type": "string",
+      "description": "The person's first name.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "middle_name": {
+      "type": "string",
+      "description": "The person's middle name.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "last_name": {
+      "type": "string",
+      "description": "The person's last name.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "public_nick_name": {
+      "type": "string",
+      "description": "The public nick name for the person.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "address_main": {
+      "type": "object",
+      "description": "The person's main address.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Address"
+    },
+    "address_postal": {
+      "type": "object",
+      "description": "The person's postal address.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Address"
+    },
+    "avatar_uuid": {
+      "type": "string",
+      "description": "The public UUID of the user's avatar.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "tax_resident": {
+      "type": "array",
+      "description": "The user's tax residence numbers for different countries.",
+      "readOnly": false,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/TaxResident"
+      }
+    },
+    "document_type": {
+      "type": "string",
+      "description": "The type of identification document the person registered with.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "document_number": {
+      "type": "string",
+      "description": "The identification document number the person registered with.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "document_country_of_issuance": {
+      "type": "string",
+      "description": "The country which issued the identification document the person registered with.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "document_front_attachment_id": {
+      "type": "integer",
+      "description": "The reference to the uploaded picture/scan of the front side of the identification document.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "document_back_attachment_id": {
+      "type": "integer",
+      "description": "The reference to the uploaded picture/scan of the back side of the identification document.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "date_of_birth": {
+      "type": "string",
+      "description": "The person's date of birth. Accepts ISO8601 date formats.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "nationality": {
+      "type": "string",
+      "description": "The person's nationality. Formatted as a SO 3166-1 alpha-2 country code.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "language": {
+      "type": "string",
+      "description": "The person's preferred language. Formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, seperated by an underscore.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "region": {
+      "type": "string",
+      "description": "The person's preferred region. Formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, seperated by an underscore.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "gender": {
+      "type": "string",
+      "description": "The person's gender. Can be MALE, FEMALE or UNKNOWN.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "status": {
+      "type": "string",
+      "description": "The user status. The user status. Can be: ACTIVE, BLOCKED, SIGNUP, RECOVERY, DENIED or ABORTED.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "sub_status": {
+      "type": "string",
+      "description": "The user sub-status. Can be: NONE, FACE_RESET, APPROVAL, APPROVAL_DIRECTOR, APPROVAL_PARENT, APPROVAL_SUPPORT, COUNTER_IBAN, IDEAL or SUBMIT.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "legal_guardian_alias": {
+      "type": "object",
+      "description": "The legal guardian of the user. Required for minors.",
+      "readOnly": false,
+      "writeOnly": true,
+      "$ref": "#/components/schemas/Pointer"
+    },
+    "session_timeout": {
+      "type": "integer",
+      "description": "The setting for the session timeout of the user in seconds.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "daily_limit_without_confirmation_login": {
+      "type": "object",
+      "description": "The amount the user can pay in the session without asking for credentials.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "display_name": {
+      "type": "string",
+      "description": "The display name for the person.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "signup_track_type": {
+      "type": "string",
+      "description": "The type of signup track the user is following.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "id": {
+      "type": "integer",
+      "description": "The id of the modified person object.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "created": {
+      "type": "string",
+      "description": "The timestamp of the person object's creation.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "updated": {
+      "type": "string",
+      "description": "The timestamp of the person object's last update.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "public_uuid": {
+      "type": "string",
+      "description": "The person's public UUID.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "legal_name": {
+      "type": "string",
+      "description": "The person's legal name.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "alias": {
+      "type": "array",
+      "description": "The aliases of the user.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/Pointer"
+      }
+    },
+    "place_of_birth": {
+      "type": "string",
+      "description": "The person's place of birth.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "country_of_birth": {
+      "type": "string",
+      "description": "The person's country of birth. Formatted as a SO 3166-1 alpha-2 country code.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "avatar": {
+      "type": "object",
+      "description": "The user's avatar.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Avatar"
+    },
+    "version_terms_of_service": {
+      "type": "string",
+      "description": "The version of the terms of service accepted by the user.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "notification_filters": {
+      "type": "array",
+      "description": "The types of notifications that will result in a push notification or URL callback for this UserPerson.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/NotificationFilter"
+      }
+    },
+    "relations": {
+      "type": "array",
+      "description": "The relations for this user.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/RelationUser"
+      }
+    }
+  }
+}

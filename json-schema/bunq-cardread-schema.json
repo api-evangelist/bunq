@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CardRead",
+  "title": "CardRead",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the card.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "created": {
+      "type": "string",
+      "description": "The timestamp of the card's creation.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "updated": {
+      "type": "string",
+      "description": "The timestamp of the card's last update.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "public_uuid": {
+      "type": "string",
+      "description": "The public UUID of the card.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of the card. Can be MAESTRO, MASTERCARD.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "sub_type": {
+      "type": "string",
+      "description": "The sub-type of the card.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "second_line": {
+      "type": "string",
+      "description": "The second line of text on the card",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "user_id": {
+      "type": "integer",
+      "description": "ID of the user who is owner of the card.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "status": {
+      "type": "string",
+      "description": "The status to set for the card. Can be ACTIVE, DEACTIVATED, LOST, STOLEN, CANCELLED, EXPIRED or PIN_TRIES_EXCEEDED.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "sub_status": {
+      "type": "string",
+      "description": "The sub-status of the card. Can be NONE or REPLACED.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "order_status": {
+      "type": "string",
+      "description": "The order status of the card. Can be NEW_CARD_REQUEST_RECEIVED, CARD_REQUEST_PENDING, SENT_FOR_PRODUCTION, ACCEPTED_FOR_PRODUCTION, DELIVERED_TO_CUSTOMER, CARD_UPDATE_REQUESTED, CARD_UPDATE_PENDING, CARD_UPDATE_SENT, CARD_UPDATE_ACCEPTED, VIRTUAL_DELIVERY, NEW_CARD_REQUEST_PENDING_USER_APPROVAL, SENT_FOR_DELIVERY or NEW_CARD_REQUEST_CANCELLED.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "expiry_date": {
+      "type": "string",
+      "description": "Expiry date of the card.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "name_on_card": {
+      "type": "string",
+      "description": "The user's name on the card.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "preferred_name_on_card": {
+      "type": "string",
+      "description": "The user's preferred name on the card.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "primary_account_numbers": {
+      "type": "array",
+      "description": "Array of PANs and their attributes.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/CardPrimaryAccountNumber"
+      }
+    },
+    "payment_account_reference": {
+      "type": "string",
+      "description": "The payment account reference number associated with the card.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "card_limit": {
+      "type": "object",
+      "description": "The spending limit for the card.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "card_limit_atm": {
+      "type": "object",
+      "description": "The ATM spending limit for the card.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "country_permission": {
+      "type": "array",
+      "description": "The countries for which to grant (temporary) permissions to use the card.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/CardCountryPermission"
+      }
+    },
+    "label_monetary_account_ordered": {
+      "type": "object",
+      "description": "The monetary account this card was ordered on and the label user that owns the card.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelMonetaryAccount"
+    },
+    "label_monetary_account_current": {
+      "type": "object",
+      "description": "The monetary account that this card is currently linked to and the label user viewing it.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelMonetaryAccount"
+    },
+    "monetary_account": {
+      "type": "object",
+      "description": "Current monetary account (only for prepaid credit cards).",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/MonetaryAccount"
+    },
+    "pin_code_assignment": {
+      "type": "array",
+      "description": "Array of Types, PINs, account IDs assigned to the card.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/CardPinAssignment"
+      }
+    },
+    "monetary_account_id_fallback": {
+      "type": "integer",
+      "description": "ID of the MA to be used as fallback for this card if insufficient balance. Fallback account is removed if not supplied.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "country": {
+      "type": "string",
+      "description": "The country that is domestic to the card. Defaults to country of residence of user.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "card_shipment_tracking_url": {
+      "type": "string",
+      "description": "A tracking link provided by our shipment provider.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "is_eligible_for_free_replacement": {
+      "type": "boolean",
+      "description": "Whether this card is eligible for a free replacement.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "card_replacement": {
+      "type": "object",
+      "description": "The card replacement for this card.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/CardReplacement"
+    }
+  }
+}

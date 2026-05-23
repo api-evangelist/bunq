@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BirdeeInvestmentPortfolio",
+  "title": "BirdeeInvestmentPortfolio",
+  "type": "object",
+  "properties": {
+    "risk_profile_type": {
+      "type": "string",
+      "description": "The type of risk profile associated with the portfolio.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "investment_theme": {
+      "type": "string",
+      "description": "The investment theme.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "name": {
+      "type": "string",
+      "description": "The name associated with the investment portfolio.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "goal": {
+      "type": "object",
+      "description": "The investment goal.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/BirdeeInvestmentPortfolioGoal"
+    },
+    "status": {
+      "type": "string",
+      "description": "Status of the portfolio.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "number_of_strategy_change_annual_maximum": {
+      "type": "integer",
+      "description": "Maximum number of strategy changes in a year.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "number_of_strategy_change_annual_used": {
+      "type": "integer",
+      "description": "Maximum number of strategy changes used.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "external_identifier": {
+      "type": "string",
+      "description": "The external identifier of the portfolio.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "balance": {
+      "type": "object",
+      "description": "The investment portfolio balance.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/BirdeeInvestmentPortfolioBalance"
+    },
+    "allocations": {
+      "type": "array",
+      "description": "The allocations of the investment portfolio.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/BirdeePortfolioAllocation"
+      }
+    }
+  }
+}

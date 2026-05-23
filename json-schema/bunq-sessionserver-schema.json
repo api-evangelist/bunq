@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SessionServer",
+  "title": "SessionServer",
+  "type": "object",
+  "properties": {
+    "secret": {
+      "type": "string",
+      "description": "The API key of the user you want to login. If your API key has not been used before, it will be bound to the ip address of this DeviceServer.",
+      "readOnly": false,
+      "writeOnly": true
+    }
+  },
+  "required": [
+    "secret"
+  ]
+}

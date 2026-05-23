@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserApiKey",
+  "title": "UserApiKey",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the user.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "created": {
+      "type": "string",
+      "description": "The timestamp of the user object's creation.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "updated": {
+      "type": "string",
+      "description": "The timestamp of the user object's last update.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "requested_by_user": {
+      "type": "object",
+      "description": "The user who requested access.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/UserApiKeyAnchoredUser"
+    },
+    "granted_by_user": {
+      "type": "object",
+      "description": "The user who granted access.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/UserApiKeyAnchoredUser"
+    }
+  }
+}

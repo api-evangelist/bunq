@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ShareInviteMonetaryAccountInquiryCreate",
+  "title": "ShareInviteMonetaryAccountInquiryCreate",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the newly created share invite.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

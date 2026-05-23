@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ShareInviteMonetaryAccountInquiry",
+  "title": "ShareInviteMonetaryAccountInquiry",
+  "type": "object",
+  "properties": {
+    "counter_user_alias": {
+      "type": "object",
+      "description": "The label of the user to share with.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelUser"
+    },
+    "access_type": {
+      "type": "string",
+      "description": "Type of access that is in place.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "draft_share_invite_bank_id": {
+      "type": "integer",
+      "description": "DEPRECATED: USE `access_type` INSTEAD | The id of the draft share invite bank.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "share_detail": {
+      "type": "object",
+      "description": "DEPRECATED: USE `access_type` INSTEAD | The share details. Only one of these objects may be passed.",
+      "readOnly": false,
+      "writeOnly": true,
+      "$ref": "#/components/schemas/ShareDetail"
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the share. Can be ACTIVE, REVOKED, REJECTED.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "relationship": {
+      "type": "string",
+      "description": "The relationship: COMPANY_DIRECTOR, COMPANY_EMPLOYEE, etc",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "share_type": {
+      "type": "string",
+      "description": "DEPRECATED: USE `access_type` INSTEAD | The share type, either STANDARD or MUTUAL.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "start_date": {
+      "type": "string",
+      "description": "DEPRECATED: USE `access_type` INSTEAD | The start date of this share.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "end_date": {
+      "type": "string",
+      "description": "DEPRECATED: USE `access_type` INSTEAD | The expiration date of this share.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "alias": {
+      "type": "object",
+      "description": "The label of the monetary account that's being shared.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelMonetaryAccount"
+    },
+    "user_alias_created": {
+      "type": "object",
+      "description": "The user who created the share.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelUser"
+    },
+    "user_alias_revoked": {
+      "type": "object",
+      "description": "The user who revoked the share.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelUser"
+    },
+    "monetary_account_id": {
+      "type": "integer",
+      "description": "The id of the monetary account the share applies to.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "id": {
+      "type": "integer",
+      "description": "The id of the newly created share invite.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

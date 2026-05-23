@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TransferwiseRequirementFieldGroupValidationAsync",
+  "title": "TransferwiseRequirementFieldGroupValidationAsync",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "description": "The url to be used to validate user input.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "params": {
+      "type": "object",
+      "description": "The parameters to send when validating user input.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/TransferwiseRequirementFieldGroupValidationAsyncParams"
+    }
+  }
+}

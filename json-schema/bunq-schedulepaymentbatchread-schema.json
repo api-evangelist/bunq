@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SchedulePaymentBatchRead",
+  "title": "SchedulePaymentBatchRead",
+  "type": "object",
+  "properties": {
+    "payments": {
+      "type": "array",
+      "description": "The payment details.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/SchedulePaymentEntry"
+      }
+    },
+    "schedule": {
+      "type": "object",
+      "description": "The schedule details.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Schedule"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserApiKeyAnchoredUser",
+  "title": "UserApiKeyAnchoredUser",
+  "type": "object",
+  "properties": {
+    "UserPerson": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/UserPerson"
+    },
+    "UserCompany": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/UserCompany"
+    },
+    "UserPaymentServiceProvider": {
+      "type": "object",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/UserPaymentServiceProvider"
+    }
+  }
+}

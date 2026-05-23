@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PaymentBatch",
+  "title": "PaymentBatch",
+  "type": "object",
+  "properties": {
+    "payments": {
+      "type": "object",
+      "description": "The list of mutations that were made.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/PaymentBatchAnchoredPayment"
+    }
+  }
+}

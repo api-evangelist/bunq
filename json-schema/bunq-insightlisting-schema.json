@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InsightListing",
+  "title": "InsightListing",
+  "type": "object",
+  "properties": {
+    "category": {
+      "type": "string",
+      "description": "The category.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "category_translated": {
+      "type": "string",
+      "description": "The translated category.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "category_color": {
+      "type": "string",
+      "description": "The color of the category.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "category_icon": {
+      "type": "string",
+      "description": "The icon of the category.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "amount_total": {
+      "type": "object",
+      "description": "The total amount of the transactions in the category.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "number_of_transactions": {
+      "type": "integer",
+      "description": "The number of the transactions in the category.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SchedulePaymentBatchUpdate",
+  "title": "SchedulePaymentBatchUpdate",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "type": "object",
+      "description": "The id of the created item",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/BunqId"
+    }
+  }
+}

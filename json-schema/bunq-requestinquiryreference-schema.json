@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RequestInquiryReference",
+  "title": "RequestInquiryReference",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The type of request inquiry. Can be RequestInquiry or RequestInquiryBatch.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "id": {
+      "type": "integer",
+      "description": "The id of the request inquiry (batch).",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

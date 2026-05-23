@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PaymentBatchAnchoredPayment",
+  "title": "PaymentBatchAnchoredPayment",
+  "type": "object",
+  "properties": {
+    "Payment": {
+      "type": "array",
+      "description": "",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/Payment"
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfirmationOfFunds",
+  "title": "ConfirmationOfFunds",
+  "type": "object",
+  "properties": {
+    "pointer_iban": {
+      "type": "object",
+      "description": "The pointer (IBAN) of the account we're querying.",
+      "readOnly": false,
+      "writeOnly": true,
+      "$ref": "#/components/schemas/Pointer"
+    },
+    "amount": {
+      "type": "object",
+      "description": "The amount we want to check for.",
+      "readOnly": false,
+      "writeOnly": true,
+      "$ref": "#/components/schemas/Amount"
+    }
+  },
+  "required": [
+    "pointer_iban",
+    "amount"
+  ]
+}

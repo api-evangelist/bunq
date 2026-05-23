@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TransferwiseQuoteTemporaryRead",
+  "title": "TransferwiseQuoteTemporaryRead",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the quote.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "created": {
+      "type": "string",
+      "description": "The timestamp of the note's creation.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "updated": {
+      "type": "string",
+      "description": "The timestamp of the note's last update.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "time_expiry": {
+      "type": "string",
+      "description": "The expiration timestamp of the quote. Will always be null for temporary quotes.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "quote_id": {
+      "type": "string",
+      "description": "The quote id Transferwise needs. Will always be null for temporary quotes.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "amount_source": {
+      "type": "object",
+      "description": "The source amount.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "amount_target": {
+      "type": "object",
+      "description": "The target amount.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "rate": {
+      "type": "string",
+      "description": "The rate.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

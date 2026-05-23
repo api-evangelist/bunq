@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InsightPreferenceDateListing",
+  "title": "InsightPreferenceDateListing",
+  "type": "object",
+  "properties": {
+    "day_of_month": {
+      "type": "integer",
+      "description": "The day of month at which budgeting/insights should start.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

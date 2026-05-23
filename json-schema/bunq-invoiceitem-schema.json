@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InvoiceItem",
+  "title": "InvoiceItem",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the invoice item.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "billing_date": {
+      "type": "string",
+      "description": "The billing date of the item.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "type_description": {
+      "type": "string",
+      "description": "The price description.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "type_description_translated": {
+      "type": "string",
+      "description": "The translated price description.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "unit_vat_exclusive": {
+      "type": "object",
+      "description": "The unit item price excluding VAT.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "unit_vat_inclusive": {
+      "type": "object",
+      "description": "The unit item price including VAT.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "vat": {
+      "type": "integer",
+      "description": "The VAT tax fraction.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "quantity": {
+      "type": "integer",
+      "description": "The number of items priced.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "total_vat_exclusive": {
+      "type": "object",
+      "description": "The item price excluding VAT.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "total_vat_inclusive": {
+      "type": "object",
+      "description": "The item price including VAT.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    }
+  }
+}

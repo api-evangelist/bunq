@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InvoiceByUserRead",
+  "title": "InvoiceByUserRead",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the invoice object.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "created": {
+      "type": "string",
+      "description": "The timestamp of the invoice object's creation.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "updated": {
+      "type": "string",
+      "description": "The timestamp of the invoice object's last update.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "invoice_date": {
+      "type": "string",
+      "description": "The invoice date.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "invoice_number": {
+      "type": "string",
+      "description": "The invoice number.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "status": {
+      "type": "string",
+      "description": "The invoice status.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "group": {
+      "type": "array",
+      "description": "The invoice item groups.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/InvoiceItemGroup"
+      }
+    },
+    "total_vat_inclusive": {
+      "type": "object",
+      "description": "The total discounted item price including VAT.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "total_vat_exclusive": {
+      "type": "object",
+      "description": "The total discounted item price excluding VAT.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "total_vat": {
+      "type": "object",
+      "description": "The VAT on the total discounted item price.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "alias": {
+      "type": "object",
+      "description": "The label that's displayed to the counterparty with the invoice. Includes user.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelMonetaryAccount"
+    },
+    "address": {
+      "type": "object",
+      "description": "The customer's address.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Address"
+    },
+    "counterparty_alias": {
+      "type": "object",
+      "description": "The label of the counterparty of the invoice. Includes user.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelMonetaryAccount"
+    },
+    "counterparty_address": {
+      "type": "object",
+      "description": "The company's address.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Address"
+    },
+    "chamber_of_commerce_number": {
+      "type": "string",
+      "description": "The company's chamber of commerce number.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "vat_number": {
+      "type": "string",
+      "description": "The company's chamber of commerce number.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

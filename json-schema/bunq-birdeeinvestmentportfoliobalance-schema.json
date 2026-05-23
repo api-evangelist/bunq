@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BirdeeInvestmentPortfolioBalance",
+  "title": "BirdeeInvestmentPortfolioBalance",
+  "type": "object",
+  "properties": {
+    "amount_available": {
+      "type": "object",
+      "description": "The current valuation of the portfolio, minus any amount pending withdrawal.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "amount_deposit_total": {
+      "type": "object",
+      "description": "The total amount deposited.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "amount_withdrawal_total": {
+      "type": "object",
+      "description": "The total amount withdrawn.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "amount_fee_total": {
+      "type": "object",
+      "description": "The total fee amount.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "amount_profit": {
+      "type": "object",
+      "description": "The difference between the netto deposited amount and the current valuation.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "amount_deposit_pending": {
+      "type": "object",
+      "description": "The amount that's sent to Birdee, but pending investment on the portfolio.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "amount_withdrawal_pending": {
+      "type": "object",
+      "description": "The amount that's sent to Birdee, but pending withdrawal.",
+      "readOnly": true,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    }
+  }
+}

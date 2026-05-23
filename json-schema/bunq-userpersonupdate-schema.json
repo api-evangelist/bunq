@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserPersonUpdate",
+  "title": "UserPersonUpdate",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the modified person object.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

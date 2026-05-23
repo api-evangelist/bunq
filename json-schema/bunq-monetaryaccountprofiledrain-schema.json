@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MonetaryAccountProfileDrain",
+  "title": "MonetaryAccountProfileDrain",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The status of the profile.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "balance_preferred": {
+      "type": "object",
+      "description": "The goal balance.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "balance_threshold_high": {
+      "type": "object",
+      "description": "The high threshold balance.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/Amount"
+    },
+    "savings_account_alias": {
+      "type": "object",
+      "description": "The savings monetary account.",
+      "readOnly": false,
+      "writeOnly": false,
+      "$ref": "#/components/schemas/LabelMonetaryAccount"
+    }
+  }
+}

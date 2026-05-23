@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Issuer",
+  "title": "Issuer",
+  "type": "object",
+  "properties": {
+    "bic": {
+      "type": "string",
+      "description": "The BIC code.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the bank.",
+      "readOnly": false,
+      "writeOnly": false
+    }
+  }
+}

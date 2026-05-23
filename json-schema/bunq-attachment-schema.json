@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Attachment",
+  "title": "Attachment",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string",
+      "description": "The description of the attachment.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "content_type": {
+      "type": "string",
+      "description": "The content type of the attachment's file.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "urls": {
+      "type": "array",
+      "description": "The URLs where the file can be downloaded.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/AttachmentUrl"
+      }
+    }
+  }
+}

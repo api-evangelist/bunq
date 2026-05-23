@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExportStatementCardCsvRead",
+  "title": "ExportStatementCardCsvRead",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The id of the customer statement model.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "created": {
+      "type": "string",
+      "description": "The timestamp of the statement model's creation.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "updated": {
+      "type": "string",
+      "description": "The timestamp of the statement model's last update.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "date_start": {
+      "type": "string",
+      "description": "The date from when this statement shows transactions.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "date_end": {
+      "type": "string",
+      "description": "The date until which statement shows transactions.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the export.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "regional_format": {
+      "type": "string",
+      "description": "The regional format of a CSV statement.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "card_id": {
+      "type": "integer",
+      "description": "The card for which this statement was created.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

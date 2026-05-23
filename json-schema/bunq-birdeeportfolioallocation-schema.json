@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BirdeePortfolioAllocation",
+  "title": "BirdeePortfolioAllocation",
+  "type": "object",
+  "properties": {
+    "instrument_currency": {
+      "type": "string",
+      "description": "Currency of the instrument.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "instrument_asset_class": {
+      "type": "string",
+      "description": "Asset Class of the instrument.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "instrument_asset_class_name": {
+      "type": "string",
+      "description": "Name of the asset class.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "instrument_isin": {
+      "type": "string",
+      "description": "ISIN code of the instrument.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "instrument_name": {
+      "type": "string",
+      "description": "Name of the instrument.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "instrument_region_name": {
+      "type": "string",
+      "description": "Name of the geographical region covered by the instrument",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "instrument_key_information_document_uri": {
+      "type": "string",
+      "description": "Key Information Document of the instrument.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "weight": {
+      "type": "string",
+      "description": "Weight of the financial instrument in the model portfolio.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "quantity": {
+      "type": "string",
+      "description": "Quantity of the financial instrument in the portfolio.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "price": {
+      "type": "string",
+      "description": "Unit price of the financial instrument.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "amount": {
+      "type": "string",
+      "description": "Monetary amount of the financial instrument in the portfolio.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

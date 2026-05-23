@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AdditionalTransactionInformationCategory",
+  "title": "AdditionalTransactionInformationCategory",
+  "type": "object",
+  "properties": {
+    "category": {
+      "type": "string",
+      "description": "The category.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "type": {
+      "type": "string",
+      "description": "Who created this category.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "status": {
+      "type": "string",
+      "description": "Whether this category is active. Only relevant for user-defined categories.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "order": {
+      "type": "integer",
+      "description": "The sort order of the category.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "description": {
+      "type": "string",
+      "description": "The description of the category.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "description_translated": {
+      "type": "string",
+      "description": "The translation of the description of the category.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "color": {
+      "type": "string",
+      "description": "The color of the category.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "icon": {
+      "type": "string",
+      "description": "The icon of the category.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

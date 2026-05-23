@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BillingContractSubscription",
+  "title": "BillingContractSubscription",
+  "type": "object",
+  "properties": {
+    "subscription_type": {
+      "type": "string",
+      "description": "The subscription type of the user. Can be one of PERSON_SUPER_LIGHT_V1, PERSON_LIGHT_V1, PERSON_MORE_V1, PERSON_FREE_V1, PERSON_PREMIUM_V1, COMPANY_V1, or COMPANY_V2.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "id": {
+      "type": "integer",
+      "description": "The id of the billing contract.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "created": {
+      "type": "string",
+      "description": "The timestamp when the billing contract was made.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "updated": {
+      "type": "string",
+      "description": "The timestamp when the billing contract was last updated.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "contract_date_start": {
+      "type": "string",
+      "description": "The date from when the billing contract is valid.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "contract_date_end": {
+      "type": "string",
+      "description": "The date until when the billing contract is valid.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "contract_version": {
+      "type": "integer",
+      "description": "The version of the billing contract.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "subscription_type_downgrade": {
+      "type": "string",
+      "description": "The subscription type the user will have after a subscription downgrade. Will be null if downgrading is not possible.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "status": {
+      "type": "string",
+      "description": "The subscription status.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "sub_status": {
+      "type": "string",
+      "description": "The subscription substatus.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

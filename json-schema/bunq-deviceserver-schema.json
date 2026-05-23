@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeviceServer",
+  "title": "DeviceServer",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string",
+      "description": "The description of the DeviceServer. This is only for your own reference when reading the DeviceServer again.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "secret": {
+      "type": "string",
+      "description": "The API key. You can request an API key in the bunq app.",
+      "readOnly": false,
+      "writeOnly": true
+    },
+    "permitted_ips": {
+      "type": "array",
+      "description": "An array of IPs (v4 or v6) this DeviceServer will be able to do calls from. These will be linked to the API key.",
+      "readOnly": false,
+      "writeOnly": true,
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "description",
+    "secret"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CardBatchReplaceCreate",
+  "title": "CardBatchReplaceCreate",
+  "type": "object",
+  "properties": {
+    "updated_card_ids": {
+      "type": "array",
+      "description": "The ids of the cards that have been replaced.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/BunqId"
+      }
+    }
+  }
+}

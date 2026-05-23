@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AdditionalInformation",
+  "title": "AdditionalInformation",
+  "type": "object",
+  "properties": {
+    "category": {
+      "type": "string",
+      "description": "The category of the refund, required for chargeback.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "reason": {
+      "type": "string",
+      "description": "The reason to refund, required for chargeback.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "comment": {
+      "type": "string",
+      "description": "Comment about the refund.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "attachment": {
+      "type": "array",
+      "description": "The Attachments to attach to the refund request.",
+      "readOnly": true,
+      "writeOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/AttachmentMasterCardActionRefund"
+      }
+    },
+    "terms_and_conditions": {
+      "type": "string",
+      "description": "Proof that the user acknowledged the terms and conditions for chargebacks.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}

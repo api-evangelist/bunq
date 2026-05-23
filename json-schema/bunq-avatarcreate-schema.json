@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AvatarCreate",
+  "title": "AvatarCreate",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "description": "The UUID of the created avatar.",
+      "readOnly": true,
+      "writeOnly": false
+    }
+  }
+}
