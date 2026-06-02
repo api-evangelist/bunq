@@ -1,6 +1,25 @@
 {
   "repo": "bunq",
-  "feeds": [],
-  "fetched": "2026-05-17T20:48:52Z",
+  "feeds": [
+    {
+      "source": "https://medium.com/bunq-developers-corner",
+      "error": "HTTPError"
+    },
+    {
+      "source": "https://medium.com/feed/bunq-developers-corner",
+      "feed_url": "https://medium.com/feed/bunq-developers-corner",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://www.bunq.com/blog",
+      "feed_url": "https://www.bunq.com/blog",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "fetched": "2026-06-01T23:35:02Z",
   "post_count": 0
 }
