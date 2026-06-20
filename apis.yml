@@ -1147,7 +1147,7 @@ name: Bunq
 tags:
   - Banking
 kind: contract
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 score: 1805
 access: 3rd-Party
 common:
