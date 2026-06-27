@@ -1158,7 +1158,7 @@ common:
   - url: https://doc.bunq.com/#/authentication
     type: Authentication
   - url: https://doc.bunq.com/#/errors
-    type: Errors
+    type: ErrorCodes
   - url: https://doc.bunq.com/#/headers
     type: Headers
   - url: https://example.com
@@ -1174,7 +1174,7 @@ common:
   - url: https://github.com/bunq
     type: GitHubOrganization
   - url: https://github.com/bunq/postman/
-    type: Postman Collections
+    type: PostmanCollection
   - url: https://beta.doc.bunq.com/basics/sandbox
     type: Sandbox
   - url: https://medium.com/bunq-developers-corner
@@ -1234,7 +1234,7 @@ common:
   - name: bunq Web
     description: 'null'
     url: https://web.bunq.com/signup?language=en_US&tracker_token=dqvbt6
-    type: SignUp
+    type: Signup
 created: 2023/11/13
 modified: '2026-05-19'
 position: Consuming
