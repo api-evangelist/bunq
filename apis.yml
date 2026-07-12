@@ -1151,6 +1151,10 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.j
 score: 1805
 access: 3rd-Party
 common:
+  - type: VulnerabilityDisclosure
+    url: security/bunq-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/bunq-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/bunq
   - url: https://developer.bunq.com/en/
