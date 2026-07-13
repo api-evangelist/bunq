@@ -1,73 +1,86 @@
 specification: API Commons Rate Limits
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
-provider: Bunq
+provider: bunq
 providerId: bunq
 created: '2026-05-04'
-modified: '2026-05-05'
-reconciled: true
+modified: '2026-07-12'
+reconciled: false
 tags:
-  - Banking
-  - Fintech
-  - Rate Limiting
-  - Throttling
-description: 'Bunq applies HTTP-method-specific rate limits per IP address per endpoint across both sandbox
-  and production. Limits are not differentiated by paid plan; they apply uniformly to all callers and
-  are intended to protect the platform rather than bound a paid quota. The /session-server endpoint has
-  a much stricter ceiling than other endpoints. When the threshold is exceeded the API returns HTTP 429.'
+- Banking
+- Neobank
+- Rate Limiting
+- Throttling
+- SEPA
+description: >-
+  bunq applies rate limits per endpoint, tracked per IP address / API key /
+  session, across both sandbox and production. The classic doc.bunq.com model
+  is per-HTTP-method, per-endpoint, per-IP: roughly 3 GET per 3 seconds, 5 POST
+  per 3 seconds, and 2 PUT per 3 seconds, with the /session-server endpoint held
+  to a much stricter ceiling (about 1 request per 30 seconds). bunq's newer
+  documentation frames limits as per-endpoint categories that vary by
+  sensitivity - high-volume payment endpoints allow far more, while
+  setup/installation and security-sensitive endpoints allow far fewer. Limits
+  are not tied to a paid plan. Exceeding a limit returns HTTP 429 with a message
+  stating the exact allowance for that endpoint.
+notes: >-
+  Numeric values are not fully reconciled: the per-method figures (3 GET / 5
+  POST / 2 PUT per 3s per endpoint per IP) are the historical documented
+  baseline, while the newer beta docs describe per-endpoint category limits.
+  bunq does not document a Retry-After header, so back off client-side and read
+  the exact allowance from the 429 message. Verify current values against the
+  live rate-limits documentation.
 sources:
-  - https://doc.bunq.com/basics/rate-limits.md
-  - https://doc.bunq.com/
+- https://doc.bunq.com/basics/rate-limits
+- https://doc.bunq.com/basics/errors
+- https://medium.com/bunq-developers-corner/how-to-handle-the-bunq-api-rate-limits-cb744659a35e
 responseCodes:
   throttled: 429
   quotaExceeded: 429
 limits:
-  - name: GET requests (general)
-    scope: IP/endpoint
-    metric: requests_per_3_seconds
-    limit: 3
-    timeFrame: second
-    notes: 3 GET requests per 3 seconds per IP per endpoint.
-  - name: POST requests (general)
-    scope: IP/endpoint
-    metric: requests_per_3_seconds
-    limit: 5
-    timeFrame: second
-    notes: 5 POST requests per 3 seconds per IP per endpoint.
-  - name: PUT requests (general)
-    scope: IP/endpoint
-    metric: requests_per_3_seconds
-    limit: 2
-    timeFrame: second
-    notes: 2 PUT requests per 3 seconds per IP per endpoint.
-  - name: /session-server endpoint
-    scope: IP/endpoint
-    metric: requests_per_30_seconds
-    limit: 1
-    timeFrame: second
-    notes: Stricter limit on session creation. 1 request every 30 seconds per IP.
-  - name: Callback URL configuration
-    scope: account
-    metric: callback_urls_per_category
-    limit: 2
-    notes: Maximum 2 callback URLs may be configured per notification category.
+- name: GET requests (general)
+  scope: IP/endpoint
+  metric: requests_per_3_seconds
+  limit: 3
+  timeFrame: second
+  notes: Classic baseline - 3 GET requests per 3 seconds per IP per endpoint.
+- name: POST requests (general)
+  scope: IP/endpoint
+  metric: requests_per_3_seconds
+  limit: 5
+  timeFrame: second
+  notes: Classic baseline - 5 POST requests per 3 seconds per IP per endpoint.
+- name: PUT requests (general)
+  scope: IP/endpoint
+  metric: requests_per_3_seconds
+  limit: 2
+  timeFrame: second
+  notes: Classic baseline - 2 PUT requests per 3 seconds per IP per endpoint.
+- name: /session-server endpoint
+  scope: IP/endpoint
+  metric: requests_per_30_seconds
+  limit: 1
+  timeFrame: second
+  notes: Stricter limit on session creation (about 1 request per 30 seconds per IP). Reuse sessions.
+- name: Setup / installation endpoints
+  scope: endpoint
+  metric: requests_per_day
+  limit: very low
+  notes: Newer docs describe installation/setup calls as heavily restricted (as low as ~10 per day). Register once and reuse.
+- name: Callback URL configuration
+  scope: account
+  metric: callback_urls_per_category
+  limit: 2
+  notes: A limited number of callback URLs may be configured per notification category.
 policies:
-  - name: Per-IP / Per-Endpoint Scoping
-    description: Rate limits are applied per IP address per endpoint, so each unique IP has independent
-      quotas against each endpoint.
-  - name: Method-Specific Thresholds
-    description: GET, POST and PUT each have their own per-3-second threshold; mixing methods does not
-      consume a shared quota.
-  - name: 429 on Excess
-    description: Exceeding any threshold returns HTTP 429 RATE LIMIT. Clients should pause and retry on
-      the affected endpoint.
-  - name: Session Endpoint Hardening
-    description: The /session-server endpoint enforces a much stricter (1 per 30 seconds) ceiling. Reuse
-      sessions rather than re-authenticating per call.
-  - name: Backoff Strategy
-    description: Use exponential backoff with jitter when 429 is observed. bunq does not document a Retry-After
-      header so backoff intervals must be client-managed.
+- name: Per-Endpoint Scoping
+  description: Limits apply per endpoint (and, in the classic model, per HTTP method) per IP - not as a single global bucket.
+- name: Read the 429 Message
+  description: On HTTP 429 the response states the exact allowance ("maximum of X calls per Y seconds to this endpoint"); build retry logic around that value.
+- name: Session Endpoint Hardening
+  description: The /session-server endpoint enforces a much stricter ceiling; reuse an open session rather than re-authenticating per call.
+- name: Backoff Strategy
+  description: Use exponential backoff with jitter when 429 is observed. bunq does not document a Retry-After header, so backoff intervals are client-managed.
 maintainers:
-  - FN: API Evangelist
-    url: http://apievangelist.com
-    email: info@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com

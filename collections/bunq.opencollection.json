@@ -1,0 +1,702 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bunq Public API",
+    "version": "v1",
+    "description": "Representative, grounded subset of the bunq Public API. bunq uses an installation -> device-server -> session-server handshake; business calls carry the session token in X-Bunq-Client-Authentication plus an RSA body signature in X-Bunq-Client-Signature. Base https://api.bunq.com/v1 (sandbox https://public-api.sandbox.bunq.com/v1)."
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "X-Bunq-Client-Authentication",
+        "value": "{{sessionToken}}",
+        "in": "header"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Handshake",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Installation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/installation",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"client_public_key\": \"-----BEGIN PUBLIC KEY-----\\n...\\n-----END PUBLIC KEY-----\\n\"\n}"
+            }
+          },
+          "docs": "First handshake step. POST your PEM-encoded 2048-bit RSA public key. Returns an installation Token and the bunq server_public_key. This call is not signed and needs no session."
+        },
+        {
+          "info": {
+            "name": "Create DeviceServer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/device-server",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"description\": \"My integration\",\n  \"secret\": \"YOUR_BUNQ_API_KEY\",\n  \"permitted_ips\": [\"*\"]\n}"
+            }
+          },
+          "docs": "Second handshake step. Registers your API key and permitted IPs. Send the installation Token in X-Bunq-Client-Authentication and sign the body in X-Bunq-Client-Signature."
+        },
+        {
+          "info": {
+            "name": "Create SessionServer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/session-server",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"secret\": \"YOUR_BUNQ_API_KEY\"\n}"
+            }
+          },
+          "docs": "Third handshake step. Opens a session and returns the session Token used in X-Bunq-Client-Authentication for all subsequent business calls."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user"
+          },
+          "docs": "Lists the user object(s) accessible in the current session."
+        },
+        {
+          "info": {
+            "name": "Get a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ]
+          },
+          "docs": "Retrieves a single user (UserPerson, UserCompany, or UserPaymentServiceProvider) by ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Monetary Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List monetary accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ]
+          },
+          "docs": "Lists all monetary accounts (bank, savings, joint) for the user."
+        },
+        {
+          "info": {
+            "name": "Get a monetary account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ]
+          },
+          "docs": "Retrieves a single monetary account including balance, IBAN alias, currency, and status."
+        },
+        {
+          "info": {
+            "name": "List bank monetary accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account-bank",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ]
+          },
+          "docs": "Lists the classic personal or business bank accounts (MonetaryAccountBank) for the user."
+        },
+        {
+          "info": {
+            "name": "Create a bank monetary account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account-bank",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{\n  \"currency\": \"EUR\",\n  \"description\": \"Main account\",\n  \"daily_limit\": { \"value\": \"1000.00\", \"currency\": \"EUR\" }\n}"
+            }
+          },
+          "docs": "Opens a new MonetaryAccountBank in the given currency."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Payment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/payment",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ]
+          },
+          "docs": "Lists executed payments for a monetary account. Supports pagination via count, older_id, newer_id."
+        },
+        {
+          "info": {
+            "name": "Create a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/payment",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{\n  \"amount\": { \"value\": \"12.50\", \"currency\": \"EUR\" },\n  \"counterparty_alias\": { \"type\": \"IBAN\", \"value\": \"NL00BUNQ0000000000\", \"name\": \"Jane Doe\" },\n  \"description\": \"Invoice 123\"\n}"
+            }
+          },
+          "docs": "Executes a SEPA or internal payment to a counterparty identified by an IBAN, email, or phone alias."
+        },
+        {
+          "info": {
+            "name": "Get a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/payment/:paymentID",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              },
+              {
+                "name": "paymentID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ]
+          },
+          "docs": "Retrieves a single payment by ID."
+        },
+        {
+          "info": {
+            "name": "List draft payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/draft-payment",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ]
+          },
+          "docs": "Lists draft payments requiring approval before execution."
+        },
+        {
+          "info": {
+            "name": "Create a draft payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/draft-payment",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{\n  \"number_of_required_accepts\": 1,\n  \"entries\": [\n    {\n      \"amount\": { \"value\": \"12.50\", \"currency\": \"EUR\" },\n      \"counterparty_alias\": { \"type\": \"IBAN\", \"value\": \"NL00BUNQ0000000000\", \"name\": \"Jane Doe\" },\n      \"description\": \"Draft invoice\"\n    }\n  ]\n}"
+            }
+          },
+          "docs": "Creates a draft payment that must be accepted before the money moves."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Request Inquiry",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List request inquiries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/request-inquiry",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ]
+          },
+          "docs": "Lists the payment requests (RequestInquiry) sent from this monetary account."
+        },
+        {
+          "info": {
+            "name": "Create a request inquiry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/request-inquiry",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{\n  \"amount_inquired\": { \"value\": \"12.50\", \"currency\": \"EUR\" },\n  \"counterparty_alias\": { \"type\": \"EMAIL\", \"value\": \"payer@example.com\" },\n  \"description\": \"Please pay\",\n  \"allow_bunqme\": true\n}"
+            }
+          },
+          "docs": "Sends a payment request to a counterparty alias. The counterparty receives a RequestResponse to accept or reject."
+        },
+        {
+          "info": {
+            "name": "List request responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/request-response",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ]
+          },
+          "docs": "Lists incoming payment requests (RequestResponse) addressed to this monetary account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Card",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/card",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ]
+          },
+          "docs": "Lists all debit and credit cards (CardDebit, CardCredit) for the user."
+        },
+        {
+          "info": {
+            "name": "Get a card",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/card/:cardID",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              },
+              {
+                "name": "cardID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ]
+          },
+          "docs": "Retrieves a single card including status, limits, and linked monetary account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Attachment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a public attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/user/:userID/attachment-public",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ],
+            "body": {
+              "type": "text",
+              "data": "<binary attachment content>"
+            }
+          },
+          "docs": "Uploads raw attachment bytes. Content-Type and X-Bunq-Attachment-Description headers describe it; response returns a UUID."
+        },
+        {
+          "info": {
+            "name": "Download public attachment content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/attachment-public/:attachmentPublicUUID/content",
+            "params": [
+              {
+                "name": "attachmentPublicUUID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier."
+              }
+            ]
+          },
+          "docs": "Streams the raw bytes of a public attachment (binary, not a JSON envelope)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Customer Statement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a customer statement export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/customer-statement",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{\n  \"statement_format\": \"CSV\",\n  \"date_start\": \"2026-01-01\",\n  \"date_end\": \"2026-01-31\",\n  \"regional_format\": \"EUROPEAN\"\n}"
+            }
+          },
+          "docs": "Generates a statement export for a date range in CSV, MT940, or PDF."
+        },
+        {
+          "info": {
+            "name": "Download customer statement content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/customer-statement/:customerStatementID/content",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              },
+              {
+                "name": "customerStatementID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ]
+          },
+          "docs": "Downloads the generated statement file (CSV, MT940, or PDF) as raw bytes."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Notification Filter",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List URL notification filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/notification-filter-url",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ]
+          },
+          "docs": "Lists the user-level URL (webhook) notification filters currently configured."
+        },
+        {
+          "info": {
+            "name": "Set URL notification filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/user/:userID/notification-filter-url",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{\n  \"notification_filters\": [\n    {\n      \"category\": \"MUTATION\",\n      \"notification_target\": \"https://example.com/bunq/callback\"\n    }\n  ]\n}"
+            }
+          },
+          "docs": "Replaces the set of user-level URL notification filters. bunq POSTs event callbacks to the HTTPS notification_target from IP range 185.40.108.0/22."
+        },
+        {
+          "info": {
+            "name": "List push notification filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/notification-filter-push",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ]
+          },
+          "docs": "Lists the user-level push notification filters (delivered to the bunq mobile app)."
+        },
+        {
+          "info": {
+            "name": "Set push notification filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/user/:userID/notification-filter-push",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{\n  \"notification_filters\": [\n    { \"category\": \"PAYMENT\" }\n  ]\n}"
+            }
+          },
+          "docs": "Replaces the set of user-level push notification filters by category."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

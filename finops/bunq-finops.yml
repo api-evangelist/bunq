@@ -1,24 +1,25 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
 schema: https://www.finops.org/framework/
-provider: Bunq
+provider: bunq
 providerId: bunq
 created: '2026-05-04'
-modified: '2026-05-05'
+modified: '2026-07-12'
 reconciled: false
 tags:
   - Banking
-  - Fintech
+  - Neobank
   - FinOps
   - FOCUS
-description: 'FOCUS-aligned FinOps for bunq: API access is bundled with bunq personal/business account
-  subscriptions (Free, Core, Pro, Elite) rather than billed per request. Cost shape is therefore a tiered
-  monthly subscription per account/seat with bank-product fee schedules layered on top.'
+  - SEPA
+description: 'FOCUS-aligned FinOps for bunq: there is no per-request API fee - API access is bundled with a bunq personal/business account
+  subscription (personal Core/Pro/Elite plus savings-only Free; business Free/Core/Pro/Elite) rather than billed per request. Cost shape is therefore a tiered
+  monthly subscription per account/seat with bank-product fee schedules (cards, FX, ATM, per-transfer SEPA) layered on top. Per-unit fees are not reconciled here.'
 sources:
-  - https://www.bunq.com/pricing
-  - https://www.bunq.com/business-pricing
+  - https://www.bunq.com/en-us/documents/pricing-sheet
+  - https://www.bunq.com/en-us/personal-account/banking-plans
   - https://doc.bunq.com/
-  - https://doc.bunq.com/basics/rate-limits.md
+  - https://doc.bunq.com/basics/rate-limits
   - https://focus.finops.org/focus-specification/v1-3/
 alignedWith:
   framework: FinOps Foundation Framework
@@ -105,6 +106,5 @@ principles:
     description: Designate a finance owner per bunq business account; reconcile monthly invoices against
       the User Invoice API and tag outflows with the consuming product so chargeback / showback is possible.
 maintainers:
-  - FN: API Evangelist
-    url: http://apievangelist.com
-    email: info@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com

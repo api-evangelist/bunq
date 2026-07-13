@@ -1,0 +1,1123 @@
+{
+  "info": {
+    "name": "bunq Public API",
+    "description": "Representative, grounded subset of the bunq Public API (European neobank). Base URL https://api.bunq.com/v1 (sandbox https://public-api.sandbox.bunq.com/v1). bunq is NOT a simple bearer-token API: complete the installation -> device-server -> session-server handshake first, then send the session token in X-Bunq-Client-Authentication and an RSA (PKCS#1 v1.5, SHA-256) body signature in X-Bunq-Client-Signature on every business call. Set {{sessionToken}} and {{clientSignature}} after running the Handshake folder. Authored by API Evangelist from doc.bunq.com; not an official bunq artifact.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bunq.com/v1",
+      "type": "string"
+    },
+    {
+      "key": "sessionToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "clientSignature",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Handshake",
+      "item": [
+        {
+          "name": "Create Installation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/installation",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "installation"
+              ]
+            },
+            "description": "First handshake step. POST your PEM-encoded 2048-bit RSA public key. Returns an installation Token and the bunq server_public_key. This call is not signed and needs no session.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_public_key\": \"-----BEGIN PUBLIC KEY-----\\n...\\n-----END PUBLIC KEY-----\\n\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Create DeviceServer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/device-server",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "device-server"
+              ]
+            },
+            "description": "Second handshake step. Registers your API key and permitted IPs. Send the installation Token in X-Bunq-Client-Authentication and sign the body in X-Bunq-Client-Signature.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"My integration\",\n  \"secret\": \"YOUR_BUNQ_API_KEY\",\n  \"permitted_ips\": [\"*\"]\n}"
+            }
+          }
+        },
+        {
+          "name": "Create SessionServer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/session-server",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "session-server"
+              ]
+            },
+            "description": "Third handshake step. Opens a session and returns the session Token used in X-Bunq-Client-Authentication for all subsequent business calls.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"secret\": \"YOUR_BUNQ_API_KEY\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "List users",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user"
+              ]
+            },
+            "description": "Lists the user object(s) accessible in the current session."
+          }
+        },
+        {
+          "name": "Get a user",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Retrieves a single user (UserPerson, UserCompany, or UserPaymentServiceProvider) by ID."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Monetary Account",
+      "item": [
+        {
+          "name": "List monetary accounts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/monetary-account",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "monetary-account"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Lists all monetary accounts (bank, savings, joint) for the user."
+          }
+        },
+        {
+          "name": "Get a monetary account",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/monetary-account/:monetaryAccountID",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "monetary-account",
+                ":monetaryAccountID"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                },
+                {
+                  "key": "monetaryAccountID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Retrieves a single monetary account including balance, IBAN alias, currency, and status."
+          }
+        },
+        {
+          "name": "List bank monetary accounts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/monetary-account-bank",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "monetary-account-bank"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Lists the classic personal or business bank accounts (MonetaryAccountBank) for the user."
+          }
+        },
+        {
+          "name": "Create a bank monetary account",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/monetary-account-bank",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "monetary-account-bank"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Opens a new MonetaryAccountBank in the given currency.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currency\": \"EUR\",\n  \"description\": \"Main account\",\n  \"daily_limit\": { \"value\": \"1000.00\", \"currency\": \"EUR\" }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payment",
+      "item": [
+        {
+          "name": "List payments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/monetary-account/:monetaryAccountID/payment",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "monetary-account",
+                ":monetaryAccountID",
+                "payment"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                },
+                {
+                  "key": "monetaryAccountID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Lists executed payments for a monetary account. Supports pagination via count, older_id, newer_id."
+          }
+        },
+        {
+          "name": "Create a payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/monetary-account/:monetaryAccountID/payment",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "monetary-account",
+                ":monetaryAccountID",
+                "payment"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                },
+                {
+                  "key": "monetaryAccountID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Executes a SEPA or internal payment to a counterparty identified by an IBAN, email, or phone alias.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": { \"value\": \"12.50\", \"currency\": \"EUR\" },\n  \"counterparty_alias\": { \"type\": \"IBAN\", \"value\": \"NL00BUNQ0000000000\", \"name\": \"Jane Doe\" },\n  \"description\": \"Invoice 123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get a payment",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/monetary-account/:monetaryAccountID/payment/:paymentID",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "monetary-account",
+                ":monetaryAccountID",
+                "payment",
+                ":paymentID"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                },
+                {
+                  "key": "monetaryAccountID",
+                  "value": ""
+                },
+                {
+                  "key": "paymentID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Retrieves a single payment by ID."
+          }
+        },
+        {
+          "name": "List draft payments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/monetary-account/:monetaryAccountID/draft-payment",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "monetary-account",
+                ":monetaryAccountID",
+                "draft-payment"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                },
+                {
+                  "key": "monetaryAccountID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Lists draft payments requiring approval before execution."
+          }
+        },
+        {
+          "name": "Create a draft payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/monetary-account/:monetaryAccountID/draft-payment",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "monetary-account",
+                ":monetaryAccountID",
+                "draft-payment"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                },
+                {
+                  "key": "monetaryAccountID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Creates a draft payment that must be accepted before the money moves.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"number_of_required_accepts\": 1,\n  \"entries\": [\n    {\n      \"amount\": { \"value\": \"12.50\", \"currency\": \"EUR\" },\n      \"counterparty_alias\": { \"type\": \"IBAN\", \"value\": \"NL00BUNQ0000000000\", \"name\": \"Jane Doe\" },\n      \"description\": \"Draft invoice\"\n    }\n  ]\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Request Inquiry",
+      "item": [
+        {
+          "name": "List request inquiries",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/monetary-account/:monetaryAccountID/request-inquiry",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "monetary-account",
+                ":monetaryAccountID",
+                "request-inquiry"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                },
+                {
+                  "key": "monetaryAccountID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Lists the payment requests (RequestInquiry) sent from this monetary account."
+          }
+        },
+        {
+          "name": "Create a request inquiry",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/monetary-account/:monetaryAccountID/request-inquiry",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "monetary-account",
+                ":monetaryAccountID",
+                "request-inquiry"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                },
+                {
+                  "key": "monetaryAccountID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Sends a payment request to a counterparty alias. The counterparty receives a RequestResponse to accept or reject.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount_inquired\": { \"value\": \"12.50\", \"currency\": \"EUR\" },\n  \"counterparty_alias\": { \"type\": \"EMAIL\", \"value\": \"payer@example.com\" },\n  \"description\": \"Please pay\",\n  \"allow_bunqme\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "List request responses",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/monetary-account/:monetaryAccountID/request-response",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "monetary-account",
+                ":monetaryAccountID",
+                "request-response"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                },
+                {
+                  "key": "monetaryAccountID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Lists incoming payment requests (RequestResponse) addressed to this monetary account."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Card",
+      "item": [
+        {
+          "name": "List cards",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/card",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "card"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Lists all debit and credit cards (CardDebit, CardCredit) for the user."
+          }
+        },
+        {
+          "name": "Get a card",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/card/:cardID",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "card",
+                ":cardID"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                },
+                {
+                  "key": "cardID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Retrieves a single card including status, limits, and linked monetary account."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Attachment",
+      "item": [
+        {
+          "name": "Upload a public attachment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream"
+              },
+              {
+                "key": "X-Bunq-Attachment-Description",
+                "value": "receipt.jpg"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/attachment-public",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "attachment-public"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Uploads raw attachment bytes. Content-Type and X-Bunq-Attachment-Description headers describe it; response returns a UUID.",
+            "body": {
+              "mode": "file",
+              "file": {
+                "src": ""
+              }
+            }
+          }
+        },
+        {
+          "name": "Download public attachment content",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attachment-public/:attachmentPublicUUID/content",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attachment-public",
+                ":attachmentPublicUUID",
+                "content"
+              ],
+              "variable": [
+                {
+                  "key": "attachmentPublicUUID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Streams the raw bytes of a public attachment (binary, not a JSON envelope)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customer Statement",
+      "item": [
+        {
+          "name": "Create a customer statement export",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/monetary-account/:monetaryAccountID/customer-statement",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "monetary-account",
+                ":monetaryAccountID",
+                "customer-statement"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                },
+                {
+                  "key": "monetaryAccountID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Generates a statement export for a date range in CSV, MT940, or PDF.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"statement_format\": \"CSV\",\n  \"date_start\": \"2026-01-01\",\n  \"date_end\": \"2026-01-31\",\n  \"regional_format\": \"EUROPEAN\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Download customer statement content",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/monetary-account/:monetaryAccountID/customer-statement/:customerStatementID/content",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "monetary-account",
+                ":monetaryAccountID",
+                "customer-statement",
+                ":customerStatementID",
+                "content"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                },
+                {
+                  "key": "monetaryAccountID",
+                  "value": ""
+                },
+                {
+                  "key": "customerStatementID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Downloads the generated statement file (CSV, MT940, or PDF) as raw bytes."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notification Filter",
+      "item": [
+        {
+          "name": "List URL notification filters",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/notification-filter-url",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "notification-filter-url"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Lists the user-level URL (webhook) notification filters currently configured."
+          }
+        },
+        {
+          "name": "Set URL notification filters",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/notification-filter-url",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "notification-filter-url"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Replaces the set of user-level URL notification filters. bunq POSTs event callbacks to the HTTPS notification_target from IP range 185.40.108.0/22.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notification_filters\": [\n    {\n      \"category\": \"MUTATION\",\n      \"notification_target\": \"https://example.com/bunq/callback\"\n    }\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "List push notification filters",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/notification-filter-push",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "notification-filter-push"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Lists the user-level push notification filters (delivered to the bunq mobile app)."
+          }
+        },
+        {
+          "name": "Set push notification filters",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Bunq-Client-Authentication",
+                "value": "{{sessionToken}}"
+              },
+              {
+                "key": "X-Bunq-Client-Signature",
+                "value": "{{clientSignature}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/:userID/notification-filter-push",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ":userID",
+                "notification-filter-push"
+              ],
+              "variable": [
+                {
+                  "key": "userID",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Replaces the set of user-level push notification filters by category.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notification_filters\": [\n    { \"category\": \"PAYMENT\" }\n  ]\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

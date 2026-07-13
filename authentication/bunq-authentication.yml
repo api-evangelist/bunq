@@ -1,0 +1,59 @@
+generated: '2026-07-12'
+method: derived
+source: openapi/bunq-openapi.yml
+summary:
+  types:
+  - apiKey
+  - signature
+  note: >-
+    bunq authentication is a multi-step, RSA-signed handshake, not a simple
+    bearer token. An API key is exchanged for a session via installation ->
+    device-server -> session-server, and every request is additionally signed
+    with the client private key.
+schemes:
+- name: installationToken
+  type: apiKey
+  in: header
+  headerName: X-Bunq-Client-Authentication
+  description: >-
+    Installation token returned by POST /v1/installation. Used only to
+    authenticate the device-server and session-server handshake calls. Obtained
+    by POSTing your 2048-bit RSA (PKCS#8) public key; the response also returns
+    the bunq server_public_key used to verify response signatures.
+  sources:
+  - openapi/bunq-openapi.yml
+  - https://doc.bunq.com/basics/authentication
+- name: sessionToken
+  type: apiKey
+  in: header
+  headerName: X-Bunq-Client-Authentication
+  description: >-
+    Session token returned by POST /v1/session-server. Sent on every business
+    call for the life of the session. Opening the session requires your bunq API
+    key (the "secret").
+  sources:
+  - openapi/bunq-openapi.yml
+  - https://doc.bunq.com/quickstart/opening-a-session
+- name: clientSignature
+  type: signature
+  in: header
+  headerName: X-Bunq-Client-Signature
+  algorithm: RSA-SHA256 (PKCS#1 v1.5)
+  description: >-
+    Base64-encoded RSA signature of the request body, created with your private
+    key using SHA-256 and PKCS#1 v1.5 padding. Required on the device-server and
+    session-server handshake calls and, per bunq's signing documentation, on
+    authenticated requests. bunq signs its responses in X-Bunq-Server-Signature,
+    which the client verifies with the installation server_public_key.
+  sources:
+  - https://doc.bunq.com/basics/signing
+  - https://doc.bunq.com/basics/signing/python-code-example
+notes: >-
+  API keys for production are issued in the bunq mobile app; sandbox keys are
+  issued via the developer portal or the sandbox tinker/hackathon toolkit. PSD2
+  third parties register an eIDAS certificate to obtain a
+  UserPaymentServiceProvider and API key. bunq also supports OAuth for
+  third-party access on top of this model.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

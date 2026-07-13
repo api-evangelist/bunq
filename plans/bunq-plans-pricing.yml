@@ -1,176 +1,190 @@
 specification: API Commons Plans
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: Bunq
+provider: bunq
 providerId: bunq
 created: '2026-05-04'
-modified: '2026-05-05'
+modified: '2026-07-12'
 reconciled: false
 tags:
-  - Banking
-  - Fintech
-  - Open Banking
-  - PSD2
-description: 'Bunq is a European neobank whose public API access is bundled with bunq personal and business
-  accounts (Free, Core, Pro, Elite) rather than sold as a separate developer plan. The pricing page is
-  served only as a downloadable PDF, so per-tier monthly fees are not enumerated here. Sandbox access
-  is open and free; production API access requires a bunq account in the corresponding tier. PSD2 / Open
-  Banking access for licensed third-party providers is available via a separate registration path. The
-  rate ceilings on this artifact reflect the documented per-IP / per-endpoint API throttle, not a paid
-  quota.'
+- Banking
+- Neobank
+- Open Banking
+- PSD2
+- Plans
+description: >-
+  bunq is a European neobank whose Public API access is bundled with a bunq
+  personal or business account rather than sold as a separate developer product.
+  There is no separate per-call API fee for account holders. Personal plans
+  observed at the time of writing are bunq Free (EUR 0), Core (EUR 3.99/mo),
+  Pro (EUR 9.99/mo), and Elite (EUR 18.99/mo); business plans are Free (EUR 0),
+  Core (EUR 7.99/mo), Pro (EUR 13.99/mo), and Elite (EUR 23.99/mo). Sandbox
+  access is open and free and does not require a bunq account. Production API
+  access requires a bunq account; PSD2 / Open Banking access for licensed
+  third-party providers uses a separate eIDAS certificate registration path
+  (typically free of charge for regulated TPPs). Exact monthly account fees
+  change over time and are not fully reconciled here.
+notes: >-
+  Monthly fees below were read from bunq.com in July 2026 (personal
+  banking-plans and business banking-plans pages) and vary by region and over
+  time. Personal: Free EUR 0, Core EUR 3.99, Pro EUR 9.99, Elite EUR 18.99.
+  Business: Free EUR 0, Core EUR 7.99, Pro EUR 13.99, Elite EUR 23.99. These
+  are bank-account subscription fees, not API fees - the API carries no separate
+  charge. Verify against the current pricing sheet before relying on exact
+  values.
 sources:
-  - https://www.bunq.com/pricing
-  - https://www.bunq.com/business-pricing
-  - https://doc.bunq.com/
-  - https://doc.bunq.com/basics/rate-limits.md
-notes: |
-  bunq does not publish a dedicated API pricing schedule. Personal/business account plans (Free, Core,
-  Pro, Elite) are described in a downloadable PDF. The plans below mirror bunq's published tier names
-  with `price: 'see vendor pricing PDF'` so consumers can iterate the structure without fabricated fees.
+- https://www.bunq.com/en-us/documents/pricing-sheet
+- https://www.bunq.com/en-us/personal-account/banking-plans
+- https://www.bunq.com/business-account/banking-plans/bunq-pro
+- https://doc.bunq.com/
+- https://doc.bunq.com/basics/rate-limits
 plans:
-  - id: bunq-sandbox
-    name: Sandbox
-    type: freemium
-    description: Free public sandbox environment for evaluating the bunq API. No bunq account required;
-      sandbox users are auto-provisioned. Subject to the documented per-IP / per-endpoint throttle.
-    entries:
-      - label: Sandbox API Access
-        name: sandbox_api_access
-        type: flat
-        metric: request
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Auto-provisioned Sandbox User
-      - name: Full API Surface (test data)
-      - name: Community Support
-  - id: bunq-free
-    name: bunq Free
+- id: bunq-sandbox
+  name: Sandbox
+  type: freemium
+  description: >-
+    Free public sandbox environment for evaluating the bunq API. No bunq account
+    required; sandbox users are auto-provisioned via the developer portal or
+    tinker/hackathon toolkit. Subject to the documented per-endpoint throttle.
+  entries:
+  - label: Sandbox API Access
+    name: sandbox_api_access
+    type: flat
+    metric: request
+    limit: -1
+    timeFrame: usage
+    geo: global
+    unit: 1
+    price: '0.00'
+    userMultiplied: false
+  elements:
+  - name: Public Documentation
+  - name: Auto-provisioned Sandbox User
+  - name: Full API Surface (test data)
+  - name: Community Support
+- id: bunq-free
+  name: bunq Free
+  type: free
+  description: >-
+    Free personal account (EUR 0/mo) - the entry point to the bunq ecosystem.
+    Production API use requires an identified account.
+  entries:
+  - label: Account
+    name: account
+    type: flat
+    metric: month
+    limit: 1
+    timeFrame: month
+    geo: EU
+    unit: 1
+    price: '0.00'
+    userMultiplied: false
+  elements:
+  - name: Savings Account
+  - name: Personal Identity
+- id: bunq-core
+  name: bunq Core (Personal)
+  type: subscription
+  description: Entry paid personal account. API access bundled. EUR 3.99/mo observed July 2026.
+  entries:
+  - label: Account Subscription
+    name: account_subscription
     type: subscription
-    description: Entry-level personal account that includes API access against production once the user
-      identifies. Pricing is published in the bunq pricing PDF.
-    entries:
-      - label: Production API Access (bundled with account)
-        name: production_api_access
-        type: subscription
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: EU
-        unit: 1
-        price: see vendor pricing PDF
-        userMultiplied: false
-    elements:
-      - name: Production API Access
-      - name: Personal Account
-  - id: bunq-core
-    name: bunq Core
+    metric: month
+    limit: 1
+    timeFrame: month
+    geo: EU
+    unit: 1
+    price: EUR 3.99 / month (verify on pricing sheet)
+    userMultiplied: false
+  elements:
+  - name: Production API Access
+  - name: Multiple Sub-accounts
+  - name: Personal Card
+- id: bunq-pro
+  name: bunq Pro (Personal)
+  type: subscription
+  description: Higher-tier personal account. API access bundled. EUR 9.99/mo observed July 2026.
+  entries:
+  - label: Account Subscription
+    name: account_subscription
     type: subscription
-    description: Mid-tier personal account. API access bundled with the account; see bunq pricing PDF
-      for monthly fee.
-    entries:
-      - label: Account Subscription
-        name: account_subscription
-        type: subscription
-        metric: month
-        limit: 1
-        timeFrame: month
-        geo: EU
-        unit: 1
-        price: see vendor pricing PDF
-        userMultiplied: false
-    elements:
-      - name: Production API Access
-      - name: Multiple Sub-accounts
-      - name: Personal Card
-  - id: bunq-pro
-    name: bunq Pro
+    metric: month
+    limit: 1
+    timeFrame: month
+    geo: EU
+    unit: 1
+    price: EUR 9.99 / month (verify on pricing sheet)
+    userMultiplied: false
+  elements:
+  - name: Production API Access
+  - name: Travel Insurance
+  - name: Higher Withdrawal Limits
+- id: bunq-elite
+  name: bunq Elite (Personal)
+  type: subscription
+  description: Premium personal account tier. API access bundled. EUR 18.99/mo observed July 2026.
+  entries:
+  - label: Account Subscription
+    name: account_subscription
     type: subscription
-    description: Higher-tier personal account. API access bundled with the account; see bunq pricing PDF
-      for monthly fee.
-    entries:
-      - label: Account Subscription
-        name: account_subscription
-        type: subscription
-        metric: month
-        limit: 1
-        timeFrame: month
-        geo: EU
-        unit: 1
-        price: see vendor pricing PDF
-        userMultiplied: false
-    elements:
-      - name: Production API Access
-      - name: Travel Insurance
-      - name: Higher Withdrawal Limits
-  - id: bunq-elite
-    name: bunq Elite
+    metric: month
+    limit: 1
+    timeFrame: month
+    geo: EU
+    unit: 1
+    price: EUR 18.99 / month (verify on pricing sheet)
+    userMultiplied: false
+  elements:
+  - name: Production API Access
+  - name: Premium Insurance
+  - name: Metal Card
+- id: bunq-business
+  name: bunq Business (Free / Core / Pro / Elite)
+  type: subscription
+  description: >-
+    Business account family for sole proprietors and SMEs, with production API
+    access. Observed monthly fees ~EUR 7.99 (Core) / 13.99 (Pro) / 23.99
+    (Elite); the Free business plan is EUR 0 with per-transfer SEPA pricing.
+    Verify on the pricing sheet.
+  entries:
+  - label: Business Account Subscription
+    name: business_subscription
     type: subscription
-    description: Premium personal account tier with full feature access. API access bundled with the account;
-      see bunq pricing PDF for monthly fee.
-    entries:
-      - label: Account Subscription
-        name: account_subscription
-        type: subscription
-        metric: month
-        limit: 1
-        timeFrame: month
-        geo: EU
-        unit: 1
-        price: see vendor pricing PDF
-        userMultiplied: false
-    elements:
-      - name: Production API Access
-      - name: Premium Insurance
-      - name: Metal Card
-  - id: bunq-business
-    name: bunq Business
-    type: subscription
-    description: Business account family (Free / Core / Pro / Elite) for sole proprietors and SMEs. Includes
-      production API access. See bunq business pricing PDF for monthly fees.
-    entries:
-      - label: Business Account Subscription
-        name: business_subscription
-        type: subscription
-        metric: month
-        limit: 1
-        timeFrame: month
-        geo: EU
-        unit: 1
-        price: see vendor pricing PDF
-        userMultiplied: false
-    elements:
-      - name: Production API Access
-      - name: Business IBAN
-      - name: Multi-currency Support
-  - id: bunq-psd2-tpp
-    name: PSD2 Third-Party Provider
-    type: enterprise
-    description: Regulated PSD2 access for licensed AISP / PISP / CBPII third-party providers. Requires
-      eIDAS QWAC / QSeal certificates and registration with bunq. Pricing is governed by the PSD2 framework
-      (typically free of charge for regulated TPPs).
-    entries:
-      - label: PSD2 API Access
-        name: psd2_api_access
-        type: flat
-        metric: request
-        limit: -1
-        timeFrame: usage
-        geo: EU
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Account Information Service (AIS)
-      - name: Payment Initiation Service (PIS)
-      - name: Confirmation of Funds (CBPII)
-      - name: eIDAS Certificate Authentication
+    metric: month
+    limit: 1
+    timeFrame: month
+    geo: EU
+    unit: 1
+    price: EUR 0 - 23.99 / month by tier (see vendor pricing sheet)
+    userMultiplied: false
+  elements:
+  - name: Production API Access
+  - name: Business IBAN
+  - name: Multi-currency Support
+- id: bunq-psd2-tpp
+  name: PSD2 Third-Party Provider
+  type: enterprise
+  description: >-
+    Regulated PSD2 access for licensed AISP / PISP / CBPII third-party
+    providers. Requires eIDAS QWAC / QSeal certificates and registration with
+    bunq. Typically free of charge for regulated TPPs under the PSD2 framework.
+  entries:
+  - label: PSD2 API Access
+    name: psd2_api_access
+    type: flat
+    metric: request
+    limit: -1
+    timeFrame: usage
+    geo: EU
+    unit: 1
+    price: '0.00'
+    userMultiplied: false
+  elements:
+  - name: Account Information Service (AIS)
+  - name: Payment Initiation Service (PIS)
+  - name: Confirmation of Funds (CBPII)
+  - name: eIDAS Certificate Authentication
 maintainers:
-  - FN: API Evangelist
-    url: http://apievangelist.com
-    email: info@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
