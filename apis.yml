@@ -228,6 +228,8 @@ apis:
     deliver events to the user's bunq mobile app. Delivery is HTTP webhook and
     push - bunq does not expose a public WebSocket.
 common:
+- type: AgenticAccess
+  url: agentic-access/bunq-agentic-access.yml
 - type: Authentication
   url: authentication/bunq-authentication.yml
 - type: VulnerabilityDisclosure
