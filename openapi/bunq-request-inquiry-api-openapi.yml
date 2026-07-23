@@ -1,0 +1,194 @@
+openapi: 3.0.3
+info:
+  title: bunq Public Attachment Request Inquiry API
+  description: 'Grounded, representative subset of the bunq Public API. bunq is a European (Dutch) neobank; its REST API lets account holders and licensed third parties read accounts, initiate SEPA and other payments, send and respond to payment requests, manage cards, export statements, upload attachments, and subscribe to event callbacks.
+
+
+    IMPORTANT - bunq uses an unusual multi-step handshake before any business call can be made. All request/response bodies in the bunq API are wrapped in a top-level `Response` (list) envelope, and most responses also return a server signature. This document models the handshake plus a representative slice of the resource surface; it is NOT the full bunq API, which exposes hundreds of endpoints. Path segments such as `{userID}` and `{monetaryAccountID}` are numeric IDs returned by earlier calls. This spec is authored by API Evangelist from the public documentation at https://doc.bunq.com and is not an official bunq artifact; request/response schemas are simplified and several are modeled rather than copied verbatim.'
+  version: v1
+  contact:
+    name: bunq API documentation
+    url: https://doc.bunq.com
+  license:
+    name: bunq API Terms of Service
+    url: https://doc.bunq.com
+servers:
+- url: https://api.bunq.com/v1
+  description: Production
+- url: https://public-api.sandbox.bunq.com/v1
+  description: Sandbox
+security:
+- sessionToken: []
+tags:
+- name: Request Inquiry
+  description: Create and read payment requests (money you ask another party to pay).
+paths:
+  /user/{userID}/monetary-account/{monetaryAccountID}/request-inquiry:
+    parameters:
+    - $ref: '#/components/parameters/UserID'
+    - $ref: '#/components/parameters/MonetaryAccountID'
+    get:
+      operationId: listRequestInquiries
+      tags:
+      - Request Inquiry
+      summary: List request inquiries
+      description: Lists the payment requests (RequestInquiry) sent from this monetary account.
+      responses:
+        '200':
+          description: A list of request inquiries.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createRequestInquiry
+      tags:
+      - Request Inquiry
+      summary: Create a request inquiry
+      description: Sends a payment request to a counterparty alias (IBAN, email, or phone). The counterparty receives a RequestResponse they can accept or reject.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestInquiryInput'
+      responses:
+        '200':
+          description: The created request inquiry.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '400':
+          $ref: '#/components/responses/Error'
+  /user/{userID}/monetary-account/{monetaryAccountID}/request-response:
+    parameters:
+    - $ref: '#/components/parameters/UserID'
+    - $ref: '#/components/parameters/MonetaryAccountID'
+    get:
+      operationId: listRequestResponses
+      tags:
+      - Request Inquiry
+      summary: List request responses
+      description: Lists incoming payment requests (RequestResponse) addressed to this monetary account.
+      responses:
+        '200':
+          description: A list of request responses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Response:
+      type: object
+      description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
+      properties:
+        Response:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    RequestInquiryInput:
+      type: object
+      required:
+      - amount_inquired
+      - counterparty_alias
+      - description
+      - allow_bunqme
+      properties:
+        amount_inquired:
+          $ref: '#/components/schemas/Amount'
+        counterparty_alias:
+          $ref: '#/components/schemas/Pointer'
+        description:
+          type: string
+        allow_bunqme:
+          type: boolean
+          description: Whether the request may be paid via a bunq.me link.
+    ErrorResponse:
+      type: object
+      description: bunq error envelope.
+      properties:
+        Error:
+          type: array
+          items:
+            type: object
+            properties:
+              error_description:
+                type: string
+              error_description_translated:
+                type: string
+    Pointer:
+      type: object
+      description: A bunq alias ("pointer") identifying a counterparty.
+      required:
+      - type
+      - value
+      properties:
+        type:
+          type: string
+          enum:
+          - IBAN
+          - EMAIL
+          - PHONE_NUMBER
+        value:
+          type: string
+        name:
+          type: string
+          description: Required when type is IBAN.
+    Amount:
+      type: object
+      required:
+      - value
+      - currency
+      properties:
+        value:
+          type: string
+          description: Decimal amount as a string, for example "12.50".
+        currency:
+          type: string
+          description: ISO 4217 currency code, for example EUR.
+  responses:
+    Unauthorized:
+      description: Missing/invalid session token or signature.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Error:
+      description: A bunq error response envelope.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    UserID:
+      name: userID
+      in: path
+      required: true
+      description: The numeric ID of the user.
+      schema:
+        type: integer
+    MonetaryAccountID:
+      name: monetaryAccountID
+      in: path
+      required: true
+      description: The numeric ID of the monetary account.
+      schema:
+        type: integer
+  securitySchemes:
+    sessionToken:
+      type: apiKey
+      in: header
+      name: X-Bunq-Client-Authentication
+      description: Session token obtained from POST /session-server, sent on every business call. In addition, each request body must be signed with your private key and the signature sent in the X-Bunq-Client-Signature header (see the ClientSignature parameter). bunq is not a simple bearer-token API.
+    installationToken:
+      type: apiKey
+      in: header
+      name: X-Bunq-Client-Authentication
+      description: Installation token from POST /installation, used only for the device-server and session-server handshake calls.

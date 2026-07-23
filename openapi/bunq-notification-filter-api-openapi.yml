@@ -1,0 +1,193 @@
+openapi: 3.0.3
+info:
+  title: bunq Public Attachment Notification Filter API
+  description: 'Grounded, representative subset of the bunq Public API. bunq is a European (Dutch) neobank; its REST API lets account holders and licensed third parties read accounts, initiate SEPA and other payments, send and respond to payment requests, manage cards, export statements, upload attachments, and subscribe to event callbacks.
+
+
+    IMPORTANT - bunq uses an unusual multi-step handshake before any business call can be made. All request/response bodies in the bunq API are wrapped in a top-level `Response` (list) envelope, and most responses also return a server signature. This document models the handshake plus a representative slice of the resource surface; it is NOT the full bunq API, which exposes hundreds of endpoints. Path segments such as `{userID}` and `{monetaryAccountID}` are numeric IDs returned by earlier calls. This spec is authored by API Evangelist from the public documentation at https://doc.bunq.com and is not an official bunq artifact; request/response schemas are simplified and several are modeled rather than copied verbatim.'
+  version: v1
+  contact:
+    name: bunq API documentation
+    url: https://doc.bunq.com
+  license:
+    name: bunq API Terms of Service
+    url: https://doc.bunq.com
+servers:
+- url: https://api.bunq.com/v1
+  description: Production
+- url: https://public-api.sandbox.bunq.com/v1
+  description: Sandbox
+security:
+- sessionToken: []
+tags:
+- name: Notification Filter
+  description: Manage URL (webhook) and push notification callbacks for account events.
+paths:
+  /user/{userID}/notification-filter-url:
+    parameters:
+    - $ref: '#/components/parameters/UserID'
+    get:
+      operationId: listNotificationFilterUrl
+      tags:
+      - Notification Filter
+      summary: List URL notification filters
+      description: Lists the user-level URL (webhook) notification filters currently configured.
+      responses:
+        '200':
+          description: A list of URL notification filters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createNotificationFilterUrl
+      tags:
+      - Notification Filter
+      summary: Set URL notification filters
+      description: Replaces the set of user-level URL notification filters. Each filter maps a `category` (for example MUTATION, PAYMENT, CARD_TRANSACTION_*) to an HTTPS `notification_target` that bunq POSTs event callbacks to. Callbacks originate from bunq IP range 185.40.108.0/22.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationFilterUrlInput'
+      responses:
+        '200':
+          description: The updated notification filter set.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '400':
+          $ref: '#/components/responses/Error'
+  /user/{userID}/notification-filter-push:
+    parameters:
+    - $ref: '#/components/parameters/UserID'
+    get:
+      operationId: listNotificationFilterPush
+      tags:
+      - Notification Filter
+      summary: List push notification filters
+      description: Lists the user-level push notification filters (events delivered to the user's bunq mobile app).
+      responses:
+        '200':
+          description: A list of push notification filters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createNotificationFilterPush
+      tags:
+      - Notification Filter
+      summary: Set push notification filters
+      description: Replaces the set of user-level push notification filters by category.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationFilterPushInput'
+      responses:
+        '200':
+          description: The updated push notification filter set.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '400':
+          $ref: '#/components/responses/Error'
+components:
+  schemas:
+    Response:
+      type: object
+      description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
+      properties:
+        Response:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    NotificationFilterUrlInput:
+      type: object
+      required:
+      - notification_filters
+      properties:
+        notification_filters:
+          type: array
+          items:
+            type: object
+            required:
+            - category
+            - notification_target
+            properties:
+              category:
+                type: string
+                description: Event category, for example MUTATION, PAYMENT, REQUEST, CARD_TRANSACTION_SUCCESSFUL.
+              notification_target:
+                type: string
+                format: uri
+                description: HTTPS URL bunq POSTs the callback to.
+    NotificationFilterPushInput:
+      type: object
+      required:
+      - notification_filters
+      properties:
+        notification_filters:
+          type: array
+          items:
+            type: object
+            required:
+            - category
+            properties:
+              category:
+                type: string
+    ErrorResponse:
+      type: object
+      description: bunq error envelope.
+      properties:
+        Error:
+          type: array
+          items:
+            type: object
+            properties:
+              error_description:
+                type: string
+              error_description_translated:
+                type: string
+  responses:
+    Unauthorized:
+      description: Missing/invalid session token or signature.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Error:
+      description: A bunq error response envelope.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    UserID:
+      name: userID
+      in: path
+      required: true
+      description: The numeric ID of the user.
+      schema:
+        type: integer
+  securitySchemes:
+    sessionToken:
+      type: apiKey
+      in: header
+      name: X-Bunq-Client-Authentication
+      description: Session token obtained from POST /session-server, sent on every business call. In addition, each request body must be signed with your private key and the signature sent in the X-Bunq-Client-Signature header (see the ClientSignature parameter). bunq is not a simple bearer-token API.
+    installationToken:
+      type: apiKey
+      in: header
+      name: X-Bunq-Client-Authentication
+      description: Installation token from POST /installation, used only for the device-server and session-server handshake calls.

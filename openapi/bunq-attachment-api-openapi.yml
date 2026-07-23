@@ -1,0 +1,139 @@
+openapi: 3.0.3
+info:
+  title: bunq Public Attachment API
+  description: 'Grounded, representative subset of the bunq Public API. bunq is a European (Dutch) neobank; its REST API lets account holders and licensed third parties read accounts, initiate SEPA and other payments, send and respond to payment requests, manage cards, export statements, upload attachments, and subscribe to event callbacks.
+
+
+    IMPORTANT - bunq uses an unusual multi-step handshake before any business call can be made. All request/response bodies in the bunq API are wrapped in a top-level `Response` (list) envelope, and most responses also return a server signature. This document models the handshake plus a representative slice of the resource surface; it is NOT the full bunq API, which exposes hundreds of endpoints. Path segments such as `{userID}` and `{monetaryAccountID}` are numeric IDs returned by earlier calls. This spec is authored by API Evangelist from the public documentation at https://doc.bunq.com and is not an official bunq artifact; request/response schemas are simplified and several are modeled rather than copied verbatim.'
+  version: v1
+  contact:
+    name: bunq API documentation
+    url: https://doc.bunq.com
+  license:
+    name: bunq API Terms of Service
+    url: https://doc.bunq.com
+servers:
+- url: https://api.bunq.com/v1
+  description: Production
+- url: https://public-api.sandbox.bunq.com/v1
+  description: Sandbox
+security:
+- sessionToken: []
+tags:
+- name: Attachment
+  description: Upload and retrieve attachment content.
+paths:
+  /user/{userID}/attachment-public:
+    parameters:
+    - $ref: '#/components/parameters/UserID'
+    post:
+      operationId: createAttachmentPublic
+      tags:
+      - Attachment
+      summary: Upload a public attachment
+      description: Uploads raw attachment bytes (for example an avatar or receipt image). The body is the binary content; `Content-Type` and `X-Bunq-Attachment-Description` headers describe it. The response returns a UUID used to reference or retrieve the content.
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: The created attachment (UUID returned).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '400':
+          $ref: '#/components/responses/Error'
+  /attachment-public/{attachmentPublicUUID}/content:
+    parameters:
+    - name: attachmentPublicUUID
+      in: path
+      required: true
+      description: The UUID of the public attachment.
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: getAttachmentPublicContent
+      tags:
+      - Attachment
+      summary: Download public attachment content
+      description: Streams the raw bytes of a public attachment. Returns the binary content rather than a JSON envelope.
+      responses:
+        '200':
+          description: The attachment binary content.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Response:
+      type: object
+      description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
+      properties:
+        Response:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    ErrorResponse:
+      type: object
+      description: bunq error envelope.
+      properties:
+        Error:
+          type: array
+          items:
+            type: object
+            properties:
+              error_description:
+                type: string
+              error_description_translated:
+                type: string
+  responses:
+    Unauthorized:
+      description: Missing/invalid session token or signature.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Error:
+      description: A bunq error response envelope.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    UserID:
+      name: userID
+      in: path
+      required: true
+      description: The numeric ID of the user.
+      schema:
+        type: integer
+  securitySchemes:
+    sessionToken:
+      type: apiKey
+      in: header
+      name: X-Bunq-Client-Authentication
+      description: Session token obtained from POST /session-server, sent on every business call. In addition, each request body must be signed with your private key and the signature sent in the X-Bunq-Client-Signature header (see the ClientSignature parameter). bunq is not a simple bearer-token API.
+    installationToken:
+      type: apiKey
+      in: header
+      name: X-Bunq-Client-Authentication
+      description: Installation token from POST /installation, used only for the device-server and session-server handshake calls.

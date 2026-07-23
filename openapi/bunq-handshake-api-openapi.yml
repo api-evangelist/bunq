@@ -1,0 +1,183 @@
+openapi: 3.0.3
+info:
+  title: bunq Public Attachment Handshake API
+  description: 'Grounded, representative subset of the bunq Public API. bunq is a European (Dutch) neobank; its REST API lets account holders and licensed third parties read accounts, initiate SEPA and other payments, send and respond to payment requests, manage cards, export statements, upload attachments, and subscribe to event callbacks.
+
+
+    IMPORTANT - bunq uses an unusual multi-step handshake before any business call can be made. All request/response bodies in the bunq API are wrapped in a top-level `Response` (list) envelope, and most responses also return a server signature. This document models the handshake plus a representative slice of the resource surface; it is NOT the full bunq API, which exposes hundreds of endpoints. Path segments such as `{userID}` and `{monetaryAccountID}` are numeric IDs returned by earlier calls. This spec is authored by API Evangelist from the public documentation at https://doc.bunq.com and is not an official bunq artifact; request/response schemas are simplified and several are modeled rather than copied verbatim.'
+  version: v1
+  contact:
+    name: bunq API documentation
+    url: https://doc.bunq.com
+  license:
+    name: bunq API Terms of Service
+    url: https://doc.bunq.com
+servers:
+- url: https://api.bunq.com/v1
+  description: Production
+- url: https://public-api.sandbox.bunq.com/v1
+  description: Sandbox
+security:
+- sessionToken: []
+tags:
+- name: Handshake
+  description: Installation, device registration, and session bootstrap. Establishes the RSA-signed API context.
+paths:
+  /installation:
+    post:
+      operationId: createInstallation
+      tags:
+      - Handshake
+      summary: Register a client public key (create Installation)
+      description: First handshake step. POST the PEM-encoded 2048-bit RSA public key of your locally generated key pair. The response returns an installation `Token` and the bunq `server_public_key`. The Token authenticates the following device-server and session-server calls; the server public key is used to verify server response signatures. This call is not signed.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstallationInput'
+      responses:
+        '200':
+          description: Installation created; installation Token and server public key returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '400':
+          $ref: '#/components/responses/Error'
+  /device-server:
+    post:
+      operationId: createDeviceServer
+      tags:
+      - Handshake
+      summary: Register the device (create DeviceServer)
+      description: Second handshake step. Registers your API key and (optionally) a list of permitted IPs against the installation. Send the installation Token in `X-Bunq-Client-Authentication` and sign the request body with your private key in `X-Bunq-Client-Signature`.
+      security:
+      - installationToken: []
+      parameters:
+      - $ref: '#/components/parameters/ClientSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceServerInput'
+      responses:
+        '200':
+          description: DeviceServer registered.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '400':
+          $ref: '#/components/responses/Error'
+  /session-server:
+    post:
+      operationId: createSessionServer
+      tags:
+      - Handshake
+      summary: Open a session (create SessionServer)
+      description: Third handshake step. Opens a session and returns the session `Token` used in `X-Bunq-Client-Authentication` for all subsequent business calls, plus the user object(s) and the session timeout. Send the installation Token in `X-Bunq-Client-Authentication` and sign the body with your private key.
+      security:
+      - installationToken: []
+      parameters:
+      - $ref: '#/components/parameters/ClientSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionServerInput'
+      responses:
+        '200':
+          description: Session opened; session Token and user returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '400':
+          $ref: '#/components/responses/Error'
+components:
+  schemas:
+    Response:
+      type: object
+      description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
+      properties:
+        Response:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    ErrorResponse:
+      type: object
+      description: bunq error envelope.
+      properties:
+        Error:
+          type: array
+          items:
+            type: object
+            properties:
+              error_description:
+                type: string
+              error_description_translated:
+                type: string
+    SessionServerInput:
+      type: object
+      required:
+      - secret
+      properties:
+        secret:
+          type: string
+          description: Your bunq API key (the same secret registered on the device-server).
+    DeviceServerInput:
+      type: object
+      required:
+      - description
+      - secret
+      properties:
+        description:
+          type: string
+          description: Human-readable device description.
+        secret:
+          type: string
+          description: Your bunq API key.
+        permitted_ips:
+          type: array
+          description: Optional list of IPs permitted to use this device. Use ["*"] to allow any IP (wildcard) where enabled.
+          items:
+            type: string
+    InstallationInput:
+      type: object
+      required:
+      - client_public_key
+      properties:
+        client_public_key:
+          type: string
+          description: PEM-encoded 2048-bit RSA public key (PKCS#8) of your client key pair.
+  parameters:
+    ClientSignature:
+      name: X-Bunq-Client-Signature
+      in: header
+      required: true
+      description: Base64-encoded RSA (PKCS#1 v1.5, SHA-256) signature of the request body, produced with your private key. Required on the handshake calls and, historically, on all authenticated requests. The server signs its response in X-Bunq-Server-Signature, verifiable with the installation server_public_key.
+      schema:
+        type: string
+  responses:
+    Error:
+      description: A bunq error response envelope.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    sessionToken:
+      type: apiKey
+      in: header
+      name: X-Bunq-Client-Authentication
+      description: Session token obtained from POST /session-server, sent on every business call. In addition, each request body must be signed with your private key and the signature sent in the X-Bunq-Client-Signature header (see the ClientSignature parameter). bunq is not a simple bearer-token API.
+    installationToken:
+      type: apiKey
+      in: header
+      name: X-Bunq-Client-Authentication
+      description: Installation token from POST /installation, used only for the device-server and session-server handshake calls.
