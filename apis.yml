@@ -12,7 +12,20 @@ description: bunq is a European (Dutch) neobank offering personal and business
   device-server, then session-server - after which requests are RSA-signed with
   X-Bunq-Client-Signature and authenticated with a session token in
   X-Bunq-Client-Authentication.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bunq.png
 tags:
 - Banking
 - Neobank
@@ -27,206 +40,331 @@ created: '2023-11-13'
 modified: '2026-07-12'
 specificationVersion: '0.19'
 apis:
-- aid: bunq:bunq-session-api
-  name: bunq Session (Handshake) API
-  tags:
-  - Authentication
-  - Installation
-  - Session
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://doc.bunq.com/basics/authentication
-  baseURL: https://api.bunq.com/v1
-  properties:
-  - url: https://doc.bunq.com/basics/authentication
-    type: Documentation
-  - url: https://doc.bunq.com/basics/signing
-    type: APIReference
-  - url: openapi/bunq-openapi.yml
-    type: OpenAPI
-  - url: collections/bunq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bunq.opencollection.json
-    type: OpenCollection
-  description: The three-step API context handshake - POST /installation (register
-    your 2048-bit RSA public key), POST /device-server (register your API key and
-    permitted IPs), and POST /session-server (open a signed session). Returns the
-    session token used for all subsequent calls.
-- aid: bunq:bunq-user-api
-  name: bunq User API
-  tags:
-  - Users
-  - Accounts
-  - Identity
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://doc.bunq.com/basics/bunq-api-objects/user
-  baseURL: https://api.bunq.com/v1
-  properties:
-  - url: https://doc.bunq.com/basics/bunq-api-objects/user
-    type: Documentation
-  - url: openapi/bunq-openapi.yml
-    type: OpenAPI
-  - url: collections/bunq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bunq.opencollection.json
-    type: OpenCollection
-  description: List and retrieve the user object(s) for the session - UserPerson,
-    UserCompany, or UserPaymentServiceProvider - the top-level identity that owns
-    monetary accounts, cards, and callbacks.
-- aid: bunq:bunq-monetary-account-api
-  name: bunq Monetary Account API
-  tags:
-  - Accounts
-  - Bank
-  - Savings
-  - Balance
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://doc.bunq.com/basics/bunq-api-objects/monetary-account
-  baseURL: https://api.bunq.com/v1
-  properties:
-  - url: https://doc.bunq.com/basics/bunq-api-objects/monetary-account
-    type: Documentation
-  - url: openapi/bunq-openapi.yml
-    type: OpenAPI
-  - url: collections/bunq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bunq.opencollection.json
-    type: OpenCollection
-  description: List and retrieve monetary accounts (MonetaryAccountBank, savings, and
-    joint) with their balance, IBAN alias, currency, limits, and status, and open
-    new bank accounts.
-- aid: bunq:bunq-payment-api
-  name: bunq Payment API
-  tags:
-  - Payments
-  - SEPA
-  - Transfers
-  - Draft Payments
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://doc.bunq.com/payment/payment
-  baseURL: https://api.bunq.com/v1
-  properties:
-  - url: https://doc.bunq.com/payment/payment
-    type: Documentation
-  - url: openapi/bunq-openapi.yml
-    type: OpenAPI
-  - url: collections/bunq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bunq.opencollection.json
-    type: OpenCollection
-  description: Execute payments from a monetary account to an IBAN, email, or phone
-    alias (SEPA and internal transfers), list and retrieve executed payments, and
-    create draft payments that require approval before the money moves.
-- aid: bunq:bunq-request-inquiry-api
-  name: bunq Request Inquiry API
-  tags:
-  - Payment Requests
-  - Request Inquiry
-  - Request Response
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://doc.bunq.com/request/request-inquiry
-  baseURL: https://api.bunq.com/v1
-  properties:
-  - url: https://doc.bunq.com/request/request-inquiry
-    type: Documentation
-  - url: openapi/bunq-openapi.yml
-    type: OpenAPI
-  - url: collections/bunq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bunq.opencollection.json
-    type: OpenCollection
-  description: Create and list payment requests (RequestInquiry) sent to a
-    counterparty, and read incoming requests (RequestResponse) addressed to your
-    monetary account so they can be accepted or rejected.
-- aid: bunq:bunq-card-api
-  name: bunq Card API
-  tags:
-  - Cards
-  - Debit
-  - Credit
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://doc.bunq.com/basics/bunq-api-objects/card
-  baseURL: https://api.bunq.com/v1
-  properties:
-  - url: https://doc.bunq.com/basics/bunq-api-objects/card
-    type: Documentation
-  - url: openapi/bunq-openapi.yml
-    type: OpenAPI
-  - url: collections/bunq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bunq.opencollection.json
-    type: OpenCollection
-  description: List and retrieve the debit and credit cards (CardDebit, CardCredit)
-    linked to a user, including status, limits, and the primary monetary account
-    each card draws from.
 - aid: bunq:bunq-attachment-api
   name: bunq Attachment API
-  tags:
-  - Attachments
-  - Content
-  - Uploads
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://doc.bunq.com/content-and-exports
+  description: Upload and retrieve attachment content.
+  humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
+  tags:
+  - Attachment
   properties:
-  - url: https://doc.bunq.com/content-and-exports
-    type: Documentation
-  - url: openapi/bunq-openapi.yml
-    type: OpenAPI
-  - url: collections/bunq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bunq.opencollection.json
-    type: OpenCollection
-  description: Upload raw attachment bytes (avatars, receipts, images) and download
-    attachment content by UUID. Content is transferred as binary rather than the
-    JSON response envelope.
+  - type: OpenAPI
+    url: openapi/bunq-attachment-api-openapi.yml
+  - type: Documentation
+    url: https://doc.bunq.com/basics/authentication
+  - type: APIReference
+    url: https://doc.bunq.com/basics/signing
+  - type: PostmanCollection
+    url: collections/bunq.postman_collection.json
+  - type: OpenCollection
+    url: collections/bunq.opencollection.json
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/user
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/monetary-account
+  - type: Documentation
+    url: https://doc.bunq.com/payment/payment
+  - type: Documentation
+    url: https://doc.bunq.com/request/request-inquiry
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/card
+  - type: Documentation
+    url: https://doc.bunq.com/content-and-exports
+  - type: Documentation
+    url: https://doc.bunq.com/customer-statements
+  - type: Documentation
+    url: https://doc.bunq.com/basics/callbacks-webhooks
+  - type: APIReference
+    url: https://doc.bunq.com/notification-filter
+- aid: bunq:bunq-card-api
+  name: bunq Card API
+  description: Debit and credit cards linked to monetary accounts.
+  humanURL: https://doc.bunq.com/basics/authentication
+  baseURL: https://api.bunq.com/v1
+  tags:
+  - Card
+  properties:
+  - type: OpenAPI
+    url: openapi/bunq-card-api-openapi.yml
+  - type: Documentation
+    url: https://doc.bunq.com/basics/authentication
+  - type: APIReference
+    url: https://doc.bunq.com/basics/signing
+  - type: PostmanCollection
+    url: collections/bunq.postman_collection.json
+  - type: OpenCollection
+    url: collections/bunq.opencollection.json
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/user
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/monetary-account
+  - type: Documentation
+    url: https://doc.bunq.com/payment/payment
+  - type: Documentation
+    url: https://doc.bunq.com/request/request-inquiry
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/card
+  - type: Documentation
+    url: https://doc.bunq.com/content-and-exports
+  - type: Documentation
+    url: https://doc.bunq.com/customer-statements
+  - type: Documentation
+    url: https://doc.bunq.com/basics/callbacks-webhooks
+  - type: APIReference
+    url: https://doc.bunq.com/notification-filter
 - aid: bunq:bunq-customer-statement-api
-  name: bunq Customer Statement (Export) API
-  tags:
-  - Statements
-  - Exports
-  - CSV
-  - MT940
-  - PDF
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://doc.bunq.com/customer-statements
+  name: bunq Customer Statement API
+  description: Generate and download account statement exports (CSV, MT940, PDF).
+  humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
+  tags:
+  - Customer Statement
   properties:
-  - url: https://doc.bunq.com/customer-statements
-    type: Documentation
-  - url: openapi/bunq-openapi.yml
-    type: OpenAPI
-  - url: collections/bunq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bunq.opencollection.json
-    type: OpenCollection
-  description: Generate account statement exports for a date range in CSV, MT940, or
-    PDF format, list generated statements, and download the resulting file content.
+  - type: OpenAPI
+    url: openapi/bunq-customer-statement-api-openapi.yml
+  - type: Documentation
+    url: https://doc.bunq.com/basics/authentication
+  - type: APIReference
+    url: https://doc.bunq.com/basics/signing
+  - type: PostmanCollection
+    url: collections/bunq.postman_collection.json
+  - type: OpenCollection
+    url: collections/bunq.opencollection.json
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/user
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/monetary-account
+  - type: Documentation
+    url: https://doc.bunq.com/payment/payment
+  - type: Documentation
+    url: https://doc.bunq.com/request/request-inquiry
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/card
+  - type: Documentation
+    url: https://doc.bunq.com/content-and-exports
+  - type: Documentation
+    url: https://doc.bunq.com/customer-statements
+  - type: Documentation
+    url: https://doc.bunq.com/basics/callbacks-webhooks
+  - type: APIReference
+    url: https://doc.bunq.com/notification-filter
+- aid: bunq:bunq-handshake-api
+  name: bunq Handshake API
+  description: >-
+    Installation, device registration, and session bootstrap. Establishes the RSA-signed API context.
+  humanURL: https://doc.bunq.com/basics/authentication
+  baseURL: https://api.bunq.com/v1
+  tags:
+  - Handshake
+  properties:
+  - type: OpenAPI
+    url: openapi/bunq-handshake-api-openapi.yml
+  - type: Documentation
+    url: https://doc.bunq.com/basics/authentication
+  - type: APIReference
+    url: https://doc.bunq.com/basics/signing
+  - type: PostmanCollection
+    url: collections/bunq.postman_collection.json
+  - type: OpenCollection
+    url: collections/bunq.opencollection.json
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/user
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/monetary-account
+  - type: Documentation
+    url: https://doc.bunq.com/payment/payment
+  - type: Documentation
+    url: https://doc.bunq.com/request/request-inquiry
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/card
+  - type: Documentation
+    url: https://doc.bunq.com/content-and-exports
+  - type: Documentation
+    url: https://doc.bunq.com/customer-statements
+  - type: Documentation
+    url: https://doc.bunq.com/basics/callbacks-webhooks
+  - type: APIReference
+    url: https://doc.bunq.com/notification-filter
+- aid: bunq:bunq-monetary-account-api
+  name: bunq Monetary Account API
+  description: Bank, savings, and joint accounts holding money.
+  humanURL: https://doc.bunq.com/basics/authentication
+  baseURL: https://api.bunq.com/v1
+  tags:
+  - Monetary Account
+  properties:
+  - type: OpenAPI
+    url: openapi/bunq-monetary-account-api-openapi.yml
+  - type: Documentation
+    url: https://doc.bunq.com/basics/authentication
+  - type: APIReference
+    url: https://doc.bunq.com/basics/signing
+  - type: PostmanCollection
+    url: collections/bunq.postman_collection.json
+  - type: OpenCollection
+    url: collections/bunq.opencollection.json
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/user
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/monetary-account
+  - type: Documentation
+    url: https://doc.bunq.com/payment/payment
+  - type: Documentation
+    url: https://doc.bunq.com/request/request-inquiry
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/card
+  - type: Documentation
+    url: https://doc.bunq.com/content-and-exports
+  - type: Documentation
+    url: https://doc.bunq.com/customer-statements
+  - type: Documentation
+    url: https://doc.bunq.com/basics/callbacks-webhooks
+  - type: APIReference
+    url: https://doc.bunq.com/notification-filter
 - aid: bunq:bunq-notification-filter-api
-  name: bunq Notification Filter (Callbacks) API
-  tags:
-  - Callbacks
-  - Webhooks
-  - Notifications
-  - Push
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://doc.bunq.com/basics/callbacks-webhooks
+  name: bunq Notification Filter API
+  description: Manage URL (webhook) and push notification callbacks for account events.
+  humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
+  tags:
+  - Notification Filter
   properties:
-  - url: https://doc.bunq.com/basics/callbacks-webhooks
-    type: Documentation
-  - url: https://doc.bunq.com/notification-filter
-    type: APIReference
-  - url: openapi/bunq-openapi.yml
-    type: OpenAPI
-  - url: collections/bunq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bunq.opencollection.json
-    type: OpenCollection
-  description: Manage event callbacks by category. URL notification filters
-    (notification-filter-url) POST real-time events to an HTTPS endpoint you own
-    (webhooks, from bunq IP range 185.40.108.0/22); push notification filters
-    deliver events to the user's bunq mobile app. Delivery is HTTP webhook and
-    push - bunq does not expose a public WebSocket.
+  - type: OpenAPI
+    url: openapi/bunq-notification-filter-api-openapi.yml
+  - type: Documentation
+    url: https://doc.bunq.com/basics/authentication
+  - type: APIReference
+    url: https://doc.bunq.com/basics/signing
+  - type: PostmanCollection
+    url: collections/bunq.postman_collection.json
+  - type: OpenCollection
+    url: collections/bunq.opencollection.json
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/user
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/monetary-account
+  - type: Documentation
+    url: https://doc.bunq.com/payment/payment
+  - type: Documentation
+    url: https://doc.bunq.com/request/request-inquiry
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/card
+  - type: Documentation
+    url: https://doc.bunq.com/content-and-exports
+  - type: Documentation
+    url: https://doc.bunq.com/customer-statements
+  - type: Documentation
+    url: https://doc.bunq.com/basics/callbacks-webhooks
+  - type: APIReference
+    url: https://doc.bunq.com/notification-filter
+- aid: bunq:bunq-payment-api
+  name: bunq Payment API
+  description: Execute and read payments (including SEPA) for a monetary account.
+  humanURL: https://doc.bunq.com/basics/authentication
+  baseURL: https://api.bunq.com/v1
+  tags:
+  - Payment
+  properties:
+  - type: OpenAPI
+    url: openapi/bunq-payment-api-openapi.yml
+  - type: Documentation
+    url: https://doc.bunq.com/basics/authentication
+  - type: APIReference
+    url: https://doc.bunq.com/basics/signing
+  - type: PostmanCollection
+    url: collections/bunq.postman_collection.json
+  - type: OpenCollection
+    url: collections/bunq.opencollection.json
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/user
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/monetary-account
+  - type: Documentation
+    url: https://doc.bunq.com/payment/payment
+  - type: Documentation
+    url: https://doc.bunq.com/request/request-inquiry
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/card
+  - type: Documentation
+    url: https://doc.bunq.com/content-and-exports
+  - type: Documentation
+    url: https://doc.bunq.com/customer-statements
+  - type: Documentation
+    url: https://doc.bunq.com/basics/callbacks-webhooks
+  - type: APIReference
+    url: https://doc.bunq.com/notification-filter
+- aid: bunq:bunq-request-inquiry-api
+  name: bunq Request Inquiry API
+  description: Create and read payment requests (money you ask another party to pay).
+  humanURL: https://doc.bunq.com/basics/authentication
+  baseURL: https://api.bunq.com/v1
+  tags:
+  - Request Inquiry
+  properties:
+  - type: OpenAPI
+    url: openapi/bunq-request-inquiry-api-openapi.yml
+  - type: Documentation
+    url: https://doc.bunq.com/basics/authentication
+  - type: APIReference
+    url: https://doc.bunq.com/basics/signing
+  - type: PostmanCollection
+    url: collections/bunq.postman_collection.json
+  - type: OpenCollection
+    url: collections/bunq.opencollection.json
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/user
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/monetary-account
+  - type: Documentation
+    url: https://doc.bunq.com/payment/payment
+  - type: Documentation
+    url: https://doc.bunq.com/request/request-inquiry
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/card
+  - type: Documentation
+    url: https://doc.bunq.com/content-and-exports
+  - type: Documentation
+    url: https://doc.bunq.com/customer-statements
+  - type: Documentation
+    url: https://doc.bunq.com/basics/callbacks-webhooks
+  - type: APIReference
+    url: https://doc.bunq.com/notification-filter
+- aid: bunq:bunq-user-api
+  name: bunq User API
+  description: The authenticated user (person, company, or payment service provider).
+  humanURL: https://doc.bunq.com/basics/authentication
+  baseURL: https://api.bunq.com/v1
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/bunq-user-api-openapi.yml
+  - type: Documentation
+    url: https://doc.bunq.com/basics/authentication
+  - type: APIReference
+    url: https://doc.bunq.com/basics/signing
+  - type: PostmanCollection
+    url: collections/bunq.postman_collection.json
+  - type: OpenCollection
+    url: collections/bunq.opencollection.json
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/user
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/monetary-account
+  - type: Documentation
+    url: https://doc.bunq.com/payment/payment
+  - type: Documentation
+    url: https://doc.bunq.com/request/request-inquiry
+  - type: Documentation
+    url: https://doc.bunq.com/basics/bunq-api-objects/card
+  - type: Documentation
+    url: https://doc.bunq.com/content-and-exports
+  - type: Documentation
+    url: https://doc.bunq.com/customer-statements
+  - type: Documentation
+    url: https://doc.bunq.com/basics/callbacks-webhooks
+  - type: APIReference
+    url: https://doc.bunq.com/notification-filter
 common:
 - type: AgenticAccess
   url: agentic-access/bunq-agentic-access.yml
