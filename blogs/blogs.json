@@ -16,13 +16,13 @@
       "method": "none"
     },
     {
-      "source": "https://medium.com/bunq-developers-corner",
-      "feed_url": "https://medium.com/feed/bunq-developers-corner",
+      "source": "https://www.bunq.com/documents/terms-conditions",
+      "feed_url": "https://www.bunq.com/documents/terms-conditions",
       "title": "",
       "saved": 0,
-      "method": "discovered"
+      "method": "none"
     }
   ],
   "post_count": 11,
-  "fetched": "2026-07-11T11:50:51Z"
+  "fetched": "2026-08-01T15:49:00Z"
 }

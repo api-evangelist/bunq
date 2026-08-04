@@ -1,0 +1,30 @@
+{
+  "provider": "bunq",
+  "sources": [
+    "bunq-attachment-api-openapi.yml",
+    "bunq-card-api-openapi.yml",
+    "bunq-customer-statement-api-openapi.yml",
+    "bunq-handshake-api-openapi.yml",
+    "bunq-monetary-account-api-openapi.yml",
+    "bunq-notification-filter-api-openapi.yml",
+    "bunq-payment-api-openapi.yml",
+    "bunq-request-inquiry-api-openapi.yml",
+    "bunq-user-api-openapi.yml"
+  ],
+  "outputs": [
+    "bunq-attachment-api-openapi.yml",
+    "bunq-card-api-openapi.yml",
+    "bunq-customer-statement-api-openapi.yml",
+    "bunq-handshake-api-openapi.yml",
+    "bunq-monetary-account-api-openapi.yml",
+    "bunq-notification-filter-api-openapi.yml",
+    "bunq-payment-api-openapi.yml",
+    "bunq-request-inquiry-api-openapi.yml",
+    "bunq-user-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
