@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bunq Public Attachment Customer Statement API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Bunq-Client-Authentication",
+      "value": "{{X-Bunq-Client-Authentication}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customer Statement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List customer statements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/customer-statement",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the monetary account."
+              }
+            ]
+          },
+          "docs": "Lists the statement exports generated for the monetary account."
+        },
+        {
+          "info": {
+            "name": "Create a customer statement export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/customer-statement",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the monetary account."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a statement export for a date range in CSV, MT940, or PDF format. `include_attachment` embeds attached mutations (for PDF)."
+        },
+        {
+          "info": {
+            "name": "Download customer statement content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/customer-statement/:customerStatementID/content",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the monetary account."
+              },
+              {
+                "name": "customerStatementID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the customer statement."
+              }
+            ]
+          },
+          "docs": "Downloads the generated statement file (CSV, MT940, or PDF) as raw bytes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

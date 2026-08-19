@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bunq Public Attachment Notification Filter API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Bunq-Client-Authentication",
+      "value": "{{X-Bunq-Client-Authentication}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Notification Filter",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List URL notification filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/notification-filter-url",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              }
+            ]
+          },
+          "docs": "Lists the user-level URL (webhook) notification filters currently configured."
+        },
+        {
+          "info": {
+            "name": "Set URL notification filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/user/:userID/notification-filter-url",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replaces the set of user-level URL notification filters. Each filter maps a `category` (for example MUTATION, PAYMENT, CARD_TRANSACTION_*) to an HTTPS `notification_target` that bunq POSTs event callbacks to. Callbacks originate from bunq IP range 185.40.108.0/22."
+        },
+        {
+          "info": {
+            "name": "List push notification filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/notification-filter-push",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              }
+            ]
+          },
+          "docs": "Lists the user-level push notification filters (events delivered to the user's bunq mobile app)."
+        },
+        {
+          "info": {
+            "name": "Set push notification filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/user/:userID/notification-filter-push",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replaces the set of user-level push notification filters by category."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

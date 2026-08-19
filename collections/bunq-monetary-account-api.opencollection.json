@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bunq Public Attachment Monetary Account API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Bunq-Client-Authentication",
+      "value": "{{X-Bunq-Client-Authentication}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Monetary Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List monetary accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              }
+            ]
+          },
+          "docs": "Lists all monetary accounts for the user across types (bank, savings, joint). Type-specific collections are also exposed at `/monetary-account-bank`, `/monetary-account-savings`, and `/monetary-account-joint`."
+        },
+        {
+          "info": {
+            "name": "Get a monetary account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the monetary account."
+              }
+            ]
+          },
+          "docs": "Retrieves a single monetary account, including its balance, IBAN alias, currency, and status."
+        },
+        {
+          "info": {
+            "name": "List bank monetary accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account-bank",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              }
+            ]
+          },
+          "docs": "Lists the classic personal or business bank accounts (MonetaryAccountBank) for the user."
+        },
+        {
+          "info": {
+            "name": "Create a bank monetary account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account-bank",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Opens a new MonetaryAccountBank in the given currency."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

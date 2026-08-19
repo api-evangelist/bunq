@@ -1,0 +1,828 @@
+{
+  "item": [
+    {
+      "id": "08984135-2f75-4c55-957f-1158c61794dc",
+      "name": "Monetary Account",
+      "description": {
+        "content": "Bank, savings, and joint accounts holding money.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6e6eaa8f-26d6-4bcc-8fb1-27a01eb4a389",
+          "name": "List monetary accounts",
+          "request": {
+            "name": "List monetary accounts",
+            "description": {
+              "content": "Lists all monetary accounts for the user across types (bank, savings, joint). Type-specific collections are also exposed at `/monetary-account-bank`, `/monetary-account-savings`, and `/monetary-account-joint`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user",
+                ":userID",
+                "monetary-account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "userID",
+                  "description": "(Required) The numeric ID of the user."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16ded1bc-80da-40ae-8bba-8d4662b748d9",
+              "name": "A list of monetary accounts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    ":userID",
+                    "monetary-account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userID",
+                      "description": "(Required) The numeric ID of the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Response\": [\n    {\n      \"key_0\": \"string\"\n    },\n    {\n      \"key_0\": 3575.995098679927,\n      \"key_1\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7444b0d-3218-478d-a9c4-ee30b03d98fd",
+              "name": "Missing/invalid session token or signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    ":userID",
+                    "monetary-account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userID",
+                      "description": "(Required) The numeric ID of the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": [\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    },\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "473304b6-977f-4d93-8f53-1369579b459f",
+          "name": "Get a monetary account",
+          "request": {
+            "name": "Get a monetary account",
+            "description": {
+              "content": "Retrieves a single monetary account, including its balance, IBAN alias, currency, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user",
+                ":userID",
+                "monetary-account",
+                ":monetaryAccountID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "userID",
+                  "description": "(Required) The numeric ID of the user."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "monetaryAccountID",
+                  "description": "(Required) The numeric ID of the monetary account."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8da467bf-67ed-4864-a407-d24ebc60f4c8",
+              "name": "The requested monetary account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    ":userID",
+                    "monetary-account",
+                    ":monetaryAccountID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userID",
+                      "description": "(Required) The numeric ID of the user."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "monetaryAccountID",
+                      "description": "(Required) The numeric ID of the monetary account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Response\": [\n    {\n      \"key_0\": 4948\n    },\n    {\n      \"key_0\": 7092,\n      \"key_1\": 6821.818604435172,\n      \"key_2\": 5299.243873315637,\n      \"key_3\": 5819.325952262985,\n      \"key_4\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb49f739-2b9e-4065-b238-b710c8311d88",
+              "name": "Missing/invalid session token or signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    ":userID",
+                    "monetary-account",
+                    ":monetaryAccountID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userID",
+                      "description": "(Required) The numeric ID of the user."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "monetaryAccountID",
+                      "description": "(Required) The numeric ID of the monetary account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": [\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    },\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8aa7cdf-9b71-4c15-8b90-698e5e3f712d",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    ":userID",
+                    "monetary-account",
+                    ":monetaryAccountID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userID",
+                      "description": "(Required) The numeric ID of the user."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "monetaryAccountID",
+                      "description": "(Required) The numeric ID of the monetary account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": [\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    },\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "12d559c2-ebc9-44b3-8fec-24a941a1b1bc",
+          "name": "List bank monetary accounts",
+          "request": {
+            "name": "List bank monetary accounts",
+            "description": {
+              "content": "Lists the classic personal or business bank accounts (MonetaryAccountBank) for the user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user",
+                ":userID",
+                "monetary-account-bank"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "userID",
+                  "description": "(Required) The numeric ID of the user."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82a45692-7073-4476-916e-621478dab08e",
+              "name": "A list of bank monetary accounts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    ":userID",
+                    "monetary-account-bank"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userID",
+                      "description": "(Required) The numeric ID of the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Response\": [\n    {\n      \"key_0\": 4948\n    },\n    {\n      \"key_0\": 7092,\n      \"key_1\": 6821.818604435172,\n      \"key_2\": 5299.243873315637,\n      \"key_3\": 5819.325952262985,\n      \"key_4\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cfd2edd-5b06-4e44-b7c5-0e02832ba4ab",
+              "name": "Missing/invalid session token or signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    ":userID",
+                    "monetary-account-bank"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userID",
+                      "description": "(Required) The numeric ID of the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": [\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    },\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9601f83-b330-424e-a73d-abfa1ba853b7",
+          "name": "Create a bank monetary account",
+          "request": {
+            "name": "Create a bank monetary account",
+            "description": {
+              "content": "Opens a new MonetaryAccountBank in the given currency.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user",
+                ":userID",
+                "monetary-account-bank"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "userID",
+                  "description": "(Required) The numeric ID of the user."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\",\n  \"daily_limit\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "45750a3f-1736-4642-9ae9-3913f632aef8",
+              "name": "The created bank monetary account (id returned).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    ":userID",
+                    "monetary-account-bank"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userID",
+                      "description": "(Required) The numeric ID of the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\",\n  \"daily_limit\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Response\": [\n    {\n      \"key_0\": 4948\n    },\n    {\n      \"key_0\": 7092,\n      \"key_1\": 6821.818604435172,\n      \"key_2\": 5299.243873315637,\n      \"key_3\": 5819.325952262985,\n      \"key_4\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4309fc3e-7ad6-4da7-abc6-219cdaac1ed1",
+              "name": "A bunq error response envelope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    ":userID",
+                    "monetary-account-bank"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userID",
+                      "description": "(Required) The numeric ID of the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\",\n  \"daily_limit\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": [\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    },\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95d8287e-8f6c-4c7f-86a1-07a8a9f0522f",
+              "name": "Missing/invalid session token or signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    ":userID",
+                    "monetary-account-bank"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userID",
+                      "description": "(Required) The numeric ID of the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\",\n  \"daily_limit\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": [\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    },\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bunq.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Bunq-Client-Authentication"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f5c53052-8134-44ae-b579-4fc5227bdba8",
+    "name": "bunq Public Attachment Monetary Account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Grounded, representative subset of the bunq Public API. bunq is a European (Dutch) neobank; its REST API lets account holders and licensed third parties read accounts, initiate SEPA and other payments, send and respond to payment requests, manage cards, export statements, upload attachments, and subscribe to event callbacks.\n\nIMPORTANT - bunq uses an unusual multi-step handshake before any business call can be made. All request/response bodies in the bunq API are wrapped in a top-level `Response` (list) envelope, and most responses also return a server signature. This document models the handshake plus a representative slice of the resource surface; it is NOT the full bunq API, which exposes hundreds of endpoints. Path segments such as `{userID}` and `{monetaryAccountID}` are numeric IDs returned by earlier calls. This spec is authored by API Evangelist from the public documentation at https://doc.bunq.com and is not an official bunq artifact; request/response schemas are simplified and several are modeled rather than copied verbatim.\n\nContact Support:\n Name: bunq API documentation",
+      "type": "text/plain"
+    }
+  }
+}

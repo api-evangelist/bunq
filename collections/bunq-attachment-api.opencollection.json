@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bunq Public Attachment API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Bunq-Client-Authentication",
+      "value": "{{X-Bunq-Client-Authentication}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Attachment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a public attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/user/:userID/attachment-public",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              }
+            ]
+          },
+          "docs": "Uploads raw attachment bytes (for example an avatar or receipt image). The body is the binary content; `Content-Type` and `X-Bunq-Attachment-Description` headers describe it. The response returns a UUID used to reference or retrieve the content."
+        },
+        {
+          "info": {
+            "name": "Download public attachment content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/attachment-public/:attachmentPublicUUID/content",
+            "params": [
+              {
+                "name": "attachmentPublicUUID",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the public attachment."
+              }
+            ]
+          },
+          "docs": "Streams the raw bytes of a public attachment. Returns the binary content rather than a JSON envelope."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,567 @@
+{
+  "item": [
+    {
+      "id": "ec011c90-5952-48ba-869a-fd93a3510d53",
+      "name": "Handshake",
+      "description": {
+        "content": "Installation, device registration, and session bootstrap. Establishes the RSA-signed API context.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c271a8bc-9591-4e42-a162-e644165840af",
+          "name": "Register a client public key (create Installation)",
+          "request": {
+            "name": "Register a client public key (create Installation)",
+            "description": {
+              "content": "First handshake step. POST the PEM-encoded 2048-bit RSA public key of your locally generated key pair. The response returns an installation `Token` and the bunq `server_public_key`. The Token authenticates the following device-server and session-server calls; the server public key is used to verify server response signatures. This call is not signed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "installation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_public_key\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8361d014-c3e8-470a-9385-2c95f31b648f",
+              "name": "Installation created; installation Token and server public key returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "installation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_public_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Response\": [\n    {\n      \"key_0\": 4015.306913379948\n    },\n    {\n      \"key_0\": 7879,\n      \"key_1\": \"string\",\n      \"key_2\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec3cec75-b3aa-4fe2-82db-b540f201eaaf",
+              "name": "A bunq error response envelope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "installation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_public_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": [\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    },\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad068dee-8b31-41d0-ac17-19e20f84d7c9",
+          "name": "Register the device (create DeviceServer)",
+          "request": {
+            "name": "Register the device (create DeviceServer)",
+            "description": {
+              "content": "Second handshake step. Registers your API key and (optionally) a list of permitted IPs against the installation. Send the installation Token in `X-Bunq-Client-Authentication` and sign the request body with your private key in `X-Bunq-Client-Signature`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "device-server"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Base64-encoded RSA (PKCS#1 v1.5, SHA-256) signature of the request body, produced with your private key. Required on the handshake calls and, historically, on all authenticated requests. The server signs its response in X-Bunq-Server-Signature, verifiable with the installation server_public_key.",
+                "key": "X-Bunq-Client-Signature",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-Bunq-Client-Authentication"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"permitted_ips\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "329e9e8f-8277-43a7-9a5f-8a21f11edcba",
+              "name": "DeviceServer registered.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device-server"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Base64-encoded RSA (PKCS#1 v1.5, SHA-256) signature of the request body, produced with your private key. Required on the handshake calls and, historically, on all authenticated requests. The server signs its response in X-Bunq-Server-Signature, verifiable with the installation server_public_key.",
+                    "key": "X-Bunq-Client-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"permitted_ips\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Response\": [\n    {\n      \"key_0\": true,\n      \"key_1\": true,\n      \"key_2\": \"string\"\n    },\n    {\n      \"key_0\": 1854.241027767346\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e3ca066-bbd0-4198-9b92-f7345e3ebdb4",
+              "name": "A bunq error response envelope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "device-server"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Base64-encoded RSA (PKCS#1 v1.5, SHA-256) signature of the request body, produced with your private key. Required on the handshake calls and, historically, on all authenticated requests. The server signs its response in X-Bunq-Server-Signature, verifiable with the installation server_public_key.",
+                    "key": "X-Bunq-Client-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"permitted_ips\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": [\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    },\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10a8ea97-400c-4a6d-80f5-eb129b5ebdee",
+          "name": "Open a session (create SessionServer)",
+          "request": {
+            "name": "Open a session (create SessionServer)",
+            "description": {
+              "content": "Third handshake step. Opens a session and returns the session `Token` used in `X-Bunq-Client-Authentication` for all subsequent business calls, plus the user object(s) and the session timeout. Send the installation Token in `X-Bunq-Client-Authentication` and sign the body with your private key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "session-server"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Base64-encoded RSA (PKCS#1 v1.5, SHA-256) signature of the request body, produced with your private key. Required on the handshake calls and, historically, on all authenticated requests. The server signs its response in X-Bunq-Server-Signature, verifiable with the installation server_public_key.",
+                "key": "X-Bunq-Client-Signature",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-Bunq-Client-Authentication"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"secret\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7d4709a2-4927-4a85-86ad-ca700d232209",
+              "name": "Session opened; session Token and user returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "session-server"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Base64-encoded RSA (PKCS#1 v1.5, SHA-256) signature of the request body, produced with your private key. Required on the handshake calls and, historically, on all authenticated requests. The server signs its response in X-Bunq-Server-Signature, verifiable with the installation server_public_key.",
+                    "key": "X-Bunq-Client-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"secret\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Response\": [\n    {\n      \"key_0\": true,\n      \"key_1\": true,\n      \"key_2\": \"string\"\n    },\n    {\n      \"key_0\": 1854.241027767346\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8680d351-50ed-4e9a-8f1c-f0fd23c4664b",
+              "name": "A bunq error response envelope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "session-server"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Base64-encoded RSA (PKCS#1 v1.5, SHA-256) signature of the request body, produced with your private key. Required on the handshake calls and, historically, on all authenticated requests. The server signs its response in X-Bunq-Server-Signature, verifiable with the installation server_public_key.",
+                    "key": "X-Bunq-Client-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"secret\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": [\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    },\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bunq.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Bunq-Client-Authentication"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bd91a1c6-47b1-4a22-84e3-9bcf8a532b94",
+    "name": "bunq Public Attachment Handshake API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Grounded, representative subset of the bunq Public API. bunq is a European (Dutch) neobank; its REST API lets account holders and licensed third parties read accounts, initiate SEPA and other payments, send and respond to payment requests, manage cards, export statements, upload attachments, and subscribe to event callbacks.\n\nIMPORTANT - bunq uses an unusual multi-step handshake before any business call can be made. All request/response bodies in the bunq API are wrapped in a top-level `Response` (list) envelope, and most responses also return a server signature. This document models the handshake plus a representative slice of the resource surface; it is NOT the full bunq API, which exposes hundreds of endpoints. Path segments such as `{userID}` and `{monetaryAccountID}` are numeric IDs returned by earlier calls. This spec is authored by API Evangelist from the public documentation at https://doc.bunq.com and is not an official bunq artifact; request/response schemas are simplified and several are modeled rather than copied verbatim.\n\nContact Support:\n Name: bunq API documentation",
+      "type": "text/plain"
+    }
+  }
+}

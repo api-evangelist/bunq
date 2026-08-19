@@ -1,0 +1,183 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bunq Public Attachment Payment API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Bunq-Client-Authentication",
+      "value": "{{X-Bunq-Client-Authentication}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/payment",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the monetary account."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return per page."
+              },
+              {
+                "name": "older_id",
+                "value": "",
+                "type": "query",
+                "description": "Return items older than this ID (pagination)."
+              },
+              {
+                "name": "newer_id",
+                "value": "",
+                "type": "query",
+                "description": "Return items newer than this ID (pagination)."
+              }
+            ]
+          },
+          "docs": "Lists the executed payments for a monetary account. Supports pagination via `count`, `older_id`, and `newer_id` query parameters."
+        },
+        {
+          "info": {
+            "name": "Create a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/payment",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the monetary account."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a payment from the monetary account to a counterparty identified by an IBAN, email, or phone alias. SEPA and internal transfers are made through this endpoint."
+        },
+        {
+          "info": {
+            "name": "Get a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/payment/:paymentID",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the monetary account."
+              },
+              {
+                "name": "paymentID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the payment."
+              }
+            ]
+          },
+          "docs": "Retrieves a single payment by ID for the monetary account."
+        },
+        {
+          "info": {
+            "name": "List draft payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/draft-payment",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the monetary account."
+              }
+            ]
+          },
+          "docs": "Lists draft payments that require approval before execution (used for multi-approver / business flows)."
+        },
+        {
+          "info": {
+            "name": "Create a draft payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/draft-payment",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the monetary account."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a draft payment (one or more entries) that must be accepted before the money moves."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

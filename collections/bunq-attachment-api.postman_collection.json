@@ -1,0 +1,415 @@
+{
+  "item": [
+    {
+      "id": "6e105a2e-707a-422d-8ed6-753dd48bdb6e",
+      "name": "Attachment",
+      "description": {
+        "content": "Upload and retrieve attachment content.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aec38507-db90-45d0-b631-488d9eaa9951",
+          "name": "Upload a public attachment",
+          "request": {
+            "name": "Upload a public attachment",
+            "description": {
+              "content": "Uploads raw attachment bytes (for example an avatar or receipt image). The body is the binary content; `Content-Type` and `X-Bunq-Attachment-Description` headers describe it. The response returns a UUID used to reference or retrieve the content.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user",
+                ":userID",
+                "attachment-public"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "userID",
+                  "description": "(Required) The numeric ID of the user."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "file"
+            }
+          },
+          "response": [
+            {
+              "id": "8eb18740-971c-49c2-a239-f5d36ac91af1",
+              "name": "The created attachment (UUID returned).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    ":userID",
+                    "attachment-public"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userID",
+                      "description": "(Required) The numeric ID of the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Response\": [\n    {\n      \"key_0\": true,\n      \"key_1\": 5877\n    },\n    {\n      \"key_0\": 7669\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db3df975-92f5-4dbc-9aeb-1a8b9b91bcba",
+              "name": "A bunq error response envelope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    ":userID",
+                    "attachment-public"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userID",
+                      "description": "(Required) The numeric ID of the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": [\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    },\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fec7788d-12b3-4a1d-9dae-ee8a0aa540f0",
+          "name": "Download public attachment content",
+          "request": {
+            "name": "Download public attachment content",
+            "description": {
+              "content": "Streams the raw bytes of a public attachment. Returns the binary content rather than a JSON envelope.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "attachment-public",
+                ":attachmentPublicUUID",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "attachmentPublicUUID",
+                  "description": "(Required) The UUID of the public attachment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f571401-ca54-4f66-8f16-cb19a5775058",
+              "name": "The attachment binary content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "attachment-public",
+                    ":attachmentPublicUUID",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "attachmentPublicUUID",
+                      "description": "(Required) The UUID of the public attachment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b1de2e4f-6bc9-4fb7-9872-901b03bbe051",
+              "name": "Missing/invalid session token or signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "attachment-public",
+                    ":attachmentPublicUUID",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "attachmentPublicUUID",
+                      "description": "(Required) The UUID of the public attachment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": [\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    },\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "834aa4e1-ee0e-4188-9d08-941c98ec0b35",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "attachment-public",
+                    ":attachmentPublicUUID",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "attachmentPublicUUID",
+                      "description": "(Required) The UUID of the public attachment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Bunq-Client-Authentication",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": [\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    },\n    {\n      \"error_description\": \"string\",\n      \"error_description_translated\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bunq.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Bunq-Client-Authentication"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "01cbb422-e940-4c47-a224-83780f8307d0",
+    "name": "bunq Public Attachment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Grounded, representative subset of the bunq Public API. bunq is a European (Dutch) neobank; its REST API lets account holders and licensed third parties read accounts, initiate SEPA and other payments, send and respond to payment requests, manage cards, export statements, upload attachments, and subscribe to event callbacks.\n\nIMPORTANT - bunq uses an unusual multi-step handshake before any business call can be made. All request/response bodies in the bunq API are wrapped in a top-level `Response` (list) envelope, and most responses also return a server signature. This document models the handshake plus a representative slice of the resource surface; it is NOT the full bunq API, which exposes hundreds of endpoints. Path segments such as `{userID}` and `{monetaryAccountID}` are numeric IDs returned by earlier calls. This spec is authored by API Evangelist from the public documentation at https://doc.bunq.com and is not an official bunq artifact; request/response schemas are simplified and several are modeled rather than copied verbatim.\n\nContact Support:\n Name: bunq API documentation",
+      "type": "text/plain"
+    }
+  }
+}

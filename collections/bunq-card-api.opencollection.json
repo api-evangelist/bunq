@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bunq Public Attachment Card API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Bunq-Client-Authentication",
+      "value": "{{X-Bunq-Client-Authentication}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Card",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/card",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              }
+            ]
+          },
+          "docs": "Lists all debit and credit cards (CardDebit, CardCredit) for the user."
+        },
+        {
+          "info": {
+            "name": "Get a card",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/card/:cardID",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              },
+              {
+                "name": "cardID",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the card."
+              }
+            ]
+          },
+          "docs": "Retrieves a single card, including its status, limits, and the monetary account it is linked to."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

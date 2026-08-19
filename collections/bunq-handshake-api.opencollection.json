@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bunq Public Attachment Handshake API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Bunq-Client-Authentication",
+      "value": "{{X-Bunq-Client-Authentication}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Handshake",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Register a client public key (create Installation)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/installation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "First handshake step. POST the PEM-encoded 2048-bit RSA public key of your locally generated key pair. The response returns an installation `Token` and the bunq `server_public_key`. The Token authenticates the following device-server and session-server calls; the server public key is used to verify server response signatures. This call is not signed."
+        },
+        {
+          "info": {
+            "name": "Register the device (create DeviceServer)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/device-server",
+            "headers": [
+              {
+                "name": "X-Bunq-Client-Signature",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-Bunq-Client-Authentication",
+              "value": "{{X-Bunq-Client-Authentication}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Second handshake step. Registers your API key and (optionally) a list of permitted IPs against the installation. Send the installation Token in `X-Bunq-Client-Authentication` and sign the request body with your private key in `X-Bunq-Client-Signature`."
+        },
+        {
+          "info": {
+            "name": "Open a session (create SessionServer)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/session-server",
+            "headers": [
+              {
+                "name": "X-Bunq-Client-Signature",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-Bunq-Client-Authentication",
+              "value": "{{X-Bunq-Client-Authentication}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Third handshake step. Opens a session and returns the session `Token` used in `X-Bunq-Client-Authentication` for all subsequent business calls, plus the user object(s) and the session timeout. Send the installation Token in `X-Bunq-Client-Authentication` and sign the body with your private key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

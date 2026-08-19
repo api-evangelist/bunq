@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bunq Public Attachment Request Inquiry API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Bunq-Client-Authentication",
+      "value": "{{X-Bunq-Client-Authentication}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Request Inquiry",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List request inquiries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/request-inquiry",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the monetary account."
+              }
+            ]
+          },
+          "docs": "Lists the payment requests (RequestInquiry) sent from this monetary account."
+        },
+        {
+          "info": {
+            "name": "Create a request inquiry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/request-inquiry",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the monetary account."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a payment request to a counterparty alias (IBAN, email, or phone). The counterparty receives a RequestResponse they can accept or reject."
+        },
+        {
+          "info": {
+            "name": "List request responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bunq.com/v1/user/:userID/monetary-account/:monetaryAccountID/request-response",
+            "params": [
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the user."
+              },
+              {
+                "name": "monetaryAccountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the monetary account."
+              }
+            ]
+          },
+          "docs": "Lists incoming payment requests (RequestResponse) addressed to this monetary account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
