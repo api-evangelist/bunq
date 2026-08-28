@@ -12,6 +12,18 @@ description: bunq is a European (Dutch) neobank offering personal and business
   device-server, then session-server - after which requests are RSA-signed with
   X-Bunq-Client-Signature and authenticated with a session token in
   X-Bunq-Client-Authentication.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
