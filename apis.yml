@@ -388,6 +388,9 @@ apis:
   - type: APIReference
     url: https://doc.bunq.com/notification-filter
 common:
+- type: CapabilityMap
+  url: capabilities/bunq-capability-edges.yml
+  name: bunq Business Capability Map
 - type: AgenticAccess
   url: agentic-access/bunq-agentic-access.yml
 - type: Authentication
