@@ -105,6 +105,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Cards
+  tags_raw:
   - Card
   properties:
   - type: OpenAPI
@@ -286,6 +288,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Payments
+  tags_raw:
   - Payment
   properties:
   - type: OpenAPI
