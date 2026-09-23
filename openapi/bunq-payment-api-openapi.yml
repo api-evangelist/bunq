@@ -1,10 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: bunq Public Attachment Payment API
-  description: 'Grounded, representative subset of the bunq Public API. bunq is a European (Dutch) neobank; its REST API lets account holders and licensed third parties read accounts, initiate SEPA and other payments, send and respond to payment requests, manage cards, export statements, upload attachments, and subscribe to event callbacks.
-
-
-    IMPORTANT - bunq uses an unusual multi-step handshake before any business call can be made. All request/response bodies in the bunq API are wrapped in a top-level `Response` (list) envelope, and most responses also return a server signature. This document models the handshake plus a representative slice of the resource surface; it is NOT the full bunq API, which exposes hundreds of endpoints. Path segments such as `{userID}` and `{monetaryAccountID}` are numeric IDs returned by earlier calls. This spec is authored by API Evangelist from the public documentation at https://doc.bunq.com and is not an official bunq artifact; request/response schemas are simplified and several are modeled rather than copied verbatim.'
+  title: bunq Public Payment API
+  description: Grounded, representative subset of the bunq Public API.
   version: v1
   contact:
     name: bunq API documentation
@@ -138,7 +135,57 @@ paths:
         '400':
           $ref: '#/components/responses/Error'
 components:
+  parameters:
+    NewerID:
+      name: newer_id
+      in: query
+      required: false
+      description: Return items newer than this ID (pagination).
+      schema:
+        type: integer
+    Count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return per page.
+      schema:
+        type: integer
+    OlderID:
+      name: older_id
+      in: query
+      required: false
+      description: Return items older than this ID (pagination).
+      schema:
+        type: integer
+    MonetaryAccountID:
+      name: monetaryAccountID
+      in: path
+      required: true
+      description: The numeric ID of the monetary account.
+      schema:
+        type: integer
+    UserID:
+      name: userID
+      in: path
+      required: true
+      description: The numeric ID of the user.
+      schema:
+        type: integer
   schemas:
+    PaymentInput:
+      type: object
+      required:
+      - amount
+      - counterparty_alias
+      - description
+      properties:
+        amount:
+          $ref: '#/components/schemas/Amount'
+        counterparty_alias:
+          $ref: '#/components/schemas/Pointer'
+        description:
+          type: string
+          description: Free-text description shown to the counterparty (max 140 chars for SEPA).
     Response:
       type: object
       description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
@@ -161,6 +208,18 @@ components:
                 type: string
               error_description_translated:
                 type: string
+    Amount:
+      type: object
+      required:
+      - value
+      - currency
+      properties:
+        value:
+          type: string
+          description: Decimal amount as a string, for example "12.50".
+        currency:
+          type: string
+          description: ISO 4217 currency code, for example EUR.
     Pointer:
       type: object
       description: A bunq alias ("pointer") identifying a counterparty.
@@ -179,71 +238,9 @@ components:
         name:
           type: string
           description: Required when type is IBAN.
-    PaymentInput:
-      type: object
-      required:
-      - amount
-      - counterparty_alias
-      - description
-      properties:
-        amount:
-          $ref: '#/components/schemas/Amount'
-        counterparty_alias:
-          $ref: '#/components/schemas/Pointer'
-        description:
-          type: string
-          description: Free-text description shown to the counterparty (max 140 chars for SEPA).
-    Amount:
-      type: object
-      required:
-      - value
-      - currency
-      properties:
-        value:
-          type: string
-          description: Decimal amount as a string, for example "12.50".
-        currency:
-          type: string
-          description: ISO 4217 currency code, for example EUR.
-  parameters:
-    Count:
-      name: count
-      in: query
-      required: false
-      description: Number of items to return per page.
-      schema:
-        type: integer
-    MonetaryAccountID:
-      name: monetaryAccountID
-      in: path
-      required: true
-      description: The numeric ID of the monetary account.
-      schema:
-        type: integer
-    UserID:
-      name: userID
-      in: path
-      required: true
-      description: The numeric ID of the user.
-      schema:
-        type: integer
-    OlderID:
-      name: older_id
-      in: query
-      required: false
-      description: Return items older than this ID (pagination).
-      schema:
-        type: integer
-    NewerID:
-      name: newer_id
-      in: query
-      required: false
-      description: Return items newer than this ID (pagination).
-      schema:
-        type: integer
   responses:
-    Unauthorized:
-      description: Missing/invalid session token or signature.
+    Error:
+      description: A bunq error response envelope.
       content:
         application/json:
           schema:
@@ -254,8 +251,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Error:
-      description: A bunq error response envelope.
+    Unauthorized:
+      description: Missing/invalid session token or signature.
       content:
         application/json:
           schema:

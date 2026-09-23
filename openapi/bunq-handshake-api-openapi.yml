@@ -1,10 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: bunq Public Attachment Handshake API
-  description: 'Grounded, representative subset of the bunq Public API. bunq is a European (Dutch) neobank; its REST API lets account holders and licensed third parties read accounts, initiate SEPA and other payments, send and respond to payment requests, manage cards, export statements, upload attachments, and subscribe to event callbacks.
-
-
-    IMPORTANT - bunq uses an unusual multi-step handshake before any business call can be made. All request/response bodies in the bunq API are wrapped in a top-level `Response` (list) envelope, and most responses also return a server signature. This document models the handshake plus a representative slice of the resource surface; it is NOT the full bunq API, which exposes hundreds of endpoints. Path segments such as `{userID}` and `{monetaryAccountID}` are numeric IDs returned by earlier calls. This spec is authored by API Evangelist from the public documentation at https://doc.bunq.com and is not an official bunq artifact; request/response schemas are simplified and several are modeled rather than copied verbatim.'
+  title: bunq Public Handshake API
+  description: Grounded, representative subset of the bunq Public API.
   version: v1
   contact:
     name: bunq API documentation
@@ -109,6 +106,14 @@ components:
           items:
             type: object
             additionalProperties: true
+    SessionServerInput:
+      type: object
+      required:
+      - secret
+      properties:
+        secret:
+          type: string
+          description: Your bunq API key (the same secret registered on the device-server).
     ErrorResponse:
       type: object
       description: bunq error envelope.
@@ -122,14 +127,6 @@ components:
                 type: string
               error_description_translated:
                 type: string
-    SessionServerInput:
-      type: object
-      required:
-      - secret
-      properties:
-        secret:
-          type: string
-          description: Your bunq API key (the same secret registered on the device-server).
     DeviceServerInput:
       type: object
       required:
@@ -155,6 +152,13 @@ components:
         client_public_key:
           type: string
           description: PEM-encoded 2048-bit RSA public key (PKCS#8) of your client key pair.
+  responses:
+    Error:
+      description: A bunq error response envelope.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     ClientSignature:
       name: X-Bunq-Client-Signature
@@ -163,13 +167,6 @@ components:
       description: Base64-encoded RSA (PKCS#1 v1.5, SHA-256) signature of the request body, produced with your private key. Required on the handshake calls and, historically, on all authenticated requests. The server signs its response in X-Bunq-Server-Signature, verifiable with the installation server_public_key.
       schema:
         type: string
-  responses:
-    Error:
-      description: A bunq error response envelope.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     sessionToken:
       type: apiKey

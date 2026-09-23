@@ -1,15 +1,7 @@
 {
   "provider": "bunq",
   "sources": [
-    "bunq-attachment-api-openapi.yml",
-    "bunq-card-api-openapi.yml",
-    "bunq-customer-statement-api-openapi.yml",
-    "bunq-handshake-api-openapi.yml",
-    "bunq-monetary-account-api-openapi.yml",
-    "bunq-notification-filter-api-openapi.yml",
-    "bunq-payment-api-openapi.yml",
-    "bunq-request-inquiry-api-openapi.yml",
-    "bunq-user-api-openapi.yml"
+    "_original/bunq-openapi.yml"
   ],
   "outputs": [
     "bunq-attachment-api-openapi.yml",
@@ -25,6 +17,20 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "bunq-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "bunq-attachment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bunq-card-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bunq-customer-statement-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bunq-handshake-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bunq-monetary-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bunq-notification-filter-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bunq-payment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bunq-request-inquiry-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bunq-user-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
