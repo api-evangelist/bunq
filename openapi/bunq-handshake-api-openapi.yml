@@ -106,14 +106,14 @@ components:
           items:
             type: object
             additionalProperties: true
-    SessionServerInput:
+    InstallationInput:
       type: object
       required:
-      - secret
+      - client_public_key
       properties:
-        secret:
+        client_public_key:
           type: string
-          description: Your bunq API key (the same secret registered on the device-server).
+          description: PEM-encoded 2048-bit RSA public key (PKCS#8) of your client key pair.
     ErrorResponse:
       type: object
       description: bunq error envelope.
@@ -127,6 +127,14 @@ components:
                 type: string
               error_description_translated:
                 type: string
+    SessionServerInput:
+      type: object
+      required:
+      - secret
+      properties:
+        secret:
+          type: string
+          description: Your bunq API key (the same secret registered on the device-server).
     DeviceServerInput:
       type: object
       required:
@@ -144,21 +152,6 @@ components:
           description: Optional list of IPs permitted to use this device. Use ["*"] to allow any IP (wildcard) where enabled.
           items:
             type: string
-    InstallationInput:
-      type: object
-      required:
-      - client_public_key
-      properties:
-        client_public_key:
-          type: string
-          description: PEM-encoded 2048-bit RSA public key (PKCS#8) of your client key pair.
-  responses:
-    Error:
-      description: A bunq error response envelope.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     ClientSignature:
       name: X-Bunq-Client-Signature
@@ -167,6 +160,13 @@ components:
       description: Base64-encoded RSA (PKCS#1 v1.5, SHA-256) signature of the request body, produced with your private key. Required on the handshake calls and, historically, on all authenticated requests. The server signs its response in X-Bunq-Server-Signature, verifiable with the installation server_public_key.
       schema:
         type: string
+  responses:
+    Error:
+      description: A bunq error response envelope.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     sessionToken:
       type: apiKey

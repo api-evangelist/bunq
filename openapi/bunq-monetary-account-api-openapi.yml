@@ -149,8 +149,8 @@ components:
         daily_limit:
           $ref: '#/components/schemas/Amount'
   responses:
-    Error:
-      description: A bunq error response envelope.
+    Unauthorized:
+      description: Missing/invalid session token or signature.
       content:
         application/json:
           schema:
@@ -161,8 +161,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Missing/invalid session token or signature.
+    Error:
+      description: A bunq error response envelope.
       content:
         application/json:
           schema:

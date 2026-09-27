@@ -103,6 +103,24 @@ components:
                 type: string
               error_description_translated:
                 type: string
+    Pointer:
+      type: object
+      description: A bunq alias ("pointer") identifying a counterparty.
+      required:
+      - type
+      - value
+      properties:
+        type:
+          type: string
+          enum:
+          - IBAN
+          - EMAIL
+          - PHONE_NUMBER
+        value:
+          type: string
+        name:
+          type: string
+          description: Required when type is IBAN.
     Amount:
       type: object
       required:
@@ -132,37 +150,6 @@ components:
         allow_bunqme:
           type: boolean
           description: Whether the request may be paid via a bunq.me link.
-    Pointer:
-      type: object
-      description: A bunq alias ("pointer") identifying a counterparty.
-      required:
-      - type
-      - value
-      properties:
-        type:
-          type: string
-          enum:
-          - IBAN
-          - EMAIL
-          - PHONE_NUMBER
-        value:
-          type: string
-        name:
-          type: string
-          description: Required when type is IBAN.
-  responses:
-    Error:
-      description: A bunq error response envelope.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Missing/invalid session token or signature.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     MonetaryAccountID:
       name: monetaryAccountID
@@ -178,6 +165,19 @@ components:
       description: The numeric ID of the user.
       schema:
         type: integer
+  responses:
+    Unauthorized:
+      description: Missing/invalid session token or signature.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Error:
+      description: A bunq error response envelope.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     sessionToken:
       type: apiKey

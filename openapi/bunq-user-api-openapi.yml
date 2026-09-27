@@ -81,14 +81,14 @@ components:
               error_description_translated:
                 type: string
   responses:
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: Missing/invalid session token or signature.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Missing/invalid session token or signature.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
