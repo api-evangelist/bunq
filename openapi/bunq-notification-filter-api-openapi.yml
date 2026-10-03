@@ -100,15 +100,6 @@ paths:
           $ref: '#/components/responses/Error'
 components:
   schemas:
-    Response:
-      type: object
-      description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
-      properties:
-        Response:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
     NotificationFilterPushInput:
       type: object
       required:
@@ -123,6 +114,15 @@ components:
             properties:
               category:
                 type: string
+    Response:
+      type: object
+      description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
+      properties:
+        Response:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
     ErrorResponse:
       type: object
       description: bunq error envelope.
@@ -157,14 +157,14 @@ components:
                 format: uri
                 description: HTTPS URL bunq POSTs the callback to.
   responses:
-    Unauthorized:
-      description: Missing/invalid session token or signature.
+    Error:
+      description: A bunq error response envelope.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Error:
-      description: A bunq error response envelope.
+    Unauthorized:
+      description: Missing/invalid session token or signature.
       content:
         application/json:
           schema:
