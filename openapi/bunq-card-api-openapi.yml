@@ -65,16 +65,15 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    UserID:
+      name: userID
+      in: path
+      required: true
+      description: The numeric ID of the user.
+      schema:
+        type: integer
   schemas:
-    Response:
-      type: object
-      description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
-      properties:
-        Response:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
     ErrorResponse:
       type: object
       description: bunq error envelope.
@@ -88,23 +87,24 @@ components:
                 type: string
               error_description_translated:
                 type: string
-  parameters:
-    UserID:
-      name: userID
-      in: path
-      required: true
-      description: The numeric ID of the user.
-      schema:
-        type: integer
+    Response:
+      type: object
+      description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
+      properties:
+        Response:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
   responses:
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: Missing/invalid session token or signature.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Missing/invalid session token or signature.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:

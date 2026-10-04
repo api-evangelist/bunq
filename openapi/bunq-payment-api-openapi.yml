@@ -142,53 +142,55 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Missing/invalid session token or signature.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    NewerID:
+      name: newer_id
+      in: query
+      required: false
+      description: Return items newer than this ID (pagination).
+      schema:
+        type: integer
+    UserID:
+      name: userID
+      in: path
+      required: true
+      description: The numeric ID of the user.
+      schema:
+        type: integer
+    Count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return per page.
+      schema:
+        type: integer
+    OlderID:
+      name: older_id
+      in: query
+      required: false
+      description: Return items older than this ID (pagination).
+      schema:
+        type: integer
+    MonetaryAccountID:
+      name: monetaryAccountID
+      in: path
+      required: true
+      description: The numeric ID of the monetary account.
+      schema:
+        type: integer
   schemas:
-    Response:
-      type: object
-      description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
-      properties:
-        Response:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
-    ErrorResponse:
-      type: object
-      description: bunq error envelope.
-      properties:
-        Error:
-          type: array
-          items:
-            type: object
-            properties:
-              error_description:
-                type: string
-              error_description_translated:
-                type: string
-    Amount:
-      type: object
-      required:
-      - value
-      - currency
-      properties:
-        value:
-          type: string
-          description: Decimal amount as a string, for example "12.50".
-        currency:
-          type: string
-          description: ISO 4217 currency code, for example EUR.
     Pointer:
       type: object
       description: A bunq alias ("pointer") identifying a counterparty.
@@ -221,42 +223,40 @@ components:
         description:
           type: string
           description: Free-text description shown to the counterparty (max 140 chars for SEPA).
-  parameters:
-    NewerID:
-      name: newer_id
-      in: query
-      required: false
-      description: Return items newer than this ID (pagination).
-      schema:
-        type: integer
-    OlderID:
-      name: older_id
-      in: query
-      required: false
-      description: Return items older than this ID (pagination).
-      schema:
-        type: integer
-    UserID:
-      name: userID
-      in: path
-      required: true
-      description: The numeric ID of the user.
-      schema:
-        type: integer
-    MonetaryAccountID:
-      name: monetaryAccountID
-      in: path
-      required: true
-      description: The numeric ID of the monetary account.
-      schema:
-        type: integer
-    Count:
-      name: count
-      in: query
-      required: false
-      description: Number of items to return per page.
-      schema:
-        type: integer
+    ErrorResponse:
+      type: object
+      description: bunq error envelope.
+      properties:
+        Error:
+          type: array
+          items:
+            type: object
+            properties:
+              error_description:
+                type: string
+              error_description_translated:
+                type: string
+    Amount:
+      type: object
+      required:
+      - value
+      - currency
+      properties:
+        value:
+          type: string
+          description: Decimal amount as a string, for example "12.50".
+        currency:
+          type: string
+          description: ISO 4217 currency code, for example EUR.
+    Response:
+      type: object
+      description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
+      properties:
+        Response:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
   securitySchemes:
     sessionToken:
       type: apiKey
