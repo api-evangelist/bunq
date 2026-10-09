@@ -191,3 +191,68 @@ plans:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - subscription
+  units:
+  - period
+  - request
+  plans:
+  - name: Sandbox
+    access: freemium
+    model: subscription
+    model_how: derived
+    units:
+    - request
+    periods:
+    - per-use
+  - name: bunq Free
+    access: free
+    model: subscription
+    model_how: derived
+    units:
+    - period
+    periods:
+    - month
+  - name: bunq Core (Personal)
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - period
+    periods:
+    - month
+  - name: bunq Pro (Personal)
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - period
+    periods:
+    - month
+  - name: bunq Elite (Personal)
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - period
+    periods:
+    - month
+  - name: bunq Business (Free / Core / Pro / Elite)
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - period
+    periods:
+    - month
+  - name: PSD2 Third-Party Provider
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - request
+    periods:
+    - per-use
