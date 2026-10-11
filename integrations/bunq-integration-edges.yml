@@ -3,10 +3,14 @@ method: searched
 source:
 - https://zapier.com/apps/bunq/integrations
 checked:
+- https://composio.dev/toolkits/bunq
+- https://monid.ai/tools/bunq
+- https://n8n.io/integrations/bunq/
 - https://zapier.com/apps/bunq/integrations
 summary: null
 marketplace_apps:
 - marketplace: zapier
+  channel: ipaas-listing
   app: bunq
   url: https://zapier.com/apps/bunq/integrations
   external_url: https://www.bunq.com/?utm_campaign=zapier&utm_medium=website&utm_source=listing
@@ -31,6 +35,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/ynab
   direction: third-party
   category: Accounting
@@ -41,6 +46,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/strava
   direction: third-party
   category: Fitness
@@ -51,6 +57,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/woocommerce
   direction: third-party
   category: eCommerce
@@ -61,6 +68,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/notion
   direction: third-party
   category: Task Management
@@ -71,6 +79,7 @@ edges:
   partner_candidate: lexoffice
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/lexware-office
   direction: third-party
   category: Accounting
@@ -81,6 +90,7 @@ edges:
   partner_candidate: zapier
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/excel
   direction: third-party
   category: Microsoft
@@ -91,6 +101,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/google-sheets
   direction: third-party
   category: Google
@@ -101,6 +112,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/paypal
   direction: third-party
   category: Payment Processing
@@ -111,6 +123,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/airtable
   direction: third-party
   category: Databases
@@ -121,6 +134,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/quickbooks
   direction: third-party
   category: Accounting
@@ -131,6 +145,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/slack
   direction: third-party
   category: Team Chat
@@ -141,6 +156,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/shopify
   direction: third-party
   category: eCommerce
@@ -151,6 +167,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/gmail
   direction: third-party
   category: Email
@@ -161,6 +178,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/telegram
   direction: third-party
   category: Phone & SMS
@@ -171,6 +189,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/whatsapp-notifications
   direction: third-party
   category: Communication
@@ -181,6 +200,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/xero
   direction: third-party
   category: Accounting
@@ -191,6 +211,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/wordpress
   direction: third-party
   category: Website Builders
@@ -201,6 +222,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/revolut-for-business
   direction: third-party
   category: Payment Processing
@@ -211,6 +233,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/dropbox
   direction: third-party
   category: File Management & Storage
@@ -221,6 +244,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/stripe
   direction: third-party
   category: Payment Processing
@@ -231,6 +255,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/splitwise
   direction: third-party
   category: Accounting
@@ -241,6 +266,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/clicksend
   direction: third-party
   category: Phone & SMS
@@ -251,6 +277,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/ponto
   direction: third-party
   category: Accounting
@@ -261,6 +288,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/clickup
   direction: third-party
   category: Project Management
@@ -271,6 +299,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/facebook-messenger
   direction: third-party
   category: Facebook
@@ -281,6 +310,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/tutorbird
   direction: third-party
   category: CRM (Customer Relationship Management)
@@ -291,6 +321,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/facebook-lead-ads-beta
   direction: third-party
   category: Ads & Conversion
@@ -301,6 +332,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/onedrive
   direction: third-party
   category: File Management & Storage
@@ -311,6 +343,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/evernote
   direction: third-party
   category: Notes
@@ -321,6 +354,7 @@ edges:
   partner_candidate: null
   type: marketplace
   marketplace: zapier
+  channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/postgresql
   direction: third-party
   category: Databases
