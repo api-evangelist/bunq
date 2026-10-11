@@ -1,0 +1,390 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/bunq/integrations
+checked:
+- https://zapier.com/apps/bunq/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  app: bunq
+  url: https://zapier.com/apps/bunq/integrations
+  external_url: https://www.bunq.com/?utm_campaign=zapier&utm_medium=website&utm_source=listing
+  partner_tier: SILVER
+  triggers:
+  - key: balance
+    label: Updated Balance
+  - key: master_card_action
+    label: New Card Payment
+  - key: mutation
+    label: New Payment
+  actions:
+  - key: DraftPayment
+    label: Create Draft Payment
+  - key: Payment
+    label: Create Payment
+  searches: []
+edges:
+- partner_name: YNAB
+  partner: ynab
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/ynab
+  direction: third-party
+  category: Accounting
+  partner_url: https://ynab.com/
+- partner_name: Strava
+  partner: strava
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/strava
+  direction: third-party
+  category: Fitness
+  partner_url: https://www.strava.com/
+- partner_name: WooCommerce
+  partner: woocommerce
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/woocommerce
+  direction: third-party
+  category: eCommerce
+  partner_url: https://woocommerce.com/products/woocommerce-zapier/?utm_source=zapier&utm_medium=website&utm_campaign=integration
+- partner_name: Notion
+  partner: notion
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/notion
+  direction: third-party
+  category: Task Management
+  partner_url: https://www.notion.so/
+- partner_name: Lexware Office
+  partner: null
+  partner_match: null
+  partner_candidate: lexoffice
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/lexware-office
+  direction: third-party
+  category: Accounting
+  partner_url: https://office.lexware.de/
+- partner_name: Microsoft Excel
+  partner: null
+  partner_match: null
+  partner_candidate: zapier
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/excel
+  direction: third-party
+  category: Microsoft
+  partner_url: https://zapier.com/office.com
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: PayPal
+  partner: paypal
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/paypal
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://www.paypal.com/
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: QuickBooks Online
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/quickbooks
+  direction: third-party
+  category: Accounting
+  partner_url: http://intuit.com/
+- partner_name: Slack
+  partner: slack
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/slack
+  direction: third-party
+  category: Team Chat
+  partner_url: https://slack.com/
+- partner_name: Shopify
+  partner: shopify
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/shopify
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.shopify.com/
+- partner_name: Gmail
+  partner: gmail
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/gmail
+  direction: third-party
+  category: Email
+  partner_url: https://mail.google.com/
+- partner_name: Telegram
+  partner: telegram
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/telegram
+  direction: third-party
+  category: Phone & SMS
+  partner_url: https://telegram.org/
+- partner_name: WhatsApp Notifications
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/whatsapp-notifications
+  direction: third-party
+  category: Communication
+  partner_url: null
+- partner_name: Xero
+  partner: xero
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/xero
+  direction: third-party
+  category: Accounting
+  partner_url: https://xero5440.partnerlinks.io/uvwuuwrxyoi8
+- partner_name: WordPress
+  partner: wordpress
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/wordpress
+  direction: third-party
+  category: Website Builders
+  partner_url: https://wordpress.org/
+- partner_name: Revolut Business
+  partner: revolut
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/revolut-for-business
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://business.revolut.com/
+- partner_name: Dropbox
+  partner: dropbox
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/dropbox
+  direction: third-party
+  category: File Management & Storage
+  partner_url: https://dropbox.com/
+- partner_name: Stripe
+  partner: stripe
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/stripe
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://stripe.com/
+- partner_name: Splitwise
+  partner: splitwise
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/splitwise
+  direction: third-party
+  category: Accounting
+  partner_url: https://splitwise.com/
+- partner_name: ClickSend SMS
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/clicksend
+  direction: third-party
+  category: Phone & SMS
+  partner_url: https://www.clicksend.com/?utm_source=zapier&utm_medium=referral&utm_campaign=sms-app&utm_term=sms&utm_content=listing
+- partner_name: Ponto
+  partner: ponto
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/ponto
+  direction: third-party
+  category: Accounting
+  partner_url: https://www.myponto.com/
+- partner_name: ClickUp
+  partner: clickup
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/clickup
+  direction: third-party
+  category: Project Management
+  partner_url: https://clickup.com/zapier
+- partner_name: Facebook Messenger
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/facebook-messenger
+  direction: third-party
+  category: Facebook
+  partner_url: https://www.messenger.com/
+- partner_name: TutorBird
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/tutorbird
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.tutorbird.com/
+- partner_name: Facebook Lead Ads (for Business admins)
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/facebook-lead-ads-beta
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://facebook.com/
+- partner_name: OneDrive
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/onedrive
+  direction: third-party
+  category: File Management & Storage
+  partner_url: https://onedrive.live.com/
+- partner_name: Evernote
+  partner: evernote
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/evernote
+  direction: third-party
+  category: Notes
+  partner_url: https://evernote.com/
+- partner_name: PostgreSQL
+  partner: postgresql
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/bunq/integrations/postgresql
+  direction: third-party
+  category: Databases
+  partner_url: http://www.postgresql.org/
+templates:
+- title: Log new Bunq payments as Google spreadsheet rows
+  url: https://zapier.com/apps/bunq/integrations/google-sheets/93176/log-new-bunq-payments-as-google-spreadsheet-rows
+  apps:
+  - bunq
+  - google-sheets
+- title: Create transactions in You Need A Budget for new payments in bunq
+  url: https://zapier.com/apps/bunq/integrations/ynab/1220513/create-transactions-in-you-need-a-budget-for-new-payments-in-bunq
+  apps:
+  - bunq
+  - ynab
+- title: Log new Bunq payments as Google spreadsheet rows
+  url: https://zapier.com/apps/bunq/integrations/excel/94200/log-new-bunq-payments-as-google-spreadsheet-rows
+  apps:
+  - bunq
+  - excel
+- title: Log Bunq card payments as Google Spreadsheet rows
+  url: https://zapier.com/apps/bunq/integrations/google-sheets/94185/log-bunq-card-payments-as-google-spreadsheet-rows
+  apps:
+  - bunq
+  - google-sheets
+- title: Create new Notion database items from new bunq payments
+  url: https://zapier.com/apps/bunq/integrations/notion/1587216/create-new-notion-database-items-from-new-bunq-payments
+  apps:
+  - bunq
+  - notion
+- title: Log new bunq payments to Google Sheets by creating multiple spreadsheet rows
+  url: https://zapier.com/apps/bunq/integrations/google-sheets/1414193/log-new-bunq-payments-to-google-sheets-by-creating-multiple-spreadsheet-rows
+  apps:
+  - bunq
+  - google-sheets
+- title: '"create new You Need A Budget transactions for new bunq card payments"'
+  url: https://zapier.com/apps/bunq/integrations/ynab/1652937/create-new-you-need-a-budget-transactions-for-new-bunq-card-payments
+  apps:
+  - bunq
+  - ynab
+- title: Create records in Airtable for every new payment in bunq
+  url: https://zapier.com/apps/airtable/integrations/bunq/1630764/create-records-in-airtable-for-every-new-payment-in-bunq
+  apps:
+  - bunq
+  - airtable
+- title: Save your surplus balance to a savings account with Bunq
+  url: https://zapier.com/apps/bunq/integrations/bunq/94184/save-your-surplus-balance-to-a-savings-account-with-bunq
+  apps:
+  - bunq
+  - filter
+  - formatter
+- title: Create Bunq draft payments on rainy days
+  url: https://zapier.com/apps/bunq/integrations/weather/94190/create-bunq-draft-payments-on-rainy-days
+  apps:
+  - weather
+  - bunq
+- title: Create Wordpress posts for new Bunq payments
+  url: https://zapier.com/apps/bunq/integrations/wordpress/94199/create-wordpress-posts-for-new-bunq-payments
+  apps:
+  - bunq
+  - wordpress
+- title: Log Bunq card payments as Excel Spreadsheet rows
+  url: https://zapier.com/apps/bunq/integrations/excel/94201/log-bunq-card-payments-as-excel-spreadsheet-rows
+  apps:
+  - bunq
+  - excel
+template_total: 64
