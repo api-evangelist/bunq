@@ -292,8 +292,8 @@
   channel: ipaas-usage
   evidence: https://zapier.com/apps/bunq/integrations/stripe
   source: edge
-  status: pending-generation
-  arazzo: null
+  arazzo: bunq-stripe-preconfig.yml
+  status: arazzo
 - slug: bunq-splitwise
   label: Splitwise
   partner: splitwise
@@ -426,5 +426,5 @@
     property: payment_method_data.ideal.bank
     detected_by: detect-payment-method-edges.py
     detected: '2026-10-12'
-  status: not-a-workflow
-  arazzo: null
+  arazzo: bunq-stripe-preconfig.yml
+  status: arazzo
