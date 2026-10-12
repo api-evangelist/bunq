@@ -410,3 +410,21 @@
   source: edge
   status: pending-partner-spec
   arazzo: null
+- slug: bunq-stripe
+  label: stripe
+  partner: stripe
+  partner_name: stripe
+  type: contract
+  channel: partner-built
+  evidence: https://github.com/api-evangelist/stripe/blob/main/openapi/stripe-setup-intents-api-openapi.yml
+  source: edge
+  relationship: banking-partner
+  contract_reference:
+    repo: stripe
+    spec_file: stripe-setup-intents-api-openapi.yml
+    value: bunq
+    property: payment_method_data.ideal.bank
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+  status: not-a-workflow
+  arazzo: null

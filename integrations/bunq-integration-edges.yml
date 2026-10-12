@@ -359,6 +359,21 @@ edges:
   direction: third-party
   category: Databases
   partner_url: http://www.postgresql.org/
+- partner_name: stripe
+  partner: stripe
+  partner_match: domain
+  type: contract
+  channel: partner-built
+  relationship: banking-partner
+  direction: partner-built
+  evidence: https://github.com/api-evangelist/stripe/blob/main/openapi/stripe-setup-intents-api-openapi.yml
+  contract_reference:
+    repo: stripe
+    spec_file: stripe-setup-intents-api-openapi.yml
+    value: bunq
+    property: payment_method_data.ideal.bank
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
 templates:
 - title: Log new Bunq payments as Google spreadsheet rows
   url: https://zapier.com/apps/bunq/integrations/google-sheets/93176/log-new-bunq-payments-as-google-spreadsheet-rows
