@@ -101,41 +101,28 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Error:
-      description: A bunq error response envelope.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Missing/invalid session token or signature.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    UserID:
-      name: userID
-      in: path
-      required: true
-      description: The numeric ID of the user.
-      schema:
-        type: integer
-    MonetaryAccountID:
-      name: monetaryAccountID
-      in: path
-      required: true
-      description: The numeric ID of the monetary account.
-      schema:
-        type: integer
   schemas:
+    Response:
+      type: object
+      description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
+      properties:
+        Response:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    Amount:
+      type: object
+      required:
+      - value
+      - currency
+      properties:
+        value:
+          type: string
+          description: Decimal amount as a string, for example "12.50".
+        currency:
+          type: string
+          description: ISO 4217 currency code, for example EUR.
     ErrorResponse:
       type: object
       description: bunq error envelope.
@@ -149,18 +136,6 @@ components:
                 type: string
               error_description_translated:
                 type: string
-    Amount:
-      type: object
-      required:
-      - value
-      - currency
-      properties:
-        value:
-          type: string
-          description: Decimal amount as a string, for example "12.50".
-        currency:
-          type: string
-          description: ISO 4217 currency code, for example EUR.
     MonetaryAccountBankInput:
       type: object
       required:
@@ -173,15 +148,40 @@ components:
           type: string
         daily_limit:
           $ref: '#/components/schemas/Amount'
-    Response:
-      type: object
-      description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
-      properties:
-        Response:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Missing/invalid session token or signature.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Error:
+      description: A bunq error response envelope.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    MonetaryAccountID:
+      name: monetaryAccountID
+      in: path
+      required: true
+      description: The numeric ID of the monetary account.
+      schema:
+        type: integer
+    UserID:
+      name: userID
+      in: path
+      required: true
+      description: The numeric ID of the user.
+      schema:
+        type: integer
   securitySchemes:
     sessionToken:
       type: apiKey

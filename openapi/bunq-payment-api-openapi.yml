@@ -135,9 +135,76 @@ paths:
         '400':
           $ref: '#/components/responses/Error'
 components:
+  schemas:
+    Pointer:
+      type: object
+      description: A bunq alias ("pointer") identifying a counterparty.
+      required:
+      - type
+      - value
+      properties:
+        type:
+          type: string
+          enum:
+          - IBAN
+          - EMAIL
+          - PHONE_NUMBER
+        value:
+          type: string
+        name:
+          type: string
+          description: Required when type is IBAN.
+    Response:
+      type: object
+      description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
+      properties:
+        Response:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    PaymentInput:
+      type: object
+      required:
+      - amount
+      - counterparty_alias
+      - description
+      properties:
+        amount:
+          $ref: '#/components/schemas/Amount'
+        counterparty_alias:
+          $ref: '#/components/schemas/Pointer'
+        description:
+          type: string
+          description: Free-text description shown to the counterparty (max 140 chars for SEPA).
+    Amount:
+      type: object
+      required:
+      - value
+      - currency
+      properties:
+        value:
+          type: string
+          description: Decimal amount as a string, for example "12.50".
+        currency:
+          type: string
+          description: ISO 4217 currency code, for example EUR.
+    ErrorResponse:
+      type: object
+      description: bunq error envelope.
+      properties:
+        Error:
+          type: array
+          items:
+            type: object
+            properties:
+              error_description:
+                type: string
+              error_description_translated:
+                type: string
   responses:
-    Error:
-      description: A bunq error response envelope.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
@@ -148,27 +215,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found.
+    Error:
+      description: A bunq error response envelope.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    NewerID:
-      name: newer_id
-      in: query
-      required: false
-      description: Return items newer than this ID (pagination).
-      schema:
-        type: integer
-    UserID:
-      name: userID
-      in: path
-      required: true
-      description: The numeric ID of the user.
-      schema:
-        type: integer
     Count:
       name: count
       in: query
@@ -190,73 +243,20 @@ components:
       description: The numeric ID of the monetary account.
       schema:
         type: integer
-  schemas:
-    Pointer:
-      type: object
-      description: A bunq alias ("pointer") identifying a counterparty.
-      required:
-      - type
-      - value
-      properties:
-        type:
-          type: string
-          enum:
-          - IBAN
-          - EMAIL
-          - PHONE_NUMBER
-        value:
-          type: string
-        name:
-          type: string
-          description: Required when type is IBAN.
-    PaymentInput:
-      type: object
-      required:
-      - amount
-      - counterparty_alias
-      - description
-      properties:
-        amount:
-          $ref: '#/components/schemas/Amount'
-        counterparty_alias:
-          $ref: '#/components/schemas/Pointer'
-        description:
-          type: string
-          description: Free-text description shown to the counterparty (max 140 chars for SEPA).
-    ErrorResponse:
-      type: object
-      description: bunq error envelope.
-      properties:
-        Error:
-          type: array
-          items:
-            type: object
-            properties:
-              error_description:
-                type: string
-              error_description_translated:
-                type: string
-    Amount:
-      type: object
-      required:
-      - value
-      - currency
-      properties:
-        value:
-          type: string
-          description: Decimal amount as a string, for example "12.50".
-        currency:
-          type: string
-          description: ISO 4217 currency code, for example EUR.
-    Response:
-      type: object
-      description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
-      properties:
-        Response:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
+    NewerID:
+      name: newer_id
+      in: query
+      required: false
+      description: Return items newer than this ID (pagination).
+      schema:
+        type: integer
+    UserID:
+      name: userID
+      in: path
+      required: true
+      description: The numeric ID of the user.
+      schema:
+        type: integer
   securitySchemes:
     sessionToken:
       type: apiKey

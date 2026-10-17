@@ -96,7 +96,24 @@ paths:
         '400':
           $ref: '#/components/responses/Error'
 components:
+  parameters:
+    ClientSignature:
+      name: X-Bunq-Client-Signature
+      in: header
+      required: true
+      description: Base64-encoded RSA (PKCS#1 v1.5, SHA-256) signature of the request body, produced with your private key. Required on the handshake calls and, historically, on all authenticated requests. The server signs its response in X-Bunq-Server-Signature, verifiable with the installation server_public_key.
+      schema:
+        type: string
   schemas:
+    Response:
+      type: object
+      description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
+      properties:
+        Response:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
     InstallationInput:
       type: object
       required:
@@ -105,6 +122,19 @@ components:
         client_public_key:
           type: string
           description: PEM-encoded 2048-bit RSA public key (PKCS#8) of your client key pair.
+    ErrorResponse:
+      type: object
+      description: bunq error envelope.
+      properties:
+        Error:
+          type: array
+          items:
+            type: object
+            properties:
+              error_description:
+                type: string
+              error_description_translated:
+                type: string
     SessionServerInput:
       type: object
       required:
@@ -130,28 +160,6 @@ components:
           description: Optional list of IPs permitted to use this device. Use ["*"] to allow any IP (wildcard) where enabled.
           items:
             type: string
-    ErrorResponse:
-      type: object
-      description: bunq error envelope.
-      properties:
-        Error:
-          type: array
-          items:
-            type: object
-            properties:
-              error_description:
-                type: string
-              error_description_translated:
-                type: string
-    Response:
-      type: object
-      description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
-      properties:
-        Response:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
   responses:
     Error:
       description: A bunq error response envelope.
@@ -159,14 +167,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    ClientSignature:
-      name: X-Bunq-Client-Signature
-      in: header
-      required: true
-      description: Base64-encoded RSA (PKCS#1 v1.5, SHA-256) signature of the request body, produced with your private key. Required on the handshake calls and, historically, on all authenticated requests. The server signs its response in X-Bunq-Server-Signature, verifiable with the installation server_public_key.
-      schema:
-        type: string
   securitySchemes:
     sessionToken:
       type: apiKey
