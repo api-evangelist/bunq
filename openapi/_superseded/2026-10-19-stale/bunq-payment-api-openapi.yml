@@ -1,0 +1,270 @@
+openapi: 3.2.0
+info:
+  title: bunq Public Payment API
+  description: Grounded, representative subset of the bunq Public API.
+  version: v1
+  contact:
+    name: bunq API documentation
+    url: https://doc.bunq.com
+  license:
+    name: bunq API Terms of Service
+    url: https://doc.bunq.com
+servers:
+- url: https://api.bunq.com/v1
+  description: Production
+- url: https://public-api.sandbox.bunq.com/v1
+  description: Sandbox
+security:
+- sessionToken: []
+tags:
+- name: Payment
+  description: Execute and read payments (including SEPA) for a monetary account.
+paths:
+  /user/{userID}/monetary-account/{monetaryAccountID}/payment:
+    parameters:
+    - $ref: '#/components/parameters/UserID'
+    - $ref: '#/components/parameters/MonetaryAccountID'
+    get:
+      operationId: listPayments
+      tags:
+      - Payment
+      summary: List payments
+      description: Lists the executed payments for a monetary account. Supports pagination via `count`, `older_id`, and `newer_id` query parameters.
+      parameters:
+      - $ref: '#/components/parameters/Count'
+      - $ref: '#/components/parameters/OlderID'
+      - $ref: '#/components/parameters/NewerID'
+      responses:
+        '200':
+          description: A list of payments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createPayment
+      tags:
+      - Payment
+      summary: Create a payment
+      description: Executes a payment from the monetary account to a counterparty identified by an IBAN, email, or phone alias. SEPA and internal transfers are made through this endpoint.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentInput'
+      responses:
+        '200':
+          description: The created payment (id returned).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /user/{userID}/monetary-account/{monetaryAccountID}/payment/{paymentID}:
+    parameters:
+    - $ref: '#/components/parameters/UserID'
+    - $ref: '#/components/parameters/MonetaryAccountID'
+    - name: paymentID
+      in: path
+      required: true
+      description: The ID of the payment.
+      schema:
+        type: integer
+    get:
+      operationId: getPayment
+      tags:
+      - Payment
+      summary: Get a payment
+      description: Retrieves a single payment by ID for the monetary account.
+      responses:
+        '200':
+          description: The requested payment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /user/{userID}/monetary-account/{monetaryAccountID}/draft-payment:
+    parameters:
+    - $ref: '#/components/parameters/UserID'
+    - $ref: '#/components/parameters/MonetaryAccountID'
+    get:
+      operationId: listDraftPayments
+      tags:
+      - Payment
+      summary: List draft payments
+      description: Lists draft payments that require approval before execution (used for multi-approver / business flows).
+      responses:
+        '200':
+          description: A list of draft payments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createDraftPayment
+      tags:
+      - Payment
+      summary: Create a draft payment
+      description: Creates a draft payment (one or more entries) that must be accepted before the money moves.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: The created draft payment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '400':
+          $ref: '#/components/responses/Error'
+components:
+  schemas:
+    Pointer:
+      type: object
+      description: A bunq alias ("pointer") identifying a counterparty.
+      required:
+      - type
+      - value
+      properties:
+        type:
+          type: string
+          enum:
+          - IBAN
+          - EMAIL
+          - PHONE_NUMBER
+        value:
+          type: string
+        name:
+          type: string
+          description: Required when type is IBAN.
+    Response:
+      type: object
+      description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
+      properties:
+        Response:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    PaymentInput:
+      type: object
+      required:
+      - amount
+      - counterparty_alias
+      - description
+      properties:
+        amount:
+          $ref: '#/components/schemas/Amount'
+        counterparty_alias:
+          $ref: '#/components/schemas/Pointer'
+        description:
+          type: string
+          description: Free-text description shown to the counterparty (max 140 chars for SEPA).
+    Amount:
+      type: object
+      required:
+      - value
+      - currency
+      properties:
+        value:
+          type: string
+          description: Decimal amount as a string, for example "12.50".
+        currency:
+          type: string
+          description: ISO 4217 currency code, for example EUR.
+    ErrorResponse:
+      type: object
+      description: bunq error envelope.
+      properties:
+        Error:
+          type: array
+          items:
+            type: object
+            properties:
+              error_description:
+                type: string
+              error_description_translated:
+                type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Missing/invalid session token or signature.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Error:
+      description: A bunq error response envelope.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    Count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return per page.
+      schema:
+        type: integer
+    OlderID:
+      name: older_id
+      in: query
+      required: false
+      description: Return items older than this ID (pagination).
+      schema:
+        type: integer
+    MonetaryAccountID:
+      name: monetaryAccountID
+      in: path
+      required: true
+      description: The numeric ID of the monetary account.
+      schema:
+        type: integer
+    NewerID:
+      name: newer_id
+      in: query
+      required: false
+      description: Return items newer than this ID (pagination).
+      schema:
+        type: integer
+    UserID:
+      name: userID
+      in: path
+      required: true
+      description: The numeric ID of the user.
+      schema:
+        type: integer
+  securitySchemes:
+    sessionToken:
+      type: apiKey
+      in: header
+      name: X-Bunq-Client-Authentication
+      description: Session token obtained from POST /session-server, sent on every business call. In addition, each request body must be signed with your private key and the signature sent in the X-Bunq-Client-Signature header (see the ClientSignature parameter). bunq is not a simple bearer-token API.
+    installationToken:
+      type: apiKey
+      in: header
+      name: X-Bunq-Client-Authentication
+      description: Installation token from POST /installation, used only for the device-server and session-server handshake calls.

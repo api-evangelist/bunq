@@ -1,0 +1,1143 @@
+openapi: 3.2.0
+info:
+  title: bunq Share Invite Monetary Account Response API
+  description: '***UPDATE:*** *We have released a beta version of the new bunq API documentation.*
+
+
+    ***NOTICE:*** *We have updated the sandbox base url to `https://public-api.sandbox.bunq.com/v1/`. Please update your applications accordingly. Check here: for more info.*
+
+
+    ***PSD2 NOTICE:*** *The second Payment Services Directive (PSD2) may affect your current or planned usage of our public API, as some of the API services are now subject to a permit. Please be aware that using our public API without the required PSD2 permit is at your own risk and take notice of our updated API Terms and Conditions on for more information.*
+
+
+    # Introduction
+
+
+    Welcome to bunq! - The bunq API is organised around REST. JSON will be returned in almost all responses from the API, including errors but excluding binary (image) files. - Please configure your implementation to send its API requests to `https://public-api.sandbox.bunq.com/v1/`
+
+    - There is a version of the Android app that connects to the bunq Sandbox environment. To create accounts for the Sandbox app, please follow the steps in the Android Emulator section. ## Getting started
+
+
+    Before you start sending API requests, you need to get an API key and activate it. API activation happens when you install the API key and link your IP address and device to it *(create an API context)*. The steps below will guide you through what you need to do to start sending custom API requests. Here is an overview of what you can use to get started with the bunq API:
+
+    1. **Create an API key.** You can do it either in our developer portal or in the bunq app *(Profile → Security & Settings → Developers → API keys)*. If you want to test our sandbox first, our bunq Developer is the best place to start. 2. **Register a device.** A device can be a phone (private), computer or a server (public). You can register a new device by using the `POST /installation` and `POST /device-server` calls. This will activate your API key. You only need to do this once. 3. **Open a session.** Sessions are temporary and expire after the auto-logout time set for the user account. It can be changed by the account owner in the bunq app. 4. **Make your first call!**
+
+
+    !bunq_API_context
+
+
+    ## Versioning
+
+
+    Developments in the financial sector, changing regulatory regimes and new feature requests require us to be flexible. This means we can iterate quickly to improve the API and related tooling. Therefore, we have chosen not to attach any version numbers to the changes just yet. We will inform you in a timely manner of any important changes we make before they are deployed on together.bunq.com. You can also subscribe to our API newsletter to make sure you don''t miss any important updates. # OAuth
+
+
+    ## What is OAuth? OAuth 2.0 is a protocol that will let your app connect to bunq users in a safe and easy way. Please be aware that if you will gain access to the account information of other bunq users or initiate a payment for them, you may require a PSD2 permit. ## Get started with OAuth for bunq
+
+
+    To initiate authorization into the bunq user accounts, you need to create an OAuth Client and register at least 1 redirect URL for it. You can have 1 OAuth Client at a time. Reuse your OAuth credentials for every authorization request. The list of steps below will help you to get started:
+
+
+    1. Register an OAuth Client by creating an app in bunq Developer_._
+
+    2. Add one or more Redirect URLs. 3. Get your `client_id` and `secret` from your app information tab in bunq Developer. 4. Redirect your users to the OAuth authorization request URL. 5. If the user accepts the authorization request, they will be redirected to the previously specified `redirect_uri` with an authorization `code` parameter. 6. Use the token endpoint to exchange the authorization `code` for an `access_token`. 7. Use the `access_token` as a normal API Key. Open a session or use our SDKs to get started. You can set up an OAuth Client and add redirect URLs to it using the dedicated endpoints too.'
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+- url: https://public-api.sandbox.bunq.com/{basePath}
+  description: Sandbox server
+  variables:
+    basePath:
+      default: v1
+- url: https://api.bunq.com/{basePath}
+  description: Production server
+  variables:
+    basePath:
+      default: v1
+tags:
+- name: share-invite-monetary-account-response
+  description: ''
+paths:
+  /user/{userID}/share-invite-monetary-account-response/{itemId}:
+    get:
+      tags:
+      - share-invite-monetary-account-response
+      summary: READ share invite monetary account response for user
+      operationId: READ_ShareInviteMonetaryAccountResponse_for_User
+      description: Return the details of a specific share a user was invited to.
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: itemId
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used to view or respond to shares a user was invited to. See 'share-invite-bank-inquiry' for more information about the inquiring endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareInviteMonetaryAccountResponseRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
+    put:
+      tags:
+      - share-invite-monetary-account-response
+      summary: UPDATE share invite monetary account response for user
+      operationId: UPDATE_ShareInviteMonetaryAccountResponse_for_User
+      description: Accept or reject a share a user was invited to.
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: itemId
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShareInviteMonetaryAccountResponse'
+      responses:
+        '200':
+          description: Used to view or respond to shares a user was invited to. See 'share-invite-bank-inquiry' for more information about the inquiring endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareInviteMonetaryAccountResponseUpdate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
+  /user/{userID}/share-invite-monetary-account-response:
+    get:
+      tags:
+      - share-invite-monetary-account-response
+      summary: List all share invite monetary account response for user
+      operationId: List_all_ShareInviteMonetaryAccountResponse_for_User
+      description: Return all the shares a user was invited to.
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Used to view or respond to shares a user was invited to. See 'share-invite-bank-inquiry' for more information about the inquiring endpoint.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShareInviteMonetaryAccountResponseListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
+components:
+  parameters:
+    X-Bunq-Geolocation:
+      description: This header must specify the geolocation of the device. The format of this value is longitude latitude altitude radius country. The country is expected to be formatted of an ISO 3166-1 alpha-2 country code. When no geolocation is available or known the header must still be included but can be zero valued.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Geolocation
+    Cache-Control:
+      description: The standard HTTP Cache-Control header is required for all signed requests.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: Cache-Control
+    User-Agent:
+      description: The User-Agent header field should contain information about the user agent originating the request. There are no restrictions on the value of this header.
+      schema:
+        type: string
+      required: true
+      in: header
+      name: User-Agent
+    X-Bunq-Client-Request-Id:
+      description: This header must specify an ID with each request that is unique for the logged in user. There are no restrictions for the format of this ID. However, the server will respond with an error when the same ID is used again on the same DeviceServer.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Client-Request-Id
+    X-Bunq-Region:
+      description: The X-Bunq-Region header must contain the region (country) of the client device. The value of this header is formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, separated by an underscore.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Region
+    X-Bunq-Language:
+      description: The X-Bunq-Language header must contain a preferred language indication. The value of this header is formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, separated by an underscore. Currently only the languages en_US and nl_NL are supported. Anything else will default to en_US.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Language
+    X-Bunq-Client-Authentication:
+      description: The authentication token is used to authenticate the source of the API call. It is required by all API calls except for POST /v1/installation. It is important to note that the device and session calls are using the token from the response of the installation call, while all the other calls use the token from the response of the session-server call
+      schema:
+        type: string
+      required: true
+      in: header
+      name: X-Bunq-Client-Authentication
+  schemas:
+    Card:
+      type: object
+      properties:
+        pin_code:
+          type: string
+          description: The plaintext pin code. Requests require encryption to be enabled.
+          readOnly: false
+          writeOnly: true
+        activation_code:
+          type: string
+          description: 'DEPRECATED: Activate a card by setting status to ACTIVE when the order_status is ACCEPTED_FOR_PRODUCTION.'
+          readOnly: false
+          writeOnly: true
+        status:
+          type: string
+          description: The status to set for the card. Can be ACTIVE, DEACTIVATED, LOST, STOLEN or CANCELLED, and can only be set to LOST/STOLEN/CANCELLED when order status is ACCEPTED_FOR_PRODUCTION/DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED. Can only be set to DEACTIVATED after initial activation, i.e. order_status is DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED. Mind that all the possible choices (apart from ACTIVE and DEACTIVATED) are permanent and cannot be changed after.
+          readOnly: false
+          writeOnly: false
+        order_status:
+          type: string
+          description: The order status to set for the card. Set to CARD_REQUEST_PENDING to get a virtual card produced.
+          readOnly: false
+          writeOnly: false
+        card_limit:
+          type: object
+          description: The spending limit for the card.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        card_limit_atm:
+          type: object
+          description: The ATM spending limit for the card.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        country_permission:
+          type: array
+          description: The countries for which to grant (temporary) permissions to use the card.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardCountryPermission'
+        pin_code_assignment:
+          type: array
+          description: Array of Types, PINs, account IDs assigned to the card.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardPinAssignment'
+        primary_account_numbers:
+          type: array
+          description: Array of PANs and their attributes.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardPrimaryAccountNumber'
+        monetary_account_id_fallback:
+          type: integer
+          description: ID of the MA to be used as fallback for this card if insufficient balance. Fallback account is removed if not supplied.
+          readOnly: false
+          writeOnly: false
+        preferred_name_on_card:
+          type: string
+          description: The user's preferred name as it will be on the card.
+          readOnly: false
+          writeOnly: false
+        second_line:
+          type: string
+          description: The second line of text on the card
+          readOnly: false
+          writeOnly: false
+        cancellation_reason:
+          type: string
+          description: The reason for card cancellation.
+          readOnly: false
+          writeOnly: true
+    ShareDetail:
+      type: object
+      properties:
+        payment:
+          type: object
+          description: The share details for a payment share. In the response 'payment' is replaced by 'ShareDetailPayment'.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/ShareDetailPayment'
+        read_only:
+          type: object
+          description: The share details for viewing a share. In the response 'read_only' is replaced by 'ShareDetailReadOnly'.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/ShareDetailReadOnly'
+        draft_payment:
+          type: object
+          description: The share details for a draft payment share. In the response 'draft_payment' is replaced by 'ShareDetailDraftPayment'.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/ShareDetailDraftPayment'
+    ShareInviteMonetaryAccountResponseUpdate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    ShareDetailPayment:
+      type: object
+      properties:
+        make_payments:
+          type: boolean
+          description: If set to true, the invited user will be able to make payments from the shared account.
+          readOnly: false
+          writeOnly: false
+        make_draft_payments:
+          type: boolean
+          description: If set to true, the invited user will be able to make draft payments from the shared account.
+          readOnly: false
+          writeOnly: false
+        view_balance:
+          type: boolean
+          description: If set to true, the invited user will be able to view the account balance.
+          readOnly: false
+          writeOnly: false
+        view_old_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events from before the share was active.
+          readOnly: false
+          writeOnly: false
+        view_new_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events starting from the time the share became active.
+          readOnly: false
+          writeOnly: false
+    ShareInviteMonetaryAccountResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status of the share. Can be ACTIVE, REVOKED, REJECTED.
+          readOnly: false
+          writeOnly: false
+        card_id:
+          type: integer
+          description: The card to link to the shared monetary account. Used only if share_detail is ShareDetailCardPayment.
+          readOnly: false
+          writeOnly: true
+        id:
+          type: integer
+          description: The id of the ShareInviteBankResponse.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the ShareInviteBankResponse creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the ShareInviteBankResponse last update.
+          readOnly: true
+          writeOnly: false
+        counter_alias:
+          type: object
+          description: The monetary account and user who created the share.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        user_alias_cancelled:
+          type: object
+          description: The user who cancelled the share if it has been revoked or rejected.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        monetary_account_id:
+          type: integer
+          description: The id of the monetary account the ACCEPTED share applies to. null otherwise.
+          readOnly: true
+          writeOnly: false
+        draft_share_invite_bank_id:
+          type: integer
+          description: The id of the draft share invite bank.
+          readOnly: true
+          writeOnly: false
+        share_detail:
+          type: object
+          description: The share details.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/ShareDetail'
+        access_type:
+          type: string
+          description: Type of access that is wanted, one of VIEW_BALANCE, VIEW_TRANSACTION, DRAFT_PAYMENT or FULL_TRANSIENT
+          readOnly: true
+          writeOnly: false
+        relation_user:
+          type: object
+          description: All of the relation users towards this MA.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/RelationUser'
+        share_type:
+          type: string
+          description: The share type, either STANDARD or MUTUAL.
+          readOnly: true
+          writeOnly: false
+        start_date:
+          type: string
+          description: The start date of this share.
+          readOnly: true
+          writeOnly: false
+        end_date:
+          type: string
+          description: The expiration date of this share.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: The description of this share. It is basically the monetary account description.
+          readOnly: true
+          writeOnly: false
+    CardCountryPermission:
+      type: object
+      properties:
+        country:
+          type: string
+          description: The country to allow transactions in (e.g. NL, DE).
+          readOnly: false
+          writeOnly: false
+        expiry_time:
+          type: string
+          description: Expiry time of this rule.
+          readOnly: false
+          writeOnly: true
+        id:
+          type: integer
+          description: The id of the card country permission entry.
+          readOnly: true
+          writeOnly: false
+    Amount:
+      type: object
+      properties:
+        value:
+          type: string
+          description: The amount formatted to two decimal places.
+          readOnly: false
+          writeOnly: false
+        currency:
+          type: string
+          description: The currency of the amount. It is an ISO 4217 formatted currency code.
+          readOnly: false
+          writeOnly: false
+    LabelUser:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The public UUID of the label-user.
+          readOnly: false
+          writeOnly: false
+        display_name:
+          type: string
+          description: The name to be displayed for this user, as it was given on the request.
+          readOnly: false
+          writeOnly: false
+        country:
+          type: string
+          description: The country of the user. 000 stands for "unknown"
+          readOnly: false
+          writeOnly: false
+        avatar:
+          type: object
+          description: The current avatar of the user.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        public_nick_name:
+          type: string
+          description: The current nickname of the user.
+          readOnly: true
+          writeOnly: false
+    Error:
+      type: array
+      items:
+        type: object
+        properties:
+          error_description:
+            type: string
+            description: The error description in English.
+          error_description_translated:
+            type: string
+            description: The error description translated to the user's language.
+    CompanyEmployeeSettingAdyenCardTransaction:
+      type: object
+      properties:
+        pointer_counter_user:
+          type: object
+          description: The pointer to the employee for which you want to create a card.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Pointer'
+        status:
+          type: string
+          description: Whether the user is allowed to use Tap to Pay.
+          readOnly: false
+          writeOnly: false
+        monetary_account_payout_id:
+          type: integer
+          description: The ID of the monetary account where Tap to Pay transactions should be paid out to.
+          readOnly: false
+          writeOnly: false
+      required:
+      - pointer_counter_user
+    Avatar:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The public UUID of the avatar.
+          readOnly: false
+          writeOnly: false
+        anchor_uuid:
+          type: string
+          description: The public UUID of object this avatar is anchored to.
+          readOnly: true
+          writeOnly: false
+        image:
+          type: array
+          description: The actual image information of this avatar.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Image'
+        style:
+          type: string
+          description: The style (if applicable) for this Avatar.
+          readOnly: true
+          writeOnly: false
+    Pointer:
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'The alias type, can be: EMAIL|PHONE_NUMBER|IBAN.'
+          readOnly: false
+          writeOnly: false
+        value:
+          type: string
+          description: The alias value.
+          readOnly: false
+          writeOnly: false
+        name:
+          type: string
+          description: The alias name.
+          readOnly: false
+          writeOnly: false
+        service:
+          type: string
+          description: The pointer service. Only required for external counterparties.
+          readOnly: false
+          writeOnly: true
+    BunqId:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: An integer ID of an object. Unique per object type.
+          readOnly: false
+          writeOnly: false
+    CardPinAssignment:
+      type: object
+      properties:
+        type:
+          type: string
+          description: PIN type. Can be PRIMARY, SECONDARY or TERTIARY
+          readOnly: false
+          writeOnly: false
+        routing_type:
+          type: string
+          description: Routing type.
+          readOnly: false
+          writeOnly: false
+        pin_code:
+          type: string
+          description: The 4 digit PIN to be assigned to this account.
+          readOnly: false
+          writeOnly: true
+        monetary_account_id:
+          type: integer
+          description: The ID of the monetary account to assign to this pin for the card.
+          readOnly: false
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the card pin assignment.
+          readOnly: true
+          writeOnly: false
+    LabelMonetaryAccount:
+      type: object
+      properties:
+        iban:
+          type: string
+          description: The IBAN of the monetary account.
+          readOnly: true
+          writeOnly: false
+        display_name:
+          type: string
+          description: The name to display with this monetary account.
+          readOnly: true
+          writeOnly: false
+        avatar:
+          type: object
+          description: The avatar of the monetary account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        label_user:
+          type: object
+          description: The user this monetary account belongs to.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        country:
+          type: string
+          description: The country of the user. Formatted as a ISO 3166-1 alpha-2 country code.
+          readOnly: true
+          writeOnly: false
+        bunq_me:
+          type: object
+          description: Bunq.me pointer with type and value.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Pointer'
+        is_light:
+          type: boolean
+          description: Whether or not the monetary account is light.
+          readOnly: true
+          writeOnly: false
+        swift_bic:
+          type: string
+          description: The BIC used for a SWIFT payment.
+          readOnly: true
+          writeOnly: false
+        swift_account_number:
+          type: string
+          description: The account number used for a SWIFT payment. May or may not be an IBAN.
+          readOnly: true
+          writeOnly: false
+        transferwise_account_number:
+          type: string
+          description: The account number used for a Transferwise payment. May or may not be an IBAN.
+          readOnly: true
+          writeOnly: false
+        transferwise_bank_code:
+          type: string
+          description: The bank code used for a Transferwise payment. May or may not be a BIC.
+          readOnly: true
+          writeOnly: false
+        merchant_category_code:
+          type: string
+          description: The merchant category code.
+          readOnly: true
+          writeOnly: false
+    CardPrimaryAccountNumber:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The ID for this Virtual PAN.
+          readOnly: false
+          writeOnly: false
+        description:
+          type: string
+          description: The description for this PAN.
+          readOnly: false
+          writeOnly: false
+        status:
+          type: string
+          description: The status for this PAN, only for Online Cards.
+          readOnly: false
+          writeOnly: false
+        monetary_account_id:
+          type: integer
+          description: The ID of the monetary account to assign to this PAN, only for Online Cards.
+          readOnly: false
+          writeOnly: false
+        uuid:
+          type: string
+          description: The UUID for this Virtual PAN.
+          readOnly: true
+          writeOnly: false
+        four_digit:
+          type: string
+          description: The last four digits of the PAN.
+          readOnly: true
+          writeOnly: false
+        type:
+          type: string
+          description: The type of the PAN.
+          readOnly: true
+          writeOnly: false
+    ShareDetailReadOnly:
+      type: object
+      properties:
+        view_balance:
+          type: boolean
+          description: If set to true, the invited user will be able to view the account balance.
+          readOnly: false
+          writeOnly: false
+        view_old_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events from before the share was active.
+          readOnly: false
+          writeOnly: false
+        view_new_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events starting from the time the share became active.
+          readOnly: false
+          writeOnly: false
+    Image:
+      type: object
+      properties:
+        attachment_public_uuid:
+          type: string
+          description: The public UUID of the public attachment containing the image.
+          readOnly: true
+          writeOnly: false
+        content_type:
+          type: string
+          description: The content-type as a MIME filetype.
+          readOnly: true
+          writeOnly: false
+        height:
+          type: integer
+          description: The image height in pixels.
+          readOnly: true
+          writeOnly: false
+        width:
+          type: integer
+          description: The image width in pixels.
+          readOnly: true
+          writeOnly: false
+    ShareDetailDraftPayment:
+      type: object
+      properties:
+        make_draft_payments:
+          type: boolean
+          description: If set to true, the invited user will be able to make draft payments from the shared account.
+          readOnly: false
+          writeOnly: false
+        view_balance:
+          type: boolean
+          description: If set to true, the invited user will be able to view the account balance.
+          readOnly: false
+          writeOnly: false
+        view_old_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events from before the share was active.
+          readOnly: false
+          writeOnly: false
+        view_new_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events starting from the time the share became active.
+          readOnly: false
+          writeOnly: false
+    ShareInviteMonetaryAccountResponseRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the ShareInviteBankResponse.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the ShareInviteBankResponse creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the ShareInviteBankResponse last update.
+          readOnly: true
+          writeOnly: false
+        counter_alias:
+          type: object
+          description: The monetary account and user who created the share.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        user_alias_cancelled:
+          type: object
+          description: The user who cancelled the share if it has been revoked or rejected.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        monetary_account_id:
+          type: integer
+          description: The id of the monetary account the ACCEPTED share applies to. null otherwise.
+          readOnly: true
+          writeOnly: false
+        draft_share_invite_bank_id:
+          type: integer
+          description: The id of the draft share invite bank.
+          readOnly: true
+          writeOnly: false
+        share_detail:
+          type: object
+          description: The share details.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/ShareDetail'
+        access_type:
+          type: string
+          description: Type of access that is wanted, one of VIEW_BALANCE, VIEW_TRANSACTION, DRAFT_PAYMENT or FULL_TRANSIENT
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the share. Can be ACTIVE, REVOKED, REJECTED.
+          readOnly: true
+          writeOnly: false
+        relation_user:
+          type: object
+          description: All of the relation users towards this MA.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/RelationUser'
+        share_type:
+          type: string
+          description: The share type, either STANDARD or MUTUAL.
+          readOnly: true
+          writeOnly: false
+        start_date:
+          type: string
+          description: The start date of this share.
+          readOnly: true
+          writeOnly: false
+        end_date:
+          type: string
+          description: The expiration date of this share.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: The description of this share. It is basically the monetary account description.
+          readOnly: true
+          writeOnly: false
+    RelationUser:
+      type: object
+      properties:
+        user_id:
+          type: string
+          description: The user's ID.
+          readOnly: true
+          writeOnly: false
+        counter_user_id:
+          type: string
+          description: The counter user's ID.
+          readOnly: true
+          writeOnly: false
+        label_user:
+          type: object
+          description: The user's label.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        counter_label_user:
+          type: object
+          description: The counter user's label.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        relationship:
+          type: string
+          description: The requested relation type.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The request's status, only for UPDATE.
+          readOnly: true
+          writeOnly: false
+        user_status:
+          type: string
+          description: The account status of a user
+          readOnly: true
+          writeOnly: false
+        counter_user_status:
+          type: string
+          description: The account status of a user
+          readOnly: true
+          writeOnly: false
+        company_employee_setting_adyen_card_transaction:
+          type: object
+          description: Tap to Pay settings for the company employee.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CompanyEmployeeSettingAdyenCardTransaction'
+        all_company_employee_card:
+          type: array
+          description: Cards accessible by the company employee
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CompanyEmployeeCard'
+    CompanyEmployeeCard:
+      type: object
+      properties:
+        pointer_counter_user:
+          type: object
+          description: The pointer to the employee for which you want to create a card.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Pointer'
+        pointer_monetary_account:
+          type: object
+          description: The pointer to the monetary account that will be connected at first with the card.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Pointer'
+        type:
+          type: string
+          description: The type of card to order.
+          readOnly: false
+          writeOnly: true
+        product_type:
+          type: string
+          description: The product type of the card to order.
+          readOnly: false
+          writeOnly: true
+        company_name_on_card:
+          type: string
+          description: The name of the company that should be displayed on the card.
+          readOnly: false
+          writeOnly: false
+        employee_name_on_card:
+          type: string
+          description: The name of the employee that should be displayed on the card.
+          readOnly: false
+          writeOnly: true
+        employee_preferred_name_on_card:
+          type: string
+          description: The user's preferred name as it will be on the card.
+          readOnly: false
+          writeOnly: true
+        amount_limit_monthly:
+          type: object
+          description: The monthly spending limit for this employee on the card.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        status:
+          type: string
+          description: The status of the employee card.
+          readOnly: false
+          writeOnly: false
+        card:
+          type: object
+          description: The actual card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Card'
+        amount_spent_monthly:
+          type: object
+          description: The monthly spend for this employee on the card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        number_of_company_employee_card_receipt_pending:
+          type: integer
+          description: The number of transactions that still need a receipt.
+          readOnly: true
+          writeOnly: false
+      required:
+      - pointer_counter_user
+      - pointer_monetary_account
+      - type
+      - product_type
+    ShareInviteMonetaryAccountResponseListing:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the ShareInviteBankResponse.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the ShareInviteBankResponse creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the ShareInviteBankResponse last update.
+          readOnly: true
+          writeOnly: false
+        counter_alias:
+          type: object
+          description: The monetary account and user who created the share.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        user_alias_cancelled:
+          type: object
+          description: The user who cancelled the share if it has been revoked or rejected.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        monetary_account_id:
+          type: integer
+          description: The id of the monetary account the ACCEPTED share applies to. null otherwise.
+          readOnly: true
+          writeOnly: false
+        draft_share_invite_bank_id:
+          type: integer
+          description: The id of the draft share invite bank.
+          readOnly: true
+          writeOnly: false
+        share_detail:
+          type: object
+          description: The share details.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/ShareDetail'
+        access_type:
+          type: string
+          description: Type of access that is wanted, one of VIEW_BALANCE, VIEW_TRANSACTION, DRAFT_PAYMENT or FULL_TRANSIENT
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the share. Can be ACTIVE, REVOKED, REJECTED.
+          readOnly: true
+          writeOnly: false
+        relation_user:
+          type: object
+          description: All of the relation users towards this MA.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/RelationUser'
+        share_type:
+          type: string
+          description: The share type, either STANDARD or MUTUAL.
+          readOnly: true
+          writeOnly: false
+        start_date:
+          type: string
+          description: The start date of this share.
+          readOnly: true
+          writeOnly: false
+        end_date:
+          type: string
+          description: The expiration date of this share.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: The description of this share. It is basically the monetary account description.
+          readOnly: true
+          writeOnly: false
+  headers:
+    X-Bunq-Server-Signature:
+      description: The server's signature for this response. See the signing page for details on how to verify this signature.
+      schema:
+        type: string
+    X-Bunq-Client-Request-Id:
+      description: This header must specify an ID with each request that is unique for the logged in user. There are no restrictions for the format of this ID. However, the server will respond with an error when the same ID is used again on the same DeviceServer.
+      schema:
+        type: string
+      required: false
+    X-Bunq-Client-Response-Id:
+      description: A unique ID for the response formatted as a UUID. Clients can use it to add extra protection against replay attacks.
+      schema:
+        type: string
+  responses:
+    GenericError:
+      description: This is how the error response looks like for 4XX response codes
+      headers:
+        X-Bunq-Client-Response-Id:
+          $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+        X-Bunq-Client-Request-Id:
+          $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+        X-Bunq-Server-Signature:
+          $ref: '#/components/headers/X-Bunq-Server-Signature'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              Error:
+                $ref: '#/components/schemas/Error'

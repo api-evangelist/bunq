@@ -1,0 +1,4690 @@
+openapi: 3.2.0
+info:
+  title: bunq Mastercard Action API
+  description: '***UPDATE:*** *We have released a beta version of the new bunq API documentation.*
+
+
+    ***NOTICE:*** *We have updated the sandbox base url to `https://public-api.sandbox.bunq.com/v1/`. Please update your applications accordingly. Check here: for more info.*
+
+
+    ***PSD2 NOTICE:*** *The second Payment Services Directive (PSD2) may affect your current or planned usage of our public API, as some of the API services are now subject to a permit. Please be aware that using our public API without the required PSD2 permit is at your own risk and take notice of our updated API Terms and Conditions on for more information.*
+
+
+    # Introduction
+
+
+    Welcome to bunq! - The bunq API is organised around REST. JSON will be returned in almost all responses from the API, including errors but excluding binary (image) files. - Please configure your implementation to send its API requests to `https://public-api.sandbox.bunq.com/v1/`
+
+    - There is a version of the Android app that connects to the bunq Sandbox environment. To create accounts for the Sandbox app, please follow the steps in the Android Emulator section. ## Getting started
+
+
+    Before you start sending API requests, you need to get an API key and activate it. API activation happens when you install the API key and link your IP address and device to it *(create an API context)*. The steps below will guide you through what you need to do to start sending custom API requests. Here is an overview of what you can use to get started with the bunq API:
+
+    1. **Create an API key.** You can do it either in our developer portal or in the bunq app *(Profile → Security & Settings → Developers → API keys)*. If you want to test our sandbox first, our bunq Developer is the best place to start. 2. **Register a device.** A device can be a phone (private), computer or a server (public). You can register a new device by using the `POST /installation` and `POST /device-server` calls. This will activate your API key. You only need to do this once. 3. **Open a session.** Sessions are temporary and expire after the auto-logout time set for the user account. It can be changed by the account owner in the bunq app. 4. **Make your first call!**
+
+
+    !bunq_API_context
+
+
+    ## Versioning
+
+
+    Developments in the financial sector, changing regulatory regimes and new feature requests require us to be flexible. This means we can iterate quickly to improve the API and related tooling. Therefore, we have chosen not to attach any version numbers to the changes just yet. We will inform you in a timely manner of any important changes we make before they are deployed on together.bunq.com. You can also subscribe to our API newsletter to make sure you don''t miss any important updates. # OAuth
+
+
+    ## What is OAuth? OAuth 2.0 is a protocol that will let your app connect to bunq users in a safe and easy way. Please be aware that if you will gain access to the account information of other bunq users or initiate a payment for them, you may require a PSD2 permit. ## Get started with OAuth for bunq
+
+
+    To initiate authorization into the bunq user accounts, you need to create an OAuth Client and register at least 1 redirect URL for it. You can have 1 OAuth Client at a time. Reuse your OAuth credentials for every authorization request. The list of steps below will help you to get started:
+
+
+    1. Register an OAuth Client by creating an app in bunq Developer_._
+
+    2. Add one or more Redirect URLs. 3. Get your `client_id` and `secret` from your app information tab in bunq Developer. 4. Redirect your users to the OAuth authorization request URL. 5. If the user accepts the authorization request, they will be redirected to the previously specified `redirect_uri` with an authorization `code` parameter. 6. Use the token endpoint to exchange the authorization `code` for an `access_token`. 7. Use the `access_token` as a normal API Key. Open a session or use our SDKs to get started. You can set up an OAuth Client and add redirect URLs to it using the dedicated endpoints too.'
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+- url: https://public-api.sandbox.bunq.com/{basePath}
+  description: Sandbox server
+  variables:
+    basePath:
+      default: v1
+- url: https://api.bunq.com/{basePath}
+  description: Production server
+  variables:
+    basePath:
+      default: v1
+tags:
+- name: mastercard-action
+  description: ''
+paths:
+  /user/{userID}/monetary-account/{monetary-accountID}/mastercard-action/{itemId}:
+    get:
+      tags:
+      - mastercard-action
+      summary: READ mastercard action for user monetary account
+      operationId: READ_MastercardAction_for_User_MonetaryAccount
+      description: MasterCard transaction view.
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: monetary-accountID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: itemId
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: MasterCard transaction view.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MasterCardActionRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
+  /user/{userID}/monetary-account/{monetary-accountID}/mastercard-action:
+    get:
+      tags:
+      - mastercard-action
+      summary: List all mastercard action for user monetary account
+      operationId: List_all_MastercardAction_for_User_MonetaryAccount
+      description: MasterCard transaction view.
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: monetary-accountID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: MasterCard transaction view.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MasterCardActionListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
+components:
+  schemas:
+    BankSwitchServiceNetherlandsIncoming:
+      type: object
+      properties:
+        alias:
+          type: object
+          description: The label of the monetary of this switch service.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counterparty_alias:
+          type: object
+          description: The IBAN alias that's displayed for this switch service.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        status:
+          type: string
+          description: The status of the switch service.
+          readOnly: false
+          writeOnly: false
+        user_alias:
+          type: object
+          description: The label of the user creator of this switch service.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        sub_status:
+          type: string
+          description: The sub status of the switch service.
+          readOnly: true
+          writeOnly: false
+        time_start_desired:
+          type: string
+          description: The timestamp when the switch service desired to be start.
+          readOnly: true
+          writeOnly: false
+        time_start_actual:
+          type: string
+          description: The timestamp when the switch service actually starts.
+          readOnly: true
+          writeOnly: false
+        time_end:
+          type: string
+          description: The timestamp when the switch service ends.
+          readOnly: true
+          writeOnly: false
+        attachment:
+          type: object
+          description: Reference to the bank transfer form for this switch-service.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Attachment'
+        rejection_reason:
+          type: string
+          description: Rejection reason enum.
+          readOnly: true
+          writeOnly: false
+        rejection_reason_description:
+          type: string
+          description: Rejection reason description to be shown to the user.
+          readOnly: true
+          writeOnly: false
+        rejection_reason_description_translated:
+          type: string
+          description: Rejection reason description to be shown to the user, translated.
+          readOnly: true
+          writeOnly: false
+        rejection_reason_together_url:
+          type: string
+          description: Rejection reason together URL.
+          readOnly: true
+          writeOnly: false
+    PartnerPromotionCashback:
+      type: object
+      properties:
+        public_uuid:
+          type: string
+          description: The public UUID of the cashback promotion.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the cashback promotion.
+          readOnly: true
+          writeOnly: false
+        promotion_code:
+          type: string
+          description: The promotion code used in signup to indicate the partner that referred the user.
+          readOnly: true
+          writeOnly: false
+        amount_cashback_per_transaction_maximum:
+          type: object
+          description: The amount of cashback per transaction, will not be higher than the amount of the transaction.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        number_of_transaction_maximum:
+          type: integer
+          description: The maximum number of transactions that can be made.
+          readOnly: true
+          writeOnly: false
+        amount_transaction_minimum:
+          type: object
+          description: The minimum amount of a transaction.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        url_together:
+          type: string
+          description: The URL to the Together page with FAQs about this promotion.
+          readOnly: true
+          writeOnly: false
+        deeplink:
+          type: string
+          description: The deeplink to the cashback promotion.
+          readOnly: true
+          writeOnly: false
+        partner_name:
+          type: string
+          description: The name of the partner.
+          readOnly: true
+          writeOnly: false
+        partner_avatar:
+          type: object
+          description: The avatar of the partner.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        promotion_title_short:
+          type: array
+          description: The short title of the promotion.
+          readOnly: true
+          writeOnly: false
+          items:
+            type: string
+        promotion_title_long:
+          type: array
+          description: The long title of the promotion.
+          readOnly: true
+          writeOnly: false
+          items:
+            type: string
+        promotion_description:
+          type: array
+          description: The description of the promotion.
+          readOnly: true
+          writeOnly: false
+          items:
+            type: string
+    CurrencyConversion:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the conversion.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the conversion's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the conversion's last update.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the conversion.
+          readOnly: true
+          writeOnly: false
+        date_delivery_expected:
+          type: string
+          description: The expected delivery date of the conversion.
+          readOnly: true
+          writeOnly: false
+        rate:
+          type: string
+          description: The rate of the conversion.
+          readOnly: true
+          writeOnly: false
+        amount:
+          type: object
+          description: The amount of the conversion.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        counter_amount:
+          type: object
+          description: The amount of the counter conversion.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        group_uuid:
+          type: string
+          description: The group uuid of the conversion.
+          readOnly: true
+          writeOnly: false
+        type:
+          type: string
+          description: The type of this conversion.
+          readOnly: true
+          writeOnly: false
+        order_type:
+          type: string
+          description: The order type, buying or selling.
+          readOnly: true
+          writeOnly: false
+        label_monetary_account:
+          type: object
+          description: The label of the monetary account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counter_label_monetary_account:
+          type: object
+          description: The label of the counter monetary account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        payment:
+          type: object
+          description: The payment associated with this conversion.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Payment'
+    ShareDetail:
+      type: object
+      properties:
+        payment:
+          type: object
+          description: The share details for a payment share. In the response 'payment' is replaced by 'ShareDetailPayment'.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/ShareDetailPayment'
+        read_only:
+          type: object
+          description: The share details for viewing a share. In the response 'read_only' is replaced by 'ShareDetailReadOnly'.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/ShareDetailReadOnly'
+        draft_payment:
+          type: object
+          description: The share details for a draft payment share. In the response 'draft_payment' is replaced by 'ShareDetailDraftPayment'.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/ShareDetailDraftPayment'
+    BunqMeTab:
+      type: object
+      properties:
+        bunqme_tab_entry:
+          type: object
+          description: The bunq.me entry containing the payment information.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/BunqMeTabEntry'
+        status:
+          type: string
+          description: The status of the bunq.me. Ignored in POST requests but can be used for cancelling the bunq.me by setting status as CANCELLED with a PUT request.
+          readOnly: false
+          writeOnly: false
+        event_id:
+          type: integer
+          description: The ID of the related event if the bunqMeTab made by 'split' functionality.
+          readOnly: false
+          writeOnly: true
+      required:
+      - bunqme_tab_entry
+    PaymentArrivalExpected:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Indicates when we expect the payment to arrive.
+          readOnly: true
+          writeOnly: false
+        time:
+          type: string
+          description: The time when the payment is expected to arrive.
+          readOnly: true
+          writeOnly: false
+    SchedulePaymentEntry:
+      type: object
+      properties:
+        amount:
+          type: object
+          description: The Amount transferred by the Payment. Will be negative for outgoing Payments and positive for incoming Payments (relative to the MonetaryAccount indicated by monetary_account_id).
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        counterparty_alias:
+          type: object
+          description: The LabelMonetaryAccount containing the public information of the other (counterparty) side of the Payment.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        description:
+          type: string
+          description: The description for the Payment. Maximum 140 characters for Payments to external IBANs, 9000 characters for Payments to only other bunq MonetaryAccounts.
+          readOnly: false
+          writeOnly: false
+        attachment:
+          type: array
+          description: The Attachments attached to the Payment.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/AttachmentMonetaryAccountPayment'
+        merchant_reference:
+          type: string
+          description: Optional data included with the Payment specific to the merchant.
+          readOnly: false
+          writeOnly: false
+        allow_bunqto:
+          type: boolean
+          description: Whether or not sending a bunq.to payment is allowed.
+          readOnly: false
+          writeOnly: true
+        alias:
+          type: object
+          description: The LabelMonetaryAccount containing the public information of 'this' (party) side of the Payment.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+    CardCountryPermission:
+      type: object
+      properties:
+        country:
+          type: string
+          description: The country to allow transactions in (e.g. NL, DE).
+          readOnly: false
+          writeOnly: false
+        expiry_time:
+          type: string
+          description: Expiry time of this rule.
+          readOnly: false
+          writeOnly: true
+        id:
+          type: integer
+          description: The id of the card country permission entry.
+          readOnly: true
+          writeOnly: false
+    MasterCardActionListing:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the MastercardAction.
+          readOnly: true
+          writeOnly: false
+        monetary_account_id:
+          type: integer
+          description: The id of the monetary account this action links to.
+          readOnly: true
+          writeOnly: false
+        card_id:
+          type: integer
+          description: The id of the card this action links to.
+          readOnly: true
+          writeOnly: false
+        amount_local:
+          type: object
+          description: The amount of the transaction in local currency.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_converted:
+          type: object
+          description: The amount of the transaction in local currency.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_billing:
+          type: object
+          description: The amount of the transaction in the monetary account's currency.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_original_local:
+          type: object
+          description: The original amount in local currency.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_original_billing:
+          type: object
+          description: The original amount in the monetary account's currency.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_fee:
+          type: object
+          description: The fee amount as charged by the merchant, if applicable.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        card_authorisation_id_response:
+          type: string
+          description: The response code by which authorised transaction can be identified as authorised by bunq.
+          readOnly: true
+          writeOnly: false
+        decision:
+          type: string
+          description: Why the transaction was denied, if it was denied, or just ALLOWED.
+          readOnly: true
+          writeOnly: false
+        payment_status:
+          type: string
+          description: The payment status of the transaction. For example PAYMENT_SUCCESSFUL, for a successful payment.
+          readOnly: true
+          writeOnly: false
+        decision_description:
+          type: string
+          description: Empty if allowed, otherwise a textual explanation of why it was denied.
+          readOnly: true
+          writeOnly: false
+        decision_description_translated:
+          type: string
+          description: Empty if allowed, otherwise a textual explanation of why it was denied in user's language.
+          readOnly: true
+          writeOnly: false
+        decision_together_url:
+          type: string
+          description: Empty if allowed or if no relevant Together topic exists, otherwise contains the URL for a Together topic with more information about the decision.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: The description for this transaction to display.
+          readOnly: true
+          writeOnly: false
+        authorisation_status:
+          type: string
+          description: The status in the authorisation process.
+          readOnly: true
+          writeOnly: false
+        authorisation_type:
+          type: string
+          description: The type of transaction that was delivered using the card.
+          readOnly: true
+          writeOnly: false
+        pan_entry_mode_user:
+          type: string
+          description: The type of entry mode the user used. Can be 'ATM', 'ICC', 'MAGNETIC_STRIPE' or 'E_COMMERCE'.
+          readOnly: true
+          writeOnly: false
+        settlement_status:
+          type: string
+          description: The setlement status in the authorisation process.
+          readOnly: true
+          writeOnly: false
+        clearing_status:
+          type: string
+          description: The clearing status of the authorisation. Can be 'PENDING', 'FIRST_PRESENTMENT_COMPLETE' or 'REFUND_LENIENCY'.
+          readOnly: true
+          writeOnly: false
+        maturity_date:
+          type: string
+          description: The maturity date.
+          readOnly: true
+          writeOnly: false
+        city:
+          type: string
+          description: The city where the message originates from as announced by the terminal.
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: object
+          description: The monetary account label of the account that this action is created for.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counterparty_alias:
+          type: object
+          description: The monetary account label of the counterparty.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        label_card:
+          type: object
+          description: The label of the card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelCard'
+        merchant_id:
+          type: string
+          description: The identification string of the merchant.
+          readOnly: true
+          writeOnly: false
+        token_status:
+          type: string
+          description: If this is a tokenisation action, this shows the status of the token.
+          readOnly: true
+          writeOnly: false
+        reservation_expiry_time:
+          type: string
+          description: If this is a reservation, the moment the reservation will expire.
+          readOnly: true
+          writeOnly: false
+        clearing_expiry_time:
+          type: string
+          description: The time when the processing of the clearing is expired, refunding the authorisation.
+          readOnly: true
+          writeOnly: false
+        applied_limit:
+          type: string
+          description: The type of the limit applied to validate if this MasterCardAction was within the spending limits. The returned string matches the limit types as defined in the card endpoint.
+          readOnly: true
+          writeOnly: false
+        secure_code_id:
+          type: integer
+          description: The secure code id for this mastercard action or null.
+          readOnly: true
+          writeOnly: false
+        wallet_provider_id:
+          type: string
+          description: The ID of the wallet provider as defined by MasterCard. 420 = bunq Android app with Tap&Pay; 103 = Apple Pay.
+          readOnly: true
+          writeOnly: false
+        request_reference_split_the_bill:
+          type: array
+          description: The reference to the object used for split the bill. Can be RequestInquiry or RequestInquiryBatch
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/RequestInquiryReference'
+        card_tokenization_event:
+          type: object
+          description: The cardTokenization event awaiting acceptance by the user
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Event'
+        all_mastercard_action_refund:
+          type: array
+          description: A reference to the Refunds if they exist.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/MasterCardActionRefund'
+        pos_card_presence:
+          type: string
+          description: The Card Presence type of the POS.
+          readOnly: true
+          writeOnly: false
+        pos_card_holder_presence:
+          type: string
+          description: The Card Holder Presence type of the POS.
+          readOnly: true
+          writeOnly: false
+        eligible_whitelist_id:
+          type: integer
+          description: The whitelist id for this action or null.
+          readOnly: true
+          writeOnly: false
+        cashback_payout_item:
+          type: object
+          description: The cashback payout item for this action or null
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CashbackPayoutItem'
+        point_mutation:
+          type: object
+          description: The point mutation for this action or null
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/PointMutation'
+        blacklist:
+          type: object
+          description: DEPRECATED. The blacklist enabled for the merchant of this transaction
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/UserBlocklistMasterCardMerchant'
+        blocklist:
+          type: object
+          description: The blocklist enabled for the merchant of this transaction
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/UserBlocklistMasterCardMerchant'
+        additional_authentication_status:
+          type: string
+          description: The status of the additional authentication performed (3ds) by the user for this transaction.
+          readOnly: true
+          writeOnly: false
+        pin_status:
+          type: string
+          description: Status checking the provided PIN.
+          readOnly: true
+          writeOnly: false
+        mastercard_action_report:
+          type: object
+          description: The report for this transaction
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MasterCardActionReport'
+        merchant_category_code:
+          type: string
+          description: The MCC provided.
+          readOnly: true
+          writeOnly: false
+        company_employee_card_receipt:
+          type: object
+          description: The receipt the company employee has to provide for this transaction.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CompanyEmployeeCardReceipt'
+    LabelUser:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The public UUID of the label-user.
+          readOnly: false
+          writeOnly: false
+        display_name:
+          type: string
+          description: The name to be displayed for this user, as it was given on the request.
+          readOnly: false
+          writeOnly: false
+        country:
+          type: string
+          description: The country of the user. 000 stands for "unknown"
+          readOnly: false
+          writeOnly: false
+        avatar:
+          type: object
+          description: The current avatar of the user.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        public_nick_name:
+          type: string
+          description: The current nickname of the user.
+          readOnly: true
+          writeOnly: false
+    UserBlocklistMasterCardMerchant:
+      type: object
+      properties:
+        merchant_name:
+          type: string
+          description: The name of the merchant.
+          readOnly: false
+          writeOnly: false
+        merchant_id:
+          type: string
+          description: The blocklisted merchant.
+          readOnly: false
+          writeOnly: false
+        merchant_identifier:
+          type: string
+          description: Identifier of the merchant we are blocklisting.
+          readOnly: false
+          writeOnly: false
+        mastercard_merchant_id:
+          type: string
+          description: The blocklisted merchant.
+          readOnly: false
+          writeOnly: false
+        external_merchant_id:
+          type: string
+          description: Externally provided merchant identification.
+          readOnly: false
+          writeOnly: false
+        id:
+          type: integer
+          description: The id of the blocklist.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the object's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the object's last update.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the the blocklist.
+          readOnly: true
+          writeOnly: false
+        merchant_hash:
+          type: string
+          description: Hash of the merchant we are blocklisting.
+          readOnly: true
+          writeOnly: false
+        merchant_avatar:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+    Error:
+      type: array
+      items:
+        type: object
+        properties:
+          error_description:
+            type: string
+            description: The error description in English.
+          error_description_translated:
+            type: string
+            description: The error description translated to the user's language.
+    AdditionalTransactionInformationCategory:
+      type: object
+      properties:
+        category:
+          type: string
+          description: The category.
+          readOnly: true
+          writeOnly: false
+        type:
+          type: string
+          description: Who created this category.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: Whether this category is active. Only relevant for user-defined categories.
+          readOnly: true
+          writeOnly: false
+        order:
+          type: integer
+          description: The sort order of the category.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: The description of the category.
+          readOnly: true
+          writeOnly: false
+        description_translated:
+          type: string
+          description: The translation of the description of the category.
+          readOnly: true
+          writeOnly: false
+        color:
+          type: string
+          description: The color of the category.
+          readOnly: true
+          writeOnly: false
+        icon:
+          type: string
+          description: The icon of the category.
+          readOnly: true
+          writeOnly: false
+    PaymentAutoAllocateInstance:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the PaymentAutoAllocateInstance.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp when the PaymentAutoAllocateInstance was created.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp when the PaymentAutoAllocateInstance was last updated.
+          readOnly: true
+          writeOnly: false
+        payment_auto_allocate_id:
+          type: integer
+          description: The ID of the payment auto allocate this instance belongs to.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the payment auto allocate instance. SUCCEEDED or FAILED.
+          readOnly: true
+          writeOnly: false
+        error_message:
+          type: array
+          description: The error message, if the payment auto allocating failed.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Error'
+        payment_batch:
+          type: object
+          description: The payment batch allocating all the payments.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/PaymentBatch'
+        payment_id:
+          type: integer
+          description: The ID of the payment that triggered the allocating of the payments.
+          readOnly: true
+          writeOnly: false
+        all_ginmon_transaction_order:
+          type: array
+          description: All Ginmon transaction orders executed with this instance.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/GinmonTransaction'
+    CashbackPayoutItem:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status of the cashback payout item.
+          readOnly: true
+          writeOnly: false
+        amount:
+          type: object
+          description: The amount of cashback earned.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        rate_applied:
+          type: string
+          description: The cashback rate.
+          readOnly: true
+          writeOnly: false
+        transaction_category:
+          type: object
+          description: The transaction category that this cashback is for.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/AdditionalTransactionInformationCategory'
+        user_partner_promotion:
+          type: object
+          description: The partner promotion that this cashback is for.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/UserPartnerPromotionCashback'
+    CardPrimaryAccountNumber:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The ID for this Virtual PAN.
+          readOnly: false
+          writeOnly: false
+        description:
+          type: string
+          description: The description for this PAN.
+          readOnly: false
+          writeOnly: false
+        status:
+          type: string
+          description: The status for this PAN, only for Online Cards.
+          readOnly: false
+          writeOnly: false
+        monetary_account_id:
+          type: integer
+          description: The ID of the monetary account to assign to this PAN, only for Online Cards.
+          readOnly: false
+          writeOnly: false
+        uuid:
+          type: string
+          description: The UUID for this Virtual PAN.
+          readOnly: true
+          writeOnly: false
+        four_digit:
+          type: string
+          description: The last four digits of the PAN.
+          readOnly: true
+          writeOnly: false
+        type:
+          type: string
+          description: The type of the PAN.
+          readOnly: true
+          writeOnly: false
+    ShareDetailReadOnly:
+      type: object
+      properties:
+        view_balance:
+          type: boolean
+          description: If set to true, the invited user will be able to view the account balance.
+          readOnly: false
+          writeOnly: false
+        view_old_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events from before the share was active.
+          readOnly: false
+          writeOnly: false
+        view_new_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events starting from the time the share became active.
+          readOnly: false
+          writeOnly: false
+    ShareDetailDraftPayment:
+      type: object
+      properties:
+        make_draft_payments:
+          type: boolean
+          description: If set to true, the invited user will be able to make draft payments from the shared account.
+          readOnly: false
+          writeOnly: false
+        view_balance:
+          type: boolean
+          description: If set to true, the invited user will be able to view the account balance.
+          readOnly: false
+          writeOnly: false
+        view_old_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events from before the share was active.
+          readOnly: false
+          writeOnly: false
+        view_new_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events starting from the time the share became active.
+          readOnly: false
+          writeOnly: false
+    PaymentBatchAnchoredPayment:
+      type: object
+      properties:
+        Payment:
+          type: array
+          description: ''
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Payment'
+    CompanyEmployeeCard:
+      type: object
+      properties:
+        pointer_counter_user:
+          type: object
+          description: The pointer to the employee for which you want to create a card.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Pointer'
+        pointer_monetary_account:
+          type: object
+          description: The pointer to the monetary account that will be connected at first with the card.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Pointer'
+        type:
+          type: string
+          description: The type of card to order.
+          readOnly: false
+          writeOnly: true
+        product_type:
+          type: string
+          description: The product type of the card to order.
+          readOnly: false
+          writeOnly: true
+        company_name_on_card:
+          type: string
+          description: The name of the company that should be displayed on the card.
+          readOnly: false
+          writeOnly: false
+        employee_name_on_card:
+          type: string
+          description: The name of the employee that should be displayed on the card.
+          readOnly: false
+          writeOnly: true
+        employee_preferred_name_on_card:
+          type: string
+          description: The user's preferred name as it will be on the card.
+          readOnly: false
+          writeOnly: true
+        amount_limit_monthly:
+          type: object
+          description: The monthly spending limit for this employee on the card.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        status:
+          type: string
+          description: The status of the employee card.
+          readOnly: false
+          writeOnly: false
+        card:
+          type: object
+          description: The actual card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Card'
+        amount_spent_monthly:
+          type: object
+          description: The monthly spend for this employee on the card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        number_of_company_employee_card_receipt_pending:
+          type: integer
+          description: The number of transactions that still need a receipt.
+          readOnly: true
+          writeOnly: false
+      required:
+      - pointer_counter_user
+      - pointer_monetary_account
+      - type
+      - product_type
+    TransferwiseQuote:
+      type: object
+      properties:
+        currency_source:
+          type: string
+          description: The source currency.
+          readOnly: false
+          writeOnly: true
+        currency_target:
+          type: string
+          description: The target currency.
+          readOnly: false
+          writeOnly: true
+        amount_source:
+          type: object
+          description: The source amount.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_target:
+          type: object
+          description: The target amount.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        id:
+          type: integer
+          description: The id of the quote.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the quote's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the quote's last update.
+          readOnly: true
+          writeOnly: false
+        time_expiry:
+          type: string
+          description: The expiration timestamp of the quote.
+          readOnly: true
+          writeOnly: false
+        quote_id:
+          type: string
+          description: The quote id Transferwise needs.
+          readOnly: true
+          writeOnly: false
+        amount_fee:
+          type: object
+          description: The fee amount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        rate:
+          type: string
+          description: The rate.
+          readOnly: true
+          writeOnly: false
+        time_delivery_estimate:
+          type: string
+          description: The estimated delivery time.
+          readOnly: true
+          writeOnly: false
+      required:
+      - currency_source
+      - currency_target
+    UserPartnerPromotionCashback:
+      type: object
+      properties:
+        promotion_code:
+          type: string
+          description: The promotion code used in signup to indicate the partner that referred the user.
+          readOnly: false
+          writeOnly: true
+        status:
+          type: string
+          description: The status of the user partner promotion.
+          readOnly: true
+          writeOnly: false
+        number_of_transaction_remaining:
+          type: integer
+          description: The number of transactions that are still eligible for this promotion.
+          readOnly: true
+          writeOnly: false
+        partner_promotion:
+          type: object
+          description: The promotion that the user signed up with.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/PartnerPromotionCashback'
+      required:
+      - promotion_code
+    BunqMeFundraiserProfile:
+      type: object
+      properties:
+        pointer:
+          type: object
+          description: The pointer (url) which will be used to access the bunq.me fundraiser profile.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Pointer'
+        color:
+          type: string
+          description: The color chosen for the bunq.me fundraiser profile in hexadecimal format.
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: object
+          description: The LabelMonetaryAccount with the public information of the User and the MonetaryAccount that created the bunq.me fundraiser profile.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        currency:
+          type: string
+          description: The currency of the MonetaryAccount that created the bunq.me fundraiser profile.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: The description of the bunq.me fundraiser profile.
+          readOnly: true
+          writeOnly: false
+        attachment:
+          type: object
+          description: The attachment attached to the fundraiser profile.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/AttachmentPublic'
+        status:
+          type: string
+          description: The status of the bunq.me fundraiser profile, can be ACTIVE or DEACTIVATED.
+          readOnly: true
+          writeOnly: false
+        redirect_url:
+          type: string
+          description: The URL which the user is sent to when a payment is completed.
+          readOnly: true
+          writeOnly: false
+        invite_profile_name:
+          type: string
+          description: Provided if the user has enabled their invite link.
+          readOnly: true
+          writeOnly: false
+        merchant_available:
+          type: array
+          description: List of available merchants.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/BunqMeMerchantAvailable'
+    InvoiceItemGroup:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of the invoice item group.
+          readOnly: true
+          writeOnly: false
+        type_description:
+          type: string
+          description: The description of the type of the invoice item group.
+          readOnly: true
+          writeOnly: false
+        type_description_translated:
+          type: string
+          description: The translated description of the type of the invoice item group.
+          readOnly: true
+          writeOnly: false
+        instance_description:
+          type: string
+          description: The identifier of the invoice item group.
+          readOnly: true
+          writeOnly: false
+        product_vat_exclusive:
+          type: object
+          description: The unit item price excluding VAT.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        product_vat_inclusive:
+          type: object
+          description: The unit item price including VAT.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        item:
+          type: array
+          description: The invoice items in the group.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/InvoiceItem'
+    ScheduleInstance:
+      type: object
+      properties:
+        state:
+          type: string
+          description: The state of the scheduleInstance. (FINISHED_SUCCESSFULLY, RETRY, FAILED_USER_ERROR)
+          readOnly: false
+          writeOnly: false
+        time_start:
+          type: string
+          description: The schedule start time (UTC).
+          readOnly: true
+          writeOnly: false
+        time_end:
+          type: string
+          description: The schedule end time (UTC).
+          readOnly: true
+          writeOnly: false
+        error_message:
+          type: array
+          description: The message when the scheduled instance has run and failed due to user error.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Error'
+        scheduled_object:
+          type: object
+          description: The scheduled object. (Payment, PaymentBatch)
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/ScheduleAnchorObject'
+        result_object:
+          type: object
+          description: The result object of this schedule instance. (Payment, PaymentBatch)
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/ScheduleInstanceAnchorObject'
+        request_reference_split_the_bill:
+          type: array
+          description: The reference to the object used for split the bill. Can be RequestInquiry or RequestInquiryBatch
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/RequestInquiryReference'
+    ScheduleAnchorObject:
+      type: object
+      properties:
+        Payment:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Payment'
+        PaymentBatch:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/PaymentBatch'
+    SofortMerchantTransaction:
+      type: object
+      properties:
+        amount_requested:
+          type: object
+          description: The requested amount of money to add.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        issuer:
+          type: string
+          description: The BIC of the issuer.
+          readOnly: false
+          writeOnly: false
+        monetary_account_id:
+          type: integer
+          description: The id of the monetary account this sofort merchant transaction links to.
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: object
+          description: The alias of the monetary account to add money to.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counterparty_alias:
+          type: object
+          description: The alias of the monetary account the money comes from.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        amount_guaranteed:
+          type: object
+          description: In case of a successful transaction, the amount of money that will be transferred.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        issuer_authentication_url:
+          type: string
+          description: 'The URL to visit to '
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the transaction.
+          readOnly: true
+          writeOnly: false
+        error_message:
+          type: array
+          description: The error message of the transaction.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Error'
+        transaction_identifier:
+          type: string
+          description: The 'transaction ID' of the Sofort transaction.
+          readOnly: true
+          writeOnly: false
+    BunqMeTabResultResponse:
+      type: object
+      properties:
+        payment:
+          type: object
+          description: The payment made for the bunq.me tab.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Payment'
+    MasterCardActionReference:
+      type: object
+      properties:
+        event_id:
+          type: integer
+          description: The id of the event.
+          readOnly: true
+          writeOnly: false
+    ShareInviteMonetaryAccountResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status of the share. Can be ACTIVE, REVOKED, REJECTED.
+          readOnly: false
+          writeOnly: false
+        card_id:
+          type: integer
+          description: The card to link to the shared monetary account. Used only if share_detail is ShareDetailCardPayment.
+          readOnly: false
+          writeOnly: true
+        id:
+          type: integer
+          description: The id of the ShareInviteBankResponse.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the ShareInviteBankResponse creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the ShareInviteBankResponse last update.
+          readOnly: true
+          writeOnly: false
+        counter_alias:
+          type: object
+          description: The monetary account and user who created the share.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        user_alias_cancelled:
+          type: object
+          description: The user who cancelled the share if it has been revoked or rejected.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        monetary_account_id:
+          type: integer
+          description: The id of the monetary account the ACCEPTED share applies to. null otherwise.
+          readOnly: true
+          writeOnly: false
+        draft_share_invite_bank_id:
+          type: integer
+          description: The id of the draft share invite bank.
+          readOnly: true
+          writeOnly: false
+        share_detail:
+          type: object
+          description: The share details.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/ShareDetail'
+        access_type:
+          type: string
+          description: Type of access that is wanted, one of VIEW_BALANCE, VIEW_TRANSACTION, DRAFT_PAYMENT or FULL_TRANSIENT
+          readOnly: true
+          writeOnly: false
+        relation_user:
+          type: object
+          description: All of the relation users towards this MA.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/RelationUser'
+        share_type:
+          type: string
+          description: The share type, either STANDARD or MUTUAL.
+          readOnly: true
+          writeOnly: false
+        start_date:
+          type: string
+          description: The start date of this share.
+          readOnly: true
+          writeOnly: false
+        end_date:
+          type: string
+          description: The expiration date of this share.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: The description of this share. It is basically the monetary account description.
+          readOnly: true
+          writeOnly: false
+    BunqMeFundraiserResult:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the bunq.me.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp when the bunq.me was created.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp when the bunq.me was last updated.
+          readOnly: true
+          writeOnly: false
+        bunqme_fundraiser_profile:
+          type: object
+          description: The bunq.me fundraiser profile.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqMeFundraiserProfile'
+        payments:
+          type: array
+          description: The list of payments, paid to the bunq.me fundraiser profile.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Payment'
+    CompanyEmployeeCardReceipt:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status of the receipt.
+          readOnly: false
+          writeOnly: false
+    CompanyEmployeeSettingAdyenCardTransaction:
+      type: object
+      properties:
+        pointer_counter_user:
+          type: object
+          description: The pointer to the employee for which you want to create a card.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Pointer'
+        status:
+          type: string
+          description: Whether the user is allowed to use Tap to Pay.
+          readOnly: false
+          writeOnly: false
+        monetary_account_payout_id:
+          type: integer
+          description: The ID of the monetary account where Tap to Pay transactions should be paid out to.
+          readOnly: false
+          writeOnly: false
+      required:
+      - pointer_counter_user
+    BunqId:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: An integer ID of an object. Unique per object type.
+          readOnly: false
+          writeOnly: false
+    InvoiceItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the invoice item.
+          readOnly: true
+          writeOnly: false
+        billing_date:
+          type: string
+          description: The billing date of the item.
+          readOnly: true
+          writeOnly: false
+        type_description:
+          type: string
+          description: The price description.
+          readOnly: true
+          writeOnly: false
+        type_description_translated:
+          type: string
+          description: The translated price description.
+          readOnly: true
+          writeOnly: false
+        unit_vat_exclusive:
+          type: object
+          description: The unit item price excluding VAT.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        unit_vat_inclusive:
+          type: object
+          description: The unit item price including VAT.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        vat:
+          type: integer
+          description: The VAT tax fraction.
+          readOnly: true
+          writeOnly: false
+        quantity:
+          type: integer
+          description: The number of items priced.
+          readOnly: true
+          writeOnly: false
+        total_vat_exclusive:
+          type: object
+          description: The item price excluding VAT.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        total_vat_inclusive:
+          type: object
+          description: The item price including VAT.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+    SchedulePayment:
+      type: object
+      properties:
+        payment:
+          type: object
+          description: The payment details.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/SchedulePaymentEntry'
+        schedule:
+          type: object
+          description: The schedule details.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Schedule'
+        purpose:
+          type: string
+          description: The schedule purpose.
+          readOnly: false
+          writeOnly: false
+        status:
+          type: string
+          description: 'The schedule status, options: ACTIVE, FINISHED, CANCELLED.'
+          readOnly: true
+          writeOnly: false
+    RequestInquiryReference:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of request inquiry. Can be RequestInquiry or RequestInquiryBatch.
+          readOnly: true
+          writeOnly: false
+        id:
+          type: integer
+          description: The id of the request inquiry (batch).
+          readOnly: true
+          writeOnly: false
+    WhitelistResultViewAnchoredObject:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The ID of the whitelist entry.
+          readOnly: true
+          writeOnly: false
+        requestResponse:
+          type: object
+          description: The RequestResponse object
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/RequestResponse'
+        draftPayment:
+          type: object
+          description: The DraftPayment object
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/DraftPayment'
+    AdditionalInformation:
+      type: object
+      properties:
+        category:
+          type: string
+          description: The category of the refund, required for chargeback.
+          readOnly: true
+          writeOnly: false
+        reason:
+          type: string
+          description: The reason to refund, required for chargeback.
+          readOnly: true
+          writeOnly: false
+        comment:
+          type: string
+          description: Comment about the refund.
+          readOnly: true
+          writeOnly: false
+        attachment:
+          type: array
+          description: The Attachments to attach to the refund request.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/AttachmentMasterCardActionRefund'
+        terms_and_conditions:
+          type: string
+          description: Proof that the user acknowledged the terms and conditions for chargebacks.
+          readOnly: true
+          writeOnly: false
+    GinmonTransaction:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status of the transaction.
+          readOnly: true
+          writeOnly: false
+        status_description:
+          type: string
+          description: The status of the transaction.
+          readOnly: true
+          writeOnly: false
+        status_description_translated:
+          type: string
+          description: The translated status of the transaction.
+          readOnly: true
+          writeOnly: false
+        amount_billing:
+          type: object
+          description: The final amount the user will pay or receive.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_billing_original:
+          type: object
+          description: The estimated amount the user will pay or receive.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        isin:
+          type: string
+          description: The ISIN of the security.
+          readOnly: true
+          writeOnly: false
+        external_identifier:
+          type: string
+          description: External identifier of this order at Ginmon.
+          readOnly: true
+          writeOnly: false
+        label_user:
+          type: object
+          description: The label of the user.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        label_monetary_account:
+          type: object
+          description: The label of the monetary account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counter_label_monetary_account:
+          type: object
+          description: The label of the counter monetary account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        event_id:
+          type: integer
+          description: The id of the event of transaction.
+          readOnly: true
+          writeOnly: false
+    BunqMeMerchantAvailable:
+      type: object
+      properties:
+        merchant_type:
+          type: string
+          description: A merchant type supported by bunq.me.
+          readOnly: true
+          writeOnly: false
+        available:
+          type: boolean
+          description: Whether or not the merchant is available for the user.
+          readOnly: true
+          writeOnly: false
+    AttachmentUrl:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The file type of attachment.
+          readOnly: true
+          writeOnly: false
+        url:
+          type: string
+          description: The URL where the attachment can be downloaded.
+          readOnly: true
+          writeOnly: false
+    MasterCardActionRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the MastercardAction.
+          readOnly: true
+          writeOnly: false
+        monetary_account_id:
+          type: integer
+          description: The id of the monetary account this action links to.
+          readOnly: true
+          writeOnly: false
+        card_id:
+          type: integer
+          description: The id of the card this action links to.
+          readOnly: true
+          writeOnly: false
+        amount_local:
+          type: object
+          description: The amount of the transaction in local currency.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_converted:
+          type: object
+          description: The amount of the transaction in local currency.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_billing:
+          type: object
+          description: The amount of the transaction in the monetary account's currency.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_original_local:
+          type: object
+          description: The original amount in local currency.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_original_billing:
+          type: object
+          description: The original amount in the monetary account's currency.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_fee:
+          type: object
+          description: The fee amount as charged by the merchant, if applicable.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        card_authorisation_id_response:
+          type: string
+          description: The response code by which authorised transaction can be identified as authorised by bunq.
+          readOnly: true
+          writeOnly: false
+        decision:
+          type: string
+          description: Why the transaction was denied, if it was denied, or just ALLOWED.
+          readOnly: true
+          writeOnly: false
+        payment_status:
+          type: string
+          description: The payment status of the transaction. For example PAYMENT_SUCCESSFUL, for a successful payment.
+          readOnly: true
+          writeOnly: false
+        decision_description:
+          type: string
+          description: Empty if allowed, otherwise a textual explanation of why it was denied.
+          readOnly: true
+          writeOnly: false
+        decision_description_translated:
+          type: string
+          description: Empty if allowed, otherwise a textual explanation of why it was denied in user's language.
+          readOnly: true
+          writeOnly: false
+        decision_together_url:
+          type: string
+          description: Empty if allowed or if no relevant Together topic exists, otherwise contains the URL for a Together topic with more information about the decision.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: The description for this transaction to display.
+          readOnly: true
+          writeOnly: false
+        authorisation_status:
+          type: string
+          description: The status in the authorisation process.
+          readOnly: true
+          writeOnly: false
+        authorisation_type:
+          type: string
+          description: The type of transaction that was delivered using the card.
+          readOnly: true
+          writeOnly: false
+        pan_entry_mode_user:
+          type: string
+          description: The type of entry mode the user used. Can be 'ATM', 'ICC', 'MAGNETIC_STRIPE' or 'E_COMMERCE'.
+          readOnly: true
+          writeOnly: false
+        settlement_status:
+          type: string
+          description: The setlement status in the authorisation process.
+          readOnly: true
+          writeOnly: false
+        clearing_status:
+          type: string
+          description: The clearing status of the authorisation. Can be 'PENDING', 'FIRST_PRESENTMENT_COMPLETE' or 'REFUND_LENIENCY'.
+          readOnly: true
+          writeOnly: false
+        maturity_date:
+          type: string
+          description: The maturity date.
+          readOnly: true
+          writeOnly: false
+        city:
+          type: string
+          description: The city where the message originates from as announced by the terminal.
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: object
+          description: The monetary account label of the account that this action is created for.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counterparty_alias:
+          type: object
+          description: The monetary account label of the counterparty.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        label_card:
+          type: object
+          description: The label of the card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelCard'
+        merchant_id:
+          type: string
+          description: The identification string of the merchant.
+          readOnly: true
+          writeOnly: false
+        token_status:
+          type: string
+          description: If this is a tokenisation action, this shows the status of the token.
+          readOnly: true
+          writeOnly: false
+        reservation_expiry_time:
+          type: string
+          description: If this is a reservation, the moment the reservation will expire.
+          readOnly: true
+          writeOnly: false
+        clearing_expiry_time:
+          type: string
+          description: The time when the processing of the clearing is expired, refunding the authorisation.
+          readOnly: true
+          writeOnly: false
+        applied_limit:
+          type: string
+          description: The type of the limit applied to validate if this MasterCardAction was within the spending limits. The returned string matches the limit types as defined in the card endpoint.
+          readOnly: true
+          writeOnly: false
+        secure_code_id:
+          type: integer
+          description: The secure code id for this mastercard action or null.
+          readOnly: true
+          writeOnly: false
+        wallet_provider_id:
+          type: string
+          description: The ID of the wallet provider as defined by MasterCard. 420 = bunq Android app with Tap&Pay; 103 = Apple Pay.
+          readOnly: true
+          writeOnly: false
+        request_reference_split_the_bill:
+          type: array
+          description: The reference to the object used for split the bill. Can be RequestInquiry or RequestInquiryBatch
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/RequestInquiryReference'
+        card_tokenization_event:
+          type: object
+          description: The cardTokenization event awaiting acceptance by the user
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Event'
+        all_mastercard_action_refund:
+          type: array
+          description: A reference to the Refunds if they exist.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/MasterCardActionRefund'
+        pos_card_presence:
+          type: string
+          description: The Card Presence type of the POS.
+          readOnly: true
+          writeOnly: false
+        pos_card_holder_presence:
+          type: string
+          description: The Card Holder Presence type of the POS.
+          readOnly: true
+          writeOnly: false
+        eligible_whitelist_id:
+          type: integer
+          description: The whitelist id for this action or null.
+          readOnly: true
+          writeOnly: false
+        cashback_payout_item:
+          type: object
+          description: The cashback payout item for this action or null
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CashbackPayoutItem'
+        point_mutation:
+          type: object
+          description: The point mutation for this action or null
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/PointMutation'
+        blacklist:
+          type: object
+          description: DEPRECATED. The blacklist enabled for the merchant of this transaction
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/UserBlocklistMasterCardMerchant'
+        blocklist:
+          type: object
+          description: The blocklist enabled for the merchant of this transaction
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/UserBlocklistMasterCardMerchant'
+        additional_authentication_status:
+          type: string
+          description: The status of the additional authentication performed (3ds) by the user for this transaction.
+          readOnly: true
+          writeOnly: false
+        pin_status:
+          type: string
+          description: Status checking the provided PIN.
+          readOnly: true
+          writeOnly: false
+        mastercard_action_report:
+          type: object
+          description: The report for this transaction
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MasterCardActionReport'
+        merchant_category_code:
+          type: string
+          description: The MCC provided.
+          readOnly: true
+          writeOnly: false
+        company_employee_card_receipt:
+          type: object
+          description: The receipt the company employee has to provide for this transaction.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CompanyEmployeeCardReceipt'
+    ShareInviteMonetaryAccountInquiry:
+      type: object
+      properties:
+        counter_user_alias:
+          type: object
+          description: The label of the user to share with.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        access_type:
+          type: string
+          description: Type of access that is in place.
+          readOnly: false
+          writeOnly: false
+        draft_share_invite_bank_id:
+          type: integer
+          description: 'DEPRECATED: USE `access_type` INSTEAD | The id of the draft share invite bank.'
+          readOnly: false
+          writeOnly: true
+        share_detail:
+          type: object
+          description: 'DEPRECATED: USE `access_type` INSTEAD | The share details. Only one of these objects may be passed.'
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/ShareDetail'
+        status:
+          type: string
+          description: The status of the share. Can be ACTIVE, REVOKED, REJECTED.
+          readOnly: false
+          writeOnly: false
+        relationship:
+          type: string
+          description: 'The relationship: COMPANY_DIRECTOR, COMPANY_EMPLOYEE, etc'
+          readOnly: false
+          writeOnly: false
+        share_type:
+          type: string
+          description: 'DEPRECATED: USE `access_type` INSTEAD | The share type, either STANDARD or MUTUAL.'
+          readOnly: false
+          writeOnly: true
+        start_date:
+          type: string
+          description: 'DEPRECATED: USE `access_type` INSTEAD | The start date of this share.'
+          readOnly: false
+          writeOnly: true
+        end_date:
+          type: string
+          description: 'DEPRECATED: USE `access_type` INSTEAD | The expiration date of this share.'
+          readOnly: false
+          writeOnly: true
+        alias:
+          type: object
+          description: The label of the monetary account that's being shared.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        user_alias_created:
+          type: object
+          description: The user who created the share.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        user_alias_revoked:
+          type: object
+          description: The user who revoked the share.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        monetary_account_id:
+          type: integer
+          description: The id of the monetary account the share applies to.
+          readOnly: true
+          writeOnly: false
+        id:
+          type: integer
+          description: The id of the newly created share invite.
+          readOnly: true
+          writeOnly: false
+    PointMutation:
+      type: object
+      properties:
+        number_of_point:
+          type: integer
+          description: The number of points earned.
+          readOnly: true
+          writeOnly: false
+    SchedulePaymentBatch:
+      type: object
+      properties:
+        payments:
+          type: array
+          description: The payment details.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/SchedulePaymentEntry'
+        schedule:
+          type: object
+          description: The schedule details.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Schedule'
+    Attachment:
+      type: object
+      properties:
+        description:
+          type: string
+          description: The description of the attachment.
+          readOnly: true
+          writeOnly: false
+        content_type:
+          type: string
+          description: The content type of the attachment's file.
+          readOnly: true
+          writeOnly: false
+        urls:
+          type: array
+          description: The URLs where the file can be downloaded.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/AttachmentUrl'
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          description: The street.
+          readOnly: false
+          writeOnly: false
+        house_number:
+          type: string
+          description: The house number.
+          readOnly: false
+          writeOnly: false
+        po_box:
+          type: string
+          description: The PO box.
+          readOnly: false
+          writeOnly: false
+        postal_code:
+          type: string
+          description: The postal code.
+          readOnly: false
+          writeOnly: false
+        city:
+          type: string
+          description: The city.
+          readOnly: false
+          writeOnly: false
+        country:
+          type: string
+          description: The country as an ISO 3166-1 alpha-2 country code.
+          readOnly: false
+          writeOnly: false
+        extra:
+          type: string
+          description: The apartment, building or other extra information for addresses.
+          readOnly: false
+          writeOnly: false
+        mailbox_name:
+          type: string
+          description: The name on the mailbox (only used for Postal and Shipping addresses).
+          readOnly: false
+          writeOnly: false
+        province:
+          type: string
+          description: The province according to local standard.
+          readOnly: true
+          writeOnly: false
+        is_user_address_updated:
+          type: boolean
+          description: To show whether user created or updated her address for app event listing.
+          readOnly: true
+          writeOnly: false
+    TransferwiseTransfer:
+      type: object
+      properties:
+        monetary_account_id:
+          type: string
+          description: The id of the monetary account the payment should be made from.
+          readOnly: false
+          writeOnly: true
+        recipient_id:
+          type: string
+          description: The id of the target account.
+          readOnly: false
+          writeOnly: true
+        alias:
+          type: object
+          description: The LabelMonetaryAccount containing the public information of 'this' (party) side of the Payment.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counterparty_alias:
+          type: object
+          description: The LabelMonetaryAccount containing the public information of the other (counterparty) side of the Payment.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        status:
+          type: string
+          description: The status.
+          readOnly: true
+          writeOnly: false
+        sub_status:
+          type: string
+          description: The subStatus.
+          readOnly: true
+          writeOnly: false
+        status_transferwise:
+          type: string
+          description: The status as Transferwise reports it.
+          readOnly: true
+          writeOnly: false
+        status_transferwise_issue:
+          type: string
+          description: A status to indicatie if Transferwise has an issue with this payment and requires more information.
+          readOnly: true
+          writeOnly: false
+        amount_source:
+          type: object
+          description: The source amount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_target:
+          type: object
+          description: The target amount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        rate:
+          type: string
+          description: The rate of the payment.
+          readOnly: true
+          writeOnly: false
+        reference:
+          type: string
+          description: The reference of the payment.
+          readOnly: true
+          writeOnly: false
+        pay_in_reference:
+          type: string
+          description: The Pay-In reference of the payment.
+          readOnly: true
+          writeOnly: false
+        time_delivery_estimate:
+          type: string
+          description: The estimated delivery time.
+          readOnly: true
+          writeOnly: false
+        quote:
+          type: object
+          description: The quote details used to created the payment.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/TransferwiseQuote'
+      required:
+      - monetary_account_id
+      - recipient_id
+    WhitelistResult:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The ID of the whitelist entry.
+          readOnly: true
+          writeOnly: false
+        monetary_account_paying_id:
+          type: integer
+          description: The account from which payments will be deducted when a transaction is matched with this whitelist.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the WhitelistResult.
+          readOnly: true
+          writeOnly: false
+        sub_status:
+          type: string
+          description: The subStatus of the WhitelistResult.
+          readOnly: true
+          writeOnly: false
+        error_message:
+          type: array
+          description: The message when the whitelist result has failed due to user error.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Error'
+        whitelist:
+          type: object
+          description: The corresponding whitelist.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Whitelist'
+        object:
+          type: object
+          description: The details of the external object the event was created for.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/WhitelistResultViewAnchoredObject'
+        request_reference_split_the_bill:
+          type: array
+          description: The reference to the object used for split the bill. Can be RequestInquiry or RequestInquiryBatch
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/RequestInquiryReference'
+    RequestInquiry:
+      type: object
+      properties:
+        amount_inquired:
+          type: object
+          description: The requested amount.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        counterparty_alias:
+          type: object
+          description: The LabelMonetaryAccount with the public information of the MonetaryAccount the money was requested from.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        description:
+          type: string
+          description: The description of the inquiry.
+          readOnly: false
+          writeOnly: false
+        attachment:
+          type: array
+          description: The attachments attached to the payment.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/BunqId'
+        merchant_reference:
+          type: string
+          description: The client's custom reference that was attached to the request and the mutation.
+          readOnly: false
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the request.
+          readOnly: false
+          writeOnly: false
+        minimum_age:
+          type: integer
+          description: The minimum age the user accepting the RequestInquiry must have.
+          readOnly: false
+          writeOnly: false
+        require_address:
+          type: string
+          description: Whether or not an address must be provided on accept.
+          readOnly: false
+          writeOnly: false
+        want_tip:
+          type: boolean
+          description: '[DEPRECATED] Whether or not the accepting user can give an extra tip on top of the requested Amount. Defaults to false.'
+          readOnly: false
+          writeOnly: true
+        allow_amount_lower:
+          type: boolean
+          description: '[DEPRECATED] Whether or not the accepting user can choose to accept with a lower amount than requested. Defaults to false.'
+          readOnly: false
+          writeOnly: true
+        allow_amount_higher:
+          type: boolean
+          description: '[DEPRECATED] Whether or not the accepting user can choose to accept with a higher amount than requested. Defaults to false.'
+          readOnly: false
+          writeOnly: true
+        allow_bunqme:
+          type: boolean
+          description: Whether or not sending a bunq.me request is allowed.
+          readOnly: false
+          writeOnly: true
+        redirect_url:
+          type: string
+          description: The URL which the user is sent to after accepting or rejecting the Request.
+          readOnly: false
+          writeOnly: false
+        event_id:
+          type: integer
+          description: The ID of the associated event if the request was made using 'split the bill'.
+          readOnly: false
+          writeOnly: true
+        id:
+          type: integer
+          description: The id of the created RequestInquiry.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the payment request's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the payment request's last update.
+          readOnly: true
+          writeOnly: false
+        time_responded:
+          type: string
+          description: The timestamp of when the payment request was responded to.
+          readOnly: true
+          writeOnly: false
+        time_expiry:
+          type: string
+          description: The timestamp of when the payment request expired.
+          readOnly: true
+          writeOnly: false
+        monetary_account_id:
+          type: integer
+          description: The id of the monetary account the request response applies to.
+          readOnly: true
+          writeOnly: false
+        amount_responded:
+          type: object
+          description: The responded amount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        user_alias_created:
+          type: object
+          description: The label that's displayed to the counterparty with the mutation. Includes user.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        user_alias_revoked:
+          type: object
+          description: The label that's displayed to the counterparty with the mutation. Includes user.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        batch_id:
+          type: integer
+          description: The id of the batch if the request was part of a batch.
+          readOnly: true
+          writeOnly: false
+        scheduled_id:
+          type: integer
+          description: The id of the scheduled job if the request was scheduled.
+          readOnly: true
+          writeOnly: false
+        bunqme_share_url:
+          type: string
+          description: The url that points to the bunq.me request.
+          readOnly: true
+          writeOnly: false
+        address_shipping:
+          type: object
+          description: The shipping address provided by the accepting user if an address was requested.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        address_billing:
+          type: object
+          description: The billing address provided by the accepting user if an address was requested.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        geolocation:
+          type: object
+          description: The geolocation where the payment was done.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Geolocation'
+        reference_split_the_bill:
+          type: object
+          description: The reference to the object used for split the bill. Can be Payment, PaymentBatch, ScheduleInstance, RequestResponse and MasterCardAction
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/RequestReferenceSplitTheBillAnchorObject'
+      required:
+      - allow_bunqme
+    BunqMeTabEntry:
+      type: object
+      properties:
+        amount_inquired:
+          type: object
+          description: The requested Amount.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        description:
+          type: string
+          description: The description for the bunq.me. Maximum 9000 characters.
+          readOnly: false
+          writeOnly: false
+        redirect_url:
+          type: string
+          description: The URL which the user is sent to when a payment is completed.
+          readOnly: false
+          writeOnly: false
+        uuid:
+          type: string
+          description: The uuid of the bunq.me.
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: object
+          description: The LabelMonetaryAccount with the public information of the User and the MonetaryAccount that created the bunq.me link.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        status:
+          type: string
+          description: The status of the bunq.me. Can be WAITING_FOR_PAYMENT, CANCELLED or EXPIRED.
+          readOnly: true
+          writeOnly: false
+        merchant_available:
+          type: array
+          description: List of available merchants.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/BunqMeMerchantAvailable'
+        invite_profile_name:
+          type: string
+          description: Provided if the user has enabled their invite link.
+          readOnly: true
+          writeOnly: false
+    PaymentBatch:
+      type: object
+      properties:
+        payments:
+          type: object
+          description: The list of mutations that were made.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/PaymentBatchAnchoredPayment'
+    RequestInquiryBatch:
+      type: object
+      properties:
+        request_inquiries:
+          type: array
+          description: The list of requests that were made.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/RequestInquiry'
+        status:
+          type: string
+          description: The status of the request.
+          readOnly: false
+          writeOnly: true
+        total_amount_inquired:
+          type: object
+          description: The total amount originally inquired for this batch.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        event_id:
+          type: integer
+          description: The ID of the associated event if the request batch was made using 'split the bill'.
+          readOnly: false
+          writeOnly: true
+        reference_split_the_bill:
+          type: object
+          description: The reference to the object used for split the bill. Can be Payment, PaymentBatch, ScheduleInstance, RequestResponse and MasterCardAction
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/RequestReferenceSplitTheBillAnchorObject'
+    Avatar:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The public UUID of the avatar.
+          readOnly: false
+          writeOnly: false
+        anchor_uuid:
+          type: string
+          description: The public UUID of object this avatar is anchored to.
+          readOnly: true
+          writeOnly: false
+        image:
+          type: array
+          description: The actual image information of this avatar.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Image'
+        style:
+          type: string
+          description: The style (if applicable) for this Avatar.
+          readOnly: true
+          writeOnly: false
+    IdealMerchantTransaction:
+      type: object
+      properties:
+        amount_requested:
+          type: object
+          description: The requested amount of money to add.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        issuer:
+          type: string
+          description: The BIC of the issuer.
+          readOnly: false
+          writeOnly: false
+        monetary_account_id:
+          type: integer
+          description: The id of the monetary account this ideal merchant transaction links to.
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: object
+          description: The alias of the monetary account to add money to.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counterparty_alias:
+          type: object
+          description: The alias of the monetary account the money comes from.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        amount_guaranteed:
+          type: object
+          description: In case of a successful transaction, the amount of money that will be transferred.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        expiration:
+          type: string
+          description: When the transaction will expire.
+          readOnly: true
+          writeOnly: false
+        issuer_name:
+          type: string
+          description: The Name of the issuer.
+          readOnly: true
+          writeOnly: false
+        issuer_authentication_url:
+          type: string
+          description: 'The URL to visit to '
+          readOnly: true
+          writeOnly: false
+        purchase_identifier:
+          type: string
+          description: The 'purchase ID' of the iDEAL transaction.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the transaction.
+          readOnly: true
+          writeOnly: false
+        status_timestamp:
+          type: string
+          description: When the status was last updated.
+          readOnly: true
+          writeOnly: false
+        transaction_identifier:
+          type: string
+          description: The 'transaction ID' of the iDEAL transaction.
+          readOnly: true
+          writeOnly: false
+    MasterCardActionReport:
+      type: object
+      properties:
+        mastercard_action_id:
+          type: integer
+          description: The id of mastercard action being reported.
+          readOnly: false
+          writeOnly: false
+        type:
+          type: string
+          description: The id of mastercard action being reported.
+          readOnly: false
+          writeOnly: false
+        status:
+          type: string
+          description: The id of mastercard action being reported.
+          readOnly: false
+          writeOnly: false
+        merchant_id:
+          type: string
+          description: The reported merchant.
+          readOnly: true
+          writeOnly: false
+        merchant_name:
+          type: string
+          description: The name of the merchant.
+          readOnly: true
+          writeOnly: false
+        counterparty_alias:
+          type: object
+          description: The monetary account label of the merchant.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+    LabelMonetaryAccount:
+      type: object
+      properties:
+        iban:
+          type: string
+          description: The IBAN of the monetary account.
+          readOnly: true
+          writeOnly: false
+        display_name:
+          type: string
+          description: The name to display with this monetary account.
+          readOnly: true
+          writeOnly: false
+        avatar:
+          type: object
+          description: The avatar of the monetary account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        label_user:
+          type: object
+          description: The user this monetary account belongs to.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        country:
+          type: string
+          description: The country of the user. Formatted as a ISO 3166-1 alpha-2 country code.
+          readOnly: true
+          writeOnly: false
+        bunq_me:
+          type: object
+          description: Bunq.me pointer with type and value.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Pointer'
+        is_light:
+          type: boolean
+          description: Whether or not the monetary account is light.
+          readOnly: true
+          writeOnly: false
+        swift_bic:
+          type: string
+          description: The BIC used for a SWIFT payment.
+          readOnly: true
+          writeOnly: false
+        swift_account_number:
+          type: string
+          description: The account number used for a SWIFT payment. May or may not be an IBAN.
+          readOnly: true
+          writeOnly: false
+        transferwise_account_number:
+          type: string
+          description: The account number used for a Transferwise payment. May or may not be an IBAN.
+          readOnly: true
+          writeOnly: false
+        transferwise_bank_code:
+          type: string
+          description: The bank code used for a Transferwise payment. May or may not be a BIC.
+          readOnly: true
+          writeOnly: false
+        merchant_category_code:
+          type: string
+          description: The merchant category code.
+          readOnly: true
+          writeOnly: false
+    AttachmentPublic:
+      type: object
+    Image:
+      type: object
+      properties:
+        attachment_public_uuid:
+          type: string
+          description: The public UUID of the public attachment containing the image.
+          readOnly: true
+          writeOnly: false
+        content_type:
+          type: string
+          description: The content-type as a MIME filetype.
+          readOnly: true
+          writeOnly: false
+        height:
+          type: integer
+          description: The image height in pixels.
+          readOnly: true
+          writeOnly: false
+        width:
+          type: integer
+          description: The image width in pixels.
+          readOnly: true
+          writeOnly: false
+    Schedule:
+      type: object
+      properties:
+        time_start:
+          type: string
+          description: The schedule start time (UTC).
+          readOnly: false
+          writeOnly: false
+        time_end:
+          type: string
+          description: The schedule end time (UTC).
+          readOnly: false
+          writeOnly: false
+        recurrence_unit:
+          type: string
+          description: 'The schedule recurrence unit, options: ONCE, HOURLY, DAILY, WEEKLY, MONTHLY, YEARLY'
+          readOnly: false
+          writeOnly: false
+        recurrence_size:
+          type: integer
+          description: The schedule recurrence size. For example size 4 and unit WEEKLY means the recurrence is every 4 weeks.
+          readOnly: false
+          writeOnly: false
+        status:
+          type: string
+          description: 'The schedule status, options: ACTIVE, FINISHED, CANCELLED.'
+          readOnly: true
+          writeOnly: false
+        object:
+          type: object
+          description: The scheduled object. (Payment, PaymentBatch)
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/ScheduleAnchorObject'
+    DraftPayment:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status of the DraftPayment.
+          readOnly: false
+          writeOnly: false
+        entries:
+          type: array
+          description: The list of entries in the DraftPayment. Each entry will result in a payment when the DraftPayment is accepted.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/DraftPaymentEntry'
+        previous_updated_timestamp:
+          type: string
+          description: The last updated_timestamp that you received for this DraftPayment. This needs to be provided to prevent race conditions.
+          readOnly: false
+          writeOnly: true
+        number_of_required_accepts:
+          type: integer
+          description: The number of accepts that are required for the draft payment to receive status ACCEPTED. Currently only 1 is valid.
+          readOnly: false
+          writeOnly: true
+        schedule:
+          type: object
+          description: The schedule details when creating or updating a scheduled payment.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Schedule'
+      required:
+      - entries
+      - number_of_required_accepts
+    Card:
+      type: object
+      properties:
+        pin_code:
+          type: string
+          description: The plaintext pin code. Requests require encryption to be enabled.
+          readOnly: false
+          writeOnly: true
+        activation_code:
+          type: string
+          description: 'DEPRECATED: Activate a card by setting status to ACTIVE when the order_status is ACCEPTED_FOR_PRODUCTION.'
+          readOnly: false
+          writeOnly: true
+        status:
+          type: string
+          description: The status to set for the card. Can be ACTIVE, DEACTIVATED, LOST, STOLEN or CANCELLED, and can only be set to LOST/STOLEN/CANCELLED when order status is ACCEPTED_FOR_PRODUCTION/DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED. Can only be set to DEACTIVATED after initial activation, i.e. order_status is DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED. Mind that all the possible choices (apart from ACTIVE and DEACTIVATED) are permanent and cannot be changed after.
+          readOnly: false
+          writeOnly: false
+        order_status:
+          type: string
+          description: The order status to set for the card. Set to CARD_REQUEST_PENDING to get a virtual card produced.
+          readOnly: false
+          writeOnly: false
+        card_limit:
+          type: object
+          description: The spending limit for the card.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        card_limit_atm:
+          type: object
+          description: The ATM spending limit for the card.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        country_permission:
+          type: array
+          description: The countries for which to grant (temporary) permissions to use the card.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardCountryPermission'
+        pin_code_assignment:
+          type: array
+          description: Array of Types, PINs, account IDs assigned to the card.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardPinAssignment'
+        primary_account_numbers:
+          type: array
+          description: Array of PANs and their attributes.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardPrimaryAccountNumber'
+        monetary_account_id_fallback:
+          type: integer
+          description: ID of the MA to be used as fallback for this card if insufficient balance. Fallback account is removed if not supplied.
+          readOnly: false
+          writeOnly: false
+        preferred_name_on_card:
+          type: string
+          description: The user's preferred name as it will be on the card.
+          readOnly: false
+          writeOnly: false
+        second_line:
+          type: string
+          description: The second line of text on the card
+          readOnly: false
+          writeOnly: false
+        cancellation_reason:
+          type: string
+          description: The reason for card cancellation.
+          readOnly: false
+          writeOnly: true
+    MasterCardAction:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the MastercardAction.
+          readOnly: true
+          writeOnly: false
+        monetary_account_id:
+          type: integer
+          description: The id of the monetary account this action links to.
+          readOnly: true
+          writeOnly: false
+        card_id:
+          type: integer
+          description: The id of the card this action links to.
+          readOnly: true
+          writeOnly: false
+        amount_local:
+          type: object
+          description: The amount of the transaction in local currency.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_converted:
+          type: object
+          description: The amount of the transaction in local currency.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_billing:
+          type: object
+          description: The amount of the transaction in the monetary account's currency.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_original_local:
+          type: object
+          description: The original amount in local currency.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_original_billing:
+          type: object
+          description: The original amount in the monetary account's currency.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_fee:
+          type: object
+          description: The fee amount as charged by the merchant, if applicable.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        card_authorisation_id_response:
+          type: string
+          description: The response code by which authorised transaction can be identified as authorised by bunq.
+          readOnly: true
+          writeOnly: false
+        decision:
+          type: string
+          description: Why the transaction was denied, if it was denied, or just ALLOWED.
+          readOnly: true
+          writeOnly: false
+        payment_status:
+          type: string
+          description: The payment status of the transaction. For example PAYMENT_SUCCESSFUL, for a successful payment.
+          readOnly: true
+          writeOnly: false
+        decision_description:
+          type: string
+          description: Empty if allowed, otherwise a textual explanation of why it was denied.
+          readOnly: true
+          writeOnly: false
+        decision_description_translated:
+          type: string
+          description: Empty if allowed, otherwise a textual explanation of why it was denied in user's language.
+          readOnly: true
+          writeOnly: false
+        decision_together_url:
+          type: string
+          description: Empty if allowed or if no relevant Together topic exists, otherwise contains the URL for a Together topic with more information about the decision.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: The description for this transaction to display.
+          readOnly: true
+          writeOnly: false
+        authorisation_status:
+          type: string
+          description: The status in the authorisation process.
+          readOnly: true
+          writeOnly: false
+        authorisation_type:
+          type: string
+          description: The type of transaction that was delivered using the card.
+          readOnly: true
+          writeOnly: false
+        pan_entry_mode_user:
+          type: string
+          description: The type of entry mode the user used. Can be 'ATM', 'ICC', 'MAGNETIC_STRIPE' or 'E_COMMERCE'.
+          readOnly: true
+          writeOnly: false
+        settlement_status:
+          type: string
+          description: The setlement status in the authorisation process.
+          readOnly: true
+          writeOnly: false
+        clearing_status:
+          type: string
+          description: The clearing status of the authorisation. Can be 'PENDING', 'FIRST_PRESENTMENT_COMPLETE' or 'REFUND_LENIENCY'.
+          readOnly: true
+          writeOnly: false
+        maturity_date:
+          type: string
+          description: The maturity date.
+          readOnly: true
+          writeOnly: false
+        city:
+          type: string
+          description: The city where the message originates from as announced by the terminal.
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: object
+          description: The monetary account label of the account that this action is created for.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counterparty_alias:
+          type: object
+          description: The monetary account label of the counterparty.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        label_card:
+          type: object
+          description: The label of the card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelCard'
+        merchant_id:
+          type: string
+          description: The identification string of the merchant.
+          readOnly: true
+          writeOnly: false
+        token_status:
+          type: string
+          description: If this is a tokenisation action, this shows the status of the token.
+          readOnly: true
+          writeOnly: false
+        reservation_expiry_time:
+          type: string
+          description: If this is a reservation, the moment the reservation will expire.
+          readOnly: true
+          writeOnly: false
+        clearing_expiry_time:
+          type: string
+          description: The time when the processing of the clearing is expired, refunding the authorisation.
+          readOnly: true
+          writeOnly: false
+        applied_limit:
+          type: string
+          description: The type of the limit applied to validate if this MasterCardAction was within the spending limits. The returned string matches the limit types as defined in the card endpoint.
+          readOnly: true
+          writeOnly: false
+        secure_code_id:
+          type: integer
+          description: The secure code id for this mastercard action or null.
+          readOnly: true
+          writeOnly: false
+        wallet_provider_id:
+          type: string
+          description: The ID of the wallet provider as defined by MasterCard. 420 = bunq Android app with Tap&Pay; 103 = Apple Pay.
+          readOnly: true
+          writeOnly: false
+        request_reference_split_the_bill:
+          type: array
+          description: The reference to the object used for split the bill. Can be RequestInquiry or RequestInquiryBatch
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/RequestInquiryReference'
+        card_tokenization_event:
+          type: object
+          description: The cardTokenization event awaiting acceptance by the user
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Event'
+        all_mastercard_action_refund:
+          type: array
+          description: A reference to the Refunds if they exist.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/MasterCardActionRefund'
+        pos_card_presence:
+          type: string
+          description: The Card Presence type of the POS.
+          readOnly: true
+          writeOnly: false
+        pos_card_holder_presence:
+          type: string
+          description: The Card Holder Presence type of the POS.
+          readOnly: true
+          writeOnly: false
+        eligible_whitelist_id:
+          type: integer
+          description: The whitelist id for this action or null.
+          readOnly: true
+          writeOnly: false
+        cashback_payout_item:
+          type: object
+          description: The cashback payout item for this action or null
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CashbackPayoutItem'
+        point_mutation:
+          type: object
+          description: The point mutation for this action or null
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/PointMutation'
+        blacklist:
+          type: object
+          description: DEPRECATED. The blacklist enabled for the merchant of this transaction
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/UserBlocklistMasterCardMerchant'
+        blocklist:
+          type: object
+          description: The blocklist enabled for the merchant of this transaction
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/UserBlocklistMasterCardMerchant'
+        additional_authentication_status:
+          type: string
+          description: The status of the additional authentication performed (3ds) by the user for this transaction.
+          readOnly: true
+          writeOnly: false
+        pin_status:
+          type: string
+          description: Status checking the provided PIN.
+          readOnly: true
+          writeOnly: false
+        mastercard_action_report:
+          type: object
+          description: The report for this transaction
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MasterCardActionReport'
+        merchant_category_code:
+          type: string
+          description: The MCC provided.
+          readOnly: true
+          writeOnly: false
+        company_employee_card_receipt:
+          type: object
+          description: The receipt the company employee has to provide for this transaction.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CompanyEmployeeCardReceipt'
+    PaymentFee:
+      type: object
+      properties:
+        value:
+          type: string
+          description: The amount formatted to two decimal places.
+          readOnly: true
+          writeOnly: false
+        currency:
+          type: string
+          description: The currency of the amount. It is an ISO 4217 formatted currency code.
+          readOnly: true
+          writeOnly: false
+        invoice_id:
+          type: integer
+          description: The id of the invoice related to possible payment fee.
+          readOnly: true
+          writeOnly: false
+    BankSwitchServiceNetherlandsIncomingPayment:
+      type: object
+      properties:
+        bank_switch_service:
+          type: object
+          description: The bank switch service details.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BankSwitchServiceNetherlandsIncoming'
+        payment:
+          type: object
+          description: The payment made using bank switch service.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Payment'
+    ShareDetailPayment:
+      type: object
+      properties:
+        make_payments:
+          type: boolean
+          description: If set to true, the invited user will be able to make payments from the shared account.
+          readOnly: false
+          writeOnly: false
+        make_draft_payments:
+          type: boolean
+          description: If set to true, the invited user will be able to make draft payments from the shared account.
+          readOnly: false
+          writeOnly: false
+        view_balance:
+          type: boolean
+          description: If set to true, the invited user will be able to view the account balance.
+          readOnly: false
+          writeOnly: false
+        view_old_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events from before the share was active.
+          readOnly: false
+          writeOnly: false
+        view_new_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events starting from the time the share became active.
+          readOnly: false
+          writeOnly: false
+    MasterCardActionRefund:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of this refund. Can de REFUND or CHARGEBACK
+          readOnly: false
+          writeOnly: false
+        sub_type:
+          type: string
+          description: The sub type of this refund indicating whether the chargeback will be FULL or PARTIAL.
+          readOnly: false
+          writeOnly: false
+        amount:
+          type: object
+          description: The amount to refund.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        category:
+          type: string
+          description: The category of the refund, required for chargeback.
+          readOnly: false
+          writeOnly: true
+        reason:
+          type: string
+          description: The reason of the refund. Can be REFUND_EXPIRED_TRANSACTION, REFUND_REQUESTED, REFUND_MERCHANT, REFUND_CHARGEBACK.
+          readOnly: false
+          writeOnly: false
+        comment:
+          type: string
+          description: Comment about the refund.
+          readOnly: false
+          writeOnly: true
+        attachment:
+          type: array
+          description: The Attachments to attach to the refund request.
+          readOnly: false
+          writeOnly: true
+          items:
+            $ref: '#/components/schemas/AttachmentMasterCardActionRefund'
+        terms_and_conditions:
+          type: string
+          description: Proof that the user acknowledged the terms and conditions for chargebacks.
+          readOnly: false
+          writeOnly: true
+        id:
+          type: integer
+          description: The id of the refund.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the refund's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the refund's last update.
+          readOnly: true
+          writeOnly: false
+        label_user_creator:
+          type: object
+          description: The label of the user who created this note.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        status:
+          type: string
+          description: The status of the refunded mastercard action. Can be AUTO_APPROVED, AUTO_APPROVED_WAITING_FOR_EXPIRY, PENDING_APPROVAL, APPROVED, REFUNDED, DENIED or FAILED
+          readOnly: true
+          writeOnly: false
+        reference_mastercard_action_event:
+          type: array
+          description: The reference to the object this refund applies to.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/MasterCardActionReference'
+        mastercard_action_id:
+          type: integer
+          description: The id of mastercard action being refunded.
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: object
+          description: The monetary account label of the account that this action is created for.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counterparty_alias:
+          type: object
+          description: The monetary account label of the counterparty.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        description:
+          type: string
+          description: The description for this transaction to display.
+          readOnly: true
+          writeOnly: false
+        label_card:
+          type: object
+          description: The label of the card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelCard'
+        time_refund:
+          type: string
+          description: The time the refund will take place.
+          readOnly: true
+          writeOnly: false
+        additional_information:
+          type: object
+          description: All additional information provided by the user.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/AdditionalInformation'
+        status_description:
+          type: string
+          description: Description of the refund's current status.
+          readOnly: true
+          writeOnly: false
+        status_description_translated:
+          type: string
+          description: Description of the refund's current status, translated in user's language.
+          readOnly: true
+          writeOnly: false
+        status_together_url:
+          type: string
+          description: Together topic concerning the refund's current status.
+          readOnly: true
+          writeOnly: false
+    DraftPaymentEntry:
+      type: object
+      properties:
+        amount:
+          type: object
+          description: The amount of the payment.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        counterparty_alias:
+          type: object
+          description: The LabelMonetaryAccount containing the public information of the other (counterparty) side of the DraftPayment.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        description:
+          type: string
+          description: The description for the DraftPayment. Maximum 140 characters for DraftPayments to external IBANs, 9000 characters for DraftPayments to only other bunq MonetaryAccounts.
+          readOnly: false
+          writeOnly: false
+        merchant_reference:
+          type: string
+          description: Optional data to be included with the Payment specific to the merchant.
+          readOnly: false
+          writeOnly: false
+        attachment:
+          type: array
+          description: The Attachments attached to the DraftPayment.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/AttachmentMonetaryAccountPayment'
+        id:
+          type: integer
+          description: The id of the draft payment entry.
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: object
+          description: The LabelMonetaryAccount containing the public information of 'this' (party) side of the DraftPayment.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        type:
+          type: string
+          description: The type of the draft payment entry.
+          readOnly: true
+          writeOnly: false
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the event.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the event's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the event's last update.
+          readOnly: true
+          writeOnly: false
+        action:
+          type: string
+          description: 'The performed action. Can be: CREATE or UPDATE.'
+          readOnly: true
+          writeOnly: false
+        user_id:
+          type: string
+          description: The id of the user the event applied to (if it was a user event).
+          readOnly: true
+          writeOnly: false
+        monetary_account_id:
+          type: string
+          description: The id of the monetary account the event applied to (if it was a monetary account event).
+          readOnly: true
+          writeOnly: false
+        object:
+          type: object
+          description: The details of the external object the event was created for.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/EventObject'
+        status:
+          type: string
+          description: 'The event status. Can be: FINALIZED or AWAITING_REPLY. An example of FINALIZED event is a payment received event, while an AWAITING_REPLY event is a request received event.'
+          readOnly: true
+          writeOnly: false
+        object_data_at_event:
+          type: object
+          description: Fields of the external model which we have stored so we know what they were at the time of the event.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/EventObject'
+        is_event_latest_for_object:
+          type: boolean
+          description: Indicator whether this is the latest event for the object.
+          readOnly: true
+          writeOnly: false
+        is_event_reassignable:
+          type: boolean
+          description: Indicator whether this is event can be reassigned to another Monetary Account.
+          readOnly: true
+          writeOnly: false
+    FeatureAnnouncement:
+      type: object
+      properties:
+        avatar:
+          type: object
+          description: The Avatar of the event overview.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        title:
+          type: string
+          description: The event overview title of the feature display
+          readOnly: true
+          writeOnly: false
+        sub_title:
+          type: string
+          description: The event overview subtitle of the feature display
+          readOnly: true
+          writeOnly: false
+        type:
+          type: string
+          description: The type of the feature announcement so apps can override with their own stuff if desired
+          readOnly: true
+          writeOnly: false
+    EventObject:
+      type: object
+      properties:
+        BunqMeTab:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqMeTab'
+        BunqMeTabResultResponse:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqMeTabResultResponse'
+        BunqMeFundraiserResult:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqMeFundraiserResult'
+        Card:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Card'
+        CardDebit:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CardDebit'
+        DraftPayment:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/DraftPayment'
+        FeatureAnnouncement:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/FeatureAnnouncement'
+        IdealMerchantTransaction:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/IdealMerchantTransaction'
+        Invoice:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Invoice'
+        ScheduledPayment:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/SchedulePayment'
+        ScheduledPaymentBatch:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/SchedulePaymentBatch'
+        ScheduledInstance:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/ScheduleInstance'
+        MasterCardAction:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MasterCardAction'
+        BankSwitchServiceNetherlandsIncomingPayment:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BankSwitchServiceNetherlandsIncomingPayment'
+        Payment:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Payment'
+        PaymentBatch:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/PaymentBatch'
+        RequestInquiryBatch:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/RequestInquiryBatch'
+        RequestInquiry:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/RequestInquiry'
+        RequestResponse:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/RequestResponse'
+        ShareInviteBankInquiry:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/ShareInviteMonetaryAccountInquiry'
+        ShareInviteBankResponse:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/ShareInviteMonetaryAccountResponse'
+        SofortMerchantTransaction:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/SofortMerchantTransaction'
+        TransferwisePayment:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/TransferwiseTransfer'
+    ScheduleInstanceAnchorObject:
+      type: object
+      properties:
+        Payment:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Payment'
+        PaymentBatch:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/PaymentBatch'
+    RequestReferenceSplitTheBillAnchorObject:
+      type: object
+      properties:
+        BillingInvoice:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Invoice'
+        DraftPayment:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/DraftPayment'
+        MasterCardAction:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MasterCardAction'
+        Payment:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Payment'
+        PaymentBatch:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/PaymentBatch'
+        RequestResponse:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/RequestResponse'
+        ScheduleInstance:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/ScheduleInstance'
+        WhitelistResult:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/WhitelistResult'
+        TransferwisePayment:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/TransferwiseTransfer'
+        CurrencyConversion:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CurrencyConversion'
+    Amount:
+      type: object
+      properties:
+        value:
+          type: string
+          description: The amount formatted to two decimal places.
+          readOnly: false
+          writeOnly: false
+        currency:
+          type: string
+          description: The currency of the amount. It is an ISO 4217 formatted currency code.
+          readOnly: false
+          writeOnly: false
+    RequestResponse:
+      type: object
+      properties:
+        amount_responded:
+          type: object
+          description: The Amount the RequestResponse was accepted with.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        status:
+          type: string
+          description: The status of the RequestResponse. Can be ACCEPTED, PENDING, REJECTED, REFUND_REQUESTED, REFUNDED or REVOKED.
+          readOnly: false
+          writeOnly: false
+        address_shipping:
+          type: object
+          description: The shipping address provided by the accepting user if an address was requested.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        address_billing:
+          type: object
+          description: The billing address provided by the accepting user if an address was requested.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        currency_conversion_quote_id:
+          type: integer
+          description: When the request is accepted on a monetary account with a different currency, a quote is expected to convert.
+          readOnly: false
+          writeOnly: true
+        id:
+          type: integer
+          description: The id of the Request Response.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp when the Request Response was created.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp when the Request Response was last updated (will be updated when chat messages are received).
+          readOnly: true
+          writeOnly: false
+        time_responded:
+          type: string
+          description: The timestamp of when the RequestResponse was responded to.
+          readOnly: true
+          writeOnly: false
+        time_expiry:
+          type: string
+          description: The timestamp of when the RequestResponse expired or will expire.
+          readOnly: true
+          writeOnly: false
+        time_refund_requested:
+          type: string
+          description: The timestamp of when a refund request for the RequestResponse was claimed.
+          readOnly: true
+          writeOnly: false
+        time_refunded:
+          type: string
+          description: The timestamp of when the RequestResponse was refunded.
+          readOnly: true
+          writeOnly: false
+        user_refund_requested:
+          type: object
+          description: The label of the user that requested the refund.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        monetary_account_id:
+          type: integer
+          description: The id of the MonetaryAccount the RequestResponse was received on.
+          readOnly: true
+          writeOnly: false
+        amount_inquired:
+          type: object
+          description: The requested Amount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        description:
+          type: string
+          description: The description for the RequestResponse provided by the requesting party. Maximum 9000 characters.
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: object
+          description: The LabelMonetaryAccount with the public information of the MonetaryAccount this RequestResponse was received on.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counterparty_alias:
+          type: object
+          description: The LabelMonetaryAccount with the public information of the MonetaryAccount that is requesting money with this RequestResponse.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        attachment:
+          type: array
+          description: The Attachments attached to the RequestResponse.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Attachment'
+        minimum_age:
+          type: integer
+          description: The minimum age the user accepting the RequestResponse must have.
+          readOnly: true
+          writeOnly: false
+        require_address:
+          type: string
+          description: Whether or not an address must be provided on accept.
+          readOnly: true
+          writeOnly: false
+        geolocation:
+          type: object
+          description: The Geolocation where the RequestResponse was created.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Geolocation'
+        type:
+          type: string
+          description: The type of the RequestInquiry. Can be DIRECT_DEBIT, DIRECT_DEBIT_B2B, IDEAL, SOFORT or INTERNAL.
+          readOnly: true
+          writeOnly: false
+        sub_type:
+          type: string
+          description: The subtype of the RequestInquiry. Can be ONCE or RECURRING for DIRECT_DEBIT RequestInquiries and NONE for all other.
+          readOnly: true
+          writeOnly: false
+        redirect_url:
+          type: string
+          description: The URL which the user is sent to after accepting or rejecting the Request.
+          readOnly: true
+          writeOnly: false
+        credit_scheme_identifier:
+          type: string
+          description: The credit scheme id provided by the counterparty for DIRECT_DEBIT inquiries.
+          readOnly: true
+          writeOnly: false
+        mandate_identifier:
+          type: string
+          description: The mandate id provided by the counterparty for DIRECT_DEBIT inquiries.
+          readOnly: true
+          writeOnly: false
+        registration_action:
+          type: string
+          description: Recommended registration action after IdealIssuerTransaction from iDEAL issuer transaction.
+          readOnly: true
+          writeOnly: false
+        eligible_whitelist_id:
+          type: integer
+          description: The whitelist id for this action or null.
+          readOnly: true
+          writeOnly: false
+        request_reference_split_the_bill:
+          type: array
+          description: The reference to the object used for split the bill. Can be RequestInquiry or RequestInquiryBatch
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/RequestInquiryReference'
+        event_id:
+          type: integer
+          description: The ID of the latest event for the request.
+          readOnly: true
+          writeOnly: false
+        monetary_account_preferred_id:
+          type: integer
+          description: The ID of the monetary account this user prefers to pay the request from.
+          readOnly: true
+          writeOnly: false
+    LabelCard:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The public UUID.
+          readOnly: true
+          writeOnly: false
+        type:
+          type: string
+          description: The type of the card.
+          readOnly: true
+          writeOnly: false
+        second_line:
+          type: string
+          description: The second line on the card.
+          readOnly: true
+          writeOnly: false
+        expiry_date:
+          type: string
+          description: The date this card will expire.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the card.
+          readOnly: true
+          writeOnly: false
+        label_user:
+          type: object
+          description: The owner of this card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+    Invoice:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The invoice status.
+          readOnly: false
+          writeOnly: false
+        description:
+          type: string
+          description: The description provided by the admin.
+          readOnly: false
+          writeOnly: true
+        external_url:
+          type: string
+          description: The external url provided by the admin.
+          readOnly: false
+          writeOnly: true
+        id:
+          type: integer
+          description: The id of the invoice object.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the invoice object's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the invoice object's last update.
+          readOnly: true
+          writeOnly: false
+        invoice_date:
+          type: string
+          description: The invoice date.
+          readOnly: true
+          writeOnly: false
+        invoice_number:
+          type: string
+          description: The invoice number.
+          readOnly: true
+          writeOnly: false
+        category:
+          type: string
+          description: The category to display to the user.
+          readOnly: true
+          writeOnly: false
+        group:
+          type: array
+          description: The invoice item groups.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/InvoiceItemGroup'
+        total_vat_inclusive:
+          type: object
+          description: The total discounted item price including VAT.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        total_vat_exclusive:
+          type: object
+          description: The total discounted item price excluding VAT.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        total_vat:
+          type: object
+          description: The VAT on the total discounted item price.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        alias:
+          type: object
+          description: The label that's displayed to the counterparty with the invoice. Includes user.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        address:
+          type: object
+          description: The customer's address.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        counterparty_alias:
+          type: object
+          description: The label of the counterparty of the invoice. Includes user.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counterparty_address:
+          type: object
+          description: The company's address.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        chamber_of_commerce_number:
+          type: string
+          description: The company's chamber of commerce number.
+          readOnly: true
+          writeOnly: false
+        vat_number:
+          type: string
+          description: The company's chamber of commerce number.
+          readOnly: true
+          writeOnly: false
+        request_reference_split_the_bill:
+          type: array
+          description: The reference to the object used for split the bill. Can be RequestInquiry or RequestInquiryBatch
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/RequestInquiryReference'
+      required:
+      - description
+      - external_url
+    Payment:
+      type: object
+      properties:
+        amount:
+          type: object
+          description: The Amount transferred by the Payment. Will be negative for outgoing Payments and positive for incoming Payments (relative to the MonetaryAccount indicated by monetary_account_id).
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        counterparty_alias:
+          type: object
+          description: The LabelMonetaryAccount containing the public information of the other (counterparty) side of the Payment.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        description:
+          type: string
+          description: The description for the Payment. Maximum 140 characters for Payments to external IBANs, 9000 characters for Payments to only other bunq MonetaryAccounts.
+          readOnly: false
+          writeOnly: false
+        attachment:
+          type: array
+          description: The Attachments attached to the Payment.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/AttachmentMonetaryAccountPayment'
+        merchant_reference:
+          type: string
+          description: Optional data included with the Payment specific to the merchant.
+          readOnly: false
+          writeOnly: false
+        allow_bunqto:
+          type: boolean
+          description: Whether or not sending a bunq.to payment is allowed.
+          readOnly: false
+          writeOnly: true
+        id:
+          type: integer
+          description: The id of the created Payment.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp when the Payment was done.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp when the Payment was last updated (will be updated when chat messages are received).
+          readOnly: true
+          writeOnly: false
+        monetary_account_id:
+          type: integer
+          description: The id of the MonetaryAccount the Payment was made to or from (depending on whether this is an incoming or outgoing Payment).
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: object
+          description: The LabelMonetaryAccount containing the public information of 'this' (party) side of the Payment.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        type:
+          type: string
+          description: The type of Payment, can be BUNQ, EBA_SCT, EBA_SDD, IDEAL, SWIFT or FIS (card).
+          readOnly: true
+          writeOnly: false
+        sub_type:
+          type: string
+          description: The sub-type of the Payment, can be PAYMENT, WITHDRAWAL, REVERSAL, REQUEST, BILLING, SCT, SDD or NLO.
+          readOnly: true
+          writeOnly: false
+        payment_arrival_expected:
+          type: object
+          description: Information about the expected arrival of the payment.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/PaymentArrivalExpected'
+        bunqto_status:
+          type: string
+          description: The status of the bunq.to payment.
+          readOnly: true
+          writeOnly: false
+        bunqto_sub_status:
+          type: string
+          description: The sub status of the bunq.to payment.
+          readOnly: true
+          writeOnly: false
+        bunqto_share_url:
+          type: string
+          description: The status of the bunq.to payment.
+          readOnly: true
+          writeOnly: false
+        bunqto_expiry:
+          type: string
+          description: When bunq.to payment is about to expire.
+          readOnly: true
+          writeOnly: false
+        bunqto_time_responded:
+          type: string
+          description: The timestamp of when the bunq.to payment was responded to.
+          readOnly: true
+          writeOnly: false
+        batch_id:
+          type: integer
+          description: The id of the PaymentBatch if this Payment was part of one.
+          readOnly: true
+          writeOnly: false
+        scheduled_id:
+          type: integer
+          description: The id of the JobScheduled if the Payment was scheduled.
+          readOnly: true
+          writeOnly: false
+        address_shipping:
+          type: object
+          description: A shipping Address provided with the Payment, currently unused.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        address_billing:
+          type: object
+          description: A billing Address provided with the Payment, currently unused.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        geolocation:
+          type: object
+          description: The Geolocation where the Payment was done from.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Geolocation'
+        request_reference_split_the_bill:
+          type: array
+          description: The reference to the object used for split the bill. Can be RequestInquiry or RequestInquiryBatch
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/RequestInquiryReference'
+        balance_after_mutation:
+          type: object
+          description: The new balance of the monetary account after the mutation.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        payment_auto_allocate_instance:
+          type: object
+          description: A reference to the PaymentAutoAllocateInstance if it exists.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/PaymentAutoAllocateInstance'
+        payment_suspended_outgoing:
+          type: object
+          description: A reference to the PaymentSuspendedOutgoing if it exists.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/PaymentSuspendedOutgoing'
+        payment_fee:
+          type: object
+          description: Incurred fee for the payment.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/PaymentFee'
+    Pointer:
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'The alias type, can be: EMAIL|PHONE_NUMBER|IBAN.'
+          readOnly: false
+          writeOnly: false
+        value:
+          type: string
+          description: The alias value.
+          readOnly: false
+          writeOnly: false
+        name:
+          type: string
+          description: The alias name.
+          readOnly: false
+          writeOnly: false
+        service:
+          type: string
+          description: The pointer service. Only required for external counterparties.
+          readOnly: false
+          writeOnly: true
+    CardDebit:
+      type: object
+      properties:
+        second_line:
+          type: string
+          description: The second line of text on the card, used as name/description for it. It can contain at most 17 characters and it can be empty.
+          readOnly: false
+          writeOnly: true
+        name_on_card:
+          type: string
+          description: The user's name as it will be on the card. Check 'card-name' for the available card names for a user.
+          readOnly: false
+          writeOnly: true
+        preferred_name_on_card:
+          type: string
+          description: The user's preferred name that can be put on the card.
+          readOnly: false
+          writeOnly: true
+        alias:
+          type: object
+          description: The pointer to the monetary account that will be connected at first with the card. Its IBAN code is also the one that will be printed on the card itself. The pointer must be of type IBAN.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Pointer'
+        type:
+          type: string
+          description: The type of card to order. Can be MAESTRO or MASTERCARD.
+          readOnly: false
+          writeOnly: true
+        product_type:
+          type: string
+          description: The product type of the card to order.
+          readOnly: false
+          writeOnly: true
+        pin_code_assignment:
+          type: array
+          description: Array of Types, PINs, account IDs assigned to the card.
+          readOnly: false
+          writeOnly: true
+          items:
+            $ref: '#/components/schemas/CardPinAssignment'
+        monetary_account_id_fallback:
+          type: integer
+          description: ID of the MA to be used as fallback for this card if insufficient balance. Fallback account is removed if not supplied.
+          readOnly: false
+          writeOnly: true
+        order_status:
+          type: string
+          description: The order status of this card. Can be CARD_REQUEST_PENDING or VIRTUAL_DELIVERY.
+          readOnly: false
+          writeOnly: true
+      required:
+      - second_line
+      - name_on_card
+      - type
+      - product_type
+    CardPinAssignment:
+      type: object
+      properties:
+        type:
+          type: string
+          description: PIN type. Can be PRIMARY, SECONDARY or TERTIARY
+          readOnly: false
+          writeOnly: false
+        routing_type:
+          type: string
+          description: Routing type.
+          readOnly: false
+          writeOnly: false
+        pin_code:
+          type: string
+          description: The 4 digit PIN to be assigned to this account.
+          readOnly: false
+          writeOnly: true
+        monetary_account_id:
+          type: integer
+          description: The ID of the monetary account to assign to this pin for the card.
+          readOnly: false
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the card pin assignment.
+          readOnly: true
+          writeOnly: false
+    AttachmentMonetaryAccountPayment:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the attached Attachment.
+          readOnly: false
+          writeOnly: false
+        monetary_account_id:
+          type: integer
+          description: The id of the MonetaryAccount this Attachment is attached from.
+          readOnly: true
+          writeOnly: false
+    PaymentSuspendedOutgoing:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status of the payment.
+          readOnly: false
+          writeOnly: false
+        monetary_account_id:
+          type: string
+          description: The ID of the monetary account the payment was sent from.
+          readOnly: true
+          writeOnly: false
+        time_execution:
+          type: string
+          description: The time this payment should be executed.
+          readOnly: true
+          writeOnly: false
+    AttachmentMasterCardActionRefund:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the attached Attachment.
+          readOnly: false
+          writeOnly: false
+    Geolocation:
+      type: object
+      properties:
+        latitude:
+          type: integer
+          description: The latitude for a geolocation restriction.
+          readOnly: false
+          writeOnly: false
+        longitude:
+          type: integer
+          description: The longitude for a geolocation restriction.
+          readOnly: false
+          writeOnly: false
+        altitude:
+          type: integer
+          description: The altitude for a geolocation restriction.
+          readOnly: false
+          writeOnly: false
+        radius:
+          type: integer
+          description: The radius for a geolocation restriction.
+          readOnly: false
+          writeOnly: false
+    Whitelist:
+      type: object
+    RelationUser:
+      type: object
+      properties:
+        user_id:
+          type: string
+          description: The user's ID.
+          readOnly: true
+          writeOnly: false
+        counter_user_id:
+          type: string
+          description: The counter user's ID.
+          readOnly: true
+          writeOnly: false
+        label_user:
+          type: object
+          description: The user's label.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        counter_label_user:
+          type: object
+          description: The counter user's label.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        relationship:
+          type: string
+          description: The requested relation type.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The request's status, only for UPDATE.
+          readOnly: true
+          writeOnly: false
+        user_status:
+          type: string
+          description: The account status of a user
+          readOnly: true
+          writeOnly: false
+        counter_user_status:
+          type: string
+          description: The account status of a user
+          readOnly: true
+          writeOnly: false
+        company_employee_setting_adyen_card_transaction:
+          type: object
+          description: Tap to Pay settings for the company employee.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CompanyEmployeeSettingAdyenCardTransaction'
+        all_company_employee_card:
+          type: array
+          description: Cards accessible by the company employee
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CompanyEmployeeCard'
+  parameters:
+    X-Bunq-Geolocation:
+      description: This header must specify the geolocation of the device. The format of this value is longitude latitude altitude radius country. The country is expected to be formatted of an ISO 3166-1 alpha-2 country code. When no geolocation is available or known the header must still be included but can be zero valued.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Geolocation
+    Cache-Control:
+      description: The standard HTTP Cache-Control header is required for all signed requests.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: Cache-Control
+    X-Bunq-Language:
+      description: The X-Bunq-Language header must contain a preferred language indication. The value of this header is formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, separated by an underscore. Currently only the languages en_US and nl_NL are supported. Anything else will default to en_US.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Language
+    X-Bunq-Client-Request-Id:
+      description: This header must specify an ID with each request that is unique for the logged in user. There are no restrictions for the format of this ID. However, the server will respond with an error when the same ID is used again on the same DeviceServer.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Client-Request-Id
+    User-Agent:
+      description: The User-Agent header field should contain information about the user agent originating the request. There are no restrictions on the value of this header.
+      schema:
+        type: string
+      required: true
+      in: header
+      name: User-Agent
+    X-Bunq-Region:
+      description: The X-Bunq-Region header must contain the region (country) of the client device. The value of this header is formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, separated by an underscore.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Region
+    X-Bunq-Client-Authentication:
+      description: The authentication token is used to authenticate the source of the API call. It is required by all API calls except for POST /v1/installation. It is important to note that the device and session calls are using the token from the response of the installation call, while all the other calls use the token from the response of the session-server call
+      schema:
+        type: string
+      required: true
+      in: header
+      name: X-Bunq-Client-Authentication
+  headers:
+    X-Bunq-Server-Signature:
+      description: The server's signature for this response. See the signing page for details on how to verify this signature.
+      schema:
+        type: string
+    X-Bunq-Client-Response-Id:
+      description: A unique ID for the response formatted as a UUID. Clients can use it to add extra protection against replay attacks.
+      schema:
+        type: string
+    X-Bunq-Client-Request-Id:
+      description: This header must specify an ID with each request that is unique for the logged in user. There are no restrictions for the format of this ID. However, the server will respond with an error when the same ID is used again on the same DeviceServer.
+      schema:
+        type: string
+      required: false
+  responses:
+    GenericError:
+      description: This is how the error response looks like for 4XX response codes
+      headers:
+        X-Bunq-Client-Response-Id:
+          $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+        X-Bunq-Client-Request-Id:
+          $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+        X-Bunq-Server-Signature:
+          $ref: '#/components/headers/X-Bunq-Server-Signature'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              Error:
+                $ref: '#/components/schemas/Error'

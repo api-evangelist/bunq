@@ -1,0 +1,1145 @@
+openapi: 3.2.0
+info:
+  title: bunq Request Response API
+  description: '***UPDATE:*** *We have released a beta version of the new bunq API documentation.*
+
+
+    ***NOTICE:*** *We have updated the sandbox base url to `https://public-api.sandbox.bunq.com/v1/`. Please update your applications accordingly. Check here: for more info.*
+
+
+    ***PSD2 NOTICE:*** *The second Payment Services Directive (PSD2) may affect your current or planned usage of our public API, as some of the API services are now subject to a permit. Please be aware that using our public API without the required PSD2 permit is at your own risk and take notice of our updated API Terms and Conditions on for more information.*
+
+
+    # Introduction
+
+
+    Welcome to bunq! - The bunq API is organised around REST. JSON will be returned in almost all responses from the API, including errors but excluding binary (image) files. - Please configure your implementation to send its API requests to `https://public-api.sandbox.bunq.com/v1/`
+
+    - There is a version of the Android app that connects to the bunq Sandbox environment. To create accounts for the Sandbox app, please follow the steps in the Android Emulator section. ## Getting started
+
+
+    Before you start sending API requests, you need to get an API key and activate it. API activation happens when you install the API key and link your IP address and device to it *(create an API context)*. The steps below will guide you through what you need to do to start sending custom API requests. Here is an overview of what you can use to get started with the bunq API:
+
+    1. **Create an API key.** You can do it either in our developer portal or in the bunq app *(Profile → Security & Settings → Developers → API keys)*. If you want to test our sandbox first, our bunq Developer is the best place to start. 2. **Register a device.** A device can be a phone (private), computer or a server (public). You can register a new device by using the `POST /installation` and `POST /device-server` calls. This will activate your API key. You only need to do this once. 3. **Open a session.** Sessions are temporary and expire after the auto-logout time set for the user account. It can be changed by the account owner in the bunq app. 4. **Make your first call!**
+
+
+    !bunq_API_context
+
+
+    ## Versioning
+
+
+    Developments in the financial sector, changing regulatory regimes and new feature requests require us to be flexible. This means we can iterate quickly to improve the API and related tooling. Therefore, we have chosen not to attach any version numbers to the changes just yet. We will inform you in a timely manner of any important changes we make before they are deployed on together.bunq.com. You can also subscribe to our API newsletter to make sure you don''t miss any important updates. # OAuth
+
+
+    ## What is OAuth? OAuth 2.0 is a protocol that will let your app connect to bunq users in a safe and easy way. Please be aware that if you will gain access to the account information of other bunq users or initiate a payment for them, you may require a PSD2 permit. ## Get started with OAuth for bunq
+
+
+    To initiate authorization into the bunq user accounts, you need to create an OAuth Client and register at least 1 redirect URL for it. You can have 1 OAuth Client at a time. Reuse your OAuth credentials for every authorization request. The list of steps below will help you to get started:
+
+
+    1. Register an OAuth Client by creating an app in bunq Developer_._
+
+    2. Add one or more Redirect URLs. 3. Get your `client_id` and `secret` from your app information tab in bunq Developer. 4. Redirect your users to the OAuth authorization request URL. 5. If the user accepts the authorization request, they will be redirected to the previously specified `redirect_uri` with an authorization `code` parameter. 6. Use the token endpoint to exchange the authorization `code` for an `access_token`. 7. Use the `access_token` as a normal API Key. Open a session or use our SDKs to get started. You can set up an OAuth Client and add redirect URLs to it using the dedicated endpoints too.'
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+- url: https://public-api.sandbox.bunq.com/{basePath}
+  description: Sandbox server
+  variables:
+    basePath:
+      default: v1
+- url: https://api.bunq.com/{basePath}
+  description: Production server
+  variables:
+    basePath:
+      default: v1
+tags:
+- name: request-response
+  description: ''
+paths:
+  /user/{userID}/monetary-account/{monetary-accountID}/request-response/{itemId}:
+    put:
+      tags:
+      - request-response
+      summary: UPDATE request response for user monetary account
+      operationId: UPDATE_RequestResponse_for_User_MonetaryAccount
+      description: Update the status to accept or reject the RequestResponse.
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: monetary-accountID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: itemId
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestResponse'
+      responses:
+        '200':
+          description: A RequestResponse is what a user on the other side of a RequestInquiry gets when he is sent one. So a RequestInquiry is the initiator and visible for the user that sent it and that wants to receive the money. A RequestResponse is what the other side sees, i.e. the user that pays the money to accept the request. The content is almost identical.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestResponseUpdate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
+    get:
+      tags:
+      - request-response
+      summary: READ request response for user monetary account
+      operationId: READ_RequestResponse_for_User_MonetaryAccount
+      description: Get the details for a specific existing RequestResponse.
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: monetary-accountID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: itemId
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: A RequestResponse is what a user on the other side of a RequestInquiry gets when he is sent one. So a RequestInquiry is the initiator and visible for the user that sent it and that wants to receive the money. A RequestResponse is what the other side sees, i.e. the user that pays the money to accept the request. The content is almost identical.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestResponseRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
+  /user/{userID}/monetary-account/{monetary-accountID}/request-response:
+    get:
+      tags:
+      - request-response
+      summary: List all request response for user monetary account
+      operationId: List_all_RequestResponse_for_User_MonetaryAccount
+      description: Get all RequestResponses for a MonetaryAccount.
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: monetary-accountID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: A RequestResponse is what a user on the other side of a RequestInquiry gets when he is sent one. So a RequestInquiry is the initiator and visible for the user that sent it and that wants to receive the money. A RequestResponse is what the other side sees, i.e. the user that pays the money to accept the request. The content is almost identical.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RequestResponseListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
+components:
+  parameters:
+    X-Bunq-Geolocation:
+      description: This header must specify the geolocation of the device. The format of this value is longitude latitude altitude radius country. The country is expected to be formatted of an ISO 3166-1 alpha-2 country code. When no geolocation is available or known the header must still be included but can be zero valued.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Geolocation
+    Cache-Control:
+      description: The standard HTTP Cache-Control header is required for all signed requests.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: Cache-Control
+    User-Agent:
+      description: The User-Agent header field should contain information about the user agent originating the request. There are no restrictions on the value of this header.
+      schema:
+        type: string
+      required: true
+      in: header
+      name: User-Agent
+    X-Bunq-Client-Request-Id:
+      description: This header must specify an ID with each request that is unique for the logged in user. There are no restrictions for the format of this ID. However, the server will respond with an error when the same ID is used again on the same DeviceServer.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Client-Request-Id
+    X-Bunq-Region:
+      description: The X-Bunq-Region header must contain the region (country) of the client device. The value of this header is formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, separated by an underscore.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Region
+    X-Bunq-Language:
+      description: The X-Bunq-Language header must contain a preferred language indication. The value of this header is formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, separated by an underscore. Currently only the languages en_US and nl_NL are supported. Anything else will default to en_US.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Language
+    X-Bunq-Client-Authentication:
+      description: The authentication token is used to authenticate the source of the API call. It is required by all API calls except for POST /v1/installation. It is important to note that the device and session calls are using the token from the response of the installation call, while all the other calls use the token from the response of the session-server call
+      schema:
+        type: string
+      required: true
+      in: header
+      name: X-Bunq-Client-Authentication
+  schemas:
+    AttachmentUrl:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The file type of attachment.
+          readOnly: true
+          writeOnly: false
+        url:
+          type: string
+          description: The URL where the attachment can be downloaded.
+          readOnly: true
+          writeOnly: false
+    RequestResponseRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the Request Response.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp when the Request Response was created.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp when the Request Response was last updated (will be updated when chat messages are received).
+          readOnly: true
+          writeOnly: false
+        time_responded:
+          type: string
+          description: The timestamp of when the RequestResponse was responded to.
+          readOnly: true
+          writeOnly: false
+        time_expiry:
+          type: string
+          description: The timestamp of when the RequestResponse expired or will expire.
+          readOnly: true
+          writeOnly: false
+        time_refund_requested:
+          type: string
+          description: The timestamp of when a refund request for the RequestResponse was claimed.
+          readOnly: true
+          writeOnly: false
+        time_refunded:
+          type: string
+          description: The timestamp of when the RequestResponse was refunded.
+          readOnly: true
+          writeOnly: false
+        user_refund_requested:
+          type: object
+          description: The label of the user that requested the refund.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        monetary_account_id:
+          type: integer
+          description: The id of the MonetaryAccount the RequestResponse was received on.
+          readOnly: true
+          writeOnly: false
+        amount_inquired:
+          type: object
+          description: The requested Amount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_responded:
+          type: object
+          description: The Amount the RequestResponse was accepted with.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        status:
+          type: string
+          description: The status of the RequestResponse. Can be ACCEPTED, PENDING, REJECTED, REFUND_REQUESTED, REFUNDED or REVOKED.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: The description for the RequestResponse provided by the requesting party. Maximum 9000 characters.
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: object
+          description: The LabelMonetaryAccount with the public information of the MonetaryAccount this RequestResponse was received on.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counterparty_alias:
+          type: object
+          description: The LabelMonetaryAccount with the public information of the MonetaryAccount that is requesting money with this RequestResponse.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        attachment:
+          type: array
+          description: The Attachments attached to the RequestResponse.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Attachment'
+        minimum_age:
+          type: integer
+          description: The minimum age the user accepting the RequestResponse must have.
+          readOnly: true
+          writeOnly: false
+        require_address:
+          type: string
+          description: Whether or not an address must be provided on accept.
+          readOnly: true
+          writeOnly: false
+        geolocation:
+          type: object
+          description: The Geolocation where the RequestResponse was created.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Geolocation'
+        type:
+          type: string
+          description: The type of the RequestInquiry. Can be DIRECT_DEBIT, DIRECT_DEBIT_B2B, IDEAL, SOFORT or INTERNAL.
+          readOnly: true
+          writeOnly: false
+        sub_type:
+          type: string
+          description: The subtype of the RequestInquiry. Can be ONCE or RECURRING for DIRECT_DEBIT RequestInquiries and NONE for all other.
+          readOnly: true
+          writeOnly: false
+        redirect_url:
+          type: string
+          description: The URL which the user is sent to after accepting or rejecting the Request.
+          readOnly: true
+          writeOnly: false
+        address_billing:
+          type: object
+          description: The billing address provided by the accepting user if an address was requested.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        address_shipping:
+          type: object
+          description: The shipping address provided by the accepting user if an address was requested.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        credit_scheme_identifier:
+          type: string
+          description: The credit scheme id provided by the counterparty for DIRECT_DEBIT inquiries.
+          readOnly: true
+          writeOnly: false
+        mandate_identifier:
+          type: string
+          description: The mandate id provided by the counterparty for DIRECT_DEBIT inquiries.
+          readOnly: true
+          writeOnly: false
+        registration_action:
+          type: string
+          description: Recommended registration action after IdealIssuerTransaction from iDEAL issuer transaction.
+          readOnly: true
+          writeOnly: false
+        eligible_whitelist_id:
+          type: integer
+          description: The whitelist id for this action or null.
+          readOnly: true
+          writeOnly: false
+        request_reference_split_the_bill:
+          type: array
+          description: The reference to the object used for split the bill. Can be RequestInquiry or RequestInquiryBatch
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/RequestInquiryReference'
+        event_id:
+          type: integer
+          description: The ID of the latest event for the request.
+          readOnly: true
+          writeOnly: false
+        monetary_account_preferred_id:
+          type: integer
+          description: The ID of the monetary account this user prefers to pay the request from.
+          readOnly: true
+          writeOnly: false
+    Attachment:
+      type: object
+      properties:
+        description:
+          type: string
+          description: The description of the attachment.
+          readOnly: true
+          writeOnly: false
+        content_type:
+          type: string
+          description: The content type of the attachment's file.
+          readOnly: true
+          writeOnly: false
+        urls:
+          type: array
+          description: The URLs where the file can be downloaded.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/AttachmentUrl'
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          description: The street.
+          readOnly: false
+          writeOnly: false
+        house_number:
+          type: string
+          description: The house number.
+          readOnly: false
+          writeOnly: false
+        po_box:
+          type: string
+          description: The PO box.
+          readOnly: false
+          writeOnly: false
+        postal_code:
+          type: string
+          description: The postal code.
+          readOnly: false
+          writeOnly: false
+        city:
+          type: string
+          description: The city.
+          readOnly: false
+          writeOnly: false
+        country:
+          type: string
+          description: The country as an ISO 3166-1 alpha-2 country code.
+          readOnly: false
+          writeOnly: false
+        extra:
+          type: string
+          description: The apartment, building or other extra information for addresses.
+          readOnly: false
+          writeOnly: false
+        mailbox_name:
+          type: string
+          description: The name on the mailbox (only used for Postal and Shipping addresses).
+          readOnly: false
+          writeOnly: false
+        province:
+          type: string
+          description: The province according to local standard.
+          readOnly: true
+          writeOnly: false
+        is_user_address_updated:
+          type: boolean
+          description: To show whether user created or updated her address for app event listing.
+          readOnly: true
+          writeOnly: false
+    Amount:
+      type: object
+      properties:
+        value:
+          type: string
+          description: The amount formatted to two decimal places.
+          readOnly: false
+          writeOnly: false
+        currency:
+          type: string
+          description: The currency of the amount. It is an ISO 4217 formatted currency code.
+          readOnly: false
+          writeOnly: false
+    RequestResponse:
+      type: object
+      properties:
+        amount_responded:
+          type: object
+          description: The Amount the RequestResponse was accepted with.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        status:
+          type: string
+          description: The status of the RequestResponse. Can be ACCEPTED, PENDING, REJECTED, REFUND_REQUESTED, REFUNDED or REVOKED.
+          readOnly: false
+          writeOnly: false
+        address_shipping:
+          type: object
+          description: The shipping address provided by the accepting user if an address was requested.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        address_billing:
+          type: object
+          description: The billing address provided by the accepting user if an address was requested.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        currency_conversion_quote_id:
+          type: integer
+          description: When the request is accepted on a monetary account with a different currency, a quote is expected to convert.
+          readOnly: false
+          writeOnly: true
+        id:
+          type: integer
+          description: The id of the Request Response.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp when the Request Response was created.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp when the Request Response was last updated (will be updated when chat messages are received).
+          readOnly: true
+          writeOnly: false
+        time_responded:
+          type: string
+          description: The timestamp of when the RequestResponse was responded to.
+          readOnly: true
+          writeOnly: false
+        time_expiry:
+          type: string
+          description: The timestamp of when the RequestResponse expired or will expire.
+          readOnly: true
+          writeOnly: false
+        time_refund_requested:
+          type: string
+          description: The timestamp of when a refund request for the RequestResponse was claimed.
+          readOnly: true
+          writeOnly: false
+        time_refunded:
+          type: string
+          description: The timestamp of when the RequestResponse was refunded.
+          readOnly: true
+          writeOnly: false
+        user_refund_requested:
+          type: object
+          description: The label of the user that requested the refund.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        monetary_account_id:
+          type: integer
+          description: The id of the MonetaryAccount the RequestResponse was received on.
+          readOnly: true
+          writeOnly: false
+        amount_inquired:
+          type: object
+          description: The requested Amount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        description:
+          type: string
+          description: The description for the RequestResponse provided by the requesting party. Maximum 9000 characters.
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: object
+          description: The LabelMonetaryAccount with the public information of the MonetaryAccount this RequestResponse was received on.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counterparty_alias:
+          type: object
+          description: The LabelMonetaryAccount with the public information of the MonetaryAccount that is requesting money with this RequestResponse.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        attachment:
+          type: array
+          description: The Attachments attached to the RequestResponse.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Attachment'
+        minimum_age:
+          type: integer
+          description: The minimum age the user accepting the RequestResponse must have.
+          readOnly: true
+          writeOnly: false
+        require_address:
+          type: string
+          description: Whether or not an address must be provided on accept.
+          readOnly: true
+          writeOnly: false
+        geolocation:
+          type: object
+          description: The Geolocation where the RequestResponse was created.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Geolocation'
+        type:
+          type: string
+          description: The type of the RequestInquiry. Can be DIRECT_DEBIT, DIRECT_DEBIT_B2B, IDEAL, SOFORT or INTERNAL.
+          readOnly: true
+          writeOnly: false
+        sub_type:
+          type: string
+          description: The subtype of the RequestInquiry. Can be ONCE or RECURRING for DIRECT_DEBIT RequestInquiries and NONE for all other.
+          readOnly: true
+          writeOnly: false
+        redirect_url:
+          type: string
+          description: The URL which the user is sent to after accepting or rejecting the Request.
+          readOnly: true
+          writeOnly: false
+        credit_scheme_identifier:
+          type: string
+          description: The credit scheme id provided by the counterparty for DIRECT_DEBIT inquiries.
+          readOnly: true
+          writeOnly: false
+        mandate_identifier:
+          type: string
+          description: The mandate id provided by the counterparty for DIRECT_DEBIT inquiries.
+          readOnly: true
+          writeOnly: false
+        registration_action:
+          type: string
+          description: Recommended registration action after IdealIssuerTransaction from iDEAL issuer transaction.
+          readOnly: true
+          writeOnly: false
+        eligible_whitelist_id:
+          type: integer
+          description: The whitelist id for this action or null.
+          readOnly: true
+          writeOnly: false
+        request_reference_split_the_bill:
+          type: array
+          description: The reference to the object used for split the bill. Can be RequestInquiry or RequestInquiryBatch
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/RequestInquiryReference'
+        event_id:
+          type: integer
+          description: The ID of the latest event for the request.
+          readOnly: true
+          writeOnly: false
+        monetary_account_preferred_id:
+          type: integer
+          description: The ID of the monetary account this user prefers to pay the request from.
+          readOnly: true
+          writeOnly: false
+    LabelUser:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The public UUID of the label-user.
+          readOnly: false
+          writeOnly: false
+        display_name:
+          type: string
+          description: The name to be displayed for this user, as it was given on the request.
+          readOnly: false
+          writeOnly: false
+        country:
+          type: string
+          description: The country of the user. 000 stands for "unknown"
+          readOnly: false
+          writeOnly: false
+        avatar:
+          type: object
+          description: The current avatar of the user.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        public_nick_name:
+          type: string
+          description: The current nickname of the user.
+          readOnly: true
+          writeOnly: false
+    RequestResponseUpdate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    Error:
+      type: array
+      items:
+        type: object
+        properties:
+          error_description:
+            type: string
+            description: The error description in English.
+          error_description_translated:
+            type: string
+            description: The error description translated to the user's language.
+    Avatar:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The public UUID of the avatar.
+          readOnly: false
+          writeOnly: false
+        anchor_uuid:
+          type: string
+          description: The public UUID of object this avatar is anchored to.
+          readOnly: true
+          writeOnly: false
+        image:
+          type: array
+          description: The actual image information of this avatar.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Image'
+        style:
+          type: string
+          description: The style (if applicable) for this Avatar.
+          readOnly: true
+          writeOnly: false
+    Pointer:
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'The alias type, can be: EMAIL|PHONE_NUMBER|IBAN.'
+          readOnly: false
+          writeOnly: false
+        value:
+          type: string
+          description: The alias value.
+          readOnly: false
+          writeOnly: false
+        name:
+          type: string
+          description: The alias name.
+          readOnly: false
+          writeOnly: false
+        service:
+          type: string
+          description: The pointer service. Only required for external counterparties.
+          readOnly: false
+          writeOnly: true
+    BunqId:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: An integer ID of an object. Unique per object type.
+          readOnly: false
+          writeOnly: false
+    LabelMonetaryAccount:
+      type: object
+      properties:
+        iban:
+          type: string
+          description: The IBAN of the monetary account.
+          readOnly: true
+          writeOnly: false
+        display_name:
+          type: string
+          description: The name to display with this monetary account.
+          readOnly: true
+          writeOnly: false
+        avatar:
+          type: object
+          description: The avatar of the monetary account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        label_user:
+          type: object
+          description: The user this monetary account belongs to.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        country:
+          type: string
+          description: The country of the user. Formatted as a ISO 3166-1 alpha-2 country code.
+          readOnly: true
+          writeOnly: false
+        bunq_me:
+          type: object
+          description: Bunq.me pointer with type and value.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Pointer'
+        is_light:
+          type: boolean
+          description: Whether or not the monetary account is light.
+          readOnly: true
+          writeOnly: false
+        swift_bic:
+          type: string
+          description: The BIC used for a SWIFT payment.
+          readOnly: true
+          writeOnly: false
+        swift_account_number:
+          type: string
+          description: The account number used for a SWIFT payment. May or may not be an IBAN.
+          readOnly: true
+          writeOnly: false
+        transferwise_account_number:
+          type: string
+          description: The account number used for a Transferwise payment. May or may not be an IBAN.
+          readOnly: true
+          writeOnly: false
+        transferwise_bank_code:
+          type: string
+          description: The bank code used for a Transferwise payment. May or may not be a BIC.
+          readOnly: true
+          writeOnly: false
+        merchant_category_code:
+          type: string
+          description: The merchant category code.
+          readOnly: true
+          writeOnly: false
+    Image:
+      type: object
+      properties:
+        attachment_public_uuid:
+          type: string
+          description: The public UUID of the public attachment containing the image.
+          readOnly: true
+          writeOnly: false
+        content_type:
+          type: string
+          description: The content-type as a MIME filetype.
+          readOnly: true
+          writeOnly: false
+        height:
+          type: integer
+          description: The image height in pixels.
+          readOnly: true
+          writeOnly: false
+        width:
+          type: integer
+          description: The image width in pixels.
+          readOnly: true
+          writeOnly: false
+    Geolocation:
+      type: object
+      properties:
+        latitude:
+          type: integer
+          description: The latitude for a geolocation restriction.
+          readOnly: false
+          writeOnly: false
+        longitude:
+          type: integer
+          description: The longitude for a geolocation restriction.
+          readOnly: false
+          writeOnly: false
+        altitude:
+          type: integer
+          description: The altitude for a geolocation restriction.
+          readOnly: false
+          writeOnly: false
+        radius:
+          type: integer
+          description: The radius for a geolocation restriction.
+          readOnly: false
+          writeOnly: false
+    RequestInquiryReference:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of request inquiry. Can be RequestInquiry or RequestInquiryBatch.
+          readOnly: true
+          writeOnly: false
+        id:
+          type: integer
+          description: The id of the request inquiry (batch).
+          readOnly: true
+          writeOnly: false
+    RequestResponseListing:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the Request Response.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp when the Request Response was created.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp when the Request Response was last updated (will be updated when chat messages are received).
+          readOnly: true
+          writeOnly: false
+        time_responded:
+          type: string
+          description: The timestamp of when the RequestResponse was responded to.
+          readOnly: true
+          writeOnly: false
+        time_expiry:
+          type: string
+          description: The timestamp of when the RequestResponse expired or will expire.
+          readOnly: true
+          writeOnly: false
+        time_refund_requested:
+          type: string
+          description: The timestamp of when a refund request for the RequestResponse was claimed.
+          readOnly: true
+          writeOnly: false
+        time_refunded:
+          type: string
+          description: The timestamp of when the RequestResponse was refunded.
+          readOnly: true
+          writeOnly: false
+        user_refund_requested:
+          type: object
+          description: The label of the user that requested the refund.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        monetary_account_id:
+          type: integer
+          description: The id of the MonetaryAccount the RequestResponse was received on.
+          readOnly: true
+          writeOnly: false
+        amount_inquired:
+          type: object
+          description: The requested Amount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_responded:
+          type: object
+          description: The Amount the RequestResponse was accepted with.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        status:
+          type: string
+          description: The status of the RequestResponse. Can be ACCEPTED, PENDING, REJECTED, REFUND_REQUESTED, REFUNDED or REVOKED.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: The description for the RequestResponse provided by the requesting party. Maximum 9000 characters.
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: object
+          description: The LabelMonetaryAccount with the public information of the MonetaryAccount this RequestResponse was received on.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counterparty_alias:
+          type: object
+          description: The LabelMonetaryAccount with the public information of the MonetaryAccount that is requesting money with this RequestResponse.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        attachment:
+          type: array
+          description: The Attachments attached to the RequestResponse.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Attachment'
+        minimum_age:
+          type: integer
+          description: The minimum age the user accepting the RequestResponse must have.
+          readOnly: true
+          writeOnly: false
+        require_address:
+          type: string
+          description: Whether or not an address must be provided on accept.
+          readOnly: true
+          writeOnly: false
+        geolocation:
+          type: object
+          description: The Geolocation where the RequestResponse was created.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Geolocation'
+        type:
+          type: string
+          description: The type of the RequestInquiry. Can be DIRECT_DEBIT, DIRECT_DEBIT_B2B, IDEAL, SOFORT or INTERNAL.
+          readOnly: true
+          writeOnly: false
+        sub_type:
+          type: string
+          description: The subtype of the RequestInquiry. Can be ONCE or RECURRING for DIRECT_DEBIT RequestInquiries and NONE for all other.
+          readOnly: true
+          writeOnly: false
+        redirect_url:
+          type: string
+          description: The URL which the user is sent to after accepting or rejecting the Request.
+          readOnly: true
+          writeOnly: false
+        address_billing:
+          type: object
+          description: The billing address provided by the accepting user if an address was requested.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        address_shipping:
+          type: object
+          description: The shipping address provided by the accepting user if an address was requested.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        credit_scheme_identifier:
+          type: string
+          description: The credit scheme id provided by the counterparty for DIRECT_DEBIT inquiries.
+          readOnly: true
+          writeOnly: false
+        mandate_identifier:
+          type: string
+          description: The mandate id provided by the counterparty for DIRECT_DEBIT inquiries.
+          readOnly: true
+          writeOnly: false
+        registration_action:
+          type: string
+          description: Recommended registration action after IdealIssuerTransaction from iDEAL issuer transaction.
+          readOnly: true
+          writeOnly: false
+        eligible_whitelist_id:
+          type: integer
+          description: The whitelist id for this action or null.
+          readOnly: true
+          writeOnly: false
+        request_reference_split_the_bill:
+          type: array
+          description: The reference to the object used for split the bill. Can be RequestInquiry or RequestInquiryBatch
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/RequestInquiryReference'
+        event_id:
+          type: integer
+          description: The ID of the latest event for the request.
+          readOnly: true
+          writeOnly: false
+        monetary_account_preferred_id:
+          type: integer
+          description: The ID of the monetary account this user prefers to pay the request from.
+          readOnly: true
+          writeOnly: false
+  headers:
+    X-Bunq-Server-Signature:
+      description: The server's signature for this response. See the signing page for details on how to verify this signature.
+      schema:
+        type: string
+    X-Bunq-Client-Request-Id:
+      description: This header must specify an ID with each request that is unique for the logged in user. There are no restrictions for the format of this ID. However, the server will respond with an error when the same ID is used again on the same DeviceServer.
+      schema:
+        type: string
+      required: false
+    X-Bunq-Client-Response-Id:
+      description: A unique ID for the response formatted as a UUID. Clients can use it to add extra protection against replay attacks.
+      schema:
+        type: string
+  responses:
+    GenericError:
+      description: This is how the error response looks like for 4XX response codes
+      headers:
+        X-Bunq-Client-Response-Id:
+          $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+        X-Bunq-Client-Request-Id:
+          $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+        X-Bunq-Server-Signature:
+          $ref: '#/components/headers/X-Bunq-Server-Signature'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              Error:
+                $ref: '#/components/schemas/Error'

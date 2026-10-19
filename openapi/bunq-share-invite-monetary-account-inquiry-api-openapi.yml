@@ -1,0 +1,825 @@
+openapi: 3.2.0
+info:
+  title: bunq Share Invite Monetary Account Inquiry API
+  description: '***UPDATE:*** *We have released a beta version of the new bunq API documentation.*
+
+
+    ***NOTICE:*** *We have updated the sandbox base url to `https://public-api.sandbox.bunq.com/v1/`. Please update your applications accordingly. Check here: for more info.*
+
+
+    ***PSD2 NOTICE:*** *The second Payment Services Directive (PSD2) may affect your current or planned usage of our public API, as some of the API services are now subject to a permit. Please be aware that using our public API without the required PSD2 permit is at your own risk and take notice of our updated API Terms and Conditions on for more information.*
+
+
+    # Introduction
+
+
+    Welcome to bunq! - The bunq API is organised around REST. JSON will be returned in almost all responses from the API, including errors but excluding binary (image) files. - Please configure your implementation to send its API requests to `https://public-api.sandbox.bunq.com/v1/`
+
+    - There is a version of the Android app that connects to the bunq Sandbox environment. To create accounts for the Sandbox app, please follow the steps in the Android Emulator section. ## Getting started
+
+
+    Before you start sending API requests, you need to get an API key and activate it. API activation happens when you install the API key and link your IP address and device to it *(create an API context)*. The steps below will guide you through what you need to do to start sending custom API requests. Here is an overview of what you can use to get started with the bunq API:
+
+    1. **Create an API key.** You can do it either in our developer portal or in the bunq app *(Profile → Security & Settings → Developers → API keys)*. If you want to test our sandbox first, our bunq Developer is the best place to start. 2. **Register a device.** A device can be a phone (private), computer or a server (public). You can register a new device by using the `POST /installation` and `POST /device-server` calls. This will activate your API key. You only need to do this once. 3. **Open a session.** Sessions are temporary and expire after the auto-logout time set for the user account. It can be changed by the account owner in the bunq app. 4. **Make your first call!**
+
+
+    !bunq_API_context
+
+
+    ## Versioning
+
+
+    Developments in the financial sector, changing regulatory regimes and new feature requests require us to be flexible. This means we can iterate quickly to improve the API and related tooling. Therefore, we have chosen not to attach any version numbers to the changes just yet. We will inform you in a timely manner of any important changes we make before they are deployed on together.bunq.com. You can also subscribe to our API newsletter to make sure you don''t miss any important updates. # OAuth
+
+
+    ## What is OAuth? OAuth 2.0 is a protocol that will let your app connect to bunq users in a safe and easy way. Please be aware that if you will gain access to the account information of other bunq users or initiate a payment for them, you may require a PSD2 permit. ## Get started with OAuth for bunq
+
+
+    To initiate authorization into the bunq user accounts, you need to create an OAuth Client and register at least 1 redirect URL for it. You can have 1 OAuth Client at a time. Reuse your OAuth credentials for every authorization request. The list of steps below will help you to get started:
+
+
+    1. Register an OAuth Client by creating an app in bunq Developer_._
+
+    2. Add one or more Redirect URLs. 3. Get your `client_id` and `secret` from your app information tab in bunq Developer. 4. Redirect your users to the OAuth authorization request URL. 5. If the user accepts the authorization request, they will be redirected to the previously specified `redirect_uri` with an authorization `code` parameter. 6. Use the token endpoint to exchange the authorization `code` for an `access_token`. 7. Use the `access_token` as a normal API Key. Open a session or use our SDKs to get started. You can set up an OAuth Client and add redirect URLs to it using the dedicated endpoints too.'
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+- url: https://public-api.sandbox.bunq.com/{basePath}
+  description: Sandbox server
+  variables:
+    basePath:
+      default: v1
+- url: https://api.bunq.com/{basePath}
+  description: Production server
+  variables:
+    basePath:
+      default: v1
+tags:
+- name: share-invite-monetary-account-inquiry
+  description: ''
+paths:
+  /user/{userID}/monetary-account/{monetary-accountID}/share-invite-monetary-account-inquiry:
+    post:
+      tags:
+      - share-invite-monetary-account-inquiry
+      summary: CREATE share invite monetary account inquiry for user monetary account
+      operationId: CREATE_ShareInviteMonetaryAccountInquiry_for_User_MonetaryAccount
+      description: '[DEPRECATED - use /share-invite-monetary-account-response] Create a new share inquiry for a monetary account, specifying the permission the other bunq user will have on it.'
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: monetary-accountID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShareInviteMonetaryAccountInquiry'
+      responses:
+        '200':
+          description: '[DEPRECATED - use /share-invite-monetary-account-response] Used to share a monetary account with another bunq user, as in the ''Connect'' feature in the bunq app. Allow the creation of share inquiries that, in the same way as request inquiries, can be revoked by the user creating them or accepted/rejected by the other party.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareInviteMonetaryAccountInquiryCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
+    get:
+      tags:
+      - share-invite-monetary-account-inquiry
+      summary: List all share invite monetary account inquiry for user monetary account
+      operationId: List_all_ShareInviteMonetaryAccountInquiry_for_User_MonetaryAccount
+      description: '[DEPRECATED - use /share-invite-monetary-account-response] Get a list with all the share inquiries for a monetary account, only if the requesting user has permission to change the details of the various ones.'
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: monetary-accountID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: '[DEPRECATED - use /share-invite-monetary-account-response] Used to share a monetary account with another bunq user, as in the ''Connect'' feature in the bunq app. Allow the creation of share inquiries that, in the same way as request inquiries, can be revoked by the user creating them or accepted/rejected by the other party.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShareInviteMonetaryAccountInquiryListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
+  /user/{userID}/monetary-account/{monetary-accountID}/share-invite-monetary-account-inquiry/{itemId}:
+    get:
+      tags:
+      - share-invite-monetary-account-inquiry
+      summary: READ share invite monetary account inquiry for user monetary account
+      operationId: READ_ShareInviteMonetaryAccountInquiry_for_User_MonetaryAccount
+      description: '[DEPRECATED - use /share-invite-monetary-account-response] Get the details of a specific share inquiry.'
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: monetary-accountID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: itemId
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: '[DEPRECATED - use /share-invite-monetary-account-response] Used to share a monetary account with another bunq user, as in the ''Connect'' feature in the bunq app. Allow the creation of share inquiries that, in the same way as request inquiries, can be revoked by the user creating them or accepted/rejected by the other party.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareInviteMonetaryAccountInquiryRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
+    put:
+      tags:
+      - share-invite-monetary-account-inquiry
+      summary: UPDATE share invite monetary account inquiry for user monetary account
+      operationId: UPDATE_ShareInviteMonetaryAccountInquiry_for_User_MonetaryAccount
+      description: '[DEPRECATED - use /share-invite-monetary-account-response] Update the details of a share. This includes updating status (revoking or cancelling it), granted permission and validity period of this share.'
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: monetary-accountID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: itemId
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShareInviteMonetaryAccountInquiry'
+      responses:
+        '200':
+          description: '[DEPRECATED - use /share-invite-monetary-account-response] Used to share a monetary account with another bunq user, as in the ''Connect'' feature in the bunq app. Allow the creation of share inquiries that, in the same way as request inquiries, can be revoked by the user creating them or accepted/rejected by the other party.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareInviteMonetaryAccountInquiryUpdate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
+components:
+  parameters:
+    X-Bunq-Geolocation:
+      description: This header must specify the geolocation of the device. The format of this value is longitude latitude altitude radius country. The country is expected to be formatted of an ISO 3166-1 alpha-2 country code. When no geolocation is available or known the header must still be included but can be zero valued.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Geolocation
+    Cache-Control:
+      description: The standard HTTP Cache-Control header is required for all signed requests.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: Cache-Control
+    User-Agent:
+      description: The User-Agent header field should contain information about the user agent originating the request. There are no restrictions on the value of this header.
+      schema:
+        type: string
+      required: true
+      in: header
+      name: User-Agent
+    X-Bunq-Client-Request-Id:
+      description: This header must specify an ID with each request that is unique for the logged in user. There are no restrictions for the format of this ID. However, the server will respond with an error when the same ID is used again on the same DeviceServer.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Client-Request-Id
+    X-Bunq-Region:
+      description: The X-Bunq-Region header must contain the region (country) of the client device. The value of this header is formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, separated by an underscore.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Region
+    X-Bunq-Language:
+      description: The X-Bunq-Language header must contain a preferred language indication. The value of this header is formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, separated by an underscore. Currently only the languages en_US and nl_NL are supported. Anything else will default to en_US.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Language
+    X-Bunq-Client-Authentication:
+      description: The authentication token is used to authenticate the source of the API call. It is required by all API calls except for POST /v1/installation. It is important to note that the device and session calls are using the token from the response of the installation call, while all the other calls use the token from the response of the session-server call
+      schema:
+        type: string
+      required: true
+      in: header
+      name: X-Bunq-Client-Authentication
+  schemas:
+    ShareInviteMonetaryAccountInquiry:
+      type: object
+      properties:
+        counter_user_alias:
+          type: object
+          description: The label of the user to share with.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        access_type:
+          type: string
+          description: Type of access that is in place.
+          readOnly: false
+          writeOnly: false
+        draft_share_invite_bank_id:
+          type: integer
+          description: 'DEPRECATED: USE `access_type` INSTEAD | The id of the draft share invite bank.'
+          readOnly: false
+          writeOnly: true
+        share_detail:
+          type: object
+          description: 'DEPRECATED: USE `access_type` INSTEAD | The share details. Only one of these objects may be passed.'
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/ShareDetail'
+        status:
+          type: string
+          description: The status of the share. Can be ACTIVE, REVOKED, REJECTED.
+          readOnly: false
+          writeOnly: false
+        relationship:
+          type: string
+          description: 'The relationship: COMPANY_DIRECTOR, COMPANY_EMPLOYEE, etc'
+          readOnly: false
+          writeOnly: false
+        share_type:
+          type: string
+          description: 'DEPRECATED: USE `access_type` INSTEAD | The share type, either STANDARD or MUTUAL.'
+          readOnly: false
+          writeOnly: true
+        start_date:
+          type: string
+          description: 'DEPRECATED: USE `access_type` INSTEAD | The start date of this share.'
+          readOnly: false
+          writeOnly: true
+        end_date:
+          type: string
+          description: 'DEPRECATED: USE `access_type` INSTEAD | The expiration date of this share.'
+          readOnly: false
+          writeOnly: true
+        alias:
+          type: object
+          description: The label of the monetary account that's being shared.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        user_alias_created:
+          type: object
+          description: The user who created the share.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        user_alias_revoked:
+          type: object
+          description: The user who revoked the share.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        monetary_account_id:
+          type: integer
+          description: The id of the monetary account the share applies to.
+          readOnly: true
+          writeOnly: false
+        id:
+          type: integer
+          description: The id of the newly created share invite.
+          readOnly: true
+          writeOnly: false
+    ShareDetail:
+      type: object
+      properties:
+        payment:
+          type: object
+          description: The share details for a payment share. In the response 'payment' is replaced by 'ShareDetailPayment'.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/ShareDetailPayment'
+        read_only:
+          type: object
+          description: The share details for viewing a share. In the response 'read_only' is replaced by 'ShareDetailReadOnly'.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/ShareDetailReadOnly'
+        draft_payment:
+          type: object
+          description: The share details for a draft payment share. In the response 'draft_payment' is replaced by 'ShareDetailDraftPayment'.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/ShareDetailDraftPayment'
+    ShareDetailPayment:
+      type: object
+      properties:
+        make_payments:
+          type: boolean
+          description: If set to true, the invited user will be able to make payments from the shared account.
+          readOnly: false
+          writeOnly: false
+        make_draft_payments:
+          type: boolean
+          description: If set to true, the invited user will be able to make draft payments from the shared account.
+          readOnly: false
+          writeOnly: false
+        view_balance:
+          type: boolean
+          description: If set to true, the invited user will be able to view the account balance.
+          readOnly: false
+          writeOnly: false
+        view_old_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events from before the share was active.
+          readOnly: false
+          writeOnly: false
+        view_new_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events starting from the time the share became active.
+          readOnly: false
+          writeOnly: false
+    ShareInviteMonetaryAccountInquiryUpdate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    LabelUser:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The public UUID of the label-user.
+          readOnly: false
+          writeOnly: false
+        display_name:
+          type: string
+          description: The name to be displayed for this user, as it was given on the request.
+          readOnly: false
+          writeOnly: false
+        country:
+          type: string
+          description: The country of the user. 000 stands for "unknown"
+          readOnly: false
+          writeOnly: false
+        avatar:
+          type: object
+          description: The current avatar of the user.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        public_nick_name:
+          type: string
+          description: The current nickname of the user.
+          readOnly: true
+          writeOnly: false
+    Error:
+      type: array
+      items:
+        type: object
+        properties:
+          error_description:
+            type: string
+            description: The error description in English.
+          error_description_translated:
+            type: string
+            description: The error description translated to the user's language.
+    ShareInviteMonetaryAccountInquiryListing:
+      type: object
+      properties:
+        alias:
+          type: object
+          description: The label of the monetary account that's being shared.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        user_alias_created:
+          type: object
+          description: The user who created the share.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        user_alias_revoked:
+          type: object
+          description: The user who revoked the share.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        counter_user_alias:
+          type: object
+          description: The label of the user to share with.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        monetary_account_id:
+          type: integer
+          description: The id of the monetary account the share applies to.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the share. Can be ACTIVE, REVOKED, REJECTED.
+          readOnly: true
+          writeOnly: false
+        access_type:
+          type: string
+          description: Type of access that is in place.
+          readOnly: true
+          writeOnly: false
+        relationship:
+          type: string
+          description: 'The relationship: COMPANY_DIRECTOR, COMPANY_EMPLOYEE, etc'
+          readOnly: true
+          writeOnly: false
+        id:
+          type: integer
+          description: The id of the newly created share invite.
+          readOnly: true
+          writeOnly: false
+    Avatar:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The public UUID of the avatar.
+          readOnly: false
+          writeOnly: false
+        anchor_uuid:
+          type: string
+          description: The public UUID of object this avatar is anchored to.
+          readOnly: true
+          writeOnly: false
+        image:
+          type: array
+          description: The actual image information of this avatar.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Image'
+        style:
+          type: string
+          description: The style (if applicable) for this Avatar.
+          readOnly: true
+          writeOnly: false
+    Pointer:
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'The alias type, can be: EMAIL|PHONE_NUMBER|IBAN.'
+          readOnly: false
+          writeOnly: false
+        value:
+          type: string
+          description: The alias value.
+          readOnly: false
+          writeOnly: false
+        name:
+          type: string
+          description: The alias name.
+          readOnly: false
+          writeOnly: false
+        service:
+          type: string
+          description: The pointer service. Only required for external counterparties.
+          readOnly: false
+          writeOnly: true
+    ShareInviteMonetaryAccountInquiryRead:
+      type: object
+      properties:
+        alias:
+          type: object
+          description: The label of the monetary account that's being shared.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        user_alias_created:
+          type: object
+          description: The user who created the share.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        user_alias_revoked:
+          type: object
+          description: The user who revoked the share.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        counter_user_alias:
+          type: object
+          description: The label of the user to share with.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        monetary_account_id:
+          type: integer
+          description: The id of the monetary account the share applies to.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the share. Can be ACTIVE, REVOKED, REJECTED.
+          readOnly: true
+          writeOnly: false
+        access_type:
+          type: string
+          description: Type of access that is in place.
+          readOnly: true
+          writeOnly: false
+        relationship:
+          type: string
+          description: 'The relationship: COMPANY_DIRECTOR, COMPANY_EMPLOYEE, etc'
+          readOnly: true
+          writeOnly: false
+        id:
+          type: integer
+          description: The id of the newly created share invite.
+          readOnly: true
+          writeOnly: false
+    BunqId:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: An integer ID of an object. Unique per object type.
+          readOnly: false
+          writeOnly: false
+    LabelMonetaryAccount:
+      type: object
+      properties:
+        iban:
+          type: string
+          description: The IBAN of the monetary account.
+          readOnly: true
+          writeOnly: false
+        display_name:
+          type: string
+          description: The name to display with this monetary account.
+          readOnly: true
+          writeOnly: false
+        avatar:
+          type: object
+          description: The avatar of the monetary account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        label_user:
+          type: object
+          description: The user this monetary account belongs to.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        country:
+          type: string
+          description: The country of the user. Formatted as a ISO 3166-1 alpha-2 country code.
+          readOnly: true
+          writeOnly: false
+        bunq_me:
+          type: object
+          description: Bunq.me pointer with type and value.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Pointer'
+        is_light:
+          type: boolean
+          description: Whether or not the monetary account is light.
+          readOnly: true
+          writeOnly: false
+        swift_bic:
+          type: string
+          description: The BIC used for a SWIFT payment.
+          readOnly: true
+          writeOnly: false
+        swift_account_number:
+          type: string
+          description: The account number used for a SWIFT payment. May or may not be an IBAN.
+          readOnly: true
+          writeOnly: false
+        transferwise_account_number:
+          type: string
+          description: The account number used for a Transferwise payment. May or may not be an IBAN.
+          readOnly: true
+          writeOnly: false
+        transferwise_bank_code:
+          type: string
+          description: The bank code used for a Transferwise payment. May or may not be a BIC.
+          readOnly: true
+          writeOnly: false
+        merchant_category_code:
+          type: string
+          description: The merchant category code.
+          readOnly: true
+          writeOnly: false
+    ShareDetailReadOnly:
+      type: object
+      properties:
+        view_balance:
+          type: boolean
+          description: If set to true, the invited user will be able to view the account balance.
+          readOnly: false
+          writeOnly: false
+        view_old_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events from before the share was active.
+          readOnly: false
+          writeOnly: false
+        view_new_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events starting from the time the share became active.
+          readOnly: false
+          writeOnly: false
+    Image:
+      type: object
+      properties:
+        attachment_public_uuid:
+          type: string
+          description: The public UUID of the public attachment containing the image.
+          readOnly: true
+          writeOnly: false
+        content_type:
+          type: string
+          description: The content-type as a MIME filetype.
+          readOnly: true
+          writeOnly: false
+        height:
+          type: integer
+          description: The image height in pixels.
+          readOnly: true
+          writeOnly: false
+        width:
+          type: integer
+          description: The image width in pixels.
+          readOnly: true
+          writeOnly: false
+    ShareDetailDraftPayment:
+      type: object
+      properties:
+        make_draft_payments:
+          type: boolean
+          description: If set to true, the invited user will be able to make draft payments from the shared account.
+          readOnly: false
+          writeOnly: false
+        view_balance:
+          type: boolean
+          description: If set to true, the invited user will be able to view the account balance.
+          readOnly: false
+          writeOnly: false
+        view_old_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events from before the share was active.
+          readOnly: false
+          writeOnly: false
+        view_new_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events starting from the time the share became active.
+          readOnly: false
+          writeOnly: false
+    ShareInviteMonetaryAccountInquiryCreate:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the newly created share invite.
+          readOnly: true
+          writeOnly: false
+  headers:
+    X-Bunq-Server-Signature:
+      description: The server's signature for this response. See the signing page for details on how to verify this signature.
+      schema:
+        type: string
+    X-Bunq-Client-Request-Id:
+      description: This header must specify an ID with each request that is unique for the logged in user. There are no restrictions for the format of this ID. However, the server will respond with an error when the same ID is used again on the same DeviceServer.
+      schema:
+        type: string
+      required: false
+    X-Bunq-Client-Response-Id:
+      description: A unique ID for the response formatted as a UUID. Clients can use it to add extra protection against replay attacks.
+      schema:
+        type: string
+  responses:
+    GenericError:
+      description: This is how the error response looks like for 4XX response codes
+      headers:
+        X-Bunq-Client-Response-Id:
+          $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+        X-Bunq-Client-Request-Id:
+          $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+        X-Bunq-Server-Signature:
+          $ref: '#/components/headers/X-Bunq-Server-Signature'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              Error:
+                $ref: '#/components/schemas/Error'

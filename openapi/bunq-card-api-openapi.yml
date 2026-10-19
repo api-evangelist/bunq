@@ -1,122 +1,3155 @@
 openapi: 3.2.0
 info:
-  title: bunq Public Card API
-  description: Grounded, representative subset of the bunq Public API.
-  version: v1
+  title: bunq Card API
+  description: '***UPDATE:*** *We have released a beta version of the new bunq API documentation.*
+
+
+    ***NOTICE:*** *We have updated the sandbox base url to `https://public-api.sandbox.bunq.com/v1/`. Please update your applications accordingly. Check here: for more info.*
+
+
+    ***PSD2 NOTICE:*** *The second Payment Services Directive (PSD2) may affect your current or planned usage of our public API, as some of the API services are now subject to a permit. Please be aware that using our public API without the required PSD2 permit is at your own risk and take notice of our updated API Terms and Conditions on for more information.*
+
+
+    # Introduction
+
+
+    Welcome to bunq! - The bunq API is organised around REST. JSON will be returned in almost all responses from the API, including errors but excluding binary (image) files. - Please configure your implementation to send its API requests to `https://public-api.sandbox.bunq.com/v1/`
+
+    - There is a version of the Android app that connects to the bunq Sandbox environment. To create accounts for the Sandbox app, please follow the steps in the Android Emulator section. ## Getting started
+
+
+    Before you start sending API requests, you need to get an API key and activate it. API activation happens when you install the API key and link your IP address and device to it *(create an API context)*. The steps below will guide you through what you need to do to start sending custom API requests. Here is an overview of what you can use to get started with the bunq API:
+
+    1. **Create an API key.** You can do it either in our developer portal or in the bunq app *(Profile → Security & Settings → Developers → API keys)*. If you want to test our sandbox first, our bunq Developer is the best place to start. 2. **Register a device.** A device can be a phone (private), computer or a server (public). You can register a new device by using the `POST /installation` and `POST /device-server` calls. This will activate your API key. You only need to do this once. 3. **Open a session.** Sessions are temporary and expire after the auto-logout time set for the user account. It can be changed by the account owner in the bunq app. 4. **Make your first call!**
+
+
+    !bunq_API_context
+
+
+    ## Versioning
+
+
+    Developments in the financial sector, changing regulatory regimes and new feature requests require us to be flexible. This means we can iterate quickly to improve the API and related tooling. Therefore, we have chosen not to attach any version numbers to the changes just yet. We will inform you in a timely manner of any important changes we make before they are deployed on together.bunq.com. You can also subscribe to our API newsletter to make sure you don''t miss any important updates. # OAuth
+
+
+    ## What is OAuth? OAuth 2.0 is a protocol that will let your app connect to bunq users in a safe and easy way. Please be aware that if you will gain access to the account information of other bunq users or initiate a payment for them, you may require a PSD2 permit. ## Get started with OAuth for bunq
+
+
+    To initiate authorization into the bunq user accounts, you need to create an OAuth Client and register at least 1 redirect URL for it. You can have 1 OAuth Client at a time. Reuse your OAuth credentials for every authorization request. The list of steps below will help you to get started:
+
+
+    1. Register an OAuth Client by creating an app in bunq Developer_._
+
+    2. Add one or more Redirect URLs. 3. Get your `client_id` and `secret` from your app information tab in bunq Developer. 4. Redirect your users to the OAuth authorization request URL. 5. If the user accepts the authorization request, they will be redirected to the previously specified `redirect_uri` with an authorization `code` parameter. 6. Use the token endpoint to exchange the authorization `code` for an `access_token`. 7. Use the `access_token` as a normal API Key. Open a session or use our SDKs to get started. You can set up an OAuth Client and add redirect URLs to it using the dedicated endpoints too.'
+  termsOfService: http://bunq.com/terms-api/
   contact:
-    name: bunq API documentation
-    url: https://doc.bunq.com
+    name: bunq Developer Support
+    url: http://bunq.com/developer
   license:
-    name: bunq API Terms of Service
-    url: https://doc.bunq.com
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
 servers:
-- url: https://api.bunq.com/v1
-  description: Production
-- url: https://public-api.sandbox.bunq.com/v1
-  description: Sandbox
-security:
-- sessionToken: []
+- url: https://public-api.sandbox.bunq.com/{basePath}
+  description: Sandbox server
+  variables:
+    basePath:
+      default: v1
+- url: https://api.bunq.com/{basePath}
+  description: Production server
+  variables:
+    basePath:
+      default: v1
 tags:
 - name: Card
-  description: Debit and credit cards linked to monetary accounts.
+  description: ''
 paths:
+  /user/{userID}/card/{itemId}:
+    put:
+      tags:
+      - Card
+      summary: UPDATE card for user
+      operationId: UPDATE_Card_for_User
+      description: Update the card details. Allow to change pin code, status, limits, country permissions and the monetary account connected to the card. When the card has been received, it can be also activated through this endpoint.
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: itemId
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Card'
+      responses:
+        '200':
+          description: Endpoint for retrieving details for the cards the user has access to.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardUpdate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
+    get:
+      tags:
+      - Card
+      summary: READ card for user
+      operationId: READ_Card_for_User
+      description: Return the details of a specific card.
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: itemId
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Endpoint for retrieving details for the cards the user has access to.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
   /user/{userID}/card:
-    parameters:
-    - $ref: '#/components/parameters/UserID'
     get:
-      operationId: listCards
       tags:
       - Card
-      summary: List cards
-      description: Lists all debit and credit cards (CardDebit, CardCredit) for the user.
+      summary: List all card for user
+      operationId: List_all_Card_for_User
+      description: Return all the cards available to the user.
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
       responses:
         '200':
-          description: A list of cards.
+          description: Endpoint for retrieving details for the cards the user has access to.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-  /user/{userID}/card/{cardID}:
-    parameters:
-    - $ref: '#/components/parameters/UserID'
-    - name: cardID
-      in: path
-      required: true
-      description: The ID of the card.
-      schema:
-        type: integer
-    get:
-      operationId: getCard
-      tags:
-      - Card
-      summary: Get a card
-      description: Retrieves a single card, including its status, limits, and the monetary account it is linked to.
-      responses:
-        '200':
-          description: The requested card.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Response'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
+                type: array
+                items:
+                  $ref: '#/components/schemas/CardListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
 components:
   schemas:
-    Response:
+    MonetaryAccountProfile:
       type: object
-      description: Generic bunq response envelope. Every bunq response wraps its payload in a top-level `Response` array whose items are single-key objects keyed by the resource type (for example `Payment`, `MonetaryAccount`, `Id`, `Token`). Modeled generically here; see doc.bunq.com for the exact per-resource shape.
       properties:
-        Response:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
-    ErrorResponse:
+        profile_fill:
+          type: object
+          description: The profile settings for triggering the fill of a monetary account.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountProfileFill'
+        profile_drain:
+          type: object
+          description: The profile settings for moving excesses to a savings account
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountProfileDrain'
+    MonetaryAccountSwitchService:
       type: object
-      description: bunq error envelope.
       properties:
-        Error:
+        id:
+          type: integer
+          description: The id of the monetary account.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the monetary account's creation.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: The description for the bank account.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the account.
+          readOnly: true
+          writeOnly: false
+        sub_status:
+          type: string
+          description: The sub-status of the account.
+          readOnly: true
+          writeOnly: false
+    Card:
+      type: object
+      properties:
+        pin_code:
+          type: string
+          description: The plaintext pin code. Requests require encryption to be enabled.
+          readOnly: false
+          writeOnly: true
+        activation_code:
+          type: string
+          description: 'DEPRECATED: Activate a card by setting status to ACTIVE when the order_status is ACCEPTED_FOR_PRODUCTION.'
+          readOnly: false
+          writeOnly: true
+        status:
+          type: string
+          description: The status to set for the card. Can be ACTIVE, DEACTIVATED, LOST, STOLEN or CANCELLED, and can only be set to LOST/STOLEN/CANCELLED when order status is ACCEPTED_FOR_PRODUCTION/DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED. Can only be set to DEACTIVATED after initial activation, i.e. order_status is DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED. Mind that all the possible choices (apart from ACTIVE and DEACTIVATED) are permanent and cannot be changed after.
+          readOnly: false
+          writeOnly: false
+        order_status:
+          type: string
+          description: The order status to set for the card. Set to CARD_REQUEST_PENDING to get a virtual card produced.
+          readOnly: false
+          writeOnly: false
+        card_limit:
+          type: object
+          description: The spending limit for the card.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        card_limit_atm:
+          type: object
+          description: The ATM spending limit for the card.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        country_permission:
           type: array
+          description: The countries for which to grant (temporary) permissions to use the card.
+          readOnly: false
+          writeOnly: false
           items:
+            $ref: '#/components/schemas/CardCountryPermission'
+        pin_code_assignment:
+          type: array
+          description: Array of Types, PINs, account IDs assigned to the card.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardPinAssignment'
+        primary_account_numbers:
+          type: array
+          description: Array of PANs and their attributes.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardPrimaryAccountNumber'
+        monetary_account_id_fallback:
+          type: integer
+          description: ID of the MA to be used as fallback for this card if insufficient balance. Fallback account is removed if not supplied.
+          readOnly: false
+          writeOnly: false
+        preferred_name_on_card:
+          type: string
+          description: The user's preferred name as it will be on the card.
+          readOnly: false
+          writeOnly: false
+        second_line:
+          type: string
+          description: The second line of text on the card
+          readOnly: false
+          writeOnly: false
+        cancellation_reason:
+          type: string
+          description: The reason for card cancellation.
+          readOnly: false
+          writeOnly: true
+    OpenBankingProviderBank:
+      type: object
+      properties:
+        account_information_service_status:
+          type: string
+          description: Whether we support Open Banking budgeting using the bank provider.
+          readOnly: false
+          writeOnly: false
+        payment_information_service_status:
+          type: string
+          description: Whether we support top ups using the bank provider.
+          readOnly: false
+          writeOnly: false
+        name:
+          type: string
+          description: The name of the bank provider.
+          readOnly: true
+          writeOnly: false
+        aiia_provider_id:
+          type: string
+          description: The external identifier for this bank.
+          readOnly: true
+          writeOnly: false
+        country:
+          type: string
+          description: Country of provider
+          readOnly: true
+          writeOnly: false
+        all_payment_method_allowed_sepa:
+          type: array
+          description: All payment methods allowed for Sepa payments.
+          readOnly: true
+          writeOnly: false
+          items:
+            type: string
+        all_payment_method_allowed_domestic:
+          type: array
+          description: All payment methods allowed for Domestic payments.
+          readOnly: true
+          writeOnly: false
+          items:
+            type: string
+        audience_business_status:
+          type: boolean
+          description: Whether business banking is supported by the provider.
+          readOnly: true
+          writeOnly: false
+        audience_private_status:
+          type: boolean
+          description: Whether personal banking is supported by the provider.
+          readOnly: true
+          writeOnly: false
+        avatar:
+          type: object
+          description: The avatar of the bank.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+    ShareDetail:
+      type: object
+      properties:
+        payment:
+          type: object
+          description: The share details for a payment share. In the response 'payment' is replaced by 'ShareDetailPayment'.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/ShareDetailPayment'
+        read_only:
+          type: object
+          description: The share details for viewing a share. In the response 'read_only' is replaced by 'ShareDetailReadOnly'.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/ShareDetailReadOnly'
+        draft_payment:
+          type: object
+          description: The share details for a draft payment share. In the response 'draft_payment' is replaced by 'ShareDetailDraftPayment'.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/ShareDetailDraftPayment'
+    CardReplacement:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status of the CardReplacement.
+          readOnly: false
+          writeOnly: false
+        address_main:
+          type: object
+          description: The user's main address.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Address'
+        address_postal:
+          type: object
+          description: The user's postal address.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Address'
+        card_id:
+          type: integer
+          description: The original card that belongs to the CardReplacement.
+          readOnly: true
+          writeOnly: false
+        card_new_id:
+          type: integer
+          description: The new card that replaces the original card in the CardReplacement.
+          readOnly: true
+          writeOnly: false
+    MonetaryAccountInvestment:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: The currency of the MonetaryAccountInvestment as an ISO 4217 formatted currency code.
+          readOnly: false
+          writeOnly: false
+        provider:
+          type: string
+          description: The provider of the investment service.
+          readOnly: false
+          writeOnly: true
+        description:
+          type: string
+          description: The description of the MonetaryAccountInvestment. Defaults to 'bunq account'.
+          readOnly: false
+          writeOnly: false
+        daily_limit:
+          type: object
+          description: The daily spending limit Amount of the MonetaryAccountInvestment. Defaults to 1000 EUR. Currency must match the MonetaryAccountInvestment's currency. Limited to 10000 EUR.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        avatar_uuid:
+          type: string
+          description: The UUID of the Avatar of the MonetaryAccountInvestment.
+          readOnly: false
+          writeOnly: true
+        status:
+          type: string
+          description: 'The status of the MonetaryAccountInvestment. Can be: ACTIVE, BLOCKED, CANCELLED or PENDING_REOPEN'
+          readOnly: false
+          writeOnly: false
+        sub_status:
+          type: string
+          description: The sub-status of the MonetaryAccountInvestment providing extra information regarding the status. Will be NONE for ACTIVE or PENDING_REOPEN, COMPLETELY or ONLY_ACCEPTING_INCOMING for BLOCKED and REDEMPTION_INVOLUNTARY, REDEMPTION_VOLUNTARY or PERMANENT for CANCELLED.
+          readOnly: false
+          writeOnly: false
+        reason:
+          type: string
+          description: The reason for voluntarily cancelling (closing) the MonetaryAccountInvestment, can only be OTHER.
+          readOnly: false
+          writeOnly: false
+        reason_description:
+          type: string
+          description: The optional free-form reason for voluntarily cancelling (closing) the MonetaryAccountInvestment. Can be any user provided message.
+          readOnly: false
+          writeOnly: false
+        display_name:
+          type: string
+          description: The legal name of the user / company using this monetary account.
+          readOnly: false
+          writeOnly: false
+        setting:
+          type: object
+          description: The settings of the MonetaryAccountInvestment.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountSetting'
+        birdee_investment_portfolio:
+          type: object
+          description: The Birdee investment portfolio.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/BirdeeInvestmentPortfolio'
+        monetary_account_deposit_initial_id:
+          type: integer
+          description: ID of the MA to be used for the initial deposit to the investment account.
+          readOnly: false
+          writeOnly: true
+        amount_deposit_initial:
+          type: object
+          description: The amount to be transferred to the investment account as the initial deposit.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Amount'
+        id:
+          type: integer
+          description: The id of the MonetaryAccountInvestment.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the MonetaryAccountInvestment's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the MonetaryAccountInvestment's last update.
+          readOnly: true
+          writeOnly: false
+        avatar:
+          type: object
+          description: The Avatar of the MonetaryAccountInvestment.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        balance:
+          type: object
+          description: The current available balance Amount of the MonetaryAccountInvestment.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        alias:
+          type: array
+          description: The Aliases for the MonetaryAccountInvestment.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Pointer'
+        public_uuid:
+          type: string
+          description: The MonetaryAccountInvestment's public UUID.
+          readOnly: true
+          writeOnly: false
+        user_id:
+          type: integer
+          description: The id of the User who owns the MonetaryAccountInvestment.
+          readOnly: true
+          writeOnly: false
+        monetary_account_profile:
+          type: object
+          description: The profile of the account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountProfile'
+        all_auto_save_id:
+          type: array
+          description: The ids of the AutoSave.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/BunqId'
+      required:
+      - provider
+    CardRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the card.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the card's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the card's last update.
+          readOnly: true
+          writeOnly: false
+        public_uuid:
+          type: string
+          description: The public UUID of the card.
+          readOnly: true
+          writeOnly: false
+        user_id:
+          type: integer
+          description: DEPRECATED. ID of the user who is owner of the card.
+          readOnly: true
+          writeOnly: false
+        user_owner_id:
+          type: integer
+          description: ID of the user who is owner of the card.
+          readOnly: true
+          writeOnly: false
+        user_holder_id:
+          type: integer
+          description: ID of the user who is holder of the card.
+          readOnly: true
+          writeOnly: false
+        type:
+          type: string
+          description: The type of the card. Can be MAESTRO, MASTERCARD.
+          readOnly: true
+          writeOnly: false
+        sub_type:
+          type: string
+          description: The sub-type of the card.
+          readOnly: true
+          writeOnly: false
+        product_type:
+          type: string
+          description: The product type of the card.
+          readOnly: true
+          writeOnly: false
+        product_sub_type:
+          type: string
+          description: The product sub-type of the card.
+          readOnly: true
+          writeOnly: false
+        first_line:
+          type: string
+          description: The first line of text on the card
+          readOnly: true
+          writeOnly: false
+        second_line:
+          type: string
+          description: The second line of text on the card
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status to set for the card. Can be ACTIVE, DEACTIVATED, LOST, STOLEN, CANCELLED, EXPIRED or PIN_TRIES_EXCEEDED.
+          readOnly: true
+          writeOnly: false
+        sub_status:
+          type: string
+          description: The sub-status of the card. Can be NONE or REPLACED.
+          readOnly: true
+          writeOnly: false
+        order_status:
+          type: string
+          description: The order status of the card. Can be NEW_CARD_REQUEST_RECEIVED, CARD_REQUEST_PENDING, SENT_FOR_PRODUCTION, ACCEPTED_FOR_PRODUCTION, DELIVERED_TO_CUSTOMER, CARD_UPDATE_REQUESTED, CARD_UPDATE_PENDING, CARD_UPDATE_SENT, CARD_UPDATE_ACCEPTED, VIRTUAL_DELIVERY, NEW_CARD_REQUEST_PENDING_USER_APPROVAL, SENT_FOR_DELIVERY or NEW_CARD_REQUEST_CANCELLED.
+          readOnly: true
+          writeOnly: false
+        expiry_date:
+          type: string
+          description: Expiry date of the card.
+          readOnly: true
+          writeOnly: false
+        name_on_card:
+          type: string
+          description: The user's name on the card.
+          readOnly: true
+          writeOnly: false
+        preferred_name_on_card:
+          type: string
+          description: The user's preferred name on the card.
+          readOnly: true
+          writeOnly: false
+        primary_account_numbers:
+          type: array
+          description: Array of PANs and their attributes.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardPrimaryAccountNumber'
+        payment_account_reference:
+          type: string
+          description: The payment account reference number associated with the card.
+          readOnly: true
+          writeOnly: false
+        card_limit:
+          type: object
+          description: The spending limit for the card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        card_limit_atm:
+          type: object
+          description: The ATM spending limit for the card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        country_permission:
+          type: array
+          description: The countries for which to grant (temporary) permissions to use the card.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardCountryPermission'
+        label_monetary_account_ordered:
+          type: object
+          description: The monetary account this card was ordered on and the label user that owns the card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        label_monetary_account_current:
+          type: object
+          description: The monetary account that this card is currently linked to and the label user viewing it.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        monetary_account:
+          type: object
+          description: Current monetary account (only for prepaid credit cards).
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccount'
+        pin_code_assignment:
+          type: array
+          description: Array of Types, PINs, account IDs assigned to the card.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardPinAssignment'
+        monetary_account_id_fallback:
+          type: integer
+          description: ID of the MA to be used as fallback for this card if insufficient balance. Fallback account is removed if not supplied.
+          readOnly: true
+          writeOnly: false
+        country:
+          type: string
+          description: The country that is domestic to the card. Defaults to country of residence of user.
+          readOnly: true
+          writeOnly: false
+        card_shipment_tracking_url:
+          type: string
+          description: A tracking link provided by our shipment provider.
+          readOnly: true
+          writeOnly: false
+        is_card_eligible_for_free_replacement:
+          type: boolean
+          description: Whether this card is eligible for a free replacement.
+          readOnly: true
+          writeOnly: false
+        card_replacement:
+          type: object
+          description: The card replacement for this card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CardReplacement'
+        card_generated_cvc2:
+          type: object
+          description: The generated CVC2 code for this card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CardGeneratedCvc2'
+        is_limited_edition:
+          type: boolean
+          description: Whether this card is a limited edition metal card.
+          readOnly: true
+          writeOnly: false
+        card_metal_member_since_date:
+          type: string
+          description: The date for the member since field on the black metal card.
+          readOnly: true
+          writeOnly: false
+        company_employee_card:
+          type: object
+          description: Details of this card belonging to a company, if applicable.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CompanyEmployeeCard'
+    CoOwnerInviteResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status of the invite. Can be PENDING, REVOKED (the user deletes the share inquiry before it's accepted) or ACCEPTED
+          readOnly: false
+          writeOnly: false
+        alias:
+          type: object
+          description: The monetary account and user who get the invite for the joint account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counter_alias:
+          type: object
+          description: The monetary account and user who created the joint account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        monetary_account_id:
+          type: integer
+          description: The ID of the monetaryAccount
+          readOnly: true
+          writeOnly: false
+        monetary_account_type:
+          type: string
+          description: The extension type of the monetaryAccount
+          readOnly: true
+          writeOnly: false
+        freeze_status:
+          type: string
+          description: The freeze_status of the invite.
+          readOnly: true
+          writeOnly: false
+        label_freeze_user:
+          type: object
+          description: The label of the user that froze the coowner invite (if frozen).
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        all_co_owner:
+          type: array
+          description: The users the account will be joint with.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CoOwner'
+    ShareDetailPayment:
+      type: object
+      properties:
+        make_payments:
+          type: boolean
+          description: If set to true, the invited user will be able to make payments from the shared account.
+          readOnly: false
+          writeOnly: false
+        make_draft_payments:
+          type: boolean
+          description: If set to true, the invited user will be able to make draft payments from the shared account.
+          readOnly: false
+          writeOnly: false
+        view_balance:
+          type: boolean
+          description: If set to true, the invited user will be able to view the account balance.
+          readOnly: false
+          writeOnly: false
+        view_old_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events from before the share was active.
+          readOnly: false
+          writeOnly: false
+        view_new_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events starting from the time the share became active.
+          readOnly: false
+          writeOnly: false
+    MonetaryAccountCard:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the MonetaryAccountCard.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the MonetaryAccountCard's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the MonetaryAccountCard's last update.
+          readOnly: true
+          writeOnly: false
+        currency:
+          type: string
+          description: The currency of the MonetaryAccountCard as an ISO 4217 formatted currency code.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: The description of the MonetaryAccountCard. Defaults to 'prepaid credit card'.
+          readOnly: true
+          writeOnly: false
+        daily_limit:
+          type: object
+          description: The daily spending limit Amount of the MonetaryAccountCard.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        overdraft_limit:
+          type: object
+          description: The maximum Amount the MonetaryAccountCard can be 'in the red'.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        balance:
+          type: object
+          description: The current available balance Amount of the MonetaryAccountCard.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        balance_real:
+          type: object
+          description: The current real balance Amount of the MonetaryAccountCard.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        alias:
+          type: array
+          description: The Aliases for the MonetaryAccountCard.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Pointer'
+        public_uuid:
+          type: string
+          description: The MonetaryAccountCard's public UUID.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the MonetaryAccountCard.
+          readOnly: true
+          writeOnly: false
+        sub_status:
+          type: string
+          description: The sub-status of the MonetaryAccountCard providing extra information regarding the status.
+          readOnly: true
+          writeOnly: false
+        user_id:
+          type: integer
+          description: The id of the User who owns the MonetaryAccountCard.
+          readOnly: true
+          writeOnly: false
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          description: The street.
+          readOnly: false
+          writeOnly: false
+        house_number:
+          type: string
+          description: The house number.
+          readOnly: false
+          writeOnly: false
+        po_box:
+          type: string
+          description: The PO box.
+          readOnly: false
+          writeOnly: false
+        postal_code:
+          type: string
+          description: The postal code.
+          readOnly: false
+          writeOnly: false
+        city:
+          type: string
+          description: The city.
+          readOnly: false
+          writeOnly: false
+        country:
+          type: string
+          description: The country as an ISO 3166-1 alpha-2 country code.
+          readOnly: false
+          writeOnly: false
+        extra:
+          type: string
+          description: The apartment, building or other extra information for addresses.
+          readOnly: false
+          writeOnly: false
+        mailbox_name:
+          type: string
+          description: The name on the mailbox (only used for Postal and Shipping addresses).
+          readOnly: false
+          writeOnly: false
+        province:
+          type: string
+          description: The province according to local standard.
+          readOnly: true
+          writeOnly: false
+        is_user_address_updated:
+          type: boolean
+          description: To show whether user created or updated her address for app event listing.
+          readOnly: true
+          writeOnly: false
+    ShareInviteMonetaryAccountResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status of the share. Can be ACTIVE, REVOKED, REJECTED.
+          readOnly: false
+          writeOnly: false
+        card_id:
+          type: integer
+          description: The card to link to the shared monetary account. Used only if share_detail is ShareDetailCardPayment.
+          readOnly: false
+          writeOnly: true
+        id:
+          type: integer
+          description: The id of the ShareInviteBankResponse.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the ShareInviteBankResponse creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the ShareInviteBankResponse last update.
+          readOnly: true
+          writeOnly: false
+        counter_alias:
+          type: object
+          description: The monetary account and user who created the share.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        user_alias_cancelled:
+          type: object
+          description: The user who cancelled the share if it has been revoked or rejected.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        monetary_account_id:
+          type: integer
+          description: The id of the monetary account the ACCEPTED share applies to. null otherwise.
+          readOnly: true
+          writeOnly: false
+        draft_share_invite_bank_id:
+          type: integer
+          description: The id of the draft share invite bank.
+          readOnly: true
+          writeOnly: false
+        share_detail:
+          type: object
+          description: The share details.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/ShareDetail'
+        access_type:
+          type: string
+          description: Type of access that is wanted, one of VIEW_BALANCE, VIEW_TRANSACTION, DRAFT_PAYMENT or FULL_TRANSIENT
+          readOnly: true
+          writeOnly: false
+        relation_user:
+          type: object
+          description: All of the relation users towards this MA.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/RelationUser'
+        share_type:
+          type: string
+          description: The share type, either STANDARD or MUTUAL.
+          readOnly: true
+          writeOnly: false
+        start_date:
+          type: string
+          description: The start date of this share.
+          readOnly: true
+          writeOnly: false
+        end_date:
+          type: string
+          description: The expiration date of this share.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: The description of this share. It is basically the monetary account description.
+          readOnly: true
+          writeOnly: false
+    MonetaryAccountProfileFill:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status of the profile.
+          readOnly: false
+          writeOnly: false
+        balance_preferred:
+          type: object
+          description: The goal balance.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        balance_threshold_low:
+          type: object
+          description: The low threshold balance.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        issuer:
+          type: object
+          description: The bank the fill is supposed to happen from, with BIC and bank name.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Issuer'
+    CardCountryPermission:
+      type: object
+      properties:
+        country:
+          type: string
+          description: The country to allow transactions in (e.g. NL, DE).
+          readOnly: false
+          writeOnly: false
+        expiry_time:
+          type: string
+          description: Expiry time of this rule.
+          readOnly: false
+          writeOnly: true
+        id:
+          type: integer
+          description: The id of the card country permission entry.
+          readOnly: true
+          writeOnly: false
+    BirdeePortfolioAllocation:
+      type: object
+      properties:
+        instrument_currency:
+          type: string
+          description: Currency of the instrument.
+          readOnly: true
+          writeOnly: false
+        instrument_asset_class:
+          type: string
+          description: Asset Class of the instrument.
+          readOnly: true
+          writeOnly: false
+        instrument_asset_class_name:
+          type: string
+          description: Name of the asset class.
+          readOnly: true
+          writeOnly: false
+        instrument_isin:
+          type: string
+          description: ISIN code of the instrument.
+          readOnly: true
+          writeOnly: false
+        instrument_name:
+          type: string
+          description: Name of the instrument.
+          readOnly: true
+          writeOnly: false
+        instrument_region_name:
+          type: string
+          description: Name of the geographical region covered by the instrument
+          readOnly: true
+          writeOnly: false
+        instrument_key_information_document_uri:
+          type: string
+          description: Key Information Document of the instrument.
+          readOnly: true
+          writeOnly: false
+        weight:
+          type: string
+          description: Weight of the financial instrument in the model portfolio.
+          readOnly: true
+          writeOnly: false
+        quantity:
+          type: string
+          description: Quantity of the financial instrument in the portfolio.
+          readOnly: true
+          writeOnly: false
+        price:
+          type: string
+          description: Unit price of the financial instrument.
+          readOnly: true
+          writeOnly: false
+        amount:
+          type: string
+          description: Monetary amount of the financial instrument in the portfolio.
+          readOnly: true
+          writeOnly: false
+    BirdeeInvestmentPortfolio:
+      type: object
+      properties:
+        risk_profile_type:
+          type: string
+          description: The type of risk profile associated with the portfolio.
+          readOnly: false
+          writeOnly: false
+        investment_theme:
+          type: string
+          description: The investment theme.
+          readOnly: false
+          writeOnly: false
+        name:
+          type: string
+          description: The name associated with the investment portfolio.
+          readOnly: false
+          writeOnly: false
+        goal:
+          type: object
+          description: The investment goal.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/BirdeeInvestmentPortfolioGoal'
+        status:
+          type: string
+          description: Status of the portfolio.
+          readOnly: true
+          writeOnly: false
+        number_of_strategy_change_annual_maximum:
+          type: integer
+          description: Maximum number of strategy changes in a year.
+          readOnly: true
+          writeOnly: false
+        number_of_strategy_change_annual_used:
+          type: integer
+          description: Maximum number of strategy changes used.
+          readOnly: true
+          writeOnly: false
+        external_identifier:
+          type: string
+          description: The external identifier of the portfolio.
+          readOnly: true
+          writeOnly: false
+        balance:
+          type: object
+          description: The investment portfolio balance.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BirdeeInvestmentPortfolioBalance'
+        allocations:
+          type: array
+          description: The allocations of the investment portfolio.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/BirdeePortfolioAllocation'
+    Amount:
+      type: object
+      properties:
+        value:
+          type: string
+          description: The amount formatted to two decimal places.
+          readOnly: false
+          writeOnly: false
+        currency:
+          type: string
+          description: The currency of the amount. It is an ISO 4217 formatted currency code.
+          readOnly: false
+          writeOnly: false
+    MonetaryAccountExternal:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: The currency of the MonetaryAccountExternal as an ISO 4217 formatted currency code.
+          readOnly: false
+          writeOnly: false
+        service:
+          type: string
+          description: The external service the Monetary Account is connected with.
+          readOnly: false
+          writeOnly: false
+        description:
+          type: string
+          description: The description of the MonetaryAccountExternal. Defaults to 'bunq account'.
+          readOnly: false
+          writeOnly: false
+        daily_limit:
+          type: object
+          description: The daily spending limit Amount of the MonetaryAccountExternal. Defaults to 1000 EUR. Currency must match the MonetaryAccountExternal's currency. Limited to 10000 EUR.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        avatar_uuid:
+          type: string
+          description: The UUID of the Avatar of the MonetaryAccountExternal.
+          readOnly: false
+          writeOnly: true
+        status:
+          type: string
+          description: 'The status of the MonetaryAccountExternal. Can be: ACTIVE, BLOCKED, CANCELLED or PENDING_REOPEN'
+          readOnly: false
+          writeOnly: false
+        sub_status:
+          type: string
+          description: The sub-status of the MonetaryAccountExternal providing extra information regarding the status. Will be NONE for ACTIVE or PENDING_REOPEN, COMPLETELY or ONLY_ACCEPTING_INCOMING for BLOCKED and REDEMPTION_INVOLUNTARY, REDEMPTION_VOLUNTARY or PERMANENT for CANCELLED.
+          readOnly: false
+          writeOnly: false
+        reason:
+          type: string
+          description: The reason for voluntarily cancelling (closing) the MonetaryAccountExternal, can only be OTHER.
+          readOnly: false
+          writeOnly: false
+        reason_description:
+          type: string
+          description: The optional free-form reason for voluntarily cancelling (closing) the MonetaryAccountExternal. Can be any user provided message.
+          readOnly: false
+          writeOnly: false
+        display_name:
+          type: string
+          description: The legal name of the user / company using this monetary account.
+          readOnly: false
+          writeOnly: false
+        setting:
+          type: object
+          description: The settings of the MonetaryAccountExternal.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountSetting'
+        id:
+          type: integer
+          description: The id of the MonetaryAccountExternal.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the MonetaryAccountExternal's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the MonetaryAccountExternal's last update.
+          readOnly: true
+          writeOnly: false
+        avatar:
+          type: object
+          description: The Avatar of the MonetaryAccountExternal.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        overdraft_limit:
+          type: object
+          description: The maximum Amount the MonetaryAccountExternal can be 'in the red'.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        balance:
+          type: object
+          description: The current available balance Amount of the MonetaryAccountExternal.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        alias:
+          type: array
+          description: The Aliases for the MonetaryAccountExternal.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Pointer'
+        public_uuid:
+          type: string
+          description: The MonetaryAccountExternal's public UUID.
+          readOnly: true
+          writeOnly: false
+        user_id:
+          type: integer
+          description: The id of the User who owns the MonetaryAccountExternal.
+          readOnly: true
+          writeOnly: false
+        monetary_account_profile:
+          type: object
+          description: The profile of the account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountProfile'
+        all_auto_save_id:
+          type: array
+          description: The ids of the AutoSave.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/BunqId'
+        open_banking_account:
+          type: object
+          description: The open banking account for information about the external account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/OpenBankingAccount'
+    CardListing:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the card.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the card's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the card's last update.
+          readOnly: true
+          writeOnly: false
+        public_uuid:
+          type: string
+          description: The public UUID of the card.
+          readOnly: true
+          writeOnly: false
+        user_id:
+          type: integer
+          description: DEPRECATED. ID of the user who is owner of the card.
+          readOnly: true
+          writeOnly: false
+        user_owner_id:
+          type: integer
+          description: ID of the user who is owner of the card.
+          readOnly: true
+          writeOnly: false
+        user_holder_id:
+          type: integer
+          description: ID of the user who is holder of the card.
+          readOnly: true
+          writeOnly: false
+        type:
+          type: string
+          description: The type of the card. Can be MAESTRO, MASTERCARD.
+          readOnly: true
+          writeOnly: false
+        sub_type:
+          type: string
+          description: The sub-type of the card.
+          readOnly: true
+          writeOnly: false
+        product_type:
+          type: string
+          description: The product type of the card.
+          readOnly: true
+          writeOnly: false
+        product_sub_type:
+          type: string
+          description: The product sub-type of the card.
+          readOnly: true
+          writeOnly: false
+        first_line:
+          type: string
+          description: The first line of text on the card
+          readOnly: true
+          writeOnly: false
+        second_line:
+          type: string
+          description: The second line of text on the card
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status to set for the card. Can be ACTIVE, DEACTIVATED, LOST, STOLEN, CANCELLED, EXPIRED or PIN_TRIES_EXCEEDED.
+          readOnly: true
+          writeOnly: false
+        sub_status:
+          type: string
+          description: The sub-status of the card. Can be NONE or REPLACED.
+          readOnly: true
+          writeOnly: false
+        order_status:
+          type: string
+          description: The order status of the card. Can be NEW_CARD_REQUEST_RECEIVED, CARD_REQUEST_PENDING, SENT_FOR_PRODUCTION, ACCEPTED_FOR_PRODUCTION, DELIVERED_TO_CUSTOMER, CARD_UPDATE_REQUESTED, CARD_UPDATE_PENDING, CARD_UPDATE_SENT, CARD_UPDATE_ACCEPTED, VIRTUAL_DELIVERY, NEW_CARD_REQUEST_PENDING_USER_APPROVAL, SENT_FOR_DELIVERY or NEW_CARD_REQUEST_CANCELLED.
+          readOnly: true
+          writeOnly: false
+        expiry_date:
+          type: string
+          description: Expiry date of the card.
+          readOnly: true
+          writeOnly: false
+        name_on_card:
+          type: string
+          description: The user's name on the card.
+          readOnly: true
+          writeOnly: false
+        preferred_name_on_card:
+          type: string
+          description: The user's preferred name on the card.
+          readOnly: true
+          writeOnly: false
+        primary_account_numbers:
+          type: array
+          description: Array of PANs and their attributes.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardPrimaryAccountNumber'
+        payment_account_reference:
+          type: string
+          description: The payment account reference number associated with the card.
+          readOnly: true
+          writeOnly: false
+        card_limit:
+          type: object
+          description: The spending limit for the card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        card_limit_atm:
+          type: object
+          description: The ATM spending limit for the card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        country_permission:
+          type: array
+          description: The countries for which to grant (temporary) permissions to use the card.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardCountryPermission'
+        label_monetary_account_ordered:
+          type: object
+          description: The monetary account this card was ordered on and the label user that owns the card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        label_monetary_account_current:
+          type: object
+          description: The monetary account that this card is currently linked to and the label user viewing it.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        monetary_account:
+          type: object
+          description: Current monetary account (only for prepaid credit cards).
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccount'
+        pin_code_assignment:
+          type: array
+          description: Array of Types, PINs, account IDs assigned to the card.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardPinAssignment'
+        monetary_account_id_fallback:
+          type: integer
+          description: ID of the MA to be used as fallback for this card if insufficient balance. Fallback account is removed if not supplied.
+          readOnly: true
+          writeOnly: false
+        country:
+          type: string
+          description: The country that is domestic to the card. Defaults to country of residence of user.
+          readOnly: true
+          writeOnly: false
+        card_shipment_tracking_url:
+          type: string
+          description: A tracking link provided by our shipment provider.
+          readOnly: true
+          writeOnly: false
+        is_card_eligible_for_free_replacement:
+          type: boolean
+          description: Whether this card is eligible for a free replacement.
+          readOnly: true
+          writeOnly: false
+        card_replacement:
+          type: object
+          description: The card replacement for this card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CardReplacement'
+        card_generated_cvc2:
+          type: object
+          description: The generated CVC2 code for this card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CardGeneratedCvc2'
+        is_limited_edition:
+          type: boolean
+          description: Whether this card is a limited edition metal card.
+          readOnly: true
+          writeOnly: false
+        card_metal_member_since_date:
+          type: string
+          description: The date for the member since field on the black metal card.
+          readOnly: true
+          writeOnly: false
+        company_employee_card:
+          type: object
+          description: Details of this card belonging to a company, if applicable.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CompanyEmployeeCard'
+    LabelUser:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The public UUID of the label-user.
+          readOnly: false
+          writeOnly: false
+        display_name:
+          type: string
+          description: The name to be displayed for this user, as it was given on the request.
+          readOnly: false
+          writeOnly: false
+        country:
+          type: string
+          description: The country of the user. 000 stands for "unknown"
+          readOnly: false
+          writeOnly: false
+        avatar:
+          type: object
+          description: The current avatar of the user.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        public_nick_name:
+          type: string
+          description: The current nickname of the user.
+          readOnly: true
+          writeOnly: false
+    CardGeneratedCvc2:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of generated cvc2. Can be STATIC or GENERATED.
+          readOnly: false
+          writeOnly: false
+    MonetaryAccountSavings:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: The currency of the MonetaryAccountSavings as an ISO 4217 formatted currency code.
+          readOnly: false
+          writeOnly: false
+        description:
+          type: string
+          description: The description of the MonetaryAccountSavings. Defaults to 'bunq account'.
+          readOnly: false
+          writeOnly: false
+        daily_limit:
+          type: object
+          description: The daily spending limit Amount of the MonetaryAccountSavings. Defaults to 1000 EUR. Currency must match the MonetaryAccountSavings's currency. Limited to 10000 EUR.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        avatar_uuid:
+          type: string
+          description: The UUID of the Avatar of the MonetaryAccountSavings.
+          readOnly: false
+          writeOnly: true
+        status:
+          type: string
+          description: 'The status of the MonetaryAccountSavings. Can be: ACTIVE, BLOCKED, CANCELLED or PENDING_REOPEN'
+          readOnly: false
+          writeOnly: false
+        sub_status:
+          type: string
+          description: The sub-status of the MonetaryAccountSavings providing extra information regarding the status. Will be NONE for ACTIVE or PENDING_REOPEN, COMPLETELY or ONLY_ACCEPTING_INCOMING for BLOCKED and REDEMPTION_INVOLUNTARY, REDEMPTION_VOLUNTARY or PERMANENT for CANCELLED.
+          readOnly: false
+          writeOnly: false
+        reason:
+          type: string
+          description: The reason for voluntarily cancelling (closing) the MonetaryAccountSavings, can only be OTHER.
+          readOnly: false
+          writeOnly: false
+        reason_description:
+          type: string
+          description: The optional free-form reason for voluntarily cancelling (closing) the MonetaryAccountSavings. Can be any user provided message.
+          readOnly: false
+          writeOnly: false
+        all_co_owner:
+          type: array
+          description: The users the account will be joint with.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CoOwner'
+        setting:
+          type: object
+          description: The settings of the MonetaryAccountSavings.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountSetting'
+        savings_goal:
+          type: object
+          description: The Savings Goal set for this MonetaryAccountSavings.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        id:
+          type: integer
+          description: The id of the MonetaryAccountSavings.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the MonetaryAccountSavings's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the MonetaryAccountSavings's last update.
+          readOnly: true
+          writeOnly: false
+        avatar:
+          type: object
+          description: The Avatar of the MonetaryAccountSavings.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        balance:
+          type: object
+          description: The current available balance Amount of the MonetaryAccountSavings.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        alias:
+          type: array
+          description: The Aliases for the MonetaryAccountSavings.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Pointer'
+        public_uuid:
+          type: string
+          description: The MonetaryAccountSavings's public UUID.
+          readOnly: true
+          writeOnly: false
+        user_id:
+          type: integer
+          description: The id of the User who owns the MonetaryAccountSavings.
+          readOnly: true
+          writeOnly: false
+        monetary_account_profile:
+          type: object
+          description: The profile of the account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountProfile'
+        savings_goal_progress:
+          type: integer
+          description: The progress in percentages for the Savings Goal set for this MonetaryAccountSavings.
+          readOnly: true
+          writeOnly: false
+        number_of_payment_remaining:
+          type: string
+          description: The number of payments that can be made from this savings account
+          readOnly: true
+          writeOnly: false
+        all_auto_save_id:
+          type: array
+          description: The ids of the AutoSave.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/BunqId'
+    Error:
+      type: array
+      items:
+        type: object
+        properties:
+          error_description:
+            type: string
+            description: The error description in English.
+          error_description_translated:
+            type: string
+            description: The error description translated to the user's language.
+    MonetaryAccount:
+      type: object
+      properties:
+        alias:
+          type: array
+          description: The aliases for the MonetaryAccount.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Pointer'
+        balance:
+          type: object
+          description: The current available balance amount of the MonetaryAccount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        monetary_account_profile:
+          type: array
+          description: The profiles of the account.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/MonetaryAccountProfile'
+        setting:
+          type: object
+          description: The settings of the MonetaryAccount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountSetting'
+        budget:
+          type: array
+          description: The budgets of the MonetaryAccount.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/MonetaryAccountBudget'
+        reason:
+          type: string
+          description: The reason for voluntarily cancelling (closing) the MonetaryAccount.
+          readOnly: true
+          writeOnly: false
+        reason_description:
+          type: string
+          description: The optional free-form reason for voluntarily cancelling (closing) the MonetaryAccount. Can be any user provided message.
+          readOnly: true
+          writeOnly: false
+        share:
+          type: object
+          description: The ShareInviteBankResponse when the MonetaryAccount is accessed by the User via a share/connect.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/ShareInviteMonetaryAccountResponse'
+        all_auto_save_id:
+          type: array
+          description: The ids of the AutoSave.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/BunqId'
+        fulfillments:
+          type: array
+          description: The fulfillments for this MonetaryAccount.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Fulfillment'
+        relation_user:
+          type: object
+          description: The RelationUser when the MonetaryAccount is accessed by the User via a share/connect.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/RelationUser'
+        all_co_owner:
+          type: array
+          description: The users the account will be joint with.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CoOwner'
+        co_owner_invite:
+          type: object
+          description: The CoOwnerInvite when the MonetaryAccount is accessed by the User via a CoOwnerInvite.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CoOwnerInviteResponse'
+        open_banking_account:
+          type: object
+          description: The open banking account for information about the external account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/OpenBankingAccount'
+        birdee_investment_portfolio:
+          type: object
+          description: The Birdee investment portfolio.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BirdeeInvestmentPortfolio'
+        MonetaryAccountLight:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountLight'
+        MonetaryAccountBank:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountBank'
+        MonetaryAccountExternal:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountExternal'
+        MonetaryAccountInvestment:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountInvestment'
+        MonetaryAccountJoint:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountJoint'
+        MonetaryAccountSavings:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountSavings'
+        MonetaryAccountSwitchService:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountSwitchService'
+        MonetaryAccountExternalSavings:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountExternalSavings'
+        MonetaryAccountCard:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountCard'
+    Avatar:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The public UUID of the avatar.
+          readOnly: false
+          writeOnly: false
+        anchor_uuid:
+          type: string
+          description: The public UUID of object this avatar is anchored to.
+          readOnly: true
+          writeOnly: false
+        image:
+          type: array
+          description: The actual image information of this avatar.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Image'
+        style:
+          type: string
+          description: The style (if applicable) for this Avatar.
+          readOnly: true
+          writeOnly: false
+    CompanyEmployeeSettingAdyenCardTransaction:
+      type: object
+      properties:
+        pointer_counter_user:
+          type: object
+          description: The pointer to the employee for which you want to create a card.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Pointer'
+        status:
+          type: string
+          description: Whether the user is allowed to use Tap to Pay.
+          readOnly: false
+          writeOnly: false
+        monetary_account_payout_id:
+          type: integer
+          description: The ID of the monetary account where Tap to Pay transactions should be paid out to.
+          readOnly: false
+          writeOnly: false
+      required:
+      - pointer_counter_user
+    Pointer:
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'The alias type, can be: EMAIL|PHONE_NUMBER|IBAN.'
+          readOnly: false
+          writeOnly: false
+        value:
+          type: string
+          description: The alias value.
+          readOnly: false
+          writeOnly: false
+        name:
+          type: string
+          description: The alias name.
+          readOnly: false
+          writeOnly: false
+        service:
+          type: string
+          description: The pointer service. Only required for external counterparties.
+          readOnly: false
+          writeOnly: true
+    MonetaryAccountSetting:
+      type: object
+      properties:
+        color:
+          type: string
+          description: The color chosen for the MonetaryAccount.
+          readOnly: false
+          writeOnly: false
+        icon:
+          type: string
+          description: The icon chosen for the MonetaryAccount.
+          readOnly: false
+          writeOnly: false
+        default_avatar_status:
+          type: string
+          description: The status of the avatar. Can be either AVATAR_DEFAULT, AVATAR_CUSTOM or AVATAR_UNDETERMINED.
+          readOnly: false
+          writeOnly: false
+        restriction_chat:
+          type: string
+          description: The chat restriction. Possible values are ALLOW_INCOMING or BLOCK_INCOMING
+          readOnly: false
+          writeOnly: false
+        sdd_expiration_action:
+          type: string
+          description: The preference for this monetary account on whether to automatically accept or reject expiring SDDs.
+          readOnly: false
+          writeOnly: false
+    OpenBankingAccount:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status of this account.
+          readOnly: true
+          writeOnly: false
+        iban:
+          type: string
+          description: The iban of this account.
+          readOnly: true
+          writeOnly: false
+        time_synced_last:
+          type: string
+          description: The timestamp of the last time the account was synced with our open banking partner.
+          readOnly: true
+          writeOnly: false
+        provider_bank:
+          type: object
+          description: The bank provider the account comes from.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/OpenBankingProviderBank'
+        balance_booked:
+          type: object
+          description: The booked balance of the account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        balance_available:
+          type: object
+          description: The available balance of the account, if provided by the other bank.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+    BunqId:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: An integer ID of an object. Unique per object type.
+          readOnly: false
+          writeOnly: false
+    CardPinAssignment:
+      type: object
+      properties:
+        type:
+          type: string
+          description: PIN type. Can be PRIMARY, SECONDARY or TERTIARY
+          readOnly: false
+          writeOnly: false
+        routing_type:
+          type: string
+          description: Routing type.
+          readOnly: false
+          writeOnly: false
+        pin_code:
+          type: string
+          description: The 4 digit PIN to be assigned to this account.
+          readOnly: false
+          writeOnly: true
+        monetary_account_id:
+          type: integer
+          description: The ID of the monetary account to assign to this pin for the card.
+          readOnly: false
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the card pin assignment.
+          readOnly: true
+          writeOnly: false
+    MonetaryAccountBudget:
+      type: object
+      properties:
+        all_category:
+          type: array
+          description: DEPRECATED. The list of categories on which the user wants to set the budget.
+          readOnly: false
+          writeOnly: true
+          items:
+            type: string
+        amount:
+          type: object
+          description: DEPRECATED. The amount for the budget.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Amount'
+        recurrence_type:
+          type: string
+          description: DEPRECATED. The recurrence type for the automatic top-up.
+          readOnly: false
+          writeOnly: true
+        monetary_account_source_funding_id:
+          type: integer
+          description: DEPRECATED. The monetary account's ID from/to which the missing/exceeding funds will be transferred.
+          readOnly: false
+          writeOnly: true
+        payment_day_of_month:
+          type: integer
+          description: DEPRECATED. The day of the month for the automatic top-up.
+          readOnly: false
+          writeOnly: true
+      required:
+      - all_category
+      - amount
+      - recurrence_type
+      - monetary_account_source_funding_id
+    LabelMonetaryAccount:
+      type: object
+      properties:
+        iban:
+          type: string
+          description: The IBAN of the monetary account.
+          readOnly: true
+          writeOnly: false
+        display_name:
+          type: string
+          description: The name to display with this monetary account.
+          readOnly: true
+          writeOnly: false
+        avatar:
+          type: object
+          description: The avatar of the monetary account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        label_user:
+          type: object
+          description: The user this monetary account belongs to.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        country:
+          type: string
+          description: The country of the user. Formatted as a ISO 3166-1 alpha-2 country code.
+          readOnly: true
+          writeOnly: false
+        bunq_me:
+          type: object
+          description: Bunq.me pointer with type and value.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Pointer'
+        is_light:
+          type: boolean
+          description: Whether or not the monetary account is light.
+          readOnly: true
+          writeOnly: false
+        swift_bic:
+          type: string
+          description: The BIC used for a SWIFT payment.
+          readOnly: true
+          writeOnly: false
+        swift_account_number:
+          type: string
+          description: The account number used for a SWIFT payment. May or may not be an IBAN.
+          readOnly: true
+          writeOnly: false
+        transferwise_account_number:
+          type: string
+          description: The account number used for a Transferwise payment. May or may not be an IBAN.
+          readOnly: true
+          writeOnly: false
+        transferwise_bank_code:
+          type: string
+          description: The bank code used for a Transferwise payment. May or may not be a BIC.
+          readOnly: true
+          writeOnly: false
+        merchant_category_code:
+          type: string
+          description: The merchant category code.
+          readOnly: true
+          writeOnly: false
+    CardPrimaryAccountNumber:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The ID for this Virtual PAN.
+          readOnly: false
+          writeOnly: false
+        description:
+          type: string
+          description: The description for this PAN.
+          readOnly: false
+          writeOnly: false
+        status:
+          type: string
+          description: The status for this PAN, only for Online Cards.
+          readOnly: false
+          writeOnly: false
+        monetary_account_id:
+          type: integer
+          description: The ID of the monetary account to assign to this PAN, only for Online Cards.
+          readOnly: false
+          writeOnly: false
+        uuid:
+          type: string
+          description: The UUID for this Virtual PAN.
+          readOnly: true
+          writeOnly: false
+        four_digit:
+          type: string
+          description: The last four digits of the PAN.
+          readOnly: true
+          writeOnly: false
+        type:
+          type: string
+          description: The type of the PAN.
+          readOnly: true
+          writeOnly: false
+    MonetaryAccountExternalSavings:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: The currency of the MonetaryAccountExternalSavings as an ISO 4217 formatted currency code.
+          readOnly: false
+          writeOnly: false
+        service:
+          type: string
+          description: The service the MonetaryAccountExternalSavings is connected with.
+          readOnly: false
+          writeOnly: true
+        description:
+          type: string
+          description: The description of the MonetaryAccountExternalSavings. Defaults to 'bunq account'.
+          readOnly: false
+          writeOnly: false
+        daily_limit:
+          type: object
+          description: The daily spending limit Amount of the MonetaryAccountExternalSavings. Defaults to 1000 EUR. Currency must match the MonetaryAccountExternalSavings's currency. Limited to 10000 EUR.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        avatar_uuid:
+          type: string
+          description: The UUID of the Avatar of the MonetaryAccountExternalSavings.
+          readOnly: false
+          writeOnly: true
+        status:
+          type: string
+          description: 'The status of the MonetaryAccountExternalSavings. Can be: ACTIVE, BLOCKED, CANCELLED or PENDING_REOPEN'
+          readOnly: false
+          writeOnly: false
+        sub_status:
+          type: string
+          description: The sub-status of the MonetaryAccountExternalSavings providing extra information regarding the status. Will be NONE for ACTIVE or PENDING_REOPEN, COMPLETELY or ONLY_ACCEPTING_INCOMING for BLOCKED and REDEMPTION_INVOLUNTARY, REDEMPTION_VOLUNTARY or PERMANENT for CANCELLED.
+          readOnly: false
+          writeOnly: false
+        reason:
+          type: string
+          description: The reason for voluntarily cancelling (closing) the MonetaryAccountExternalSavings, can only be OTHER.
+          readOnly: false
+          writeOnly: false
+        reason_description:
+          type: string
+          description: The optional free-form reason for voluntarily cancelling (closing) the MonetaryAccountExternalSavings. Can be any user provided message.
+          readOnly: false
+          writeOnly: false
+        display_name:
+          type: string
+          description: The legal name of the user / company using this monetary account.
+          readOnly: false
+          writeOnly: false
+        setting:
+          type: object
+          description: The settings of the MonetaryAccountExternalSavings.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountSetting'
+        savings_goal:
+          type: object
+          description: The Savings Goal set for this MonetaryAccountExternalSavings.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        id:
+          type: integer
+          description: The id of the MonetaryAccountExternalSavings.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the MonetaryAccountExternalSavings's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the MonetaryAccountExternalSavings's last update.
+          readOnly: true
+          writeOnly: false
+        avatar:
+          type: object
+          description: The Avatar of the MonetaryAccountExternalSavings.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        balance:
+          type: object
+          description: The current available balance Amount of the MonetaryAccountExternalSavings.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        alias:
+          type: array
+          description: The Aliases for the MonetaryAccountExternalSavings.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Pointer'
+        public_uuid:
+          type: string
+          description: The MonetaryAccountExternalSavings's public UUID.
+          readOnly: true
+          writeOnly: false
+        user_id:
+          type: integer
+          description: The id of the User who owns the MonetaryAccountExternalSavings.
+          readOnly: true
+          writeOnly: false
+        monetary_account_profile:
+          type: object
+          description: The profile of the account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountProfile'
+        all_auto_save_id:
+          type: array
+          description: The ids of the AutoSave.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/BunqId'
+        savings_goal_progress:
+          type: integer
+          description: The progress in percentages for the Savings Goal set for this MonetaryAccountExternalSavings.
+          readOnly: true
+          writeOnly: false
+        number_of_payment_remaining:
+          type: string
+          description: The number of payments that can be made from this savings account
+          readOnly: true
+          writeOnly: false
+      required:
+      - service
+    ShareDetailReadOnly:
+      type: object
+      properties:
+        view_balance:
+          type: boolean
+          description: If set to true, the invited user will be able to view the account balance.
+          readOnly: false
+          writeOnly: false
+        view_old_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events from before the share was active.
+          readOnly: false
+          writeOnly: false
+        view_new_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events starting from the time the share became active.
+          readOnly: false
+          writeOnly: false
+    MonetaryAccountProfileDrain:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status of the profile.
+          readOnly: false
+          writeOnly: false
+        balance_preferred:
+          type: object
+          description: The goal balance.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        balance_threshold_high:
+          type: object
+          description: The high threshold balance.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        savings_account_alias:
+          type: object
+          description: The savings monetary account.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+    Image:
+      type: object
+      properties:
+        attachment_public_uuid:
+          type: string
+          description: The public UUID of the public attachment containing the image.
+          readOnly: true
+          writeOnly: false
+        content_type:
+          type: string
+          description: The content-type as a MIME filetype.
+          readOnly: true
+          writeOnly: false
+        height:
+          type: integer
+          description: The image height in pixels.
+          readOnly: true
+          writeOnly: false
+        width:
+          type: integer
+          description: The image width in pixels.
+          readOnly: true
+          writeOnly: false
+    Issuer:
+      type: object
+      properties:
+        bic:
+          type: string
+          description: The BIC code.
+          readOnly: false
+          writeOnly: false
+        name:
+          type: string
+          description: The name of the bank.
+          readOnly: false
+          writeOnly: false
+    MonetaryAccountBank:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: The currency of the MonetaryAccountBank as an ISO 4217 formatted currency code.
+          readOnly: false
+          writeOnly: false
+        description:
+          type: string
+          description: The description of the MonetaryAccountBank. Defaults to 'bunq account'.
+          readOnly: false
+          writeOnly: false
+        daily_limit:
+          type: object
+          description: The daily spending limit Amount of the MonetaryAccountBank. Defaults to 1000 EUR. Currency must match the MonetaryAccountBank's currency. Limited to 10000 EUR.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        avatar_uuid:
+          type: string
+          description: The UUID of the Avatar of the MonetaryAccountBank.
+          readOnly: false
+          writeOnly: true
+        status:
+          type: string
+          description: 'The status of the MonetaryAccountBank. Can be: ACTIVE, BLOCKED, CANCELLED or PENDING_REOPEN'
+          readOnly: false
+          writeOnly: false
+        sub_status:
+          type: string
+          description: The sub-status of the MonetaryAccountBank providing extra information regarding the status. Will be NONE for ACTIVE or PENDING_REOPEN, COMPLETELY or ONLY_ACCEPTING_INCOMING for BLOCKED and REDEMPTION_INVOLUNTARY, REDEMPTION_VOLUNTARY or PERMANENT for CANCELLED.
+          readOnly: false
+          writeOnly: false
+        reason:
+          type: string
+          description: The reason for voluntarily cancelling (closing) the MonetaryAccountBank, can only be OTHER.
+          readOnly: false
+          writeOnly: false
+        reason_description:
+          type: string
+          description: The optional free-form reason for voluntarily cancelling (closing) the MonetaryAccountBank. Can be any user provided message.
+          readOnly: false
+          writeOnly: false
+        display_name:
+          type: string
+          description: The legal name of the user / company using this monetary account.
+          readOnly: false
+          writeOnly: false
+        setting:
+          type: object
+          description: The settings of the MonetaryAccountBank.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountSetting'
+        country_iban:
+          type: string
+          description: The country of the monetary account IBAN.
+          readOnly: false
+          writeOnly: true
+        id:
+          type: integer
+          description: The id of the MonetaryAccountBank.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the MonetaryAccountBank's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the MonetaryAccountBank's last update.
+          readOnly: true
+          writeOnly: false
+        avatar:
+          type: object
+          description: The Avatar of the MonetaryAccountBank.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        overdraft_limit:
+          type: object
+          description: The maximum Amount the MonetaryAccountBank can be 'in the red'.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        balance:
+          type: object
+          description: The current available balance Amount of the MonetaryAccountBank.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        alias:
+          type: array
+          description: The Aliases for the MonetaryAccountBank.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Pointer'
+        public_uuid:
+          type: string
+          description: The MonetaryAccountBank's public UUID.
+          readOnly: true
+          writeOnly: false
+        user_id:
+          type: integer
+          description: The id of the User who owns the MonetaryAccountBank.
+          readOnly: true
+          writeOnly: false
+        monetary_account_profile:
+          type: object
+          description: The profile of the account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountProfile'
+        all_auto_save_id:
+          type: array
+          description: The ids of the AutoSave.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/BunqId'
+    ShareDetailDraftPayment:
+      type: object
+      properties:
+        make_draft_payments:
+          type: boolean
+          description: If set to true, the invited user will be able to make draft payments from the shared account.
+          readOnly: false
+          writeOnly: false
+        view_balance:
+          type: boolean
+          description: If set to true, the invited user will be able to view the account balance.
+          readOnly: false
+          writeOnly: false
+        view_old_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events from before the share was active.
+          readOnly: false
+          writeOnly: false
+        view_new_events:
+          type: boolean
+          description: If set to true, the invited user will be able to view events starting from the time the share became active.
+          readOnly: false
+          writeOnly: false
+    MonetaryAccountLight:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: The currency of the MonetaryAccountLight as an ISO 4217 formatted currency code.
+          readOnly: false
+          writeOnly: false
+        description:
+          type: string
+          description: The description of the MonetaryAccountLight. Defaults to 'bunq account'.
+          readOnly: false
+          writeOnly: false
+        daily_limit:
+          type: object
+          description: The daily spending limit Amount of the MonetaryAccountLight. Defaults to 1000 EUR. Currency must match the MonetaryAccountLight's currency. Limited to 10000 EUR.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        avatar_uuid:
+          type: string
+          description: The UUID of the Avatar of the MonetaryAccountLight.
+          readOnly: false
+          writeOnly: true
+        status:
+          type: string
+          description: 'The status of the MonetaryAccountLight. Can be: ACTIVE, BLOCKED, CANCELLED or PENDING_REOPEN'
+          readOnly: false
+          writeOnly: false
+        sub_status:
+          type: string
+          description: The sub-status of the MonetaryAccountLight providing extra information regarding the status. Will be NONE for ACTIVE or PENDING_REOPEN, COMPLETELY or ONLY_ACCEPTING_INCOMING for BLOCKED and REDEMPTION_INVOLUNTARY, REDEMPTION_VOLUNTARY or PERMANENT for CANCELLED.
+          readOnly: false
+          writeOnly: false
+        reason:
+          type: string
+          description: The reason for voluntarily cancelling (closing) the MonetaryAccountBank, can only be OTHER.
+          readOnly: false
+          writeOnly: false
+        reason_description:
+          type: string
+          description: The optional free-form reason for voluntarily cancelling (closing) the MonetaryAccountBank. Can be any user provided message.
+          readOnly: false
+          writeOnly: false
+        setting:
+          type: object
+          description: The settings of the MonetaryAccountLight.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountSetting'
+        id:
+          type: integer
+          description: The id of the MonetaryAccountLight.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the MonetaryAccountLight's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the MonetaryAccountLight's last update.
+          readOnly: true
+          writeOnly: false
+        avatar:
+          type: object
+          description: The Avatar of the MonetaryAccountLight.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        balance:
+          type: object
+          description: The current available balance Amount of the MonetaryAccountLight.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        alias:
+          type: array
+          description: The Aliases for the MonetaryAccountLight.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Pointer'
+        public_uuid:
+          type: string
+          description: The MonetaryAccountLight's public UUID.
+          readOnly: true
+          writeOnly: false
+        user_id:
+          type: integer
+          description: The id of the User who owns the MonetaryAccountLight.
+          readOnly: true
+          writeOnly: false
+        balance_maximum:
+          type: object
+          description: The maximum balance Amount of the MonetaryAccountLight.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        budget_month_used:
+          type: object
+          description: The amount of the monthly budget used.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        budget_month_maximum:
+          type: object
+          description: The total amount of the monthly budget.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        budget_year_used:
+          type: object
+          description: The amount of the yearly budget used.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        budget_year_maximum:
+          type: object
+          description: The total amount of the yearly budget.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        budget_withdrawal_year_used:
+          type: object
+          description: The amount of the yearly withdrawal budget used.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        budget_withdrawal_year_maximum:
+          type: object
+          description: The total amount of the yearly withdrawal budget.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+    BirdeeInvestmentPortfolioBalance:
+      type: object
+      properties:
+        amount_available:
+          type: object
+          description: The current valuation of the portfolio, minus any amount pending withdrawal.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_deposit_total:
+          type: object
+          description: The total amount deposited.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_withdrawal_total:
+          type: object
+          description: The total amount withdrawn.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_fee_total:
+          type: object
+          description: The total fee amount.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_profit:
+          type: object
+          description: The difference between the netto deposited amount and the current valuation.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_deposit_pending:
+          type: object
+          description: The amount that's sent to Birdee, but pending investment on the portfolio.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_withdrawal_pending:
+          type: object
+          description: The amount that's sent to Birdee, but pending withdrawal.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+    Fulfillment:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of the information fulfillment.
+          readOnly: true
+          writeOnly: false
+        reason:
+          type: string
+          description: The reason why this fulfillment is requested.
+          readOnly: true
+          writeOnly: false
+        reason_translated:
+          type: string
+          description: The translated reason why this fulfillment is requested.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: Status of this fulfillment.
+          readOnly: true
+          writeOnly: false
+        time_mandatory:
+          type: string
+          description: Time when the information fulfillment becomes mandatory.
+          readOnly: true
+          writeOnly: false
+        user_id:
+          type: integer
+          description: The user id this fulfillment is required for.
+          readOnly: true
+          writeOnly: false
+        all_status_allowed:
+          type: array
+          description: The allowed statusses for this fulfillment.
+          readOnly: true
+          writeOnly: false
+          items:
+            type: string
+    RelationUser:
+      type: object
+      properties:
+        user_id:
+          type: string
+          description: The user's ID.
+          readOnly: true
+          writeOnly: false
+        counter_user_id:
+          type: string
+          description: The counter user's ID.
+          readOnly: true
+          writeOnly: false
+        label_user:
+          type: object
+          description: The user's label.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        counter_label_user:
+          type: object
+          description: The counter user's label.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        relationship:
+          type: string
+          description: The requested relation type.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The request's status, only for UPDATE.
+          readOnly: true
+          writeOnly: false
+        user_status:
+          type: string
+          description: The account status of a user
+          readOnly: true
+          writeOnly: false
+        counter_user_status:
+          type: string
+          description: The account status of a user
+          readOnly: true
+          writeOnly: false
+        company_employee_setting_adyen_card_transaction:
+          type: object
+          description: Tap to Pay settings for the company employee.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CompanyEmployeeSettingAdyenCardTransaction'
+        all_company_employee_card:
+          type: array
+          description: Cards accessible by the company employee
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CompanyEmployeeCard'
+    CompanyEmployeeCard:
+      type: object
+      properties:
+        pointer_counter_user:
+          type: object
+          description: The pointer to the employee for which you want to create a card.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Pointer'
+        pointer_monetary_account:
+          type: object
+          description: The pointer to the monetary account that will be connected at first with the card.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Pointer'
+        type:
+          type: string
+          description: The type of card to order.
+          readOnly: false
+          writeOnly: true
+        product_type:
+          type: string
+          description: The product type of the card to order.
+          readOnly: false
+          writeOnly: true
+        company_name_on_card:
+          type: string
+          description: The name of the company that should be displayed on the card.
+          readOnly: false
+          writeOnly: false
+        employee_name_on_card:
+          type: string
+          description: The name of the employee that should be displayed on the card.
+          readOnly: false
+          writeOnly: true
+        employee_preferred_name_on_card:
+          type: string
+          description: The user's preferred name as it will be on the card.
+          readOnly: false
+          writeOnly: true
+        amount_limit_monthly:
+          type: object
+          description: The monthly spending limit for this employee on the card.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        status:
+          type: string
+          description: The status of the employee card.
+          readOnly: false
+          writeOnly: false
+        card:
+          type: object
+          description: The actual card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Card'
+        amount_spent_monthly:
+          type: object
+          description: The monthly spend for this employee on the card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        number_of_company_employee_card_receipt_pending:
+          type: integer
+          description: The number of transactions that still need a receipt.
+          readOnly: true
+          writeOnly: false
+      required:
+      - pointer_counter_user
+      - pointer_monetary_account
+      - type
+      - product_type
+    CoOwner:
+      type: object
+      properties:
+        alias:
+          type: object
+          description: The Alias of the co-owner.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        status:
+          type: string
+          description: 'Can be: ACCEPTED, REJECTED, PENDING or REVOKED'
+          readOnly: true
+          writeOnly: false
+    MonetaryAccountJoint:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: The currency of the MonetaryAccountJoint as an ISO 4217 formatted currency code.
+          readOnly: false
+          writeOnly: false
+        description:
+          type: string
+          description: The description of the MonetaryAccountJoint. Defaults to 'bunq account'.
+          readOnly: false
+          writeOnly: false
+        daily_limit:
+          type: object
+          description: The daily spending limit Amount of the MonetaryAccountJoint. Defaults to 1000 EUR. Currency must match the MonetaryAccountJoint's currency. Limited to 10000 EUR.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        overdraft_limit:
+          type: object
+          description: The maximum Amount the MonetaryAccountJoint can be 'in the red'.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        alias:
+          type: array
+          description: The Aliases for the MonetaryAccountJoint.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Pointer'
+        avatar_uuid:
+          type: string
+          description: The UUID of the Avatar of the MonetaryAccountJoint.
+          readOnly: false
+          writeOnly: true
+        status:
+          type: string
+          description: 'The status of the MonetaryAccountJoint. Can be: ACTIVE, BLOCKED, CANCELLED or PENDING_REOPEN'
+          readOnly: false
+          writeOnly: false
+        sub_status:
+          type: string
+          description: The sub-status of the MonetaryAccountJoint providing extra information regarding the status. Will be NONE for ACTIVE or PENDING_REOPEN, COMPLETELY or ONLY_ACCEPTING_INCOMING for BLOCKED and REDEMPTION_INVOLUNTARY, REDEMPTION_VOLUNTARY or PERMANENT for CANCELLED.
+          readOnly: false
+          writeOnly: false
+        reason:
+          type: string
+          description: The reason for voluntarily cancelling (closing) the MonetaryAccountJoint, can only be OTHER.
+          readOnly: false
+          writeOnly: false
+        reason_description:
+          type: string
+          description: The optional free-form reason for voluntarily cancelling (closing) the MonetaryAccountJoint. Can be any user provided message.
+          readOnly: false
+          writeOnly: false
+        all_co_owner:
+          type: array
+          description: The users the account will be joint with.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CoOwner'
+        setting:
+          type: object
+          description: The settings of the MonetaryAccountJoint.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountSetting'
+        id:
+          type: integer
+          description: The id of the MonetaryAccountJoint.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the MonetaryAccountJoint's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the MonetaryAccountJoint's last update.
+          readOnly: true
+          writeOnly: false
+        avatar:
+          type: object
+          description: The Avatar of the MonetaryAccountJoint.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        balance:
+          type: object
+          description: The current available balance Amount of the MonetaryAccountJoint.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        public_uuid:
+          type: string
+          description: The MonetaryAccountJoint's public UUID.
+          readOnly: true
+          writeOnly: false
+        user_id:
+          type: integer
+          description: The id of the User who owns the MonetaryAccountJoint.
+          readOnly: true
+          writeOnly: false
+        monetary_account_profile:
+          type: object
+          description: The profile of the account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/MonetaryAccountProfile'
+        all_auto_save_id:
+          type: array
+          description: The ids of the AutoSave.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/BunqId'
+    CardUpdate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    BirdeeInvestmentPortfolioGoal:
+      type: object
+      properties:
+        amount_target:
+          type: object
+          description: The investment goal amount.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        time_end:
+          type: string
+          description: The investment goal end time.
+          readOnly: false
+          writeOnly: false
+  parameters:
+    X-Bunq-Geolocation:
+      description: This header must specify the geolocation of the device. The format of this value is longitude latitude altitude radius country. The country is expected to be formatted of an ISO 3166-1 alpha-2 country code. When no geolocation is available or known the header must still be included but can be zero valued.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Geolocation
+    Cache-Control:
+      description: The standard HTTP Cache-Control header is required for all signed requests.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: Cache-Control
+    User-Agent:
+      description: The User-Agent header field should contain information about the user agent originating the request. There are no restrictions on the value of this header.
+      schema:
+        type: string
+      required: true
+      in: header
+      name: User-Agent
+    X-Bunq-Client-Request-Id:
+      description: This header must specify an ID with each request that is unique for the logged in user. There are no restrictions for the format of this ID. However, the server will respond with an error when the same ID is used again on the same DeviceServer.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Client-Request-Id
+    X-Bunq-Region:
+      description: The X-Bunq-Region header must contain the region (country) of the client device. The value of this header is formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, separated by an underscore.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Region
+    X-Bunq-Language:
+      description: The X-Bunq-Language header must contain a preferred language indication. The value of this header is formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, separated by an underscore. Currently only the languages en_US and nl_NL are supported. Anything else will default to en_US.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Language
+    X-Bunq-Client-Authentication:
+      description: The authentication token is used to authenticate the source of the API call. It is required by all API calls except for POST /v1/installation. It is important to note that the device and session calls are using the token from the response of the installation call, while all the other calls use the token from the response of the session-server call
+      schema:
+        type: string
+      required: true
+      in: header
+      name: X-Bunq-Client-Authentication
+  headers:
+    X-Bunq-Server-Signature:
+      description: The server's signature for this response. See the signing page for details on how to verify this signature.
+      schema:
+        type: string
+    X-Bunq-Client-Request-Id:
+      description: This header must specify an ID with each request that is unique for the logged in user. There are no restrictions for the format of this ID. However, the server will respond with an error when the same ID is used again on the same DeviceServer.
+      schema:
+        type: string
+      required: false
+    X-Bunq-Client-Response-Id:
+      description: A unique ID for the response formatted as a UUID. Clients can use it to add extra protection against replay attacks.
+      schema:
+        type: string
+  responses:
+    GenericError:
+      description: This is how the error response looks like for 4XX response codes
+      headers:
+        X-Bunq-Client-Response-Id:
+          $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+        X-Bunq-Client-Request-Id:
+          $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+        X-Bunq-Server-Signature:
+          $ref: '#/components/headers/X-Bunq-Server-Signature'
+      content:
+        application/json:
+          schema:
             type: object
             properties:
-              error_description:
-                type: string
-              error_description_translated:
-                type: string
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Missing/invalid session token or signature.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    UserID:
-      name: userID
-      in: path
-      required: true
-      description: The numeric ID of the user.
-      schema:
-        type: integer
-  securitySchemes:
-    sessionToken:
-      type: apiKey
-      in: header
-      name: X-Bunq-Client-Authentication
-      description: Session token obtained from POST /session-server, sent on every business call. In addition, each request body must be signed with your private key and the signature sent in the X-Bunq-Client-Signature header (see the ClientSignature parameter). bunq is not a simple bearer-token API.
-    installationToken:
-      type: apiKey
-      in: header
-      name: X-Bunq-Client-Authentication
-      description: Installation token from POST /installation, used only for the device-server and session-server handshake calls.
+              Error:
+                $ref: '#/components/schemas/Error'

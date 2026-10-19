@@ -1,0 +1,1344 @@
+openapi: 3.2.0
+info:
+  title: bunq Company API
+  description: '***UPDATE:*** *We have released a beta version of the new bunq API documentation.*
+
+
+    ***NOTICE:*** *We have updated the sandbox base url to `https://public-api.sandbox.bunq.com/v1/`. Please update your applications accordingly. Check here: for more info.*
+
+
+    ***PSD2 NOTICE:*** *The second Payment Services Directive (PSD2) may affect your current or planned usage of our public API, as some of the API services are now subject to a permit. Please be aware that using our public API without the required PSD2 permit is at your own risk and take notice of our updated API Terms and Conditions on for more information.*
+
+
+    # Introduction
+
+
+    Welcome to bunq! - The bunq API is organised around REST. JSON will be returned in almost all responses from the API, including errors but excluding binary (image) files. - Please configure your implementation to send its API requests to `https://public-api.sandbox.bunq.com/v1/`
+
+    - There is a version of the Android app that connects to the bunq Sandbox environment. To create accounts for the Sandbox app, please follow the steps in the Android Emulator section. ## Getting started
+
+
+    Before you start sending API requests, you need to get an API key and activate it. API activation happens when you install the API key and link your IP address and device to it *(create an API context)*. The steps below will guide you through what you need to do to start sending custom API requests. Here is an overview of what you can use to get started with the bunq API:
+
+    1. **Create an API key.** You can do it either in our developer portal or in the bunq app *(Profile → Security & Settings → Developers → API keys)*. If you want to test our sandbox first, our bunq Developer is the best place to start. 2. **Register a device.** A device can be a phone (private), computer or a server (public). You can register a new device by using the `POST /installation` and `POST /device-server` calls. This will activate your API key. You only need to do this once. 3. **Open a session.** Sessions are temporary and expire after the auto-logout time set for the user account. It can be changed by the account owner in the bunq app. 4. **Make your first call!**
+
+
+    !bunq_API_context
+
+
+    ## Versioning
+
+
+    Developments in the financial sector, changing regulatory regimes and new feature requests require us to be flexible. This means we can iterate quickly to improve the API and related tooling. Therefore, we have chosen not to attach any version numbers to the changes just yet. We will inform you in a timely manner of any important changes we make before they are deployed on together.bunq.com. You can also subscribe to our API newsletter to make sure you don''t miss any important updates. # OAuth
+
+
+    ## What is OAuth? OAuth 2.0 is a protocol that will let your app connect to bunq users in a safe and easy way. Please be aware that if you will gain access to the account information of other bunq users or initiate a payment for them, you may require a PSD2 permit. ## Get started with OAuth for bunq
+
+
+    To initiate authorization into the bunq user accounts, you need to create an OAuth Client and register at least 1 redirect URL for it. You can have 1 OAuth Client at a time. Reuse your OAuth credentials for every authorization request. The list of steps below will help you to get started:
+
+
+    1. Register an OAuth Client by creating an app in bunq Developer_._
+
+    2. Add one or more Redirect URLs. 3. Get your `client_id` and `secret` from your app information tab in bunq Developer. 4. Redirect your users to the OAuth authorization request URL. 5. If the user accepts the authorization request, they will be redirected to the previously specified `redirect_uri` with an authorization `code` parameter. 6. Use the token endpoint to exchange the authorization `code` for an `access_token`. 7. Use the `access_token` as a normal API Key. Open a session or use our SDKs to get started. You can set up an OAuth Client and add redirect URLs to it using the dedicated endpoints too.'
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+- url: https://public-api.sandbox.bunq.com/{basePath}
+  description: Sandbox server
+  variables:
+    basePath:
+      default: v1
+- url: https://api.bunq.com/{basePath}
+  description: Production server
+  variables:
+    basePath:
+      default: v1
+tags:
+- name: Company
+  description: ''
+paths:
+  /user/{userID}/company:
+    post:
+      tags:
+      - Company
+      summary: CREATE company for user
+      operationId: CREATE_Company_for_User
+      description: Create and manage companies.
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Company'
+      responses:
+        '200':
+          description: Create and manage companies.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyCreate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
+    get:
+      tags:
+      - Company
+      summary: List all company for user
+      operationId: List_all_Company_for_User
+      description: Create and manage companies.
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Create and manage companies.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyListing'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
+  /user/{userID}/company/{itemId}:
+    get:
+      tags:
+      - Company
+      summary: READ company for user
+      operationId: READ_Company_for_User
+      description: Create and manage companies.
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: itemId
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: Create and manage companies.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
+    put:
+      tags:
+      - Company
+      summary: UPDATE company for user
+      operationId: UPDATE_Company_for_User
+      description: Create and manage companies.
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: itemId
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Company'
+      responses:
+        '200':
+          description: Create and manage companies.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyUpdate'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
+components:
+  schemas:
+    Customer:
+      type: object
+      properties:
+        billing_account_id:
+          type: string
+          description: The primary billing account account's id.
+          readOnly: false
+          writeOnly: false
+        invoice_notification_preference:
+          type: string
+          description: The preferred notification type for invoices.
+          readOnly: false
+          writeOnly: false
+        id:
+          type: integer
+          description: The id of the customer.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the customer object's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the customer object's last update.
+          readOnly: true
+          writeOnly: false
+    Ubo:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the ultimate beneficiary owner.
+          readOnly: false
+          writeOnly: false
+        date_of_birth:
+          type: string
+          description: The date of birth of the ultimate beneficiary owner.
+          readOnly: false
+          writeOnly: false
+        nationality:
+          type: string
+          description: The nationality of the ultimate beneficiary owner.
+          readOnly: false
+          writeOnly: false
+    TaxResident:
+      type: object
+      properties:
+        country:
+          type: string
+          description: The country of the tax number.
+          readOnly: false
+          writeOnly: false
+        tax_number:
+          type: string
+          description: The tax number.
+          readOnly: false
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the tax number. Either CONFIRMED or UNCONFIRMED.
+          readOnly: false
+          writeOnly: false
+        id:
+          type: integer
+          description: The id of the tax resident.
+          readOnly: true
+          writeOnly: false
+    Card:
+      type: object
+      properties:
+        pin_code:
+          type: string
+          description: The plaintext pin code. Requests require encryption to be enabled.
+          readOnly: false
+          writeOnly: true
+        activation_code:
+          type: string
+          description: 'DEPRECATED: Activate a card by setting status to ACTIVE when the order_status is ACCEPTED_FOR_PRODUCTION.'
+          readOnly: false
+          writeOnly: true
+        status:
+          type: string
+          description: The status to set for the card. Can be ACTIVE, DEACTIVATED, LOST, STOLEN or CANCELLED, and can only be set to LOST/STOLEN/CANCELLED when order status is ACCEPTED_FOR_PRODUCTION/DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED. Can only be set to DEACTIVATED after initial activation, i.e. order_status is DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED. Mind that all the possible choices (apart from ACTIVE and DEACTIVATED) are permanent and cannot be changed after.
+          readOnly: false
+          writeOnly: false
+        order_status:
+          type: string
+          description: The order status to set for the card. Set to CARD_REQUEST_PENDING to get a virtual card produced.
+          readOnly: false
+          writeOnly: false
+        card_limit:
+          type: object
+          description: The spending limit for the card.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        card_limit_atm:
+          type: object
+          description: The ATM spending limit for the card.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        country_permission:
+          type: array
+          description: The countries for which to grant (temporary) permissions to use the card.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardCountryPermission'
+        pin_code_assignment:
+          type: array
+          description: Array of Types, PINs, account IDs assigned to the card.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardPinAssignment'
+        primary_account_numbers:
+          type: array
+          description: Array of PANs and their attributes.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CardPrimaryAccountNumber'
+        monetary_account_id_fallback:
+          type: integer
+          description: ID of the MA to be used as fallback for this card if insufficient balance. Fallback account is removed if not supplied.
+          readOnly: false
+          writeOnly: false
+        preferred_name_on_card:
+          type: string
+          description: The user's preferred name as it will be on the card.
+          readOnly: false
+          writeOnly: false
+        second_line:
+          type: string
+          description: The second line of text on the card
+          readOnly: false
+          writeOnly: false
+        cancellation_reason:
+          type: string
+          description: The reason for card cancellation.
+          readOnly: false
+          writeOnly: true
+    BillingContractSubscription:
+      type: object
+      properties:
+        subscription_type:
+          type: string
+          description: The subscription type of the user. Can be one of PERSON_SUPER_LIGHT_V1, PERSON_LIGHT_V1, PERSON_MORE_V1, PERSON_FREE_V1, PERSON_PREMIUM_V1, COMPANY_V1, or COMPANY_V2.
+          readOnly: false
+          writeOnly: false
+        id:
+          type: integer
+          description: The id of the billing contract.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp when the billing contract was made.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp when the billing contract was last updated.
+          readOnly: true
+          writeOnly: false
+        contract_date_start:
+          type: string
+          description: The date from when the billing contract is valid.
+          readOnly: true
+          writeOnly: false
+        contract_date_end:
+          type: string
+          description: The date until when the billing contract is valid.
+          readOnly: true
+          writeOnly: false
+        contract_version:
+          type: integer
+          description: The version of the billing contract.
+          readOnly: true
+          writeOnly: false
+        subscription_type_downgrade:
+          type: string
+          description: The subscription type the user will have after a subscription downgrade. Will be null if downgrading is not possible.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The subscription status.
+          readOnly: true
+          writeOnly: false
+        sub_status:
+          type: string
+          description: The subscription substatus.
+          readOnly: true
+          writeOnly: false
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          description: The street.
+          readOnly: false
+          writeOnly: false
+        house_number:
+          type: string
+          description: The house number.
+          readOnly: false
+          writeOnly: false
+        po_box:
+          type: string
+          description: The PO box.
+          readOnly: false
+          writeOnly: false
+        postal_code:
+          type: string
+          description: The postal code.
+          readOnly: false
+          writeOnly: false
+        city:
+          type: string
+          description: The city.
+          readOnly: false
+          writeOnly: false
+        country:
+          type: string
+          description: The country as an ISO 3166-1 alpha-2 country code.
+          readOnly: false
+          writeOnly: false
+        extra:
+          type: string
+          description: The apartment, building or other extra information for addresses.
+          readOnly: false
+          writeOnly: false
+        mailbox_name:
+          type: string
+          description: The name on the mailbox (only used for Postal and Shipping addresses).
+          readOnly: false
+          writeOnly: false
+        province:
+          type: string
+          description: The province according to local standard.
+          readOnly: true
+          writeOnly: false
+        is_user_address_updated:
+          type: boolean
+          description: To show whether user created or updated her address for app event listing.
+          readOnly: true
+          writeOnly: false
+    CardCountryPermission:
+      type: object
+      properties:
+        country:
+          type: string
+          description: The country to allow transactions in (e.g. NL, DE).
+          readOnly: false
+          writeOnly: false
+        expiry_time:
+          type: string
+          description: Expiry time of this rule.
+          readOnly: false
+          writeOnly: true
+        id:
+          type: integer
+          description: The id of the card country permission entry.
+          readOnly: true
+          writeOnly: false
+    CompanyUpdate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    Amount:
+      type: object
+      properties:
+        value:
+          type: string
+          description: The amount formatted to two decimal places.
+          readOnly: false
+          writeOnly: false
+        currency:
+          type: string
+          description: The currency of the amount. It is an ISO 4217 formatted currency code.
+          readOnly: false
+          writeOnly: false
+    UserCompany:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The company name.
+          readOnly: false
+          writeOnly: false
+        public_nick_name:
+          type: string
+          description: The company's public nick name.
+          readOnly: false
+          writeOnly: false
+        avatar_uuid:
+          type: string
+          description: The public UUID of the company's avatar.
+          readOnly: false
+          writeOnly: true
+        address_main:
+          type: object
+          description: The company's main address.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        address_postal:
+          type: object
+          description: The company's postal address.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        language:
+          type: string
+          description: The person's preferred language. Formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, seperated by an underscore.
+          readOnly: false
+          writeOnly: false
+        region:
+          type: string
+          description: The person's preferred region. Formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, seperated by an underscore.
+          readOnly: false
+          writeOnly: false
+        country:
+          type: string
+          description: The country as an ISO 3166-1 alpha-2 country code.
+          readOnly: false
+          writeOnly: false
+        ubo:
+          type: array
+          description: The names of the company's ultimate beneficiary owners. Minimum zero, maximum four.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Ubo'
+        chamber_of_commerce_number:
+          type: string
+          description: The company's chamber of commerce number.
+          readOnly: false
+          writeOnly: false
+        legal_form:
+          type: string
+          description: The company's legal form.
+          readOnly: false
+          writeOnly: false
+        status:
+          type: string
+          description: 'The user status. Can be: ACTIVE, SIGNUP, RECOVERY.'
+          readOnly: false
+          writeOnly: false
+        sub_status:
+          type: string
+          description: 'The user sub-status. Can be: NONE, FACE_RESET, APPROVAL, APPROVAL_DIRECTOR, APPROVAL_PARENT, APPROVAL_SUPPORT, COUNTER_IBAN, IDEAL or SUBMIT.'
+          readOnly: false
+          writeOnly: false
+        session_timeout:
+          type: integer
+          description: The setting for the session timeout of the company in seconds.
+          readOnly: false
+          writeOnly: false
+        daily_limit_without_confirmation_login:
+          type: object
+          description: The amount the company can pay in the session without asking for credentials.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        id:
+          type: integer
+          description: The id of the modified company.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp of the company object's creation.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp of the company object's last update.
+          readOnly: true
+          writeOnly: false
+        public_uuid:
+          type: string
+          description: The company's public UUID.
+          readOnly: true
+          writeOnly: false
+        display_name:
+          type: string
+          description: The company's display name.
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: array
+          description: The aliases of the account.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Pointer'
+        type_of_business_entity:
+          type: string
+          description: The type of business entity.
+          readOnly: true
+          writeOnly: false
+        sector_of_industry:
+          type: string
+          description: The sector of industry.
+          readOnly: true
+          writeOnly: false
+        counter_bank_iban:
+          type: string
+          description: The company's other bank account IBAN, through which we verify it.
+          readOnly: true
+          writeOnly: false
+        avatar:
+          type: object
+          description: The company's avatar.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        address_shipping:
+          type: object
+          description: The company's shipping address.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        version_terms_of_service:
+          type: string
+          description: The version of the terms of service accepted by the user.
+          readOnly: true
+          writeOnly: false
+        directors:
+          type: array
+          description: The existing bunq aliases for the company's directors.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/LabelUser'
+        notification_filters:
+          type: array
+          description: The types of notifications that will result in a push notification or URL callback for this UserCompany.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/NotificationFilter'
+        customer:
+          type: object
+          description: The customer profile of the company.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Customer'
+        customer_limit:
+          type: object
+          description: The customer limits of the company.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CustomerLimit'
+        billing_contract:
+          type: array
+          description: The subscription of the company.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/BillingContractSubscription'
+        deny_reason:
+          type: string
+          description: The user deny reason.
+          readOnly: true
+          writeOnly: false
+        relations:
+          type: array
+          description: The relations for this user.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/RelationUser'
+        tax_resident:
+          type: array
+          description: The user's tax residence numbers for different countries.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/TaxResident'
+    LabelUser:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The public UUID of the label-user.
+          readOnly: false
+          writeOnly: false
+        display_name:
+          type: string
+          description: The name to be displayed for this user, as it was given on the request.
+          readOnly: false
+          writeOnly: false
+        country:
+          type: string
+          description: The country of the user. 000 stands for "unknown"
+          readOnly: false
+          writeOnly: false
+        avatar:
+          type: object
+          description: The current avatar of the user.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        public_nick_name:
+          type: string
+          description: The current nickname of the user.
+          readOnly: true
+          writeOnly: false
+    Error:
+      type: array
+      items:
+        type: object
+        properties:
+          error_description:
+            type: string
+            description: The error description in English.
+          error_description_translated:
+            type: string
+            description: The error description translated to the user's language.
+    CompanyVatNumber:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The VAT identification number type.
+          readOnly: false
+          writeOnly: false
+        country:
+          type: string
+          description: The country of the VAT identification number.
+          readOnly: false
+          writeOnly: false
+        value:
+          type: string
+          description: The VAT identification number number.
+          readOnly: false
+          writeOnly: false
+    Avatar:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The public UUID of the avatar.
+          readOnly: false
+          writeOnly: false
+        anchor_uuid:
+          type: string
+          description: The public UUID of object this avatar is anchored to.
+          readOnly: true
+          writeOnly: false
+        image:
+          type: array
+          description: The actual image information of this avatar.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Image'
+        style:
+          type: string
+          description: The style (if applicable) for this Avatar.
+          readOnly: true
+          writeOnly: false
+    CompanyEmployeeSettingAdyenCardTransaction:
+      type: object
+      properties:
+        pointer_counter_user:
+          type: object
+          description: The pointer to the employee for which you want to create a card.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Pointer'
+        status:
+          type: string
+          description: Whether the user is allowed to use Tap to Pay.
+          readOnly: false
+          writeOnly: false
+        monetary_account_payout_id:
+          type: integer
+          description: The ID of the monetary account where Tap to Pay transactions should be paid out to.
+          readOnly: false
+          writeOnly: false
+      required:
+      - pointer_counter_user
+    Pointer:
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'The alias type, can be: EMAIL|PHONE_NUMBER|IBAN.'
+          readOnly: false
+          writeOnly: false
+        value:
+          type: string
+          description: The alias value.
+          readOnly: false
+          writeOnly: false
+        name:
+          type: string
+          description: The alias name.
+          readOnly: false
+          writeOnly: false
+        service:
+          type: string
+          description: The pointer service. Only required for external counterparties.
+          readOnly: false
+          writeOnly: true
+    BunqId:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: An integer ID of an object. Unique per object type.
+          readOnly: false
+          writeOnly: false
+    CardPinAssignment:
+      type: object
+      properties:
+        type:
+          type: string
+          description: PIN type. Can be PRIMARY, SECONDARY or TERTIARY
+          readOnly: false
+          writeOnly: false
+        routing_type:
+          type: string
+          description: Routing type.
+          readOnly: false
+          writeOnly: false
+        pin_code:
+          type: string
+          description: The 4 digit PIN to be assigned to this account.
+          readOnly: false
+          writeOnly: true
+        monetary_account_id:
+          type: integer
+          description: The ID of the monetary account to assign to this pin for the card.
+          readOnly: false
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the card pin assignment.
+          readOnly: true
+          writeOnly: false
+    CompanyListing:
+      type: object
+      properties:
+        UserCompany:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/UserCompany'
+    CardPrimaryAccountNumber:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The ID for this Virtual PAN.
+          readOnly: false
+          writeOnly: false
+        description:
+          type: string
+          description: The description for this PAN.
+          readOnly: false
+          writeOnly: false
+        status:
+          type: string
+          description: The status for this PAN, only for Online Cards.
+          readOnly: false
+          writeOnly: false
+        monetary_account_id:
+          type: integer
+          description: The ID of the monetary account to assign to this PAN, only for Online Cards.
+          readOnly: false
+          writeOnly: false
+        uuid:
+          type: string
+          description: The UUID for this Virtual PAN.
+          readOnly: true
+          writeOnly: false
+        four_digit:
+          type: string
+          description: The last four digits of the PAN.
+          readOnly: true
+          writeOnly: false
+        type:
+          type: string
+          description: The type of the PAN.
+          readOnly: true
+          writeOnly: false
+    Image:
+      type: object
+      properties:
+        attachment_public_uuid:
+          type: string
+          description: The public UUID of the public attachment containing the image.
+          readOnly: true
+          writeOnly: false
+        content_type:
+          type: string
+          description: The content-type as a MIME filetype.
+          readOnly: true
+          writeOnly: false
+        height:
+          type: integer
+          description: The image height in pixels.
+          readOnly: true
+          writeOnly: false
+        width:
+          type: integer
+          description: The image width in pixels.
+          readOnly: true
+          writeOnly: false
+    CompanyRead:
+      type: object
+      properties:
+        UserCompany:
+          type: object
+          description: ''
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/UserCompany'
+    CompanyCreate:
+      type: object
+      properties:
+        Id:
+          type: object
+          description: The id of the created item
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqId'
+    NotificationFilter:
+      type: object
+      properties:
+        notification_delivery_method:
+          type: string
+          description: The delivery method via which notifications that match this notification filter will be delivered. Possible choices are PUSH for delivery via push notification and URL for delivery via URL callback.
+          readOnly: false
+          writeOnly: false
+        notification_target:
+          type: string
+          description: The target of notifications that match this notification filter. For URL notification filters this is the URL to which the callback will be made. For PUSH notifications filters this should always be null.
+          readOnly: false
+          writeOnly: false
+        category:
+          type: string
+          description: The notification category that will match this notification filter. Possible choices are BILLING, CARD_TRANSACTION_FAILED, CARD_TRANSACTION_SUCCESSFUL, CHAT, DRAFT_PAYMENT, IDEAL, SOFORT, MONETARY_ACCOUNT_PROFILE, MUTATION, PAYMENT, PROMOTION, REQUEST, SCHEDULE_RESULT, SCHEDULE_STATUS, SHARE, SUPPORT, TAB_RESULT, USER_APPROVAL.
+          readOnly: false
+          writeOnly: false
+    RelationUser:
+      type: object
+      properties:
+        user_id:
+          type: string
+          description: The user's ID.
+          readOnly: true
+          writeOnly: false
+        counter_user_id:
+          type: string
+          description: The counter user's ID.
+          readOnly: true
+          writeOnly: false
+        label_user:
+          type: object
+          description: The user's label.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        counter_label_user:
+          type: object
+          description: The counter user's label.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        relationship:
+          type: string
+          description: The requested relation type.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The request's status, only for UPDATE.
+          readOnly: true
+          writeOnly: false
+        user_status:
+          type: string
+          description: The account status of a user
+          readOnly: true
+          writeOnly: false
+        counter_user_status:
+          type: string
+          description: The account status of a user
+          readOnly: true
+          writeOnly: false
+        company_employee_setting_adyen_card_transaction:
+          type: object
+          description: Tap to Pay settings for the company employee.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/CompanyEmployeeSettingAdyenCardTransaction'
+        all_company_employee_card:
+          type: array
+          description: Cards accessible by the company employee
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/CompanyEmployeeCard'
+    CompanyEmployeeCard:
+      type: object
+      properties:
+        pointer_counter_user:
+          type: object
+          description: The pointer to the employee for which you want to create a card.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Pointer'
+        pointer_monetary_account:
+          type: object
+          description: The pointer to the monetary account that will be connected at first with the card.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Pointer'
+        type:
+          type: string
+          description: The type of card to order.
+          readOnly: false
+          writeOnly: true
+        product_type:
+          type: string
+          description: The product type of the card to order.
+          readOnly: false
+          writeOnly: true
+        company_name_on_card:
+          type: string
+          description: The name of the company that should be displayed on the card.
+          readOnly: false
+          writeOnly: false
+        employee_name_on_card:
+          type: string
+          description: The name of the employee that should be displayed on the card.
+          readOnly: false
+          writeOnly: true
+        employee_preferred_name_on_card:
+          type: string
+          description: The user's preferred name as it will be on the card.
+          readOnly: false
+          writeOnly: true
+        amount_limit_monthly:
+          type: object
+          description: The monthly spending limit for this employee on the card.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        status:
+          type: string
+          description: The status of the employee card.
+          readOnly: false
+          writeOnly: false
+        card:
+          type: object
+          description: The actual card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Card'
+        amount_spent_monthly:
+          type: object
+          description: The monthly spend for this employee on the card.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        number_of_company_employee_card_receipt_pending:
+          type: integer
+          description: The number of transactions that still need a receipt.
+          readOnly: true
+          writeOnly: false
+      required:
+      - pointer_counter_user
+      - pointer_monetary_account
+      - type
+      - product_type
+    Company:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The company name.
+          readOnly: false
+          writeOnly: true
+        address_main:
+          type: object
+          description: The company's main address.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Address'
+        address_postal:
+          type: object
+          description: The company's postal address.
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/Address'
+        country:
+          type: string
+          description: The country where the company is registered.
+          readOnly: false
+          writeOnly: true
+        ubo:
+          type: array
+          description: The names and birth dates of the company's ultimate beneficiary owners. Minimum zero, maximum four.
+          readOnly: false
+          writeOnly: true
+          items:
+            $ref: '#/components/schemas/Ubo'
+        chamber_of_commerce_number:
+          type: string
+          description: The company's chamber of commerce number.
+          readOnly: false
+          writeOnly: true
+        legal_form:
+          type: string
+          description: The company's legal form.
+          readOnly: false
+          writeOnly: true
+        subscription_type:
+          type: string
+          description: The subscription type for the company.
+          readOnly: false
+          writeOnly: true
+        avatar_uuid:
+          type: string
+          description: The public UUID of the company's avatar.
+          readOnly: false
+          writeOnly: true
+        vat_number:
+          type: object
+          description: DEPRECATED All the vat numbers of the company
+          readOnly: false
+          writeOnly: true
+          $ref: '#/components/schemas/CompanyVatNumber'
+        vat_numbers:
+          type: array
+          description: All the vat numbers of the company
+          readOnly: false
+          writeOnly: true
+          items:
+            $ref: '#/components/schemas/CompanyVatNumber'
+        signup_track_type:
+          type: string
+          description: The type of signup track the user is following.
+          readOnly: false
+          writeOnly: true
+      required:
+      - name
+      - address_main
+      - address_postal
+      - country
+      - legal_form
+      - subscription_type
+    CustomerLimit:
+      type: object
+      properties:
+        limit_monetary_account:
+          type: integer
+          description: The limit of monetary accounts.
+          readOnly: true
+          writeOnly: false
+        limit_monetary_account_remaining:
+          type: integer
+          description: The amount of additional monetary accounts you can create.
+          readOnly: true
+          writeOnly: false
+        limit_card_debit_maestro:
+          type: integer
+          description: The limit of Maestro cards.
+          readOnly: true
+          writeOnly: false
+        limit_card_debit_mastercard:
+          type: integer
+          description: The limit of MasterCard cards.
+          readOnly: true
+          writeOnly: false
+        limit_card_debit_wildcard:
+          type: integer
+          description: 'DEPRECTATED: The limit of wildcards, e.g. Maestro or MasterCard cards.'
+          readOnly: true
+          writeOnly: false
+        limit_card_wildcard:
+          type: integer
+          description: The limit of wildcards, e.g. Maestro or MasterCard cards.
+          readOnly: true
+          writeOnly: false
+        limit_card_replacement:
+          type: integer
+          description: The limit of free replacement cards.
+          readOnly: true
+          writeOnly: false
+        limit_amount_monthly:
+          type: object
+          description: The maximum amount a user is allowed to spend in a month.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        spent_amount_monthly:
+          type: object
+          description: The amount the user has spent in the last month.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+  parameters:
+    X-Bunq-Geolocation:
+      description: This header must specify the geolocation of the device. The format of this value is longitude latitude altitude radius country. The country is expected to be formatted of an ISO 3166-1 alpha-2 country code. When no geolocation is available or known the header must still be included but can be zero valued.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Geolocation
+    Cache-Control:
+      description: The standard HTTP Cache-Control header is required for all signed requests.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: Cache-Control
+    User-Agent:
+      description: The User-Agent header field should contain information about the user agent originating the request. There are no restrictions on the value of this header.
+      schema:
+        type: string
+      required: true
+      in: header
+      name: User-Agent
+    X-Bunq-Client-Request-Id:
+      description: This header must specify an ID with each request that is unique for the logged in user. There are no restrictions for the format of this ID. However, the server will respond with an error when the same ID is used again on the same DeviceServer.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Client-Request-Id
+    X-Bunq-Region:
+      description: The X-Bunq-Region header must contain the region (country) of the client device. The value of this header is formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, separated by an underscore.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Region
+    X-Bunq-Language:
+      description: The X-Bunq-Language header must contain a preferred language indication. The value of this header is formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, separated by an underscore. Currently only the languages en_US and nl_NL are supported. Anything else will default to en_US.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Language
+    X-Bunq-Client-Authentication:
+      description: The authentication token is used to authenticate the source of the API call. It is required by all API calls except for POST /v1/installation. It is important to note that the device and session calls are using the token from the response of the installation call, while all the other calls use the token from the response of the session-server call
+      schema:
+        type: string
+      required: true
+      in: header
+      name: X-Bunq-Client-Authentication
+  headers:
+    X-Bunq-Server-Signature:
+      description: The server's signature for this response. See the signing page for details on how to verify this signature.
+      schema:
+        type: string
+    X-Bunq-Client-Request-Id:
+      description: This header must specify an ID with each request that is unique for the logged in user. There are no restrictions for the format of this ID. However, the server will respond with an error when the same ID is used again on the same DeviceServer.
+      schema:
+        type: string
+      required: false
+    X-Bunq-Client-Response-Id:
+      description: A unique ID for the response formatted as a UUID. Clients can use it to add extra protection against replay attacks.
+      schema:
+        type: string
+  responses:
+    GenericError:
+      description: This is how the error response looks like for 4XX response codes
+      headers:
+        X-Bunq-Client-Response-Id:
+          $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+        X-Bunq-Client-Request-Id:
+          $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+        X-Bunq-Server-Signature:
+          $ref: '#/components/headers/X-Bunq-Server-Signature'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              Error:
+                $ref: '#/components/schemas/Error'

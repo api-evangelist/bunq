@@ -1,0 +1,942 @@
+openapi: 3.2.0
+info:
+  title: Bunqme Fundraiser Result API
+  description: '***UPDATE:*** *We have released a beta version of the new bunq API documentation.*
+
+
+    ***NOTICE:*** *We have updated the sandbox base url to `https://public-api.sandbox.bunq.com/v1/`. Please update your applications accordingly. Check here: for more info.*
+
+
+    ***PSD2 NOTICE:*** *The second Payment Services Directive (PSD2) may affect your current or planned usage of our public API, as some of the API services are now subject to a permit. Please be aware that using our public API without the required PSD2 permit is at your own risk and take notice of our updated API Terms and Conditions on for more information.*
+
+
+    # Introduction
+
+
+    Welcome to bunq! - The bunq API is organised around REST. JSON will be returned in almost all responses from the API, including errors but excluding binary (image) files. - Please configure your implementation to send its API requests to `https://public-api.sandbox.bunq.com/v1/`
+
+    - There is a version of the Android app that connects to the bunq Sandbox environment. To create accounts for the Sandbox app, please follow the steps in the Android Emulator section. ## Getting started
+
+
+    Before you start sending API requests, you need to get an API key and activate it. API activation happens when you install the API key and link your IP address and device to it *(create an API context)*. The steps below will guide you through what you need to do to start sending custom API requests. Here is an overview of what you can use to get started with the bunq API:
+
+    1. **Create an API key.** You can do it either in our developer portal or in the bunq app *(Profile → Security & Settings → Developers → API keys)*. If you want to test our sandbox first, our bunq Developer is the best place to start. 2. **Register a device.** A device can be a phone (private), computer or a server (public). You can register a new device by using the `POST /installation` and `POST /device-server` calls. This will activate your API key. You only need to do this once. 3. **Open a session.** Sessions are temporary and expire after the auto-logout time set for the user account. It can be changed by the account owner in the bunq app. 4. **Make your first call!**
+
+
+    !bunq_API_context
+
+
+    ## Versioning
+
+
+    Developments in the financial sector, changing regulatory regimes and new feature requests require us to be flexible. This means we can iterate quickly to improve the API and related tooling. Therefore, we have chosen not to attach any version numbers to the changes just yet. We will inform you in a timely manner of any important changes we make before they are deployed on together.bunq.com. You can also subscribe to our API newsletter to make sure you don''t miss any important updates. # OAuth
+
+
+    ## What is OAuth? OAuth 2.0 is a protocol that will let your app connect to bunq users in a safe and easy way. Please be aware that if you will gain access to the account information of other bunq users or initiate a payment for them, you may require a PSD2 permit. ## Get started with OAuth for bunq
+
+
+    To initiate authorization into the bunq user accounts, you need to create an OAuth Client and register at least 1 redirect URL for it. You can have 1 OAuth Client at a time. Reuse your OAuth credentials for every authorization request. The list of steps below will help you to get started:
+
+
+    1. Register an OAuth Client by creating an app in bunq Developer_._
+
+    2. Add one or more Redirect URLs. 3. Get your `client_id` and `secret` from your app information tab in bunq Developer. 4. Redirect your users to the OAuth authorization request URL. 5. If the user accepts the authorization request, they will be redirected to the previously specified `redirect_uri` with an authorization `code` parameter. 6. Use the token endpoint to exchange the authorization `code` for an `access_token`. 7. Use the `access_token` as a normal API Key. Open a session or use our SDKs to get started. You can set up an OAuth Client and add redirect URLs to it using the dedicated endpoints too.'
+  termsOfService: http://bunq.com/terms-api/
+  contact:
+    name: bunq Developer Support
+    url: http://bunq.com/developer
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: '1.0'
+servers:
+- url: https://public-api.sandbox.bunq.com/{basePath}
+  description: Sandbox server
+  variables:
+    basePath:
+      default: v1
+- url: https://api.bunq.com/{basePath}
+  description: Production server
+  variables:
+    basePath:
+      default: v1
+tags:
+- name: bunqme-fundraiser-result
+  description: ''
+paths:
+  /user/{userID}/monetary-account/{monetary-accountID}/bunqme-fundraiser-result/{itemId}:
+    get:
+      tags:
+      - bunqme-fundraiser-result
+      summary: READ bunqme fundraiser result for user monetary account
+      operationId: READ_BunqmeFundraiserResult_for_User_MonetaryAccount
+      description: bunq.me fundraiser result containing all payments.
+      parameters:
+      - in: path
+        name: userID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: monetary-accountID
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: itemId
+        description: ''
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Cache-Control'
+      - $ref: '#/components/parameters/User-Agent'
+      - $ref: '#/components/parameters/X-Bunq-Language'
+      - $ref: '#/components/parameters/X-Bunq-Region'
+      - $ref: '#/components/parameters/X-Bunq-Client-Request-Id'
+      - $ref: '#/components/parameters/X-Bunq-Geolocation'
+      - $ref: '#/components/parameters/X-Bunq-Client-Authentication'
+      responses:
+        '200':
+          description: bunq.me fundraiser result containing all payments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BunqMeFundraiserResultRead'
+          headers:
+            X-Bunq-Client-Response-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+            X-Bunq-Client-Request-Id:
+              $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+            X-Bunq-Server-Signature:
+              $ref: '#/components/headers/X-Bunq-Server-Signature'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      x-summary-source: derived
+components:
+  schemas:
+    GinmonTransaction:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status of the transaction.
+          readOnly: true
+          writeOnly: false
+        status_description:
+          type: string
+          description: The status of the transaction.
+          readOnly: true
+          writeOnly: false
+        status_description_translated:
+          type: string
+          description: The translated status of the transaction.
+          readOnly: true
+          writeOnly: false
+        amount_billing:
+          type: object
+          description: The final amount the user will pay or receive.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        amount_billing_original:
+          type: object
+          description: The estimated amount the user will pay or receive.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        isin:
+          type: string
+          description: The ISIN of the security.
+          readOnly: true
+          writeOnly: false
+        external_identifier:
+          type: string
+          description: External identifier of this order at Ginmon.
+          readOnly: true
+          writeOnly: false
+        label_user:
+          type: object
+          description: The label of the user.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        label_monetary_account:
+          type: object
+          description: The label of the monetary account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        counter_label_monetary_account:
+          type: object
+          description: The label of the counter monetary account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        event_id:
+          type: integer
+          description: The id of the event of transaction.
+          readOnly: true
+          writeOnly: false
+    BunqMeFundraiserProfile:
+      type: object
+      properties:
+        pointer:
+          type: object
+          description: The pointer (url) which will be used to access the bunq.me fundraiser profile.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Pointer'
+        color:
+          type: string
+          description: The color chosen for the bunq.me fundraiser profile in hexadecimal format.
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: object
+          description: The LabelMonetaryAccount with the public information of the User and the MonetaryAccount that created the bunq.me fundraiser profile.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        currency:
+          type: string
+          description: The currency of the MonetaryAccount that created the bunq.me fundraiser profile.
+          readOnly: true
+          writeOnly: false
+        description:
+          type: string
+          description: The description of the bunq.me fundraiser profile.
+          readOnly: true
+          writeOnly: false
+        attachment:
+          type: object
+          description: The attachment attached to the fundraiser profile.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/AttachmentPublic'
+        status:
+          type: string
+          description: The status of the bunq.me fundraiser profile, can be ACTIVE or DEACTIVATED.
+          readOnly: true
+          writeOnly: false
+        redirect_url:
+          type: string
+          description: The URL which the user is sent to when a payment is completed.
+          readOnly: true
+          writeOnly: false
+        invite_profile_name:
+          type: string
+          description: Provided if the user has enabled their invite link.
+          readOnly: true
+          writeOnly: false
+        merchant_available:
+          type: array
+          description: List of available merchants.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/BunqMeMerchantAvailable'
+    BunqMeMerchantAvailable:
+      type: object
+      properties:
+        merchant_type:
+          type: string
+          description: A merchant type supported by bunq.me.
+          readOnly: true
+          writeOnly: false
+        available:
+          type: boolean
+          description: Whether or not the merchant is available for the user.
+          readOnly: true
+          writeOnly: false
+    PaymentFee:
+      type: object
+      properties:
+        value:
+          type: string
+          description: The amount formatted to two decimal places.
+          readOnly: true
+          writeOnly: false
+        currency:
+          type: string
+          description: The currency of the amount. It is an ISO 4217 formatted currency code.
+          readOnly: true
+          writeOnly: false
+        invoice_id:
+          type: integer
+          description: The id of the invoice related to possible payment fee.
+          readOnly: true
+          writeOnly: false
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          description: The street.
+          readOnly: false
+          writeOnly: false
+        house_number:
+          type: string
+          description: The house number.
+          readOnly: false
+          writeOnly: false
+        po_box:
+          type: string
+          description: The PO box.
+          readOnly: false
+          writeOnly: false
+        postal_code:
+          type: string
+          description: The postal code.
+          readOnly: false
+          writeOnly: false
+        city:
+          type: string
+          description: The city.
+          readOnly: false
+          writeOnly: false
+        country:
+          type: string
+          description: The country as an ISO 3166-1 alpha-2 country code.
+          readOnly: false
+          writeOnly: false
+        extra:
+          type: string
+          description: The apartment, building or other extra information for addresses.
+          readOnly: false
+          writeOnly: false
+        mailbox_name:
+          type: string
+          description: The name on the mailbox (only used for Postal and Shipping addresses).
+          readOnly: false
+          writeOnly: false
+        province:
+          type: string
+          description: The province according to local standard.
+          readOnly: true
+          writeOnly: false
+        is_user_address_updated:
+          type: boolean
+          description: To show whether user created or updated her address for app event listing.
+          readOnly: true
+          writeOnly: false
+    BunqMeFundraiserResultRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the bunq.me.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp when the bunq.me was created.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp when the bunq.me was last updated.
+          readOnly: true
+          writeOnly: false
+        bunqme_fundraiser_profile:
+          type: object
+          description: The bunq.me fundraiser profile.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/BunqMeFundraiserProfile'
+        payments:
+          type: array
+          description: The list of payments, paid to the bunq.me fundraiser profile.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Payment'
+    PaymentArrivalExpected:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Indicates when we expect the payment to arrive.
+          readOnly: true
+          writeOnly: false
+        time:
+          type: string
+          description: The time when the payment is expected to arrive.
+          readOnly: true
+          writeOnly: false
+    Amount:
+      type: object
+      properties:
+        value:
+          type: string
+          description: The amount formatted to two decimal places.
+          readOnly: false
+          writeOnly: false
+        currency:
+          type: string
+          description: The currency of the amount. It is an ISO 4217 formatted currency code.
+          readOnly: false
+          writeOnly: false
+    LabelUser:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The public UUID of the label-user.
+          readOnly: false
+          writeOnly: false
+        display_name:
+          type: string
+          description: The name to be displayed for this user, as it was given on the request.
+          readOnly: false
+          writeOnly: false
+        country:
+          type: string
+          description: The country of the user. 000 stands for "unknown"
+          readOnly: false
+          writeOnly: false
+        avatar:
+          type: object
+          description: The current avatar of the user.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        public_nick_name:
+          type: string
+          description: The current nickname of the user.
+          readOnly: true
+          writeOnly: false
+    PaymentBatch:
+      type: object
+      properties:
+        payments:
+          type: object
+          description: The list of mutations that were made.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/PaymentBatchAnchoredPayment'
+    Error:
+      type: array
+      items:
+        type: object
+        properties:
+          error_description:
+            type: string
+            description: The error description in English.
+          error_description_translated:
+            type: string
+            description: The error description translated to the user's language.
+    Payment:
+      type: object
+      properties:
+        amount:
+          type: object
+          description: The Amount transferred by the Payment. Will be negative for outgoing Payments and positive for incoming Payments (relative to the MonetaryAccount indicated by monetary_account_id).
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        counterparty_alias:
+          type: object
+          description: The LabelMonetaryAccount containing the public information of the other (counterparty) side of the Payment.
+          readOnly: false
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        description:
+          type: string
+          description: The description for the Payment. Maximum 140 characters for Payments to external IBANs, 9000 characters for Payments to only other bunq MonetaryAccounts.
+          readOnly: false
+          writeOnly: false
+        attachment:
+          type: array
+          description: The Attachments attached to the Payment.
+          readOnly: false
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/AttachmentMonetaryAccountPayment'
+        merchant_reference:
+          type: string
+          description: Optional data included with the Payment specific to the merchant.
+          readOnly: false
+          writeOnly: false
+        allow_bunqto:
+          type: boolean
+          description: Whether or not sending a bunq.to payment is allowed.
+          readOnly: false
+          writeOnly: true
+        id:
+          type: integer
+          description: The id of the created Payment.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp when the Payment was done.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp when the Payment was last updated (will be updated when chat messages are received).
+          readOnly: true
+          writeOnly: false
+        monetary_account_id:
+          type: integer
+          description: The id of the MonetaryAccount the Payment was made to or from (depending on whether this is an incoming or outgoing Payment).
+          readOnly: true
+          writeOnly: false
+        alias:
+          type: object
+          description: The LabelMonetaryAccount containing the public information of 'this' (party) side of the Payment.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelMonetaryAccount'
+        type:
+          type: string
+          description: The type of Payment, can be BUNQ, EBA_SCT, EBA_SDD, IDEAL, SWIFT or FIS (card).
+          readOnly: true
+          writeOnly: false
+        sub_type:
+          type: string
+          description: The sub-type of the Payment, can be PAYMENT, WITHDRAWAL, REVERSAL, REQUEST, BILLING, SCT, SDD or NLO.
+          readOnly: true
+          writeOnly: false
+        payment_arrival_expected:
+          type: object
+          description: Information about the expected arrival of the payment.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/PaymentArrivalExpected'
+        bunqto_status:
+          type: string
+          description: The status of the bunq.to payment.
+          readOnly: true
+          writeOnly: false
+        bunqto_sub_status:
+          type: string
+          description: The sub status of the bunq.to payment.
+          readOnly: true
+          writeOnly: false
+        bunqto_share_url:
+          type: string
+          description: The status of the bunq.to payment.
+          readOnly: true
+          writeOnly: false
+        bunqto_expiry:
+          type: string
+          description: When bunq.to payment is about to expire.
+          readOnly: true
+          writeOnly: false
+        bunqto_time_responded:
+          type: string
+          description: The timestamp of when the bunq.to payment was responded to.
+          readOnly: true
+          writeOnly: false
+        batch_id:
+          type: integer
+          description: The id of the PaymentBatch if this Payment was part of one.
+          readOnly: true
+          writeOnly: false
+        scheduled_id:
+          type: integer
+          description: The id of the JobScheduled if the Payment was scheduled.
+          readOnly: true
+          writeOnly: false
+        address_shipping:
+          type: object
+          description: A shipping Address provided with the Payment, currently unused.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        address_billing:
+          type: object
+          description: A billing Address provided with the Payment, currently unused.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Address'
+        geolocation:
+          type: object
+          description: The Geolocation where the Payment was done from.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Geolocation'
+        request_reference_split_the_bill:
+          type: array
+          description: The reference to the object used for split the bill. Can be RequestInquiry or RequestInquiryBatch
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/RequestInquiryReference'
+        balance_after_mutation:
+          type: object
+          description: The new balance of the monetary account after the mutation.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Amount'
+        payment_auto_allocate_instance:
+          type: object
+          description: A reference to the PaymentAutoAllocateInstance if it exists.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/PaymentAutoAllocateInstance'
+        payment_suspended_outgoing:
+          type: object
+          description: A reference to the PaymentSuspendedOutgoing if it exists.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/PaymentSuspendedOutgoing'
+        payment_fee:
+          type: object
+          description: Incurred fee for the payment.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/PaymentFee'
+    Avatar:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The public UUID of the avatar.
+          readOnly: false
+          writeOnly: false
+        anchor_uuid:
+          type: string
+          description: The public UUID of object this avatar is anchored to.
+          readOnly: true
+          writeOnly: false
+        image:
+          type: array
+          description: The actual image information of this avatar.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Image'
+        style:
+          type: string
+          description: The style (if applicable) for this Avatar.
+          readOnly: true
+          writeOnly: false
+    Pointer:
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'The alias type, can be: EMAIL|PHONE_NUMBER|IBAN.'
+          readOnly: false
+          writeOnly: false
+        value:
+          type: string
+          description: The alias value.
+          readOnly: false
+          writeOnly: false
+        name:
+          type: string
+          description: The alias name.
+          readOnly: false
+          writeOnly: false
+        service:
+          type: string
+          description: The pointer service. Only required for external counterparties.
+          readOnly: false
+          writeOnly: true
+    PaymentAutoAllocateInstance:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the PaymentAutoAllocateInstance.
+          readOnly: true
+          writeOnly: false
+        created:
+          type: string
+          description: The timestamp when the PaymentAutoAllocateInstance was created.
+          readOnly: true
+          writeOnly: false
+        updated:
+          type: string
+          description: The timestamp when the PaymentAutoAllocateInstance was last updated.
+          readOnly: true
+          writeOnly: false
+        payment_auto_allocate_id:
+          type: integer
+          description: The ID of the payment auto allocate this instance belongs to.
+          readOnly: true
+          writeOnly: false
+        status:
+          type: string
+          description: The status of the payment auto allocate instance. SUCCEEDED or FAILED.
+          readOnly: true
+          writeOnly: false
+        error_message:
+          type: array
+          description: The error message, if the payment auto allocating failed.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Error'
+        payment_batch:
+          type: object
+          description: The payment batch allocating all the payments.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/PaymentBatch'
+        payment_id:
+          type: integer
+          description: The ID of the payment that triggered the allocating of the payments.
+          readOnly: true
+          writeOnly: false
+        all_ginmon_transaction_order:
+          type: array
+          description: All Ginmon transaction orders executed with this instance.
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/GinmonTransaction'
+    LabelMonetaryAccount:
+      type: object
+      properties:
+        iban:
+          type: string
+          description: The IBAN of the monetary account.
+          readOnly: true
+          writeOnly: false
+        display_name:
+          type: string
+          description: The name to display with this monetary account.
+          readOnly: true
+          writeOnly: false
+        avatar:
+          type: object
+          description: The avatar of the monetary account.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Avatar'
+        label_user:
+          type: object
+          description: The user this monetary account belongs to.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/LabelUser'
+        country:
+          type: string
+          description: The country of the user. Formatted as a ISO 3166-1 alpha-2 country code.
+          readOnly: true
+          writeOnly: false
+        bunq_me:
+          type: object
+          description: Bunq.me pointer with type and value.
+          readOnly: true
+          writeOnly: false
+          $ref: '#/components/schemas/Pointer'
+        is_light:
+          type: boolean
+          description: Whether or not the monetary account is light.
+          readOnly: true
+          writeOnly: false
+        swift_bic:
+          type: string
+          description: The BIC used for a SWIFT payment.
+          readOnly: true
+          writeOnly: false
+        swift_account_number:
+          type: string
+          description: The account number used for a SWIFT payment. May or may not be an IBAN.
+          readOnly: true
+          writeOnly: false
+        transferwise_account_number:
+          type: string
+          description: The account number used for a Transferwise payment. May or may not be an IBAN.
+          readOnly: true
+          writeOnly: false
+        transferwise_bank_code:
+          type: string
+          description: The bank code used for a Transferwise payment. May or may not be a BIC.
+          readOnly: true
+          writeOnly: false
+        merchant_category_code:
+          type: string
+          description: The merchant category code.
+          readOnly: true
+          writeOnly: false
+    AttachmentMonetaryAccountPayment:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the attached Attachment.
+          readOnly: false
+          writeOnly: false
+        monetary_account_id:
+          type: integer
+          description: The id of the MonetaryAccount this Attachment is attached from.
+          readOnly: true
+          writeOnly: false
+    PaymentSuspendedOutgoing:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status of the payment.
+          readOnly: false
+          writeOnly: false
+        monetary_account_id:
+          type: string
+          description: The ID of the monetary account the payment was sent from.
+          readOnly: true
+          writeOnly: false
+        time_execution:
+          type: string
+          description: The time this payment should be executed.
+          readOnly: true
+          writeOnly: false
+    AttachmentPublic:
+      type: object
+    Image:
+      type: object
+      properties:
+        attachment_public_uuid:
+          type: string
+          description: The public UUID of the public attachment containing the image.
+          readOnly: true
+          writeOnly: false
+        content_type:
+          type: string
+          description: The content-type as a MIME filetype.
+          readOnly: true
+          writeOnly: false
+        height:
+          type: integer
+          description: The image height in pixels.
+          readOnly: true
+          writeOnly: false
+        width:
+          type: integer
+          description: The image width in pixels.
+          readOnly: true
+          writeOnly: false
+    Geolocation:
+      type: object
+      properties:
+        latitude:
+          type: integer
+          description: The latitude for a geolocation restriction.
+          readOnly: false
+          writeOnly: false
+        longitude:
+          type: integer
+          description: The longitude for a geolocation restriction.
+          readOnly: false
+          writeOnly: false
+        altitude:
+          type: integer
+          description: The altitude for a geolocation restriction.
+          readOnly: false
+          writeOnly: false
+        radius:
+          type: integer
+          description: The radius for a geolocation restriction.
+          readOnly: false
+          writeOnly: false
+    RequestInquiryReference:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of request inquiry. Can be RequestInquiry or RequestInquiryBatch.
+          readOnly: true
+          writeOnly: false
+        id:
+          type: integer
+          description: The id of the request inquiry (batch).
+          readOnly: true
+          writeOnly: false
+    PaymentBatchAnchoredPayment:
+      type: object
+      properties:
+        Payment:
+          type: array
+          description: ''
+          readOnly: true
+          writeOnly: false
+          items:
+            $ref: '#/components/schemas/Payment'
+  parameters:
+    X-Bunq-Geolocation:
+      description: This header must specify the geolocation of the device. The format of this value is longitude latitude altitude radius country. The country is expected to be formatted of an ISO 3166-1 alpha-2 country code. When no geolocation is available or known the header must still be included but can be zero valued.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Geolocation
+    Cache-Control:
+      description: The standard HTTP Cache-Control header is required for all signed requests.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: Cache-Control
+    User-Agent:
+      description: The User-Agent header field should contain information about the user agent originating the request. There are no restrictions on the value of this header.
+      schema:
+        type: string
+      required: true
+      in: header
+      name: User-Agent
+    X-Bunq-Client-Request-Id:
+      description: This header must specify an ID with each request that is unique for the logged in user. There are no restrictions for the format of this ID. However, the server will respond with an error when the same ID is used again on the same DeviceServer.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Client-Request-Id
+    X-Bunq-Region:
+      description: The X-Bunq-Region header must contain the region (country) of the client device. The value of this header is formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, separated by an underscore.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Region
+    X-Bunq-Language:
+      description: The X-Bunq-Language header must contain a preferred language indication. The value of this header is formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, separated by an underscore. Currently only the languages en_US and nl_NL are supported. Anything else will default to en_US.
+      schema:
+        type: string
+      required: false
+      in: header
+      name: X-Bunq-Language
+    X-Bunq-Client-Authentication:
+      description: The authentication token is used to authenticate the source of the API call. It is required by all API calls except for POST /v1/installation. It is important to note that the device and session calls are using the token from the response of the installation call, while all the other calls use the token from the response of the session-server call
+      schema:
+        type: string
+      required: true
+      in: header
+      name: X-Bunq-Client-Authentication
+  headers:
+    X-Bunq-Server-Signature:
+      description: The server's signature for this response. See the signing page for details on how to verify this signature.
+      schema:
+        type: string
+    X-Bunq-Client-Request-Id:
+      description: This header must specify an ID with each request that is unique for the logged in user. There are no restrictions for the format of this ID. However, the server will respond with an error when the same ID is used again on the same DeviceServer.
+      schema:
+        type: string
+      required: false
+    X-Bunq-Client-Response-Id:
+      description: A unique ID for the response formatted as a UUID. Clients can use it to add extra protection against replay attacks.
+      schema:
+        type: string
+  responses:
+    GenericError:
+      description: This is how the error response looks like for 4XX response codes
+      headers:
+        X-Bunq-Client-Response-Id:
+          $ref: '#/components/headers/X-Bunq-Client-Response-Id'
+        X-Bunq-Client-Request-Id:
+          $ref: '#/components/headers/X-Bunq-Client-Request-Id'
+        X-Bunq-Server-Signature:
+          $ref: '#/components/headers/X-Bunq-Server-Signature'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              Error:
+                $ref: '#/components/schemas/Error'
