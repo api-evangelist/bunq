@@ -15,6 +15,8 @@ checked:
 - https://www.payments.ca/payment-resources/directories?field_directory_type=14
 - https://github.com/raycast/extensions/tree/84f9ac51336a8c69f70974a75bc067c0feae3658/extensions
 - https://www.raycast.com/api/v1/store_listings
+- https://api.apis.guru/v2/list.json
+- https://api.apis.guru/v2/providers.json
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -521,6 +523,47 @@ edges:
   detected_by: sweep-raycast-store-extensions.py
   first_seen: '2026-10-22'
   direction: partner-built
+- partner_name: APIs.guru OpenAPI Directory
+  partner: apis-guru
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: third-party
+  evidence: https://apis.guru/
+  category: API definition directory listing (OpenAPI)
+  contract_reference:
+    register: APIs.guru OpenAPI Directory
+    spec_file: null
+    standard: APIs.guru OpenAPI Directory
+    role: listed-in-directory
+    directory_provider: bunq.com
+    matched_domain: bunq.com
+    matched_by: domain
+    apis_listed: 1
+    version_count: 1
+    first_added: '2019-06-12'
+    last_updated: '2023-03-06'
+    origin_publisher_hosted: false
+    origin_hosts:
+    - raw.githubusercontent.com
+    categories:
+    - financial
+    own_openapi_files: 113
+    listings:
+    - key: bunq.com
+      title: bunq API
+      preferred: '1.0'
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/bunq.com/1.0/openapi.json
+      origin_url: https://raw.githubusercontent.com/bunq/doc/master/swagger.json
+      openapi_version: 3.0.0
+    signal_note: 'participation only: a community directory listing (APIs.guru collects definitions; the provider
+      did not file them). Signals: version_count, apis_listed, origin_publisher_hosted.'
+    detected_by: sweep-openapi-directory-apis-guru.py
+    detected: '2026-10-22'
+  detected_by: sweep-openapi-directory-apis-guru.py
+  first_seen: '2026-10-22'
 templates:
 - title: Log new Bunq payments as Google spreadsheet rows
   url: https://zapier.com/apps/bunq/integrations/google-sheets/93176/log-new-bunq-payments-as-google-spreadsheet-rows
