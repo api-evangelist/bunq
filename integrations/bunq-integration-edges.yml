@@ -8,6 +8,11 @@ checked:
 - https://n8n.io/integrations/bunq/
 - https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/bunq/integrations
+- https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/
+- https://www.bankofcanada.ca/rps-api/cif2/accounts/list
+- https://www.payments.ca/payment-resources/directories?field_directory_type=10
+- https://www.payments.ca/payment-resources/directories?field_directory_type=13
+- https://www.payments.ca/payment-resources/directories?field_directory_type=14
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -430,6 +435,48 @@ edges:
   direction: third-party
   category: Notes
   partner_url: https://evernote.com/
+- partner_name: Bank of Canada RPAA registry of payment service providers
+  partner: null
+  partner_match: register
+  type: register
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/
+  category: Canadian retail payment activities (RPAA) PSP registration
+  contract_reference:
+    register: Bank of Canada RPAA registry of payment service providers
+    spec_file: null
+    standard: null
+    role: registered-psp
+    registrations:
+    - registered_name: bunq Canada Corporation
+      register_status: registered
+      register_country: US
+      register_id: fb8df3c4-4e57-f011-bec2-000d3a842d72
+      matched_domain: bunq.com
+      matched_by: domain
+      evidence_url: https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/psp-registry-details/?account_id=fb8df3c4-4e57-f011-bec2-000d3a842d72
+      licences:
+      - RPAA registered PSP
+      registration_date: '2026-10-05'
+      head_office_country: United States of America (the)
+      payment_functions:
+      - The provision or maintenance of an account that, in relation to an electronic funds transfer, is held on
+        behalf of one or more end users
+      - Holding of funds on behalf of an end user until they are withdrawn by the end user or transferred to another
+        individual or entity
+      - The initiation of an electronic funds transfer at the request of an end user
+      - Authorization or Transmission, Reception or Facilitation of an instruction in relation to an electronic
+        funds transfer
+      - Clearing or settlement services
+      has_violations: false
+    signal_note: 'participation only: a regulator registration / payment-system membership; no API conformance is
+      published by this register'
+    detected_by: sweep-canada-rpaa-psp-registry.py
+    detected: '2026-10-22'
+  detected_by: sweep-canada-rpaa-psp-registry.py
+  first_seen: '2026-10-22'
 templates:
 - title: Log new Bunq payments as Google spreadsheet rows
   url: https://zapier.com/apps/bunq/integrations/google-sheets/93176/log-new-bunq-payments-as-google-spreadsheet-rows
