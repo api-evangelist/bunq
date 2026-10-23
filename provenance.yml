@@ -31,11 +31,11 @@ artifacts:
     method: derived
     evidence: openapi/bunq-customer-statement-api
   collections/bunq-handshake-api.opencollection.json:
-    method: derived
-    evidence: openapi/bunq-handshake-api
+    method: unknown
+    evidence: no authorship recorded
   collections/bunq-handshake-api.postman_collection.json:
-    method: derived
-    evidence: openapi/bunq-handshake-api
+    method: unknown
+    evidence: no authorship recorded
   collections/bunq-monetary-account-api.opencollection.json:
     method: derived
     evidence: openapi/bunq-monetary-account-api
@@ -43,11 +43,11 @@ artifacts:
     method: derived
     evidence: openapi/bunq-monetary-account-api
   collections/bunq-notification-filter-api.opencollection.json:
-    method: derived
-    evidence: openapi/bunq-notification-filter-api
+    method: unknown
+    evidence: no authorship recorded
   collections/bunq-notification-filter-api.postman_collection.json:
-    method: derived
-    evidence: openapi/bunq-notification-filter-api
+    method: unknown
+    evidence: no authorship recorded
   collections/bunq-payment-api.opencollection.json:
     method: derived
     evidence: openapi/bunq-payment-api
@@ -78,127 +78,25 @@ artifacts:
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-24T161608.yml:
+  integrations/_index.yml:
     method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T125852.yml:
+    evidence: carries an API Evangelist house phrase
+  integrations/bunq-integration-edges.yml:
+    method: searched
+    evidence: declared in the artifact
+  integrations/bunq-integration-map.yml:
+    method: unknown
+    evidence: no authorship recorded
+  integrations/bunq-stripe-integration-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  integrations/bunq-stripe-preconfig-phrasing-overlay.yaml:
     method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T133943.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T143147.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T154045.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-26T215308.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T094438.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T103455.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T123021.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T132314.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T140727.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T213958.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T230545.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T203505.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T220315.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-31T223420.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T063623.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T210448.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T222808.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T224043.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T161828.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T174231.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T062714.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T212454.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T224856.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T055819.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T144739.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T195450.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T211839.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T011047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T224210.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T200636.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T213054.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T214843.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T232836.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T204815.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T222408.yml:
+    evidence: declared in the artifact
+  integrations/bunq-stripe-preconfig.yml:
+    method: derived
+    evidence: declared in the artifact
+  kin/checks-2026-10-11T110117.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-12T062655.yml:
@@ -282,37 +180,364 @@ artifacts:
   kin/score-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  openapi/_original/bunq-openapi.yml:
+  kin/score-2026-09-25T210408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T232841.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T000835.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T024842.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-11T110117.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  openapi/_original/bunq-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://raw.githubusercontent.com/bunq/doc/master/swagger.json (sha256
+      369477c7bd26, fetched 2026-10-19)
+  openapi/bunq-additional-transaction-information-category-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-additional-transaction-information-category-user-defined-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
   openapi/bunq-attachment-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-attachment-public-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-avatar-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-billing-contract-subscription-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-bunqme-fundraiser-profile-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-bunqme-fundraiser-result-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-bunqme-tab-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-bunqme-tab-result-response-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-callback-url-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
   openapi/bunq-card-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-card-batch-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-card-batch-replace-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-card-credit-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-card-debit-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-card-name-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-certificate-pinned-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-challenge-request-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-company-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-confirmation-of-funds-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-content-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-credential-password-ip-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-currency-cloud-beneficiary-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-currency-cloud-beneficiary-requirement-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-currency-cloud-payment-quote-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-currency-conversion-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-currency-conversion-quote-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
   openapi/bunq-customer-statement-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/bunq-handshake-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-definition-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-device-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-device-server-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-draft-payment-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-event-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-export-annual-overview-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-export-rib-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-export-statement-card-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-export-statement-card-csv-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-export-statement-card-pdf-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-feature-announcement-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-generated-cvc2-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-health-check-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-ideal-merchant-transaction-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-insight-preference-date-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-insights-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-insights-search-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-installation-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-instance-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-invoice-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-invoice-export-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-ip-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-legal-name-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-limit-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-mastercard-action-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
   openapi/bunq-monetary-account-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/bunq-notification-filter-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-monetary-account-bank-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-monetary-account-card-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-monetary-account-external-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-monetary-account-external-savings-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-monetary-account-joint-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-monetary-account-savings-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-name-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-note-attachment-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-note-text-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-notification-filter-email-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-notification-filter-failure-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-notification-filter-push-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-notification-filter-url-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-oauth-client-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
   openapi/bunq-payment-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-payment-auto-allocate-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-payment-batch-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-payment-service-provider-credential-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-payment-service-provider-draft-payment-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-payment-service-provider-issuer-transaction-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-pdf-content-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-replace-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
   openapi/bunq-request-inquiry-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-request-inquiry-batch-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-request-response-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-sandbox-user-company-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-sandbox-user-person-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-schedule-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-schedule-instance-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-schedule-payment-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-schedule-payment-batch-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-server-error-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-server-public-key-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-session-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-session-server-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-share-invite-monetary-account-inquiry-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-share-invite-monetary-account-response-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-sofort-merchant-transaction-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-statement-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-switch-service-payment-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-token-qr-request-ideal-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-token-qr-request-sofort-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-transferwise-currency-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-transferwise-quote-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-transferwise-quote-temporary-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-transferwise-recipient-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-transferwise-recipient-requirement-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-transferwise-transfer-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-transferwise-transfer-requirement-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-transferwise-user-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-tree-progress-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
   openapi/bunq-user-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-user-company-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-user-payment-service-provider-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-user-person-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-whitelist-sdd-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-whitelist-sdd-one-off-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bunq-whitelist-sdd-recurring-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
   plans/bunq-plans-pricing.yml:
     method: generated
     evidence: declared in the artifact

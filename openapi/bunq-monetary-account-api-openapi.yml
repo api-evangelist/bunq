@@ -1949,3 +1949,9 @@ components:
             properties:
               Error:
                 $ref: '#/components/schemas/Error'
+x-provenance:
+  method: harvested
+  publisher: bunq
+  source: https://raw.githubusercontent.com/bunq/doc/master/swagger.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
