@@ -435,6 +435,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Avatars
+  tags_raw:
   - avatar
   properties:
   - type: OpenAPI
@@ -691,6 +693,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Card Batch
+  tags_raw:
   - card-batch
   properties:
   - type: OpenAPI
@@ -943,6 +947,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Company
+  tags_raw:
   - company
   properties:
   - type: OpenAPI
@@ -979,6 +985,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Confirmation of Funds
+  tags_raw:
   - confirmation-of-funds
   properties:
   - type: OpenAPI
@@ -1015,6 +1023,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Content
+  tags_raw:
   - content
   properties:
   - type: OpenAPI
@@ -1198,6 +1208,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Currency Conversion
+  tags_raw:
   - currency-conversion
   properties:
   - type: OpenAPI
@@ -1271,6 +1283,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Definition
+  tags_raw:
   - definition
   properties:
   - type: OpenAPI
@@ -1307,6 +1321,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Device
+  tags_raw:
   - device
   properties:
   - type: OpenAPI
@@ -1379,6 +1395,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Draft payment
+  tags_raw:
   - draft-payment
   properties:
   - type: OpenAPI
@@ -1415,6 +1433,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Event
+  tags_raw:
   - event
   properties:
   - type: OpenAPI
@@ -1705,6 +1725,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Health Check
+  tags_raw:
   - health-check
   properties:
   - type: OpenAPI
@@ -1814,6 +1836,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Insights
+  tags_raw:
   - insights
   properties:
   - type: OpenAPI
@@ -1886,6 +1910,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Installations
+  tags_raw:
   - installation
   properties:
   - type: OpenAPI
@@ -1922,6 +1948,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Instance
+  tags_raw:
   - instance
   properties:
   - type: OpenAPI
@@ -1958,6 +1986,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Invoices
+  tags_raw:
   - invoice
   properties:
   - type: OpenAPI
@@ -2030,6 +2060,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - IP
+  tags_raw:
   - ip
   properties:
   - type: OpenAPI
@@ -2102,6 +2134,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Limit
+  tags_raw:
   - limit
   properties:
   - type: OpenAPI
@@ -2393,6 +2427,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Name
+  tags_raw:
   - name
   properties:
   - type: OpenAPI
@@ -2975,6 +3011,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Request Response
+  tags_raw:
   - request-response
   properties:
   - type: OpenAPI
@@ -3083,6 +3121,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Schedule
+  tags_raw:
   - schedule
   properties:
   - type: OpenAPI
@@ -3299,6 +3339,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Sessions
+  tags_raw:
   - session
   properties:
   - type: OpenAPI
@@ -3482,6 +3524,8 @@ apis:
   humanURL: https://doc.bunq.com/basics/authentication
   baseURL: https://api.bunq.com/v1
   tags:
+  - Statement
+  tags_raw:
   - statement
   properties:
   - type: OpenAPI
